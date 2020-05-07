@@ -53,23 +53,23 @@
 
 <div id="signup">
 
-    <form class="modal-content" action="/action_page.php" method="post">
+    <form class="modal-content" action="/reg" method="post">
         <div class="container">
             <h4 class="text-center display-4">Реєстрація</h4>
         </div>
 
         <div class="container">
             <label  for="uname2"><b>Логін</b></label>
-            <input  class="form-control" type="text" placeholder="Твій нікнейм..." id="uname2" required>
+            <input  class="form-control" type="text" placeholder="Твій нікнейм..." id="uname2" name="nick" required>
 
             <label  for="mailUser"><b>Пошта</b></label>
-            <input  class="form-control" type="email" placeholder="Твоя пошта..." id="mailUser" required>
+            <input  class="form-control" type="email" placeholder="Твоя пошта..." id="mailUser" name="mail" required>
 
             <label  for="yearEntr"><b>Рік вступу</b></label>
-            <input  class="form-control" type="number" placeholder="Рік вступу у НаУКМА..." id="yearEntr" required>
+            <input  class="form-control" type="number" placeholder="Рік вступу у НаУКМА..." id="yearEntr" name="year" required>
 
             <label  for="psw2"><b>Пароль</b></label>
-            <input  class="form-control" type="password" placeholder="Пароль..." id="psw2" required>
+            <input  class="form-control" type="password" placeholder="Пароль..." id="psw2" name="password" required>
 
             <label  for="psw3"><b>Повторіть пароль</b></label>
             <input  class="form-control" type="password" placeholder="Пароль..." id="psw3" required>
@@ -78,7 +78,7 @@
                 <input type="checkbox" class="custom-control-input" checked="checked" id="acceptConditions" name="rem">
                 <label class="custom-control-label" for="acceptConditions">Я приймаю <a href="#">умови конфіденційності</a></label>
             </div>
-            <div class="text-center">
+            <div class="text-center" id="btnReg">
                 <button class="btn btn-lg text-white display-5"  style=" background-color: #274B69;" type="submit">Зареєструватись</button>
             </div>
         </div>
