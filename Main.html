@@ -34,64 +34,24 @@
         </form>
 
         <ul class="navbar-nav ml-auto">
-        <li  class="nav-item mt-2">
-            <a class="text-decoration-none text-reset mr-4 mb-2" href="#">Всі дисципліни</a>
-        </li>
             <li  class="nav-item mt-2">
-                <a class="text-decoration-none text-reset mr-4 mb-2" href="#">Всі програми обміну</a>
+                <a class="text-decoration-none text-reset mr-4 mb-2" href="/subj">Всі дисципліни</a>
+            </li>
+            <li  class="nav-item mt-2">
+                <a class="text-decoration-none text-reset mr-4 mb-2" href="/ep">Всі програми обміну</a>
             </li>
 
             <li class="nav-item">
-                <button data-toggle="modal" data-target="#entrance" style="width:auto; color: #274B69;" class="btn btn-white mr-4 mb-2" type="button"><i class="fa fa-sign-in" aria-hidden="true"></i> Вхід</button>
+                <button onclick="document.location='/entr'" style="width:auto; color: #274B69;" class="btn btn-white mr-4 mb-2" type="button"><i class="fa fa-sign-in" aria-hidden="true"></i> Вхід</button>
             </li>
             <li class="nav-item">
-                <button onclick="document.location='Registration.html'" style="width:auto;background-color: #274B69;" class="btn text-white mr-4 mb-2" type="button"><i class="fa fa-user-plus" aria-hidden="true"></i> Зареєструватися</button>
+                <button onclick="document.location='/reg'" style="width:auto;background-color: #274B69;" class="btn text-white mr-4 mb-2" type="button"><i class="fa fa-user-plus" aria-hidden="true"></i> Зареєструватися</button>
             </li>
 
         </ul>
 
     </div>
 </nav>
-
-<div class="modal fade" id="entrance">
-    <div class="modal-dialog modal-l modal-dialog-centered">
-        <div class="modal-content">
-
-
-            <div class="modal-header text-center">
-                <h4 class=" modal-title w-100 display-3">Вхід</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-
-            <div class="modal-body">
-                <label  for="uname"><b>Нікнейм</b></label>
-                <input  class="form-control" type="text" placeholder="Твій нікнейм..." id="uname" required>
-
-                <label  for="psw"><b>Пароль</b></label>
-                <input  class="form-control" type="password" placeholder="Пароль..." id="psw" required>
-
-                <div class="custom-control custom-checkbox mb-3">
-                    <input type="checkbox" class="custom-control-input" checked="checked" id="rememberMe" name="rem">
-                    <label class="custom-control-label" for="rememberMe">Запам'ятати мене</label>
-                </div>
-                <div class="text-center">
-                    <button class="btn btn-lg text-white display-5"  style=" background-color: #274B69;" type="submit">Увійти</button>
-                </div>
-            </div>
-
-            <div class="modal-footer">
-                <div class="container text-center" style="background-color:#f1f1f1">
-                    <span><b> Досі не з нами?</b></span> <br>
-                    <div class="text-center">
-                        <button class="btn text-white"  style="background-color: #274B69; " type="button" onclick="document.location='Registration.html'">Зареєструватися</button>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>
-<br>
 
 <div class="container" >
 
@@ -111,13 +71,13 @@
     </div>
 
 
-<div class="row mt-4">
-    <div class="col-sm-3"></div>
-<div class="col-sm-6 text-center">
-    <h4>Залишити відгук на</h4>
-</div>
-    <div class="col-sm-3"></div>
-</div>
+    <div class="row mt-4">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6 text-center">
+            <h4>Залишити відгук на</h4>
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
     <div class="row mt-3">
         <div class="col-sm-1"></div>
         <div class="col-sm-5 text-center" >
@@ -129,7 +89,7 @@
         <div class="col-sm-1"></div>
 
     </div>
-<br>
+    <br>
 </div>
 
 
@@ -179,36 +139,36 @@
 
         <div class="tab"><h5 class="display-4"> Основні дані:</h5>
 
-        <div class="input-container">
-            <i class="fa fa-user icon"></i>
-            <input class="input-field" placeholder="Нік..." type="text" oninput=" this.className = ''">
-        </div>
+            <div class="input-container">
+                <i class="fa fa-user icon"></i>
+                <input class="input-field" placeholder="Нік..." type="text" oninput=" this.className = ''">
+            </div>
 
-        <div class="input-container">
-            <i class="fa fa-key icon"></i>
-            <input class="input-field" placeholder="Пароль.." type="password" oninput="this.className = ''">
-        </div>
+            <div class="input-container">
+                <i class="fa fa-key icon"></i>
+                <input class="input-field" placeholder="Пароль.." type="password" oninput="this.className = ''">
+            </div>
 
-        <div class="input-container">
-            <i class="fa fa-graduation-cap icon"  aria-hidden="true"></i>
-            <input class="input-field" placeholder="Рік вступу в НаУКМА.." type="number"
-                   oninput="this.className = ''">
-        </div>
+            <div class="input-container">
+                <i class="fa fa-graduation-cap icon"  aria-hidden="true"></i>
+                <input class="input-field" placeholder="Рік вступу в НаУКМА.." type="number"
+                       oninput="this.className = ''">
+            </div>
 
-        <div class="input-container">
-            <i class="fa fa-envelope icon" aria-hidden="true"></i>
-            <input class="input-field" placeholder="Емейл..." type="email" oninput=" this.className = ''">
-        </div>
+            <div class="input-container">
+                <i class="fa fa-envelope icon" aria-hidden="true"></i>
+                <input class="input-field" placeholder="Емейл..." type="email" oninput=" this.className = ''">
+            </div>
         </div>
 
 
 
         <div class="tab"><h5 class="display-4">Контакти:</h5>
 
-                <div class="input-container">
-                    <i class="fa fa-telegram icon" aria-hidden="true"></i>
-                    <input class="input-field" type="text" placeholder="Телеграм..." oninput=" this.className = ''">
-                </div>
+            <div class="input-container">
+                <i class="fa fa-telegram icon" aria-hidden="true"></i>
+                <input class="input-field" type="text" placeholder="Телеграм..." oninput=" this.className = ''">
+            </div>
 
             <div class="input-container">
                 <i class="fa fa-facebook-official icon" aria-hidden="true"></i>
@@ -220,7 +180,7 @@
                 <input class="input-field" type="text"placeholder="Інстаграм..." oninput=" this.className = ''">
             </div>
 
-            </div>
+        </div>
 
         <div style="overflow:auto;">
             <div style="float:right;">
@@ -236,7 +196,7 @@
         </div>
 
     </form>
-<br>
+    <br>
 </div>
 
 <div class="container">

@@ -12,7 +12,9 @@
 }
 @media screen and (max-width: 576px)  {
 
-    .filters {
+
+
+    .filters{
         width: 100%;
     }
     .subj{

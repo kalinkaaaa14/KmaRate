@@ -1,0 +1,127 @@
+.epPageReviews{
+
+    width: 25px;
+    height: 25px;
+}
+.subjPageReviews{
+    width: 25px;
+    height: 25px;
+}
+.replySubjPageReviews{
+    width: 18px;
+    height:18px;
+}
+.replyEpPageReviews{
+    width: 18px;
+    height:18px;
+}
+.firstCol{
+    width: 28%;
+    margin-top: 70px;
+}
+.secondCol{
+    margin-top: 70px;
+    width:22%;
+}
+.thirdCol{
+    width: 16%;
+}
+.review{
+    font-size: 18px;
+    margin-right:60px;
+    margin-left: 60px;
+}
+.complainButton{
+    margin-left: 30px;
+}
+.complainreplyButton{
+    margin-left: 15px;
+}
+.reply{
+
+    margin-left: 120px;
+    margin-bottom: 60px;
+}
+@media screen and (max-width: 575px) {
+.firstCol{
+    width: 55%;
+}
+    .secondCol{
+        width: 45%;
+    }
+    .thirdCol{
+        margin-top: 10px;
+        width: 100%;
+    }
+    .review{
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .complainButton{
+        margin-left: -40px;
+    }
+    .complainreplyButton{
+        margin-left: -50px;
+    }
+    .replyText{
+        margin-top: 40px;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .reply{
+        margin-left: 30px;
+    }
+}
+
+.userRate{
+    margin-left: 45px;
+    margin-right: 45px;
+}
+.buttonCancel{
+    margin-left: 75px;
+    float:left;
+    width:30%;
+    margin-right: 30px;
+}
+.buttonAgree{
+    margin-right: 50px;
+    float:left;
+    width:30%;
+    background-color: #274B69;
+}
+@media screen and (max-width: 985px) and (min-width: 740px) {
+.userRate{
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+}
+
+}
+@media screen and (max-width: 767px) and (min-width: 576px) {
+    .mainInfoUser{
+        width: 100%;
+    }
+    .replyText{
+        margin-top: 40px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .userRate{
+        margin-left: 0;
+        margin-right: 0;
+        width: 100%;
+    }
+    .firstCol{
+width: 45%;
+    }
+    .secondCol{
+width:37%;
+    }
+    .thirdCol{
+        width: 18%;
+        }
+
+    .reply{
+        margin-left: 90px;
+    }
+}

@@ -50,46 +50,39 @@
     </div>
 </nav>
 
-<div id="signup">
+<div  id="complain">
+    <div class="modal-dialog modal-l modal-dialog-centered-horizontal">
+        <div class="modal-content">
 
-    <form class="modal-content" action="/action_page.php" method="post">
-        <div class="container">
-            <h4 class="text-center display-4">Реєстрація</h4>
-        </div>
+                <div class="container">
+                    <h4 class="text-center display-4 mt-1">Вхід</h4>
+                </div>
 
-        <div class="container">
-            <label  for="uname2"><b>Логін</b></label>
-            <input  class="form-control" type="text" placeholder="Твій нікнейм..." id="uname2" required>
+            <div class="container">
+                <label  for="uname"><b>Логін</b></label>
+                <input  class="form-control mb-3" type="text" placeholder="Твій нікнейм..." id="uname" required>
 
-            <label  for="mailUser"><b>Пошта</b></label>
-            <input  class="form-control" type="email" placeholder="Твоя пошта..." id="mailUser" required>
+                <label  for="psw"><b>Пароль</b></label>
+                <input  class="form-control mb-3" type="password" placeholder="Пароль..." id="psw" required>
 
-            <label  for="yearEntr"><b>Рік вступу</b></label>
-            <input  class="form-control" type="number" placeholder="Рік вступу у НаУКМА..." id="yearEntr" required>
+                <div class="custom-control mb-3 custom-checkbox mb-3">
+                    <input type="checkbox" class="custom-control-input" checked="checked" id="rememberMe" name="rem">
+                    <label class="custom-control-label" for="rememberMe">Запам'ятати мене</label>
+                </div>
 
-            <label  for="psw2"><b>Пароль</b></label>
-            <input  class="form-control" type="password" placeholder="Пароль..." id="psw2" required>
-
-            <label  for="psw3"><b>Повторіть пароль</b></label>
-            <input  class="form-control" type="password" placeholder="Пароль..." id="psw3" required>
-
-            <div class="custom-control custom-checkbox mb-3">
-                <input type="checkbox" class="custom-control-input" checked="checked" id="acceptConditions" name="rem">
-                <label class="custom-control-label" for="acceptConditions">Я приймаю <a href="#">умови конфіденційності</a></label>
+                <div class="text-center">
+                    <button class="btn mb-4 btn-lg text-white display-5"  style=" background-color: #274B69;" type="submit">Увійти</button>
+                </div>
             </div>
-            <div class="text-center">
-                <button class="btn btn-lg text-white display-5"  style=" background-color: #274B69;" type="submit">Зареєструватись</button>
-            </div>
-        </div>
-        <br>
-        <div class="container text-center" style="background-color:#f1f1f1">
-            <span><b> Вже є аккаунт?</b></span> <br>
-            <div class="text-center">
-                <button class="btn text-white"  style="background-color: #274B69; " type="button" onclick="document.getElementById('entrance').style.display='block'">Увійти</button>
+
+            <div class="container text-center" >
+                <span><b> Досі не з нами?</b></span> <br>
+                <div class="text-center">
+                    <button class="btn text-white"  style="background-color: #274B69; " type="button" onclick="document.location='Registration.html'">Зареєструватися</button>
+                </div>
             </div>
         </div>
-    </form>
+    </div>
 </div>
-
 </body>
 </html>
