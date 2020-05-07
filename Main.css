@@ -1,0 +1,128 @@
+.subjectMain{
+    width:18vw;
+    height: 35vh;
+}
+.subjectButton{
+    width: 25vw;
+    height: 47vh;
+}
+.epButton{
+    width: 25vw;
+    height: 47vh;
+}
+
+.epMain{
+    width: 21vw;
+    height: 35vh;
+}
+
+@media screen and (max-width: 575px) {
+    span.psw {
+        display: block;
+        float: none;
+    }
+
+    .subjectMain{
+        width: 300px;
+        height:200px;
+
+    }
+
+    .subjectButton{
+        width: 350px;
+        height: 250px;
+    }
+    .epMain{
+        width: 300px;
+        height:200px;
+    }
+
+    .epButton{
+        width: 350px;
+        height: 250px;
+    }
+
+
+    .filters {
+        width: 100%;
+    }
+    .subj{
+        width: 100%;
+    }
+}
+
+.dot {
+    width: 220px;
+    height: 220px;
+    border-radius: 90%;
+    line-height: 210px;
+    text-align: center;
+    display: inline-block;
+}
+.sp + .sp {
+    margin-left: 40px;
+}
+/* Style the form */
+#regForm {
+    background-color: #ffffff;
+    margin: 100px auto;
+    padding: 40px;
+    width: 70%;
+    min-width: 300px;
+}
+.tab {
+    display: none;
+}
+.input-container {
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.icon {
+    padding: 10px;
+    background: black;
+    color: white;
+    min-width: 50px;
+    text-align: center;
+}
+
+.input-field {
+    width: 100%;
+    padding: 10px;
+    outline: none;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+input {
+    padding: 10px;
+    width: 100%;
+    font-size: 17px;
+    font-family: Raleway;
+    border: 1px solid #aaaaaa;
+}
+input.invalid {
+    background-color: #ffdddd;
+}
+
+.step {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbbbbb;
+    border: none;
+    border-radius: 50%;
+    display: inline-block;
+    opacity: 0.5;
+}
+.step.active {
+    opacity: 1;
+}
+
+.step.finish {
+    background-color: darkblue;
+}

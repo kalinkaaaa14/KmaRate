@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Review Subject</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="Subject.css">
+
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg" >
+
+    <a class="navbar-brand mr-5" ><IMG src="images/KmaRate.png"></a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+            aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fa fa-caret-square-o-down" aria-hidden="true"></i>
+    </button>
+
+    <div class="collapse navbar-collapse" id="basicExampleNav">
+        <form class="form-inline">
+            <div class="md-form my-0">
+                <input class="form-control mr-sm-2 mb-2" type="text" placeholder="Пошук.." aria-label="Search">
+            </div>
+        </form>
+
+        <ul class="navbar-nav ml-auto">
+            <li  class="nav-item mt-2">
+                <a class="text-decoration-none text-reset mr-4 mb-2" href="#">Всі дисципліни</a>
+            </li>
+            <li  class="nav-item mt-2">
+                <a class="text-decoration-none text-reset mr-4 mb-2" href="#">Всі програми обміну</a>
+            </li>
+
+            <li class="nav-item">
+                <button data-toggle="modal" data-target="#entrance" style="width:auto; color: #274B69;" class="btn btn-white mr-4 mb-2" type="button"><i class="fa fa-sign-in" aria-hidden="true"></i> Вхід</button>
+            </li>
+            <li class="nav-item">
+                <button onclick="document.location='Registration.html'" style="width:auto;background-color: #274B69;" class="btn text-white mr-4 mb-2" type="button"><i class="fa fa-user-plus" aria-hidden="true"></i> Зареєструватися</button>
+            </li>
+
+        </ul>
+
+    </div>
+</nav>
+
+<!--Рівень англ, відкриті відповіді ???-->
+
+<div class="modal fade " id="detailsEP">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+
+            <div class="modal-header">
+                <h4 class="modal-title">Детальніше...</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-11">
+                        <p>Оцінка місця проживання </p>
+                    </div>
+                    <div class="col-sm-1">
+                        <output name="basicKnowledge" style="font-weight: bold;">7.7</output>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-11">
+                        <p>Адаптація пройшла успішно </p>
+                    </div>
+                    <div class="col-sm-1">
+                        <output name="criticism" style="font-weight: bold;">7.7</output>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-11">
+                        <p>Середній бал в КМА на момент поїздки </p>
+                    </div>
+                    <div class="col-sm-1">
+                        <output name="modernMaterials" style="margin-left:-5px;font-weight: bold;">91.1</output>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Закрити</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="entrance">
+    <div class="modal-dialog modal-l modal-dialog-centered">
+        <div class="modal-content">
+
+
+            <div class="modal-header text-center">
+                <h4 class=" modal-title w-100 display-3">Вхід</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <label  for="uname"><b>Нікнейм</b></label>
+                <input  class="form-control" type="text" placeholder="Твій нікнейм..." id="uname" required>
+
+                <label  for="psw"><b>Пароль</b></label>
+                <input  class="form-control" type="password" placeholder="Пароль..." id="psw" required>
+
+                <div class="custom-control custom-checkbox mb-3">
+                    <input type="checkbox" class="custom-control-input" checked="checked" id="rememberMe" name="rem">
+                    <label class="custom-control-label" for="rememberMe">Запам'ятати мене</label>
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-lg text-white display-5"  style=" background-color: #274B69;" type="submit">Увійти</button>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <div class="container text-center" style="background-color:#f1f1f1">
+                    <span><b> Досі не з нами?</b></span> <br>
+                    <div class="text-center">
+                        <button class="btn text-white"  style="background-color: #274B69; " type="button" onclick="document.location='Registration.html'">Зареєструватися</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class ="filters">
+            <form style="outline: 1px solid lightgray;  border: 20px solid #fff;">
+                <br>
+                <h4 class="text-center mt-1">Фільтр</h4>
+                <div class="form-group">
+                    <h5 for="nameSubj">Назва</h5>
+                    <!--вибрати з усіх -->
+                    <input type="email" class="form-control" id="nameSubj">
+                </div>
+
+                <div class="form-group">
+                    <h5 for="branch">Спеціальність</h5>
+                    <!--вибрати з усіх -->
+                    <input type="email" class="form-control" id="branch">
+                </div>
+
+                <h5>Ступінь</h5>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="bp1" name="customRadio" class="custom-control-input">
+                            <label class="custom-control-label" for="bp1">БП-1</label>
+                        </div>
+
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="bp2" name="customRadio" class="custom-control-input">
+                            <label class="custom-control-label" for="bp2">БП-2</label>
+                        </div>
+
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="bp3" name="customRadio" class="custom-control-input">
+                            <label class="custom-control-label" for="bp3">БП-3</label>
+                        </div>
+
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="bp4" name="customRadio" class="custom-control-input">
+                            <label class="custom-control-label" for="bp4">БП-4</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="mp1" name="customRadio" class="custom-control-input">
+                            <label class="custom-control-label" for="mp1">МП-1</label>
+                        </div>
+
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="mp2" name="customRadio" class="custom-control-input">
+                            <label class="custom-control-label" for="mp2">МП-2</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <h5>Університет</h5>
+                <select name="uni" class="custom-select">
+                    <option value="uni1">Uni1</option>
+                    <option value="uni2">Uni2</option>
+                    <option value="uni3">Uni3</option>
+                </select>
+                </div>
+
+                <div class="form-group">
+                    <h5>Країна</h5>
+                    <select name="country" class="custom-select">
+                        <option value="c1">1</option>
+                        <option value="c2">2</option>
+                        <option value="c3">3</option>
+                    </select>
+                </div>
+
+
+                <button type="button" class="btn btn-outline-info btn-block mt-4">Пошук</button>
+            </form>
+        </div>
+        <div class="spaceBetween"></div>
+        <div class="subj" style="overflow-y: auto">
+            <h5 class=" mt-5 display-5">Всі програми обміну</h5>
+
+
+
+
+
+            <div class="container-fluid" style="outline: 2px solid lightgray;  border: 0.1px solid #fff;">
+                <div class="row">
+                    <div class="col-sm-4 " style="background-color: #274B69">
+                        <span class="text-white" style="position: absolute;top: 8px;right: 16px;"><small>Курс</small></span>
+                        <br>
+                        <h6 class="text-white  mt-3">Germanuan</h6>
+                        <br> <br>
+                        <span class="text-white" style=" position: absolute;top:70px; left: 16px;"><small>Країна</small></span>
+                        <br>
+                        <span class="text-white" style="position: absolute; top:100px; left: 16px;"><small>Університет</small></span>
+                    </div>
+                    <div class="col-sm-3 my-auto">
+                        <h5 class="mt-3 ">Середній рейтинг</h5>
+                        <span style="color: rgba(27,23,22,0.7)"><small>n відгуків</small></span>
+                    </div>
+                    <div class="col-sm-2 my-auto">
+                        <div >
+                            <button data-toggle="modal" data-target="#detailsEP" type="button" class="btn btn-lg">
+                                7.7<i class="fa fa-sort-desc" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-sm-3  my-auto">
+                        <button class="btn text-white" style="background-color: #274B69;margin-bottom: 5px; ">Усі відгуки</button>
+
+                        <button class="btn text-white" style="background-color: #274B69;margin-bottom: 5px;">Залишити відгук</button>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+            <div class="container-fluid" style="outline: 2px solid lightgray;  border: 0.1px solid #fff;">
+                <div class="row">
+                    <div class="col-sm-4 " style="background-color: #274B69">
+                        <span class="text-white" style="position: absolute;top: 8px;right: 16px;"><small>Курс</small></span>
+                        <br>
+                        <h6 class="text-white  mt-3">Germanuan</h6>
+                        <br> <br>
+                        <span class="text-white" style=" position: absolute;top:70px; left: 16px;"><small>Країна</small></span>
+                        <br>
+                        <span class="text-white" style="position: absolute; top:100px; left: 16px;"><small>Університет</small></span>
+                    </div>
+                    <div class="col-sm-3 my-auto">
+                        <h5 class="mt-3 ">Середній рейтинг</h5>
+                        <span style="color: rgba(27,23,22,0.7)"><small>n відгуків</small></span>
+                    </div>
+                    <div class="col-sm-2 my-auto">
+                        <div >
+                            <button data-toggle="modal" data-target="#detailsEP" type="button" class="btn btn-lg">
+                                7.7<i class="fa fa-sort-desc" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-sm-3  my-auto">
+                        <button class="btn text-white" style="background-color: #274B69;margin-bottom: 5px; ">Усі відгуки</button>
+
+                        <button class="btn text-white" style="background-color: #274B69;margin-bottom: 5px;">Залишити відгук</button>
+                    </div>
+                </div>
+            </div>
+            <br>
+
+            <div class="container-fluid" style="outline: 2px solid lightgray;  border: 0.1px solid #fff;">
+                <div class="row">
+                    <div class="col-sm-4 " style="background-color: #274B69">
+                        <span class="text-white" style="position: absolute;top: 8px;right: 16px;"><small>Курс</small></span>
+                        <br>
+                        <h6 class="text-white  mt-3">Germanuan</h6>
+                        <br> <br>
+                        <span class="text-white" style=" position: absolute;top:70px; left: 16px;"><small>Країна</small></span>
+                        <br>
+                        <span class="text-white" style="position: absolute; top:100px; left: 16px;"><small>Університет</small></span>
+                    </div>
+                    <div class="col-sm-3 my-auto">
+                        <h5 class="mt-3 ">Середній рейтинг</h5>
+                        <span style="color: rgba(27,23,22,0.7)"><small>n відгуків</small></span>
+                    </div>
+                    <div class="col-sm-2 my-auto">
+                        <div >
+                            <button data-toggle="modal" data-target="#detailsEP" type="button" class="btn btn-lg">
+                                7.7<i class="fa fa-sort-desc" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-sm-3  my-auto">
+                        <button class="btn text-white" style="background-color: #274B69;margin-bottom: 5px; ">Усі відгуки</button>
+
+                        <button class="btn text-white" style="background-color: #274B69;margin-bottom: 5px;">Залишити відгук</button>
+                    </div>
+                </div>
+            </div>
+            <br>
+
+            <div class="container-fluid" style="outline: 2px solid lightgray;  border: 0.1px solid #fff;">
+                <div class="row">
+                    <div class="col-sm-4 " style="background-color: #274B69">
+                        <span class="text-white" style="position: absolute;top: 8px;right: 16px;"><small>Курс</small></span>
+                        <br>
+                        <h6 class="text-white  mt-3">Germanuan</h6>
+                        <br> <br>
+                        <span class="text-white" style=" position: absolute;top:70px; left: 16px;"><small>Країна</small></span>
+                        <br>
+                        <span class="text-white" style="position: absolute; top:100px; left: 16px;"><small>Університет</small></span>
+                    </div>
+                    <div class="col-sm-3 my-auto">
+                        <h5 class="mt-3 ">Середній рейтинг</h5>
+                        <span style="color: rgba(27,23,22,0.7)"><small>n відгуків</small></span>
+                    </div>
+                    <div class="col-sm-2 my-auto">
+                        <div >
+                            <button data-toggle="modal" data-target="#detailsEP" type="button" class="btn btn-lg">
+                                7.7<i class="fa fa-sort-desc" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-sm-3  my-auto">
+                        <button class="btn text-white" style="background-color: #274B69;margin-bottom: 5px; ">Усі відгуки</button>
+
+                        <button class="btn text-white" style="background-color: #274B69;margin-bottom: 5px;">Залишити відгук</button>
+                    </div>
+                </div>
+            </div>
+            <br>
+
+            <div class="container-fluid" style="outline: 2px solid lightgray;  border: 0.1px solid #fff;">
+                <div class="row">
+                    <div class="col-sm-4 " style="background-color: #274B69">
+                        <span class="text-white" style="position: absolute;top: 8px;right: 16px;"><small>Курс</small></span>
+                        <br>
+                        <h6 class="text-white  mt-3">Germanuan</h6>
+                        <br> <br>
+                        <span class="text-white" style=" position: absolute;top:70px; left: 16px;"><small>Країна</small></span>
+                        <br>
+                        <span class="text-white" style="position: absolute; top:100px; left: 16px;"><small>Університет</small></span>
+                    </div>
+                    <div class="col-sm-3 my-auto">
+                        <h5 class="mt-3 ">Середній рейтинг</h5>
+                        <span style="color: rgba(27,23,22,0.7)"><small>n відгуків</small></span>
+                    </div>
+                    <div class="col-sm-2 my-auto">
+                        <div >
+                            <button data-toggle="modal" data-target="#detailsEP" type="button" class="btn btn-lg">
+                                7.7<i class="fa fa-sort-desc" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-sm-3  my-auto">
+                        <button class="btn text-white" style="background-color: #274B69;margin-bottom: 5px; ">Усі відгуки</button>
+
+                        <button class="btn text-white" style="background-color: #274B69;margin-bottom: 5px;">Залишити відгук</button>
+                    </div>
+                </div>
+            </div>
+            <br>
+
+            <div class="container-fluid" style="outline: 2px solid lightgray;  border: 0.1px solid #fff;">
+                <div class="row">
+                    <div class="col-sm-4 " style="background-color: #274B69">
+                        <span class="text-white" style="position: absolute;top: 8px;right: 16px;"><small>Курс</small></span>
+                        <br>
+                        <h6 class="text-white  mt-3">Germanuan</h6>
+                        <br> <br>
+                        <span class="text-white" style=" position: absolute;top:70px; left: 16px;"><small>Країна</small></span>
+                        <br>
+                        <span class="text-white" style="position: absolute; top:100px; left: 16px;"><small>Університет</small></span>
+                    </div>
+                    <div class="col-sm-3 my-auto">
+                        <h5 class="mt-3 ">Середній рейтинг</h5>
+                        <span style="color: rgba(27,23,22,0.7)"><small>n відгуків</small></span>
+                    </div>
+                    <div class="col-sm-2 my-auto">
+                        <div >
+                            <button data-toggle="modal" data-target="#detailsEP" type="button" class="btn btn-lg">
+                                7.7<i class="fa fa-sort-desc" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-sm-3  my-auto">
+                        <button class="btn text-white" style="background-color: #274B69;margin-bottom: 5px; ">Усі відгуки</button>
+
+                        <button class="btn text-white" style="background-color: #274B69;margin-bottom: 5px;">Залишити відгук</button>
+                    </div>
+                </div>
+            </div>
+            <br>
+
+            <div class="container-fluid" style="outline: 2px solid lightgray;  border: 0.1px solid #fff;">
+                <div class="row">
+                    <div class="col-sm-4 " style="background-color: #274B69">
+                        <span class="text-white" style="position: absolute;top: 8px;right: 16px;"><small>Курс</small></span>
+                        <br>
+                        <h6 class="text-white  mt-3">Germanuan</h6>
+                        <br> <br>
+                        <span class="text-white" style=" position: absolute;top:70px; left: 16px;"><small>Країна</small></span>
+                        <br>
+                        <span class="text-white" style="position: absolute; top:100px; left: 16px;"><small>Університет</small></span>
+                    </div>
+                    <div class="col-sm-3 my-auto">
+                        <h5 class="mt-3 ">Середній рейтинг</h5>
+                        <span style="color: rgba(27,23,22,0.7)"><small>n відгуків</small></span>
+                    </div>
+                    <div class="col-sm-2 my-auto">
+                        <div >
+                            <button data-toggle="modal" data-target="#detailsEP" type="button" class="btn btn-lg">
+                                7.7<i class="fa fa-sort-desc" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-sm-3  my-auto">
+                        <button class="btn text-white" style="background-color: #274B69;margin-bottom: 5px; ">Усі відгуки</button>
+                        <button class="btn text-white" style="background-color: #274B69;margin-bottom: 5px;">Залишити відгук</button>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="container-fluid" style="outline: 2px solid lightgray;  border: 0.1px solid #fff;">
+                <div class="row">
+                    <div class="col-sm-4 " style="background-color: #274B69">
+                        <span class="text-white" style="position: absolute;top: 8px;right: 16px;"><small>Курс</small></span>
+                        <br>
+                        <h6 class="text-white  mt-3">Germanuan</h6>
+                        <br> <br>
+                        <span class="text-white" style=" position: absolute;top:70px; left: 16px;"><small>Країна</small></span>
+                        <br>
+                        <span class="text-white" style="position: absolute; top:100px; left: 16px;"><small>Університет</small></span>
+                    </div>
+                    <div class="col-sm-3 my-auto">
+                        <h5 class="mt-3 ">Середній рейтинг</h5>
+                        <span style="color: rgba(27,23,22,0.7)"><small>n відгуків</small></span>
+                    </div>
+                    <div class="col-sm-2 my-auto">
+                        <div >
+                            <button data-toggle="modal" data-target="#detailsEP" type="button" class="btn btn-lg">
+                                7.7<i class="fa fa-sort-desc" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-sm-3  my-auto">
+                        <button class="btn text-white" style="background-color: #274B69;margin-bottom: 5px; ">Усі відгуки</button>
+
+                        <button class="btn text-white" style="background-color: #274B69;margin-bottom: 5px;">Залишити відгук</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

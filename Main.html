@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Main Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="Main.css">
+
+
+</head>
+<body>
+
+
+<nav class="navbar navbar-expand-lg" >
+
+
+    <a class="navbar-brand mr-5" ><IMG src="images/KmaRate.png"></a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+            aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fa fa-caret-square-o-down" aria-hidden="true"></i>
+    </button>
+
+    <div class="collapse navbar-collapse" id="basicExampleNav">
+        <form class="form-inline">
+            <div class="md-form my-0">
+                <input class="form-control mr-sm-2 mb-2" type="text" placeholder="Пошук.." aria-label="Search">
+            </div>
+        </form>
+
+        <ul class="navbar-nav ml-auto">
+        <li  class="nav-item mt-2">
+            <a class="text-decoration-none text-reset mr-4 mb-2" href="#">Всі дисципліни</a>
+        </li>
+            <li  class="nav-item mt-2">
+                <a class="text-decoration-none text-reset mr-4 mb-2" href="#">Всі програми обміну</a>
+            </li>
+
+            <li class="nav-item">
+                <button data-toggle="modal" data-target="#entrance" style="width:auto; color: #274B69;" class="btn btn-white mr-4 mb-2" type="button"><i class="fa fa-sign-in" aria-hidden="true"></i> Вхід</button>
+            </li>
+            <li class="nav-item">
+                <button onclick="document.location='Registration.html'" style="width:auto;background-color: #274B69;" class="btn text-white mr-4 mb-2" type="button"><i class="fa fa-user-plus" aria-hidden="true"></i> Зареєструватися</button>
+            </li>
+
+        </ul>
+
+    </div>
+</nav>
+
+<div class="modal fade" id="entrance">
+    <div class="modal-dialog modal-l modal-dialog-centered">
+        <div class="modal-content">
+
+
+            <div class="modal-header text-center">
+                <h4 class=" modal-title w-100 display-3">Вхід</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <label  for="uname"><b>Нікнейм</b></label>
+                <input  class="form-control" type="text" placeholder="Твій нікнейм..." id="uname" required>
+
+                <label  for="psw"><b>Пароль</b></label>
+                <input  class="form-control" type="password" placeholder="Пароль..." id="psw" required>
+
+                <div class="custom-control custom-checkbox mb-3">
+                    <input type="checkbox" class="custom-control-input" checked="checked" id="rememberMe" name="rem">
+                    <label class="custom-control-label" for="rememberMe">Запам'ятати мене</label>
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-lg text-white display-5"  style=" background-color: #274B69;" type="submit">Увійти</button>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <div class="container text-center" style="background-color:#f1f1f1">
+                    <span><b> Досі не з нами?</b></span> <br>
+                    <div class="text-center">
+                        <button class="btn text-white"  style="background-color: #274B69; " type="button" onclick="document.location='Registration.html'">Зареєструватися</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<br>
+
+<div class="container" >
+
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+
+            <h2 class=" text-center display-4 mt-5 mb-4"> Хей, могилянець!</h2>
+            <p  class="text-center " style="font-size: 130%">
+                Досі вагаєшся, чи потрібен тобі цей курс? Не знаєш,
+                яку програму обміну слід обрати? Чи можливо хочеш
+                поділитись своїм досвідом з висоти прожитих років?:)
+                Зроби добре діло, залиш відгук</p>
+            <p class="text-center"> <mark> #МогилянкаUnited </mark></p>
+        </div>
+        <div class="col-sm-2"></div>
+    </div>
+
+
+<div class="row mt-4">
+    <div class="col-sm-3"></div>
+<div class="col-sm-6 text-center">
+    <h4>Залишити відгук на</h4>
+</div>
+    <div class="col-sm-3"></div>
+</div>
+    <div class="row mt-3">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-5 text-center" >
+            <button class="btn btn-lg  text-white mb-3 subjectButton" style="background-color: #274B69;"  type="button"><img class="subjectMain" src='images/subject.png' >Дисципліни</button>
+        </div>
+        <div class="col-sm-5 text-center">
+            <button class="btn btn-lg  text-white epButton" style="background-color: #274B69;"  type="button"><img class="epMain" src='images/Vector.png' >Програми обміну</button>
+        </div>
+        <div class="col-sm-1"></div>
+
+    </div>
+<br>
+</div>
+
+
+<div class="container bg-white">
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            <h3 class="text-center display-4 mt-5 mb-5 text-justify" >Вже зареєстровано: </h3>
+        </div>
+        <div class="col-sm-2"></div>
+
+    </div>
+    <br>
+    <br>
+
+    <div class="text-center">
+        <!-- велика відстань від круга до напису -->
+
+        <span class="sp dot mb-3" style="background-color: lightyellow">
+        <p style="font-size: 250%">1234</p>
+        <span style="font-size: 29px; font-style: oblique">дисциплін</span>
+    </span>
+
+        <span class=" sp dot mb-3" style="background-color: lightgrey">
+        <p  style="font-size: 250%">1234</p>
+        <span style="font-size: 29px; font-style: oblique">програм обміну</span>
+    </span>
+
+        <span class=" sp dot mb-3" style="background-color: lightsteelblue">
+        <p style="font-size: 250%">1234</p>
+        <span style="font-size: 29px; font-style: oblique">студентів</span>
+    </span>
+
+        <span class="sp dot mb-3" style="background-color: #274B69">
+        <p class="text-white" style="font-size: 250%">1234</p>
+        <span style="font-size: 29px; font-style: oblique">викладачів</span>
+    </span>
+    </div>
+    <br>
+</div>
+
+<div class="container-fluid" style="background-color: grey;">
+    <br>
+    <h1 class="display-4 text-center text-white">Поділись і ти своїми враженнями!</h1>
+    <form id="regForm" action="">
+
+
+        <div class="tab"><h5 class="display-4"> Основні дані:</h5>
+
+        <div class="input-container">
+            <i class="fa fa-user icon"></i>
+            <input class="input-field" placeholder="Нік..." type="text" oninput=" this.className = ''">
+        </div>
+
+        <div class="input-container">
+            <i class="fa fa-key icon"></i>
+            <input class="input-field" placeholder="Пароль.." type="password" oninput="this.className = ''">
+        </div>
+
+        <div class="input-container">
+            <i class="fa fa-graduation-cap icon"  aria-hidden="true"></i>
+            <input class="input-field" placeholder="Рік вступу в НаУКМА.." type="number"
+                   oninput="this.className = ''">
+        </div>
+
+        <div class="input-container">
+            <i class="fa fa-envelope icon" aria-hidden="true"></i>
+            <input class="input-field" placeholder="Емейл..." type="email" oninput=" this.className = ''">
+        </div>
+        </div>
+
+
+
+        <div class="tab"><h5 class="display-4">Контакти:</h5>
+
+                <div class="input-container">
+                    <i class="fa fa-telegram icon" aria-hidden="true"></i>
+                    <input class="input-field" type="text" placeholder="Телеграм..." oninput=" this.className = ''">
+                </div>
+
+            <div class="input-container">
+                <i class="fa fa-facebook-official icon" aria-hidden="true"></i>
+                <input class="input-field" type="text"placeholder="Фейсбук..." oninput=" this.className = ''">
+            </div>
+
+            <div class="input-container">
+                <i class="fa fa-instagram icon" aria-hidden="true"></i>
+                <input class="input-field" type="text"placeholder="Інстаграм..." oninput=" this.className = ''">
+            </div>
+
+            </div>
+
+        <div style="overflow:auto;">
+            <div style="float:right;">
+                <button class="btn btn-secondary" type="button" id="prevBtn" onclick="nextPrev(-1)">Назад</button>
+                <button class="btn btn-success"  type="button" id="nextBtn" onclick="nextPrev(1)">Уперед</button>
+            </div>
+        </div>
+
+
+        <div style="text-align:center;margin-top:40px;">
+            <span class="step"></span>
+            <span class="step"></span>
+        </div>
+
+    </form>
+<br>
+</div>
+
+<div class="container">
+    <!-- топ 5 дисциплін -->
+    <h4 class="display-4 text-center mt-5 mb-5">Найпопулярніші дисципліни</h4>
+
+    <div class="subj">
+        <div class="container-fluid " style="outline: 2px solid lightgray;  border: 0.1px solid #fff;">
+            <div class="row">
+                <div class="col-sm-4 firstPart" style="background-color: #274B69">
+                    <span class="text-white" style="position: absolute;top: 8px;right: 16px;"><small>Факультет</small></span>
+                    <br>
+                    <h6 class="text-white  mt-3">Математичне мислення</h6>
+                    <br> <br>
+                    <span class="text-white" style=" position: absolute; bottom: 8px; left: 16px;"><small>Викладач</small></span>
+                    <span class="text-white" style="position: absolute;bottom: 8px;right: 16px;"><small>Курс</small></span>
+                </div>
+                <div class="col-sm-3 my-auto">
+                    <h5 class="mt-3 ">Середній рейтинг</h5>
+                    <span style="color: rgba(27,23,22,0.7)"><small>n відгуків</small></span>
+                </div>
+                <div class="col-sm-2 my-auto">
+                    <div >
+                        <button data-toggle="modal" data-target="#details" type="button" class="btn btn-lg">
+                            7.7<i class="fa fa-sort-desc" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-sm-3  my-auto">
+                    <button class="btn text-white" style="background-color: #274B69;margin-bottom: 5px; ">Усі відгуки</button>
+
+                    <button class="btn text-white" style="background-color: #274B69;margin-bottom: 5px;">Залишити відгук</button>
+                </div>
+
+            </div>
+        </div>
+        <br>
+        <div class="container-fluid " style="outline: 2px solid lightgray;  border: 0.1px solid #fff;">
+            <div class="row">
+                <div class="col-sm-4" style="background-color: #274B69">
+                    <span class="text-white" style="position: absolute;top: 8px;right: 16px;"><small>Факультет</small></span>
+                    <br>
+                    <h6 class="text-white  mt-3">Математичне мислення</h6>
+                    <br> <br>
+                    <span class="text-white" style=" position: absolute; bottom: 8px; left: 16px;"><small>Викладач</small></span>
+                    <span class="text-white" style="position: absolute;bottom: 8px;right: 16px;"><small>Курс</small></span>
+                </div>
+                <div class="col-sm-3 my-auto">
+                    <h5 class="mt-3 ">Середній рейтинг</h5>
+                    <span style="color: rgba(27,23,22,0.7)"><small>n відгуків</small></span>
+                </div>
+                <div class="col-sm-2 my-auto">
+                    <div >
+                        <button data-toggle="modal" data-target="#details" type="button" class="btn btn-lg">
+                            7.7<i class="fa fa-sort-desc" aria-hidden="true"></i>
+                        </button>
+                    </div>
+
+                </div>
+                <div class="col-sm-3  my-auto">
+                    <button class="btn text-white" style="background-color: #274B69;margin-bottom: 5px; ">Усі відгуки</button>
+
+                    <button class="btn text-white" style="background-color: #274B69;margin-bottom: 5px;">Залишити відгук</button>
+                </div>
+
+            </div>
+        </div>
+        <br>
+
+        <div class="container-fluid " style="outline: 2px solid lightgray;  border: 0.1px solid #fff;">
+            <div class="row">
+                <div class="col-sm-4" style="background-color: #274B69">
+                    <span class="text-white" style="position: absolute;top: 8px;right: 16px;"><small>Факультет</small></span>
+                    <br>
+                    <h6 class="text-white  mt-3">Математичне мислення</h6>
+                    <br> <br>
+                    <span class="text-white" style=" position: absolute; bottom: 8px; left: 16px;"><small>Викладач</small></span>
+                    <span class="text-white" style="position: absolute;bottom: 8px;right: 16px;"><small>Курс</small></span>
+                </div>
+                <div class="col-sm-3 my-auto">
+                    <h5 class="mt-3 ">Середній рейтинг</h5>
+                    <span style="color: rgba(27,23,22,0.7)"><small>n відгуків</small></span>
+                </div>
+                <div class="col-sm-2 my-auto">
+                    <div >
+                        <button data-toggle="modal" data-target="#details" type="button" class="btn btn-lg">
+                            7.7<i class="fa fa-sort-desc" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                    <!-- треба кнопку справа -->
+                </div>
+                <div class="col-sm-3  my-auto">
+                    <button class="btn text-white" style="background-color: #274B69;margin-bottom: 5px; ">Усі відгуки</button>
+
+                    <button class="btn text-white" style="background-color: #274B69;margin-bottom: 5px;">Залишити відгук</button>
+                </div>
+
+            </div>
+        </div>
+        <br>
+
+        <div class="container-fluid " style="outline: 2px solid lightgray;  border: 0.1px solid #fff;">
+            <div class="row">
+                <div class="col-sm-4" style="background-color: #274B69">
+                    <span class="text-white" style="position: absolute;top: 8px;right: 16px;"><small>Факультет</small></span>
+                    <br>
+                    <h6 class="text-white  mt-3">Математичне мислення</h6>
+                    <br> <br>
+                    <span class="text-white" style=" position: absolute; bottom: 8px; left: 16px;"><small>Викладач</small></span>
+                    <span class="text-white" style="position: absolute;bottom: 8px;right: 16px;"><small>Курс</small></span>
+                </div>
+                <div class="col-sm-3 my-auto">
+                    <h5 class="mt-3 ">Середній рейтинг</h5>
+                    <span style="color: rgba(27,23,22,0.7)"><small>n відгуків</small></span>
+                </div>
+                <div class="col-sm-2 my-auto">
+                    <div >
+                        <button data-toggle="modal" data-target="#details" type="button" class="btn btn-lg">
+                            7.7<i class="fa fa-sort-desc" aria-hidden="true"></i>
+                        </button>
+                    </div>
+
+                </div>
+                <div class="col-sm-3  my-auto">
+                    <button class="btn text-white" style="background-color: #274B69;margin-bottom: 5px; ">Усі відгуки</button>
+
+                    <button class="btn text-white" style="background-color: #274B69;margin-bottom: 5px;">Залишити відгук</button>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="modal fade" id="details">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+
+            <div class="modal-header">
+                <h4 class="modal-title">Детальніше...</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-11">
+                        <p>Для розуміння курсу не потрібні початкові знання </p>
+                    </div>
+                    <div class="col-sm-1">
+                        <output name="basicKnowledge" style="font-weight: bold;">7.7</output>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-11">
+                        <p>Критика зі сторони викладача була зрозумілою та обгрунтованою </p>
+                    </div>
+                    <div class="col-sm-1">
+                        <output name="criticism" style="font-weight: bold;">7.7</output>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-11">
+                        <p>Матеріали курсу були актуальними </p>
+                    </div>
+                    <div class="col-sm-1">
+                        <output name="modernMaterials" style="font-weight: bold;">7.7</output>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-11">
+                        <p>Практичні заняття відповідали теоретичним </p>
+                    </div>
+                    <div class="col-sm-1">
+                        <output name="practiceToTheory" style="font-weight: bold;">7.7</output>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-11">
+                        <p>Курс був нескладним </p>
+                    </div>
+                    <div class="col-sm-1">
+                        <output name="complexityCourse" style="font-weight: bold;">7.7</output>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-11">
+                        <p>Знання були корисні для реального життя </p>
+                    </div>
+                    <div class="col-sm-1">
+                        <output name="valuableKnowl" style="font-weight: bold;">7.7</output>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Закрити</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script src="BDjs.js" charset="utf-8"></script>
+</body>
+</html>

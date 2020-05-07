@@ -1,0 +1,38 @@
+.filters{
+    width: 24%;
+}
+.subj{
+    width: 74%;
+}
+.spaceBetween{
+    width: 2%;
+}
+.spaceBetweenButtons{
+    width: 10%;
+}
+@media screen and (max-width: 576px)  {
+
+    .filters {
+        width: 100%;
+    }
+    .subj{
+        width: 100%;
+    }
+
+}
+@media screen and (max-width: 900px) and (min-width: 577px) {
+
+    .filters {
+        width: 70%;
+        margin: 0 auto;
+    }
+.subj{
+    width: 100%;
+}
+
+}
+
+span.psw {
+    float: right;
+    padding-top: 16px;
+}

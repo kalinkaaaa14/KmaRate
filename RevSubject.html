@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Profile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="RevSubject.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg" >
+
+    <a class="navbar-brand mr-5" ><IMG src="images/KmaRate.png"></a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+            aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fa fa-caret-square-o-down" aria-hidden="true"></i>
+    </button>
+
+    <div class="collapse navbar-collapse" id="basicExampleNav">
+        <form class="form-inline">
+            <div class="md-form my-0">
+                <input class="form-control mr-sm-2 mb-2" type="text" placeholder="Пошук.." aria-label="Search">
+            </div>
+        </form>
+
+        <ul class="navbar-nav ml-auto">
+            <li  class="nav-item mt-2">
+                <a class="text-decoration-none text-reset mr-4 mb-2" href="#">Всі дисципліни</a>
+            </li>
+            <li  class="nav-item mt-2">
+                <a class="text-decoration-none text-reset mr-4 mb-2" href="#">Всі програми обміну</a>
+            </li>
+
+            <li class="nav-item">
+                <button data-toggle="modal" data-target="#entrance" style="width:auto; color: #274B69;" class="btn btn-white mr-4 mb-2" type="button"><i class="fa fa-sign-in" aria-hidden="true"></i> Вхід</button>
+            </li>
+            <li class="nav-item">
+                <button onclick="document.location='Registration.html'" style="width:auto;background-color: #274B69;" class="btn text-white mr-4 mb-2" type="button"><i class="fa fa-user-plus" aria-hidden="true"></i> Зареєструватися</button>
+            </li>
+
+        </ul>
+
+    </div>
+</nav>
+
+<div class="modal fade" id="entrance">
+    <div class="modal-dialog modal-l modal-dialog-centered">
+        <div class="modal-content">
+
+
+            <div class="modal-header text-center">
+                <h4 class=" modal-title w-100 display-3">Вхід</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <label  for="uname"><b>Нікнейм</b></label>
+                <input  class="form-control" type="text" placeholder="Твій нікнейм..." id="uname" required>
+
+                <label  for="psw"><b>Пароль</b></label>
+                <input  class="form-control" type="password" placeholder="Пароль..." id="psw" required>
+
+                <div class="custom-control custom-checkbox mb-3">
+                    <input type="checkbox" class="custom-control-input" checked="checked" id="rememberMe" name="rem">
+                    <label class="custom-control-label" for="rememberMe">Запам'ятати мене</label>
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-lg text-white display-5"  style=" background-color: #274B69;" type="submit">Увійти</button>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <div class="container text-center" style="background-color:#f1f1f1">
+                    <span><b> Досі не з нами?</b></span> <br>
+                    <div class="text-center">
+                        <button class="btn text-white"  style="background-color: #274B69; " type="button" onclick="document.location='Registration.html'">Зареєструватися</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-sm-12">
+            <br>
+            <p class="mb-3 display-4"> Залишити відгук</p>
+
+          <div style=" border: 5px solid lightgray; border-radius: 1%;">
+                <div class="row">
+                    <div class="form-group">
+                        <h5 class="ml-5 mt-3">Виберіть дисципліну*</h5>
+                        <select name="disc" class="ml-5 custom-select">
+                            <option value="disc1">1</option>
+                            <option value="disc2">2</option>
+                            <option value="disc3">3</option>
+                        </select>
+                    </div>
+                </div>
+
+                        <h5 class="ml-4 display-6">Для розуміння курсу не потрібні початкові знання *</h5>
+                            <form class="ml-4 rating">
+                                <label>
+                                    <input type="radio" name="stars" value="1"/>
+                                    <span title="1" class="iconRate">★</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="stars" value="2" />
+                                    <span  class="iconRate">★</span>
+                                    <span title="2" class="iconRate">★</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="stars" value="3" />
+                                    <span class="iconRate">★</span>
+                                    <span class="iconRate">★</span>
+                                    <span title="3" class="iconRate">★</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="stars" value="4" />
+                                    <span class="iconRate">★</span>
+                                    <span class="iconRate">★</span>
+                                    <span class="iconRate">★</span>
+                                    <span title="4" class="iconRate">★</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="stars" value="5" />
+                                    <span class="iconRate">★</span>
+                                    <span class="iconRate">★</span>
+                                    <span class="iconRate">★</span>
+                                    <span class="iconRate">★</span>
+                                    <span title="5" class="iconRate">★</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="stars" value="6" />
+                                    <span class="iconRate">★</span>
+                                    <span class="iconRate">★</span>
+                                    <span class="iconRate">★</span>
+                                    <span class="iconRate">★</span>
+                                    <span class="iconRate">★</span>
+                                    <span title="6" class="iconRate">★</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="stars" value="7" />
+                                    <span class="iconRate">★</span>
+                                    <span class="iconRate">★</span>
+                                    <span class="iconRate">★</span>
+                                    <span class="iconRate">★</span>
+                                    <span class="iconRate">★</span>
+                                    <span class="iconRate">★</span>
+                                    <span title="7" class="iconRate">★</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="stars" value="8" />
+                                    <span class="iconRate">★</span>
+                                    <span class="iconRate">★</span>
+                                    <span class="iconRate">★</span>
+                                    <span class="iconRate">★</span>
+                                    <span class="iconRate">★</span>
+                                    <span class="iconRate">★</span>
+                                    <span class="iconRate">★</span>
+                                    <span title="8" class="iconRate">★</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="stars" value="9" />
+                                    <span class="iconRate">★</span>
+                                    <span class="iconRate">★</span>
+                                    <span class="iconRate">★</span>
+                                    <span class="iconRate">★</span>
+                                    <span class="iconRate">★</span>
+                                    <span class="iconRate">★</span>
+                                    <span class="iconRate">★</span>
+                                    <span class="iconRate">★</span>
+                                    <span title="9" class="iconRate">★</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="stars" value="10" />
+                                    <span class="iconRate">★</span>
+                                    <span class="iconRate">★</span>
+                                    <span class="iconRate">★</span>
+                                    <span class="iconRate">★</span>
+                                    <span class="iconRate">★</span>
+                                    <span class="iconRate">★</span>
+                                    <span class="iconRate">★</span>
+                                    <span class="iconRate">★</span>
+                                    <span class="iconRate">★</span>
+                                    <span title="10" class="iconRate">★</span>
+                                </label>
+                            </form>
+
+                        <h5 class="ml-4">Мені сподобалась техніка викладання *</h5>
+              <form class="ml-4 rating">
+                  <label>
+                      <input type="radio" name="stars" value="1"/>
+                      <span title="1" class="iconRate">★</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="stars" value="2" />
+                      <span  class="iconRate">★</span>
+                      <span title="2" class="iconRate">★</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="stars" value="3" />
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span title="3" class="iconRate">★</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="stars" value="4" />
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span title="4" class="iconRate">★</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="stars" value="5" />
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span title="5" class="iconRate">★</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="stars" value="6" />
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span title="6" class="iconRate">★</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="stars" value="7" />
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span title="7" class="iconRate">★</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="stars" value="8" />
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span title="8" class="iconRate">★</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="stars" value="9" />
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span title="9" class="iconRate">★</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="stars" value="10" />
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span title="10" class="iconRate">★</span>
+                  </label>
+              </form>
+
+                        <h5 class="ml-4">Курс був нескладним *</h5>
+              <form class="ml-4 rating">
+                  <label>
+                      <input type="radio" name="stars" value="1"/>
+                      <span title="1" class="iconRate">★</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="stars" value="2" />
+                      <span  class="iconRate">★</span>
+                      <span title="2" class="iconRate">★</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="stars" value="3" />
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span title="3" class="iconRate">★</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="stars" value="4" />
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span title="4" class="iconRate">★</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="stars" value="5" />
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span title="5" class="iconRate">★</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="stars" value="6" />
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span title="6" class="iconRate">★</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="stars" value="7" />
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span title="7" class="iconRate">★</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="stars" value="8" />
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span title="8" class="iconRate">★</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="stars" value="9" />
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span title="9" class="iconRate">★</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="stars" value="10" />
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span title="10" class="iconRate">★</span>
+                  </label>
+              </form>
+
+                        <h5 class="ml-4">Матеріали курсу були актуальними *</h5>
+              <form class="ml-4 rating">
+                  <label>
+                      <input type="radio" name="stars" value="1"/>
+                      <span title="1" class="iconRate">★</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="stars" value="2" />
+                      <span  class="iconRate">★</span>
+                      <span title="2" class="iconRate">★</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="stars" value="3" />
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span title="3" class="iconRate">★</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="stars" value="4" />
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span title="4" class="iconRate">★</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="stars" value="5" />
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span title="5" class="iconRate">★</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="stars" value="6" />
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span title="6" class="iconRate">★</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="stars" value="7" />
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span title="7" class="iconRate">★</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="stars" value="8" />
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span title="8" class="iconRate">★</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="stars" value="9" />
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span title="9" class="iconRate">★</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="stars" value="10" />
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span title="10" class="iconRate">★</span>
+                  </label>
+              </form>
+
+                        <h5 class="ml-4">Практика повністю відповідала теорії *</h5>
+              <form class="ml-4 rating">
+                  <label>
+                      <input type="radio" name="stars" value="1"/>
+                      <span title="1" class="iconRate">★</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="stars" value="2" />
+                      <span  class="iconRate">★</span>
+                      <span title="2" class="iconRate">★</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="stars" value="3" />
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span title="3" class="iconRate">★</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="stars" value="4" />
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span title="4" class="iconRate">★</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="stars" value="5" />
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span title="5" class="iconRate">★</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="stars" value="6" />
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span title="6" class="iconRate">★</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="stars" value="7" />
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span title="7" class="iconRate">★</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="stars" value="8" />
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span title="8" class="iconRate">★</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="stars" value="9" />
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span title="9" class="iconRate">★</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="stars" value="10" />
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span title="10" class="iconRate">★</span>
+                  </label>
+              </form>
+
+                        <h5 class="ml-4">Критика зі сторони викладача була зрозумілою та корисною *</h5>
+              <form class="ml-4 rating">
+                  <label>
+                      <input type="radio" name="stars" value="1"/>
+                      <span title="1" class="iconRate">★</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="stars" value="2" />
+                      <span  class="iconRate">★</span>
+                      <span title="2" class="iconRate">★</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="stars" value="3" />
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span title="3" class="iconRate">★</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="stars" value="4" />
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span title="4" class="iconRate">★</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="stars" value="5" />
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span title="5" class="iconRate">★</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="stars" value="6" />
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span title="6" class="iconRate">★</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="stars" value="7" />
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span title="7" class="iconRate">★</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="stars" value="8" />
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span title="8" class="iconRate">★</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="stars" value="9" />
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span title="9" class="iconRate">★</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="stars" value="10" />
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span title="10" class="iconRate">★</span>
+                  </label>
+              </form>
+
+                        <h5 class="ml-4">Знання були корисні для реального життя *</h5>
+              <form class="ml-4 rating">
+                  <label>
+                      <input type="radio" name="stars" value="1"/>
+                      <span title="1" class="iconRate">★</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="stars" value="2" />
+                      <span  class="iconRate">★</span>
+                      <span title="2" class="iconRate">★</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="stars" value="3" />
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span title="3" class="iconRate">★</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="stars" value="4" />
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span title="4" class="iconRate">★</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="stars" value="5" />
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span title="5" class="iconRate">★</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="stars" value="6" />
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span title="6" class="iconRate">★</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="stars" value="7" />
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span title="7" class="iconRate">★</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="stars" value="8" />
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span title="8" class="iconRate">★</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="stars" value="9" />
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span title="9" class="iconRate">★</span>
+                  </label>
+                  <label>
+                      <input type="radio" name="stars" value="10" />
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span class="iconRate">★</span>
+                      <span title="10" class="iconRate">★</span>
+                  </label>
+              </form>
+              <h5 class="ml-4">Розкажіть детальніше про Ваш власний досвід ТУТ:</h5>
+<div class="text-center">
+          <textarea class="ml-1 mr-1 mt-2 mb-2" style="width: 90%; height: 300px; resize: none;"></textarea>
+          </div>
+<div>
+
+    <button class="btn text-white ml-4 mt-5 mb-4 " type="button" style="background-color: #274B69;">Залишити відгук</button>
+</div>
+          </div>
+
+        </div>
+        <div class="col-sm-3">
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
