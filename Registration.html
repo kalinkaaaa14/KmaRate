@@ -52,7 +52,7 @@
 
 <div id="signup">
 
-    <form class="" action="/reg" method="post">
+    <form id="registration">
         <div class="container">
             <h4 class="text-center display-4">Реєстрація</h4>
         </div>
@@ -68,10 +68,10 @@
             <input  class="form-control" type="password" placeholder="Пароль..." id="psw2" name="password" required>
 
             <label  for="psw3"><b>Повторіть пароль</b></label>
-            <input  class="form-control" type="password" placeholder="Пароль..." id="psw3" required>
+            <input  class="form-control" type="password" placeholder="Пароль..." id="psw3" name="password2" required>
 
             <div class="custom-control custom-checkbox mb-3">
-                <input type="checkbox" class="custom-control-input" checked="checked" id="acceptConditions" name="rem">
+                <input type="checkbox" class="custom-control-input" checked="checked" id="acceptConditions" name="agree">
                 <label class="custom-control-label" for="acceptConditions">Я приймаю <a href="#">умови конфіденційності</a></label>
             </div>
             <div class="text-center" id="btnReg">
@@ -87,6 +87,6 @@
         </div>
     </form>
 </div>
-
+<script src="Registration.js" charset="utf-8"></script>
 </body>
 </html>

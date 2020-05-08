@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6d1931d4-8d70-489c-b5f0-034215f85cf1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Registration.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Entrance.html" beforeDir="false" afterPath="$PROJECT_DIR$/Entrance.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Main.html" beforeDir="false" afterPath="$PROJECT_DIR$/Main.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Registration.html" beforeDir="false" afterPath="$PROJECT_DIR$/Registration.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -18,9 +17,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="CSS File" />
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -64,7 +63,7 @@
       <workItem from="1588839779206" duration="3523000" />
       <workItem from="1588848145401" duration="28836000" />
       <workItem from="1588881432106" duration="661000" />
-      <workItem from="1588929370364" duration="1751000" />
+      <workItem from="1588929370364" duration="3535000" />
     </task>
     <servers />
   </component>
