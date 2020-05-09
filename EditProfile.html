@@ -15,7 +15,6 @@
 
 <nav class="navbar navbar-expand-lg" >
 
-
     <a class="navbar-brand mr-5" ><IMG src="images/KmaRate.png"></a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
@@ -30,7 +29,7 @@
             </div>
         </form>
 
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav ml-auto" style="margin-right: 7px;">
             <li  class="nav-item mt-2">
                 <a class="text-decoration-none text-reset mr-4 mb-2" href="/subj">Всі дисципліни</a>
             </li>
@@ -39,20 +38,26 @@
             </li>
 
             <li class="nav-item">
-                <button onclick="document.location='/entr'" style="width:auto; color: #274B69;" class="btn btn-white mr-4 mb-2" type="button"><i class="fa fa-sign-in" aria-hidden="true"></i> Вхід</button>
+                <div class="dropdown">
+                    <button type="button" class="btn text-center dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user" style="color: #274B69;" aria-hidden="true"></i> Мій профіль
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item " href="#"><i class="fa fa-cog" style="color: #274B69;" aria-hidden="true"></i> Налаштування</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#"><i class="fa fa-commenting-o" style="color: #274B69;" aria-hidden="true"></i> Мої відгуки</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item " href="#"><i class="fa fa-sign-out" style="color:#b71818; " aria-hidden="true"></i> Вийти</a>
+                    </div>
+                </div>
             </li>
-            <li class="nav-item">
-                <button onclick="document.location='/reg'" style="width:auto;background-color: #274B69;" class="btn text-white mr-4 mb-2" type="button"><i class="fa fa-user-plus" aria-hidden="true"></i> Зареєструватися</button>
-            </li>
-
         </ul>
 
     </div>
 </nav>
 
-<div id="changePassword" class="modal">
+<div class="modal">
 
-    <form class="modal-content animate" action="/action_page.php" method="post">
+    <form class="modal-content animate" id="changePassword">
         <div class="container">
              <span onclick="document.getElementById('changePassword').style.display='none'" class="close" title="Close Modal">&times;</span>
             <h3 class="text-center display-3">Змінити пароль</h3>
@@ -91,17 +96,19 @@
 
             <div class="container">
                 <div class="row">
-
-                    <div class="col-sm-7">
+<div class="col-sm-3"></div>
+                    <div class="col-sm-6">
                         <div class="text-center">
                             <img src="images/defUser.png" alt="avatar" class="ml-3 mr-3 mt-1 rounded-circle" style="width:250px;">
                         </div>
+
                     </div>
-                    <div class="col-sm-5">
-                        <i class="fa fa-camera icon" aria-hidden="true"></i>
-                        <input class="input-field text-white"  type="file" hidden="hidden" id="customFile" oninput=" this.className = ''">
-                        <label class="custom-file-label" for="customFile">Обери фото</label>
-                    </div>
+                    <div class="col-sm-3"></div>
+
+                </div>
+                <div>
+                    <i class="fa fa-camera icon ml-3" aria-hidden="true"></i>
+                    <input class="input-field text-white ml-3"  type="file"  id="customFile" oninput=" this.className = ''">
                 </div>
             </div>
 <br>
@@ -116,12 +123,6 @@
                 <div class="form-inline" >
                     <label  for="facultyU"><b>Факультет</b></label>
                     <input  class="ml-2 form-control" type="text" value="faculty" placeholder="Твоя пошта..." id="facultyU" required>
-                </div>
-<br>
-
-                <div class="form-inline">
-                <label  for="yearEntr"><b>Рік вступу</b></label>
-                <input  class="ml-2 form-control" type="number" value="2014" id="yearEntr" required>
                 </div>
             </div>
 <br>

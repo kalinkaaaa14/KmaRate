@@ -2,9 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6d1931d4-8d70-489c-b5f0-034215f85cf1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Registration.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyProfile.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EP.html" beforeDir="false" afterPath="$PROJECT_DIR$/EP.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EditProfile.html" beforeDir="false" afterPath="$PROJECT_DIR$/EditProfile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Main.html" beforeDir="false" afterPath="$PROJECT_DIR$/Main.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyProfile.html" beforeDir="false" afterPath="$PROJECT_DIR$/MyProfile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PageEPReviews.html" beforeDir="false" afterPath="$PROJECT_DIR$/PageEPReviews.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PageSubjectReviews.css" beforeDir="false" afterPath="$PROJECT_DIR$/PageSubjectReviews.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PageSubjectReviews.html" beforeDir="false" afterPath="$PROJECT_DIR$/PageSubjectReviews.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Registration.html" beforeDir="false" afterPath="$PROJECT_DIR$/Registration.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Registration.js" beforeDir="false" afterPath="$PROJECT_DIR$/Registration.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RevEP.html" beforeDir="false" afterPath="$PROJECT_DIR$/RevEP.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RevSubject.css" beforeDir="false" afterPath="$PROJECT_DIR$/RevSubject.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RevSubject.html" beforeDir="false" afterPath="$PROJECT_DIR$/RevSubject.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Subject.css" beforeDir="false" afterPath="$PROJECT_DIR$/Subject.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Subject.html" beforeDir="false" afterPath="$PROJECT_DIR$/Subject.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,9 +30,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="CSS File" />
-        <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="HTML File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -63,7 +76,8 @@
       <workItem from="1588839779206" duration="3523000" />
       <workItem from="1588848145401" duration="28836000" />
       <workItem from="1588881432106" duration="661000" />
-      <workItem from="1588929370364" duration="3535000" />
+      <workItem from="1588929370364" duration="20672000" />
+      <workItem from="1589021825766" duration="16296000" />
     </task>
     <servers />
   </component>
@@ -71,6 +85,10 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="137" y="23" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1588938618242">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="137" y="23" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1588938618242" />
     <state x="413" y="115" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1588769656167">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -83,9 +101,9 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1588610973317" />
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1588699023722">
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1588937111647">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1588699023722" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1588937111647" />
   </component>
 </project>

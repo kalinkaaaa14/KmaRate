@@ -78,4 +78,6 @@
     color: lightgray;
     text-shadow: 0 0 5px #274B69;
 }
-
+button:hover {
+    opacity: 0.8;
+}

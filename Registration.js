@@ -1,9 +1,16 @@
-$(document).ready(function(){
-    $(#registration).submit(function () {
-     $.ajax({
-            type: "post",
-            url: "/reg"
-     });
-        return false;
-    });
+$('#registration').submit(function () {
+    $.post(
+        '/reg',
+        $("#registration").serialize(),
+
+        function (msg) {
+
+            if (typeof msg.redirect == 'string') {
+                window.location = msg.redirect;
+            }
+
+        }
+    );
+    return false;
 });
+

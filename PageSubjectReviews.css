@@ -19,6 +19,29 @@
     width: 28%;
     margin-top: 70px;
 }
+button:hover {
+    opacity: 0.8;
+}
+.infoProfile1{
+    width:25%;
+    margin-top: 40px;
+}
+.infoProfile2{
+    width: 38%;
+    margin-top: 125px;
+}
+.profileFacultyCourse{
+    margin-top: 33px;
+}
+.spaceBetweenInfo{
+    width:2.5%;
+}
+.socialBut{
+    margin-top: 16%;
+}
+.profileUsername{
+    font-size:36px;
+}
 .secondCol{
     margin-top: 70px;
     width:22%;
@@ -53,6 +76,17 @@
         margin-top: 10px;
         width: 100%;
     }
+
+    .infoProfile1{
+        width:100%;
+    }
+    .spaceBetweenInfo{
+        width:0px;
+    }
+    .infoProfile2{
+        margin-top: 10px;
+        width:100%;
+    }
     .review{
         margin-left: 0;
         margin-right: 0;
@@ -71,6 +105,14 @@
     .reply{
         margin-left: 30px;
     }
+
+    .profileUsername{
+        margin-left: 26%;
+    }
+
+   .socialBut{
+       margin-top: 0;
+   }
 }
 
 .userRate{
@@ -89,13 +131,21 @@
     width:30%;
     background-color: #274B69;
 }
-@media screen and (max-width: 985px) and (min-width: 740px) {
+@media screen and (max-width: 992px) and (min-width: 740px) {
 .userRate{
     margin-left: 0;
     margin-right: 0;
     width: 100%;
 }
+.socialBut{
+    margin-top: 7%;
+}
+}
+@media screen and (min-width: 985px) and(max-width: 1350px) {
 
+    .socialBut{
+        margin-top: 10%;
+    }
 }
 @media screen and (max-width: 767px) and (min-width: 576px) {
     .mainInfoUser{
@@ -120,6 +170,19 @@ width:37%;
     .thirdCol{
         width: 18%;
         }
+    .infoProfile1{
+        width:36%;
+    }
+    .spaceBetweenInfo{
+        width:2%;
+    }
+    .infoProfile2{
+
+        width:62%;
+    }
+    .profileUsername{
+        margin-left: 80%;
+    }
 
     .reply{
         margin-left: 90px;

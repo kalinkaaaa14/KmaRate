@@ -1,0 +1,155 @@
+
+.rateReview {
+    display: inline-block;
+    position: relative;
+    height: 50px;
+    line-height: 50px;
+    font-size: 38px;
+}
+
+.rateReview label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+}
+
+.rateReview label:last-child {
+    position: static;
+}
+
+.rateReview label input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
+
+.rateReview label .iconRate {
+    float: left;
+    color: #274B69;
+}
+
+.rateReview label:last-child .iconTransp {
+    color: lightgray;
+}
+.rateReview label .iconTransp{
+    float: left;
+    color:transparent;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+@media screen and (max-width: 992px) and (min-width: 768px) {
+.rateReview{
+    font-size:25px ;
+}
+}
+
+
+.epPageReviews{
+
+    width: 25px;
+    height: 25px;
+}
+.subjPageReviews{
+    width: 25px;
+    height: 25px;
+}
+
+
+button:hover {
+    opacity: 0.8;
+}
+.infoProfile1{
+    width:25%;
+    margin-top: 40px;
+}
+.infoProfile2{
+    width: 38%;
+    margin-top: 125px;
+}
+.profileFacultyCourse{
+    margin-top: 33px;
+}
+.spaceBetweenInfo{
+    width:2.5%;
+}
+.socialBut{
+    margin-top: 16%;
+}
+.profileUsername{
+    font-size:36px;
+}
+
+
+@media screen and (max-width: 575px) {
+    .infoProfile1{
+        width:100%;
+    }
+    .spaceBetweenInfo{
+        width:0px;
+    }
+    .infoProfile2{
+        margin-top: 10px;
+        width:100%;
+    }
+
+
+    .profileUsername{
+        margin-left: 26%;
+    }
+
+    .socialBut{
+        margin-top: 0;
+    }
+}
+
+.userRate{
+    margin-left: 45px;
+    margin-right: 45px;
+}
+
+@media screen and (max-width: 992px) and (min-width: 740px) {
+    .userRate{
+        margin-left: 0;
+        margin-right: 0;
+        width: 100%;
+    }
+    .socialBut{
+        margin-top: 7%;
+    }
+}
+@media screen and (min-width: 985px) and(max-width: 1350px) {
+
+    .socialBut{
+        margin-top: 10%;
+    }
+}
+@media screen and (max-width: 767px) and (min-width: 576px) {
+    .mainInfoUser{
+        width: 100%;
+    }
+    .userRate{
+        margin-left: 0;
+        margin-right: 0;
+        width: 100%;
+    }
+
+    .infoProfile1{
+        width:36%;
+    }
+    .spaceBetweenInfo{
+        width:2%;
+    }
+    .infoProfile2{
+
+        width:62%;
+    }
+    .profileUsername{
+        margin-left: 80%;
+    }
+
+}

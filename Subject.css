@@ -38,3 +38,6 @@ span.psw {
     float: right;
     padding-top: 16px;
 }
+button:hover {
+    opacity: 0.8;
+}
