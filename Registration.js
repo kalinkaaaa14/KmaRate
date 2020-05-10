@@ -1,4 +1,5 @@
 $('#registration').submit(function () {
+    alert("fdffd");
     $.post(
         '/reg',
         $("#registration").serialize(),

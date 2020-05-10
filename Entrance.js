@@ -1,9 +1,15 @@
-$('#entrButton').on('click',function () {
-    alert('f');
-    $.ajax({
-        type: 'post',
-        url: '/entr',
-        data: {password: 'a', nickname: 'a'},
+$('#entrance').submit(function () {
+    alert('dddd');
+    $.post(
+        '/entr',
+        $("#entrance").serialize(),
 
-    });
+        function (msg) {
+            if (typeof msg.redirect == 'string') {
+                window.location = msg.redirect;
+            }
+
+        }
+    );
+    return false;
 });
