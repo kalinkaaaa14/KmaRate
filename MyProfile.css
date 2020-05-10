@@ -47,8 +47,6 @@ button:hover {
     font-size:25px ;
 }
 }
-
-
 .epPageReviews{
 
     width: 25px;
@@ -59,27 +57,32 @@ button:hover {
     height: 25px;
 }
 
-
 button:hover {
     opacity: 0.8;
 }
+
 .infoProfile1{
     width:25%;
     margin-top: 40px;
 }
+
 .infoProfile2{
     width: 38%;
     margin-top: 125px;
 }
+
 .profileFacultyCourse{
     margin-top: 33px;
 }
+
 .spaceBetweenInfo{
     width:2.5%;
 }
+
 .socialBut{
     margin-top: 16%;
 }
+
 .profileUsername{
     font-size:36px;
 }
