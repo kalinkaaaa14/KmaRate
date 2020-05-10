@@ -15,7 +15,7 @@
 </head>
 <body>
 <?if(typeof user !== 'undefined'){?>
-<?='Hello ' + user?>
+<?='Hello ' + user.nickname?>
 <?}?>
 
 <nav class="navbar navbar-expand-lg" >
@@ -37,17 +37,17 @@
 
         <ul class="navbar-nav ml-auto">
             <li  class="nav-item mt-2">
-                <a class="text-decoration-none text-reset mr-4 mb-2" href=<?=links.subj?>>Всі дисципліни</a>
+                <a class="text-decoration-none text-reset mr-4 mb-2" href='/subj'>Всі дисципліни</a>
             </li>
             <li  class="nav-item mt-2">
-                <a class="text-decoration-none text-reset mr-4 mb-2" href='<?=links.ep?>'>Всі програми обміну</a>
+                <a class="text-decoration-none text-reset mr-4 mb-2" href='/ep'>Всі програми обміну</a>
             </li>
 
             <li class="nav-item">
-                <button onclick="window.location='<?-links.entr?>'" style="width:auto; color: #274B69;" class="btn btn-white mr-4 mb-2" type="button"><i class="fa fa-sign-in" aria-hidden="true"></i> Вхід</button>
+                <button onclick="window.location='/entr'" style="width:auto; color: #274B69;" class="btn btn-white mr-4 mb-2" type="button"><i class="fa fa-sign-in" aria-hidden="true"></i> Вхід</button>
             </li>
             <li class="nav-item">
-                <button onclick="window.location='<?-links.reg?>'" style="width:auto;background-color: #274B69;" class="btn text-white mr-4 mb-2" type="button"><i class="fa fa-user-plus" aria-hidden="true"></i> Зареєструватися</button>
+                <button onclick="window.location='/reg'" style="width:auto;background-color: #274B69;" class="btn text-white mr-4 mb-2" type="button"><i class="fa fa-user-plus" aria-hidden="true"></i> Зареєструватися</button>
             </li>
 
         </ul>
@@ -83,10 +83,10 @@
     <div class="row mt-3">
         <div class="col-sm-1"></div>
         <div class="col-sm-5 text-center" >
-            <button onclick="window.location='<?-links.subj?>'" class="btn btn-lg  text-white mb-3 subjectButton" style="background-color: #274B69;"  type="button"><img class="subjectMain" src='images/subject.png' >Дисципліни</button>
+            <button onclick="window.location='/subj'" class="btn btn-lg  text-white mb-3 subjectButton" style="background-color: #274B69;"  type="button"><img class="subjectMain" src='images/subject.png' >Дисципліни</button>
         </div>
         <div class="col-sm-5 text-center">
-            <button onclick="window.location='<?-links.ep?>'" class="btn btn-lg  text-white epButton" style="background-color: #274B69;"  type="button"><img class="epMain" src='images/Vector.png' >Програми обміну</button>
+            <button onclick="window.location='/ep'" class="btn btn-lg  text-white epButton" style="background-color: #274B69;"  type="button"><img class="epMain" src='images/Vector.png' >Програми обміну</button>
         </div>
         <div class="col-sm-1"></div>
     </div>
@@ -229,7 +229,7 @@
                 <div class="col-sm-3  my-auto">
                     <button class="btn text-white" style="background-color: #274B69;margin-bottom: 5px; ">Усі відгуки</button>
 
-                    <button onclick="window.location ='<?-links.main?>' " class="btn text-white" style="background-color: #274B69;margin-bottom: 5px;">Залишити відгук</button>
+                    <button onclick="window.location ='/' " class="btn text-white" style="background-color: #274B69;margin-bottom: 5px;">Залишити відгук</button>
                 </div>
 
             </div>
@@ -260,7 +260,7 @@
                 <div class="col-sm-3  my-auto">
                     <button class="btn text-white" style="background-color: #274B69;margin-bottom: 5px; ">Усі відгуки</button>
 
-                    <button onclick="window.location='<?-links.revSubj?>'" class="btn text-white" style="background-color: #274B69;margin-bottom: 5px;">Залишити відгук</button>
+                    <button onclick="window.location='/'" class="btn text-white" style="background-color: #274B69;margin-bottom: 5px;">Залишити відгук</button>
                 </div>
 
             </div>
@@ -292,7 +292,7 @@
                 <div class="col-sm-3  my-auto">
                     <button class="btn text-white" style="background-color: #274B69;margin-bottom: 5px; ">Усі відгуки</button>
 
-                    <button onclick="window.location='<?-links.main?>'" class="btn text-white" style="background-color: #274B69;margin-bottom: 5px;">Залишити відгук</button>
+                    <button onclick="window.location='/'" class="btn text-white" style="background-color: #274B69;margin-bottom: 5px;">Залишити відгук</button>
                 </div>
 
             </div>
@@ -324,7 +324,7 @@
                 <div class="col-sm-3  my-auto">
                     <button class="btn text-white" style="background-color: #274B69;margin-bottom: 5px; ">Усі відгуки</button>
 
-                    <button onclick="window.location='/user/RevSubject.html'" class="btn text-white" style="background-color: #274B69;margin-bottom: 5px;">Залишити відгук</button>
+                    <button onclick="window.location='/'" class="btn text-white" style="background-color: #274B69;margin-bottom: 5px;">Залишити відгук</button>
                 </div>
 
             </div>
