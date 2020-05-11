@@ -14,9 +14,7 @@
 
 </head>
 <body>
-<?if(typeof user !== 'undefined'){?>
-<?='Hello ' + user.nickname?>
-<?}?>
+
 
 <nav class="navbar navbar-expand-lg" >
 
@@ -43,12 +41,26 @@
                 <a class="text-decoration-none text-reset mr-4 mb-2" href='/ep'>Всі програми обміну</a>
             </li>
 
+
+            <? if(user === undefined){ ?>
+
+
             <li class="nav-item">
                 <button onclick="window.location='/entr'" style="width:auto; color: #274B69;" class="btn btn-white mr-4 mb-2" type="button"><i class="fa fa-sign-in" aria-hidden="true"></i> Вхід</button>
             </li>
             <li class="nav-item">
                 <button onclick="window.location='/reg'" style="width:auto;background-color: #274B69;" class="btn text-white mr-4 mb-2" type="button"><i class="fa fa-user-plus" aria-hidden="true"></i> Зареєструватися</button>
             </li>
+
+
+            <?} else {?>
+<!--                ТУТ ДОЛЖЕН БЫТЬ ПРОФИЛЬ И ВСЁ ТАКОЕ, появится когда зайдет -->
+<!--            /logout
+                /profile или /user?
+                /settings
+                /reviews
+-->
+            <?}?>
 
         </ul>
 
@@ -132,6 +144,10 @@
     <br>
 </div>
 
+<!--unless login-->
+<? if(user === undefined){ ?>
+
+
 <div class="container-fluid" style="background-color: grey;">
     <br>
     <h1 class="display-4 text-center text-white">Поділись і ти своїми враженнями!</h1>
@@ -199,6 +215,8 @@
     </form>
     <br>
 </div>
+
+<?}?>
 
 <div class="container">
     <!-- топ 5 дисциплін -->
