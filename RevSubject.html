@@ -25,30 +25,28 @@
     <div class="collapse navbar-collapse" id="basicExampleNav">
         <form class="form-inline">
             <div class="md-form my-0">
-                <input class="form-control mr-sm-2 mb-2" type="text" placeholder="Пошук.." aria-label="Search">
+                <input class="form-control mr-sm-2 " type="text" placeholder="Пошук.." aria-label="Search">
             </div>
         </form>
 
-        <ul class="navbar-nav ml-auto" style="margin-right: 7px;">
-            <li  class="nav-item mt-2">
-                <a class="text-decoration-none text-reset mr-4 mb-2" href='/subj'>Всі дисципліни</a>
+        <ul class="navbar-nav ml-auto mt-2" style="margin-right: 30px;">
+            <li  class="nav-item mt-1">
+                <a class="text-decoration-none text-reset mr-4 " href='/subj'>Всі дисципліни</a>
             </li>
-            <li  class="nav-item mt-2">
-                <a class="text-decoration-none text-reset mr-4 mb-2" href='/ep'>Всі програми обміну</a>
+            <li  class="nav-item mt-1">
+                <a class="text-decoration-none text-reset mr-4 " href='/ep'>Всі програми обміну</a>
             </li>
 
             <li class="nav-item">
-            <div class="dropdown">
-                <button type="button" class="btn text-center dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user" style="color: #274B69;" aria-hidden="true"></i> Мій профіль
-                </button>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item " href='#'><i class="fa fa-cog" style="color: #274B69;" aria-hidden="true"></i> Налаштування</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href='#'><i class="fa fa-commenting-o" style="color: #274B69;" aria-hidden="true"></i> Мої відгуки</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item " href='#'><i class="fa fa-sign-out" style="color:#b71818; " aria-hidden="true"></i> Вийти</a>
+                <div class="dropdown">
+                    <a  class="text-decoration-none text-reset text-center" href='/profile'><i class="fa fa-user" aria-hidden="true"></i> Мій профіль</a>
+                    <button  type="button" class="btn profileDown" data-toggle="dropdown"><i class="fa fa-caret-down" aria-hidden="true"></i></button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item " href='#'><i class="fa fa-cog" style="color: #274B69;" aria-hidden="true"></i> Налаштування</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item " href='#'><i class="fa fa-sign-out" style="color:#b71818; " aria-hidden="true"></i> Вийти</a>
+                    </div>
                 </div>
-            </div>
             </li>
         </ul>
 
