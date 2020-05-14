@@ -33,15 +33,12 @@
                 <label class="mt-1"><b>Спеціальність</b></label>
                 <select name="userBranch" id="userBranch" class="custom-select" required>
                     <option selected value="" disabled>Не обрано </option>
-                    <option value="125">
-                                125 Спеціальність
-                    </option>
-                    <option value="126">
-                                126 Спеціальність
-                    </option>
-                    <option value="127">
-                        127 Спеціальність
-                    </option>
+
+                    <?for(let b of branchs){?>
+                        <option value="<?-b.id?>">
+                            <?=b.id + ' ' + b.title?>
+                        </option>
+                    <?}?>
                 </select>
 
             <label class="mt-1"  for="psw2"><b>Пароль</b></label>
