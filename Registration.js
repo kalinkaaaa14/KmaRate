@@ -1,4 +1,3 @@
-
 $('#registration').submit(function () {
 
     $.post(
@@ -6,13 +5,15 @@ $('#registration').submit(function () {
         $("#registration").serialize(),
 
         function (msg) {
-
+          //  console.log(msg);
             if (typeof msg.redirect == 'string') {
-                window.location = msg.redirect;
-            }else{
-                alert(msg.message);
-            }
+                 window.location = msg.redirect;
+             }else{
+                 alert(msg.message);
+             }
         }
     );
     return false;
 });
+
+
