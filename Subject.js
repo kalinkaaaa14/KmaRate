@@ -8,14 +8,16 @@ $(document).ready(function () {
                     semesters:  Array.from(document.querySelectorAll('input.semestersSubject:checked')).map(cb => cb.value),
                     faculties: Array.from(document.querySelectorAll('input.facultiesSubject:checked')).map(cb => cb.value)
         };
-        console.log(subject);
+
         $.ajax({
-            url: 'http://92.249.117.82:4321/subj/filter',
-            type: 'PUT',
+            url: '/subj/filter',
+            type: 'GET',
             data: subject,
+
             success: function (data, textStatus, xhr) {
                 console.log(data);
             },
+
             error: function (xhr, textStatus, errorThrown) {
                 console.log('Error in Operation');
             }
