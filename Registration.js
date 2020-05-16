@@ -1,6 +1,7 @@
 $('#registration').submit(function () {
-
+console.log(1),
     $.post(
+
         '/reg',
         $("#registration").serialize(),
 

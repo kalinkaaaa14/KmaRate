@@ -8,7 +8,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-
     <link rel="stylesheet" href="Subject.css">
     <link rel="stylesheet" href="RegisteredUser.css">
 
@@ -21,24 +20,23 @@
 <div class="container-fluid mt-4">
     <div class="row">
         <div class ="filters">
-    <form class="" style="outline: 1px solid lightgray;  border: 20px solid #fff;">
+    <form id="subjectFilters" style="outline: 1px solid lightgray;  border: 20px solid #fff;">
         <br>
         <h4 class="text-center mt-1">Фільтр</h4>
     <div class="form-group">
         <h5 for="nameSubj">Назва</h5>
-        <!--вибрати з усіх -->
-        <input type="email" class="form-control" id="nameSubj">
+
+        <input type="text" name="title"  class="form-control" id="title">
     </div>
 
     <div class="form-group">
         <h5 for="teacher">Викладач</h5>
-        <!--вибрати з усіх -->
-        <input type="email" class="form-control" id="teacher">
+        <input type="text" name="teacher" class="form-control" id="teacher">
     </div>
 
         <div class="form-group">
             <h5 for="yearConduct">Рік викладання</h5>
-            <input type="number" class="form-control" id="yearConduct">
+            <input type="number" name="year" class="form-control" id="year">
         </div>
 
 
@@ -46,33 +44,33 @@
         <div class="row">
             <div class="col-sm-6">
     <div class="custom-control custom-radio">
-        <input type="radio" id="bp1" name="customRadio" class="custom-control-input">
+        <input type="checkbox" id="bp1" name="courses[]" value=1 class="subjectCourse custom-control-input">
         <label class="custom-control-label" for="bp1">БП-1</label>
     </div>
 
     <div class="custom-control custom-radio">
-    <input type="radio" id="bp2" name="customRadio" class="custom-control-input">
+    <input type="checkbox" id="bp2" name="courses[]" value=2 class="subjectCourse custom-control-input">
     <label class="custom-control-label" for="bp2">БП-2</label>
     </div>
 
     <div class="custom-control custom-radio">
-    <input type="radio" id="bp3" name="customRadio" class="custom-control-input">
+    <input  type="checkbox" id="bp3" name="courses[]" value=3 class="subjectCourse custom-control-input">
     <label class="custom-control-label" for="bp3">БП-3</label>
     </div>
 
     <div class="custom-control custom-radio">
-    <input type="radio" id="bp4" name="customRadio" class="custom-control-input">
+    <input  type="checkbox" id="bp4" name="courses[]" value=4 class="subjectCourse custom-control-input">
     <label class="custom-control-label" for="bp4">БП-4</label>
     </div>
             </div>
             <div class="col-sm-6">
                 <div class="custom-control custom-radio">
-                    <input type="radio" id="mp1" name="customRadio" class="custom-control-input ">
+                    <input  type="checkbox" id="mp1" name="courses[]" value=5 class="subjectCourse custom-control-input ">
                     <label class="custom-control-label" for="mp1">МП-1</label>
                 </div>
 
                 <div class="custom-control custom-radio">
-                    <input type="radio" id="mp2" name="customRadio" class="custom-control-input">
+                    <input  type="checkbox" id="mp2" name="courses[]" value=6 class="subjectCourse custom-control-input">
                     <label class="custom-control-label" for="mp2">МП-2</label>
                 </div>
             </div>
@@ -80,17 +78,17 @@
 
         <h5 class="mt-1">Семестр</h5>
         <div class="custom-control custom-radio">
-            <input type="radio" id="autumn" name="customRadio" class="custom-control-input">
+            <input type="checkbox" id="autumn" name="semesters[]" value="autumn" class="semestersSubject custom-control-input">
             <label class="custom-control-label" for="autumn">Осінь</label>
         </div>
 
         <div class="custom-control custom-radio">
-            <input type="radio" id="spring" name="customRadio" class="custom-control-input">
+            <input type="checkbox" id="spring" name="semesters[]" value="spring" class="semestersSubject custom-control-input">
             <label class="custom-control-label" for="spring">Весна</label>
         </div>
 
         <div class="custom-control custom-radio">
-            <input type="radio" id="summer" name="customRadio" class="custom-control-input">
+            <input type="checkbox" id="summer" name="semesters[]" value="summer" class="semestersSubject custom-control-input">
             <label class="custom-control-label" for="summer">Літо</label>
         </div>
 
@@ -98,17 +96,17 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="custom-control custom-radio">
-                    <input type="radio" id="fi" name="customRadio" class="custom-control-input">
+                    <input type="checkbox" id="fi" name="faculties[]" value="fi" class="facultiesSubject custom-control-input">
                     <label class="custom-control-label" for="fi">ФІ</label>
                 </div>
 
                 <div class="custom-control custom-radio">
-                    <input type="radio" id="fen" name="customRadio" class="custom-control-input">
+                    <input type="checkbox" id="fen" name="faculties[]" value="fen" class="facultiesSubject custom-control-input">
                     <label class="custom-control-label" for="fen">ФЕН</label>
                 </div>
 
                 <div class="custom-control custom-radio">
-                    <input type="radio" id="fsnst" name="customRadio" class="custom-control-input">
+                    <input type="checkbox" id="fsnst" name="faculties[]" value="fsnst" class="facultiesSubject custom-control-input">
                     <label class="custom-control-label" for="fsnst">ФСНСТ</label>
                 </div>
 
@@ -116,24 +114,26 @@
             <div class="col-sm-6">
 
                 <div class="custom-control custom-radio">
-                    <input type="radio" id="fprn" name="customRadio" class="custom-control-input">
+                    <input type="checkbox" id="fprn" name="faculties[]" value="fprn" class="facultiesSubject custom-control-input">
                     <label class="custom-control-label" for="fprn">ФПРН</label>
                 </div>
 
                 <div class="custom-control custom-radio">
-                    <input type="radio" id="fpvn" name="customRadio" class="custom-control-input">
+                    <input type="checkbox" id="fpvn" name="faculties[]" value="fpvn" class="facultiesSubject custom-control-input">
                     <label class="custom-control-label" for="fpvn">ФПВН</label>
                 </div>
 
                 <div class="custom-control custom-radio">
-                    <input type="radio" id="fgn" name="customRadio" class="custom-control-input">
+                    <input type="checkbox" id="fgn" name="faculties[]" value="fgn" class="facultiesSubject custom-control-input">
                     <label class="custom-control-label" for="fgn">ФГН</label>
                 </div>
             </div>
         </div>
 
-        <button type="button" class="btn text-white btn-block mt-4" style="background-color: #274B69;">Пошук</button>
+        <button id="searchSButton" type="button" class="btn text-white btn-block mt-4" style="background-color: #274B69;">Пошук</button>
+
     </form>
+
         </div>
         <div class="spaceBetween"></div>
         <div class="subj" style="overflow-y: auto">
@@ -472,5 +472,9 @@
     </div>
 </div>
 
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="Subject.js" charset="utf-8"></script>
 </body>
 </html>
