@@ -1,4 +1,3 @@
-
 $(document).ready(function () {
     let today = new Date().getMonth();
     // alert(today);//4
@@ -8,7 +7,10 @@ $(document).ready(function () {
         document.getElementById('year').value = new Date().getFullYear();
     }
 
+    getInfo();
+
     function getInfo() {
+
         var subj = {
             title: document.getElementsByName('title')[0].value,
             teacher: document.getElementsByName("teacher")[0].value,
@@ -19,11 +21,11 @@ $(document).ready(function () {
         };
 
         $.ajax({
-            url: '/subj/filter',
+            url: '/subj',
             type: 'GET',
             data: subj,
-
             success: function (data, textStatus, xhr) {
+                //console.log(data);
                 formatData(data);
             },
 
@@ -33,35 +35,10 @@ $(document).ready(function () {
         });
     }
 
-    $('#searchSButton').click(function () {
-        var subject = {
-            title: document.getElementsByName('title')[0].value,
-            teacher: document.getElementsByName("teacher")[0].value,
-            year: document.getElementsByName("year")[0].value,
-            courses: Array.from(document.querySelectorAll('input.subjectCourse:checked')).map(cb => cb.value),
-            semesters: Array.from(document.querySelectorAll('input.semestersSubject:checked')).map(cb => cb.value),
-            faculties: Array.from(document.querySelectorAll('input.facultiesSubject:checked')).map(cb => cb.value)
-        };
 
-        $.ajax({
-            url: '/subj/filter',
-            type: 'GET',
-            data: subject,
+    $('#searchSButton').click(getInfo);
 
-            success: function (data, textStatus, xhr) {
 
-                console.log(data);
-
-                formatData(data)
-
-            },
-
-            error: function (xhr, textStatus, errorThrown) {
-
-                console.log('Error in Operation');
-            }
-        });
-    });
 
 
     function formatData(data){
@@ -73,7 +50,7 @@ $(document).ready(function () {
             }else{
                 data.subjects[counter].faculty=data.subjects[counter].faculty.toUpperCase();
             }
-           // data.subjects[counter].course=data.subjects[counter].course;
+            // data.subjects[counter].course=data.subjects[counter].course;
             data.subjects[counter].title=data.subjects[counter].title[0].toUpperCase() + data.subjects[counter].title.slice(1);
             data.subjects[counter].last_name= data.subjects[counter].last_name[0].toUpperCase() + data.subjects[counter].last_name.slice(1);
             data.subjects[counter].first_name= data.subjects[counter].first_name[0].toUpperCase() + ".";
@@ -81,14 +58,23 @@ $(document).ready(function () {
             counter++;
         }
 
-    $('#subjectsFromServer').html(showSubjects(data));
+        $('#subjectsFromServer').html(showSubjects(data));
     }
 
     function showSubjects(data) {
 
         let counter = 0;
         let res = "";
+        let reviews="";
         while (counter < data.subjects.length) {
+            /*
+            if(data.subjects[counter].reviews_amount == 1){
+                reviews=" відгук";
+            }else if(data.subjects[counter].reviews_amount ===2 || data.subjects[counter].reviews_amount === 3 || data.subjects[counter].reviews_amount===4){
+                reviews=" відгуки";
+            }else{
+                reviews=" відгуків";
+            }*/
             res += "<div class='container-fluid ' style='outline: 2px solid lightgray;  border: 0.1px solid #fff;'>" +
                 "<div class='row'>" +
                 "<div class='col-sm-4' style='background-color: #274B69'>" +
@@ -100,7 +86,7 @@ $(document).ready(function () {
                 + "</small></span>" + "<span class='text-white' style='position: absolute;bottom: 8px;right: 16px;'><small>"
                 + data.subjects[counter].course + "</small></span>" + "</div>" + "<div class='col-sm-3 my-auto'>" +
                 "<h5 class='mt-3 '>Середній рейтинг</h5>" +
-                "<span style='color: rgba(27,23,22,0.7)'><small>" + data.subjects[counter].reviews_amount + " відгуків</small></span>" +
+                "<span style='color: rgba(27,23,22,0.7)'><small>" + data.subjects[counter].reviews_amount + " відгук(-ів)</small></span>" +
                 "</div>" + "<div class='col-sm-2 my-auto'>" + "<div>" +
                 "<button data-toggle='modal' data-target='#details' type='button' class='btn btn-lg'>" + data.subjects[counter].average_grade + "<i class='fa fa-sort-desc' aria-hidden='true'></i>" +
                 "</button>" + "</div>" + "</div>" +
