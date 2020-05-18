@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6d1931d4-8d70-489c-b5f0-034215f85cf1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/PageSubjectReviews.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PageSubjectReviews.html" beforeDir="false" afterPath="$PROJECT_DIR$/PageSubjectReviews.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Subject.html" beforeDir="false" afterPath="$PROJECT_DIR$/Subject.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Subject.js" beforeDir="false" afterPath="$PROJECT_DIR$/Subject.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +40,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Practice6" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
   </component>
   <component name="RunManager">
@@ -81,7 +84,10 @@
       <workItem from="1589486295782" duration="2429000" />
       <workItem from="1589569459902" duration="5783000" />
       <workItem from="1589615145128" duration="1938000" />
-      <workItem from="1589617183281" duration="6486000" />
+      <workItem from="1589617183281" duration="7429000" />
+      <workItem from="1589654640610" duration="2548000" />
+      <workItem from="1589695608162" duration="37463000" />
+      <workItem from="1589782741050" duration="557000" />
     </task>
     <servers />
   </component>
@@ -89,6 +95,10 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="275" y="26" key="#Inspections" timestamp="1589745848511">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="275" y="26" key="#Inspections/0.0.1366.728@0.0.1366.728" timestamp="1589745848511" />
     <state x="137" y="23" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1588938618242">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -97,10 +107,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="413" y="115" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1588769656167" />
-    <state x="463" y="123" key="FileChooserDialogImpl" timestamp="1588167034268">
+    <state x="463" y="123" key="FileChooserDialogImpl" timestamp="1589657495718">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="463" y="123" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1588167034268" />
+    <state x="463" y="123" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1589657495718" />
     <state width="1345" height="223" key="GridCell.Tab.0.bottom" timestamp="1589106804863">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
