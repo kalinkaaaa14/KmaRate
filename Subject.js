@@ -21,7 +21,7 @@ $(document).ready(function () {
         };
 
         $.ajax({
-            url: '/subj',
+            url: '/subj/filter',
             type: 'GET',
             data: subj,
             success: function (data, textStatus, xhr) {
@@ -91,8 +91,8 @@ $(document).ready(function () {
                 "<button data-toggle='modal' data-target='#details' type='button' class='btn btn-lg'>" + data.subjects[counter].average_grade + "<i class='fa fa-sort-desc' aria-hidden='true'></i>" +
                 "</button>" + "</div>" + "</div>" +
                 "<div class='col-sm-3  my-auto'>" +
-                "<a href='/subj/subjects[i].id' class='btn text-white' style='background-color: #274B69;margin-bottom: 5px;'>Усі відгуки</a>" +
-                "<button onclick='document.location=/user/RevSubject.html' class='btn text-white' style='background-color: #274B69;margin-bottom: 5px;'>Залишити відгук</button>" +
+                "<a href='/subj/" + data.subjects[counter].id + "' class='btn text-white' style='background-color: #274B69;margin-bottom: 5px;'>Усі відгуки</a>" +
+                `<button onclick="window.location='/subj/${data.subjects[counter].id}/createReview'" class='btn text-white' style='background-color: #274B69;margin-bottom: 5px;'>Залишити відгук</button>` +
                 "</div>" +
                 "</div>" +
                 "</div>" + "<br>";

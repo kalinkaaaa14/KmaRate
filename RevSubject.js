@@ -4,6 +4,12 @@ $(document).ready(function () {
 
 
     function getInfo() {
+
+        let urlPartsArr = window.location.href.split('/');
+        let subject_id = urlPartsArr[urlPartsArr.length - 2];
+
+        let date = new Date();
+
         var dataR={
             need_basic_knowledge: $("#form1").serializeArray()[0].value,
             edu_technique: $("#form2").serializeArray()[0].value,
@@ -12,18 +18,22 @@ $(document).ready(function () {
             theory_practice: $("#form5").serializeArray()[0].value,
             teacher_criticism:$("#form6").serializeArray()[0].value,
             using_knowledge: $("#form7").serializeArray()[0].value,
-            general_impression: $("#form8").serializeArray()[0].value
+            general_impression: $("#form8").serializeArray()[0].value,
+            subject_id,
+            time_rev: date.getHours() + ':' + date.getMinutes(),
+            date_rev: date.getDate() + '.' + (date.getMonth() + 1) + '.' + date.getFullYear()
+
         };
 
 
-//console.log(dataR);
+console.log(dataR);
 
         $.ajax({
-            url:  'http://92.249.117.82:4321/subj/4/createReview',
+            url:  '/subj/4/createReview',
             type: 'POST',
             data: dataR,
             success: function (data, textStatus, xhr) {
-                console.log(data);
+                window.location = data.redirect;
             },
 
             error: function (xhr, textStatus, errorThrown) {
