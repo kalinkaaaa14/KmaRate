@@ -1,7 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+body{
+    font-family: 'Ubuntu', sans-serif;
+}
 .filters{
     width: 24%;
 }
+.allSubjPage{
+    font-size: 36px;
+    margin-top: 36px;
+}
+.searchBS{
+    background-color: #274B69;
+}
+
 .subj{
+    overflow-y: auto;
     width: 74%;
 }
 .spaceBetween{
@@ -40,4 +53,58 @@ span.psw {
 }
 button:hover {
     opacity: 0.8;
+}
+
+.fontDetails{
+    font-weight: bold;
+}
+.averageMarkDetails{
+    margin-left:-5px;
+}
+.formFiltersEP{
+    outline: 1px solid lightgray;
+    border: 20px solid #fff;
+}
+
+.firstPart{
+    background-color: #274B69;
+}
+.epFilters{
+    border: 1px solid lightgray;
+}
+.epFiltersCourse{
+    position: absolute;
+    top: 8px;
+    right: 16px;
+}
+.epFiltersCountry{
+     position: absolute;
+    top:70px;
+    left: 16px;
+}
+.epFiltersUni{
+    position: absolute;
+    top:100px;
+    left: 16px;
+}
+.quantityEPreview{
+    color: rgba(27,23,22,0.7);
+}
+.showAllEPReviews{
+    background-color: #274B69;
+    margin-bottom: 5px;
+}
+.makeEpRev{
+    background-color: #274B69;
+    margin-bottom: 5px;
+}
+.subjectRevSNP{
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
+}
+.subjectRevCourse{
+    position: absolute;
+    bottom: 8px;
+    right: 16px;
 }

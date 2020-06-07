@@ -1,0 +1,19 @@
+.registrationButton {
+    background-color: #274B69;
+}
+.isRegisteredDiv{
+    background-color:#f1f1f1;
+}
+.signInRegForm{
+    background-color: #274B69;
+}
+body {
+    font-family: 'Ubuntu', sans-serif;
+}
+.sizeRegistr{
+    font-size: 36px;
+
+}
+.reg{
+    border: 1px solid lightgray;
+    }

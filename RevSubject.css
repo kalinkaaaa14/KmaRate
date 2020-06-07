@@ -1,4 +1,6 @@
-
+body{
+    font-family: 'Ubuntu', sans-serif;
+}
 .rating {
     display: inline-block;
     position: relative;
@@ -60,6 +62,10 @@
     opacity: 0;
 }
 
+.iconCircle{
+font-size: 50px;
+}
+
 .rating label .iconRate {
     float: left;
     color: transparent;
@@ -81,7 +87,24 @@
 button:hover {
     opacity: 0.8;
 }
+.questionsRev{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 28px;
+}
+.revHeader{
+    font-size: 36px;
+    line-height: 41px;
+    font-weight: normal;
+    font-style: normal;
+}
 
+@media screen and (max-width: 575px)  {
+.iconCircle{
+    font-size: 31px;
+}
+}
 .profileDown:active:focus,
 .profileDown:focus {
     outline: 0!important;
@@ -89,4 +112,59 @@ button:hover {
     outline-width: 0!important;
     outline-style: none!important;
     box-shadow: 0 0 0 0 rgba(0,123,255,0)!important;
+}
+
+.colOption{
+    width: 30%;
+}
+.space{
+    width:10%;
+}
+.colOption1{
+    width:20%;
+}
+.colOption2{
+    width: 20%;
+}
+.colOption3{
+    width: 20%;
+}
+.contactsPage{
+    font-size: 24px;
+    font-weight: 500;
+    font-style: normal;
+    line-height: 28px;
+}
+.contactsValue{
+    font-size: 17px;
+    font-weight: normal;
+    font-style: normal;
+    line-height: 28px;
+}
+.makeRevDiv{
+    border: 5px solid lightgray;
+    border-radius: 1%;
+}
+.difficultiesEP{
+    width: 90%;
+    height: 300px;
+    resize: none;
+}
+.makeRevEp{
+    background-color: #274B69;
+}
+
+@media screen and (max-width: 767px)  {
+    .iconCircle{
+        font-size: 35px;
+    }
+    .contactsPage{
+        font-size: 20px;
+    }
+    .contactsValue{
+        font-size: 15px;
+    }
+    .space{
+        width:8%;
+    }
 }

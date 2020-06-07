@@ -75,24 +75,24 @@ $(document).ready(function () {
             }else{
                 reviews=" відгуків";
             }*/
-            res += "<div class='container-fluid ' style='outline: 2px solid lightgray;  border: 0.1px solid #fff;'>" +
+            res += "<div class='container-fluid rounded epFilters'>" +
                 "<div class='row'>" +
-                "<div class='col-sm-4' style='background-color: #274B69'>" +
-                "<span class='text-white' style='position: absolute;top: 8px;right: 16px;'><small>"
+                "<div class='col-sm-4 firstPart'>" +
+                "<span class='text-white epFiltersCourse'><small>"
                 + data.subjects[counter].faculty + "</small></span>"
                 + "<br>" + "<h6 class='text-white  mt-3' >"
-                + data.subjects[counter].title + "</h6>" + "<br> <br>" + "<span class='text-white' style=' position: absolute; bottom: 8px; left: 16px;'><small>"
+                + data.subjects[counter].title + "</h6>" + "<br> <br>" + "<span class='text-white subjectRevSNP'><small>"
                 + data.subjects[counter].last_name + " " + data.subjects[counter].first_name + " " + data.subjects[counter].patronymic
-                + "</small></span>" + "<span class='text-white' style='position: absolute;bottom: 8px;right: 16px;'><small>"
+                + "</small></span>" + "<span class='text-white subjectRevCourse'><small>"
                 + data.subjects[counter].course + "</small></span>" + "</div>" + "<div class='col-sm-3 my-auto'>" +
                 "<h5 class='mt-3 '>Середній рейтинг</h5>" +
-                "<span style='color: rgba(27,23,22,0.7)'><small>" + data.subjects[counter].reviews_amount + " відгук(-ів)</small></span>" +
+                "<span class='quantityEPreview'><small>" + data.subjects[counter].reviews_amount + " відгук(-ів)</small></span>" +
                 "</div>" + "<div class='col-sm-2 my-auto'>" + "<div>" +
                 "<button data-toggle='modal' data-target='#details' type='button' class='btn btn-lg'>" + data.subjects[counter].average_grade + "<i class='fa fa-sort-desc' aria-hidden='true'></i>" +
                 "</button>" + "</div>" + "</div>" +
                 "<div class='col-sm-3  my-auto'>" +
-                "<a href='/subj/" + data.subjects[counter].id + "' class='btn text-white' style='background-color: #274B69;margin-bottom: 5px;'>Усі відгуки</a>" +
-                `<button onclick="window.location='/subj/${data.subjects[counter].id}/createReview'" class='btn text-white' style='background-color: #274B69;margin-bottom: 5px;'>Залишити відгук</button>` +
+                "<a href='/subj/" + data.subjects[counter].id + "' class='btn text-white showAllEPReviews'>Усі відгуки</a>" +
+                `<button onclick="window.location='/subj/${data.subjects[counter].id}/createReview'" class='btn text-white makeEpRev'>Залишити відгук</button>` +
                 "</div>" +
                 "</div>" +
                 "</div>" + "<br>";

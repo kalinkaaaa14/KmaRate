@@ -11,16 +11,64 @@
 
     <link rel="stylesheet" href="/Subject.css">
     <link rel="stylesheet" href="/RegisteredUser.css">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<!-- зареєстр або незареєстр -->
-<?-include('./Navbar.html')?>
+<!-- зареєстр або незареєстр
+<?-include('./Navbar.html')?>-->
+
+<nav class="navbar navbar-expand-xl" >
+
+
+    <a class="navbar-brand kmaRateIcon"><IMG src="/images/KmaRate.png"></a>
+
+    <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#basicExampleNav"
+            aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fa fa-caret-square-o-down" aria-hidden="true"></i>
+    </button>
+
+    <div class="collapse navbar-collapse" id="basicExampleNav">
+        <form class="form-inline">
+            <div class="md-form my-0">
+                <input class="form-control mr-sm-2 mb-2 search" type="text" placeholder="Пошук.." aria-label="Search">
+            </div>
+        </form>
+
+        <ul class="navbar-nav ml-auto ulRight">
+            <li  class="nav-item mt-2">
+                <a class="text-decoration-none text-reset mr-4 mb-2 allDis" href='/subj'>Всі дисципліни</a>
+            </li>
+            <li  class="nav-item mt-2">
+                <a class="text-decoration-none text-reset mr-4 mb-2 allEP" href='/ep'>Всі програми обміну</a>
+            </li>
+
+
+            <li class="nav-item">
+                <button onclick="window.location='/entr'" class="btn btn-white mr-4 mb-2 entButtonNavbar btns" type="button"><i class="fa fa-sign-in" aria-hidden="true"></i> Вхід</button>
+            </li>
+            <li class="nav-item">
+                <button onclick="window.location='/reg'" class="btn text-white mr-4 mb-2 regButtonNavbar btns" type="button"><i class="fa fa-user-plus" aria-hidden="true"></i> Зареєструватися</button>
+
+                <!--    <? if(user === undefined){ ?>
+
+                <?-include('./NonregisteredUser.html')?>
+
+                <?} else {?>
+
+                <?-include('./RegisteredUser.html')?>
+
+                <?}?> -->
+
+        </ul>
+
+    </div>
+</nav>
 
 <div class="container-fluid mt-4">
     <div class="row">
         <div class ="filters">
-    <form id="subjectFilters" style="outline: 1px solid lightgray;  border: 20px solid #fff;">
+    <form class='formFiltersEP' id="subjectFilters">
         <br>
         <h4 class="text-center mt-1">Фільтр</h4>
     <div class="form-group">
@@ -130,20 +178,63 @@
             </div>
         </div>
 
-        <button  id="searchSButton" type="button" class="btn text-white btn-block mt-4" style="background-color: #274B69;">Пошук</button>
-
+        <button id="searchSButton" type="button" class="btn searchBS btn-block mt-4 text-white">Пошук</button>
     </form>
 
         </div>
         <div class="spaceBetween"></div>
-        <div class="subj" style="overflow-y: auto">
-         <h5 class=" mt-3 display-4 mb-1">Всі дисципліни</h5>
-            <div id="subjectsFromServer" ></div>
 
-                    </div>
+        <div class="subj">
+         <h5 class="mb-1 allSubjPage">Всі дисципліни</h5>
+            <div id="subjectsFromServer" >
+
+<!--                <div class='container-fluid rounded epFilters'>-->
+<!--                <div class='row'>-->
+<!--                    <div class='col-sm-4 firstPart'>-->
+<!--                        <span class='text-white epFiltersCourse'><small>-->
+<!--                ФПрН  "</small></span>-->
+<!--                        <br>  <h6 class='text-white  mt-3' >-->
+<!--                             Обробра зобрадень і моделювання графів математичних зображень  </h6>  <br> <br> <span class='text-white subjectRevSNP'><small>-->
+<!--                 Захарійченко О.М.-->
+<!--                    </small></span><span class='text-white subjectRevCourse'><small>-->
+<!--                2 </small></span> </div> <div class='col-sm-3 my-auto'>-->
+<!--                        <h5 class='mt-3 '>Середній рейтинг</h5>-->
+<!--                        <span class='quantityEPreview'><small> 56 відгук(-ів)</small></span>-->
+<!--                        </div><div class='col-sm-2 my-auto'><div>-->
+<!--                        <button data-toggle='modal' data-target='#details' type='button' class='btn btn-lg'> 96<i class='fa fa-sort-desc' aria-hidden='true'></i>-->
+<!--                            </button></div></div>-->
+<!--                    <div class='col-sm-3  my-auto'>-->
+<!--                        <a href='/subj/" + data.subjects[counter].id + "' class='btn text-white showAllEPReviews'>Усі відгуки</a>-->
+<!--                        <button onclick="window.location='/subj/${data.subjects[counter].id}/createReview'" class='btn text-white makeEpRev'>Залишити відгук</button>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div><br>-->
 
             </div>
         </div>
+
+            </div>
+
+        </div>
+
+<div class="container-fluid">
+    <footer class="pt-4 mt-5">
+
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-2 text-center">
+                <a class='text-decoration-none text-reset' href='#'>Контакти</a>
+            </div>
+            <div class="col-sm-2 text-center">
+                <a class='text-decoration-none text-reset' href='#'>FAQ</a>
+            </div>
+            <div class="col-sm-2 text-center">
+                <a class='text-decoration-none text-reset' href='#'>Правила</a>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+    </footer>
+</div>
 
 <!--
 <div class='modal fade' id='details'>"

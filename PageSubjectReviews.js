@@ -62,62 +62,62 @@ $(document).ready(function () {
 
     function showSubjInfo(data) {
         let res = "";
-        res = "<div class='container-fluid mt-5' style='outline: 2px solid lightgray;  border: 0.1px solid #fff;'>" +
+        res = "<div class='container-fluid mt-5 borderEP'>" +
             "<div class='row'>" +
-            "<div class='col-sm-4' style='background-color: #274B69'>" +
-            "<span class='text-white' style='position: absolute;top: 8px;left: 16px;'><small>" + data.subject.year + "</small></span>" +
+            "<div class='col-sm-4 EPInfoBackground'>" +
+            "<span class='text-white subjectYearPage'><small>" + data.subject.year + "</small></span>" +
             "<br>" +
-            "<span class='text-white' style='position: absolute;top: 8px;right: 16px;'><small>" + data.subject.faculty + "</small></span>" +
+            "<span class='text-white subjectFacultyPage'><small>" + data.subject.faculty + "</small></span>" +
             "<br>" +
 
-            "<h6 class='text-white  mt-5 mb-5' style='text-align: left;'>" + data.subject.title + "</h6>" +
+            "<h6 class='text-white  mt-5 mb-5 subjectTitlePage'>" + data.subject.title + "</h6>" +
 
-            "<span class='text-white' style='position: absolute; bottom: 8px; left: 16px;'><small>" + data.subject.last_name + " " + data.subject.first_name + data.subject.patronymic + "</small></span>" +
-            "<span class='text-white' style='position: absolute;bottom: 8px;right: 16px;'><small>" + data.subject.course + "курс </small></span>" +
+            "<span class='text-white subjectSNP'><small>" + data.subject.last_name + " " + data.subject.first_name + data.subject.patronymic + "</small></span>" +
+            "<span class='text-white subjectCoursePage'><small>" + data.subject.course + "курс </small></span>" +
             "</div>" +
 
             "<div class='col-sm-3 my-auto'>" +
             "<p class='mt-4'>" +
             "<span>Потрібні початкові знання</span>" +
             "<br>" +
-            "<output name='basicKnowledgeSub' style='font-weight: bolder'>" + data.subject.need_basic_knowledge + "</output>" +
+            "<output class='characteristics' name='basicKnowledgeSub'>" + data.subject.need_basic_knowledge + "</output>" +
             "</p>" +
             "<p>" +
             "<span >Техніка викладання</span>" +
             "<br>" +
-            "<output name='technique' style='font-weight: bold'>" + data.subject.edu_technique + "</output>" +
+            "<output class='characteristics' name='technique'>" + data.subject.edu_technique + "</output>" +
             "</p>" +
             "<p>" +
             "<span>Складність курсу</span>" +
             "<br>" +
-            "<output name='complexityC' style='font-weight: bold'>" + data.subject.course_complexity + "</output>" +
+            "<output class='characteristics' name='complexityC'>" + data.subject.course_complexity + "</output>" +
             "</p>" +
             "</div>" +
             "<div class='col-sm-3 my-auto'>" +
             "<p class='mt-4'>" +
             "<span>Актуальність матеріалів курсу</span>" +
             "<br>" +
-            "<output name='modernMater' style='font-weight: bolder'>" + data.subject.nowadays_knowledge + "</output>" +
+            "<output class='characteristics' name='modernMater'>" + data.subject.nowadays_knowledge + "</output>" +
             "</p>" +
             "<p>" +
             "<span >Відповідність теорії та практики</span>" +
             "<br>" +
-            "<output name='technique' style='font-weight: bold'>" + data.subject.theory_practice + "</output>" +
+            "<output class='characteristics' name='technique'>" + data.subject.theory_practice + "</output>" +
             "</p>" +
             "<p>" +
             "<span>Критика зі сторони викладача</span>" +
             "<br>" +
-            "<output  name='criticismTeacher' style='font-weight: bold'>" + data.subject.teacher_criticism + "</output>" +
+            "<output class='characteristics' name='criticismTeacher'>" + data.subject.teacher_criticism + "</output>" +
             "</p>" +
             "</div>" +
             "<div class='col-sm-2  my-auto text-center'>" +
             "<h2>" + data.subject.average_grade + "</h2>" +
-            "<span style='color: rgba(27,23,22,0.7)'><small>" + data.subject.reviews_amount + " відгуків</small></span>" +
+            "<span class='quantityRevEPPage'><small>" + data.subject.reviews_amount + " відгуків</small></span>" +
             "</div>" +
             "</div>" +
             "</div>" +
             "<div>" +
-            `<button onclick="window.location='/subj/${data.subject.id}/createReview'" class='btn btn-block text-white text-center' style='background-color: #274B69;'><i class='fa fa-pencil-square-o' aria-hidden='true'></i> Залишити відгук</button>` +
+            `<button onclick="window.location='/subj/${data.subject.id}/createReview'" class='btn btn-block text-white text-center makeEpPageRev'><i class='fa fa-pencil-square-o' aria-hidden='true'></i> Залишити відгук</button>` +
             "</div>";
 
         return res;
@@ -132,18 +132,18 @@ $(document).ready(function () {
         while (counter < data.reviews.length) {
             let date = new Date(data.reviews[counter].date_rev);
             res +=
-                "<div class='container-fluid rounded mb-5' style='border: 1px solid lightgray;'>" +
+                "<div class='container-fluid rounded mb-5 borderReview'>" +
                 "<div class='row'>" +
                 "<div class='col-md-4'>" +
                 "<div class='text-center mainInfoUser'>" +
                 "<br>" +
-                "<img class='rounded-circle mt-3' src='/images/defUser.png' style='width:200px;height:200px ;'>" +
+                "<img class='rounded-circle mt-3 avatarRevEP' src='/images/defUser.png'>" +
                 "<br>" +
-                "<output name='userName' style='font-weight: bold;'>" + data.reviews[counter].nickname + "</output>" +
+                "<output class='characteristics' name='userName'>" + data.reviews[counter].nickname + "</output>" +
                 "<br>" +
                 "</div>" +
-                "<div class='row userRate text-center' style='border: 1px solid lightgray;'>" +
-                "<div class='col-sm-6 text-center' style='background: #274B69;'>" +
+                "<div class='row userRate text-center'>" +
+                "<div class='col-sm-6 text-center subjectRateRevEp'>" +
                 "<img class='subjPageReviews' src='/images/subject.png'>" +
                 "</div>" +
                 "<div class='col-sm-6 text-center'>" +
@@ -155,35 +155,35 @@ $(document).ready(function () {
                 "<p>" +
                 "<span>Складність курсу</span>" +
                 "<br>" +
-                "<output name='complexityC' style='font-weight: bold'>" + data.reviews[counter].course_complexity + "</output>" +
+                "<output class='characteristics' name='complexityC'>" + data.reviews[counter].course_complexity + "</output>" +
                 "</p>" +
 
                 "<p>" +
                 "<span>Потрібні початкові знання</span>" +
                 "<br>" +
-                "<output name='basicKnowledgeSub' style='font-weight: bolder'>" + data.reviews[counter].need_basic_knowledge + "</output>" +
+                "<output class='characteristics' name='basicKnowledgeSub'>" + data.reviews[counter].need_basic_knowledge + "</output>" +
                 "</p>" +
                 "<p>" +
                 "<span>Критика зі сторони викладача</span>" +
                 "<br>" +
-                "<output  name='criticismTeacher' style='font-weight: bold'>" + data.reviews[counter].teacher_criticism + "</output>" +
+                "<output class='characteristics'  name='criticismTeacher'>" + data.reviews[counter].teacher_criticism + "</output>" +
                 "</p>" +
                 "</div>" +
                 "<div class='secondCol'>" +
                 "<p>" +
                 "<span>Техніка викладання</span>" +
                 "<br>" +
-                "<output name='technique' style='font-weight: bold'>" + data.reviews[counter].edu_technique + "</output>" +
+                "<output class='characteristics' name='technique'>" + data.reviews[counter].edu_technique + "</output>" +
                 "</p>" +
                 "<p>" +
                 "<span>Актуальність матеріалів курсу</span>" +
                 "<br>" +
-                "<output name='modernMater' style='font-weight: bolder'>" + data.reviews[counter].nowadays_knowledge + "</output>" +
+                "<output class='characteristics' name='modernMater' >" + data.reviews[counter].nowadays_knowledge + "</output>" +
                 "</p>" +
                 "<p>" +
                 "<span>Відповідність теорії та практики</span>" +
                 "<br>" +
-                "<output name='technique' style='font-weight: bold'>" + data.reviews[counter].theory_practice + "</output>" +
+                "<output class='characteristics' name='technique'>" + data.reviews[counter].theory_practice + "</output>" +
                 "</p>" +
                 "</div>" +
                 "<div class='thirdCol my-auto text-center'>" +
@@ -197,12 +197,12 @@ $(document).ready(function () {
                 "<p>" +
                 "<a class='text-decoration-none mr-4' href='#'>Відповісти</a>" +
                 "<div class='mr-3'>" +
-                "<i class='fa fa-thumbs-o-up' aria-hidden='true' style='color: #274B69;'></i>" +
-                "<span name='likesReview' style='font-weight: bold;'>" + data.reviews[counter].rate + "</span>" +
+                "<i class='fa fa-thumbs-o-up likesRevEp' aria-hidden='true'></i>" +
+                "<span class='quantityLikesEp' name='likesReview'>" + data.reviews[counter].rate + "</span>" +
                 "</div>" +
                 "<a class='text-decoration-none mr-2' href='#'>Підтримую</a>" +
                 "<a class='text-decoration-none mr-5' href='#'>Не погоджуюсь</a>" +
-                "<button data-toggle='modal' data-target='#complain' class='complainButton btn' type='button' style='margin-top: -15px;'><i class='fa fa-exclamation-circle' style='color: #274B69;' aria-hidden='true'></i></button>" +
+                "<button data-toggle='modal' data-target='#complain' class='complainButton btn' type='button'><i class='fa fa-exclamation-circle complIcon' aria-hidden='true'></i></button>" +
                 "<div class='ml-auto'> " +
                 date.getDate() + '.'+ (date.getMonth() + 1)+'.' + date.getFullYear() + "  " + data.reviews[counter].time_rev.substr(0, 5) +
                 "</div>" +
@@ -214,18 +214,18 @@ $(document).ready(function () {
             counter++;
         }
         res += "<div class='reply'>" +
-            "<div class='container-fluid rounded mb-5' style='border: 1px solid lightgray;'>" +
+            "<div class='container-fluid rounded mb-5 borderReview'>" +
             "<div class='row'>" +
             "<div class='col-md-4'>" +
             "<div class='text-center mainInfoUser'>" +
             "<br>" +
-            "<img class='rounded-circle mt-3' src='/images/defUser.png' style='width:150px;height:150px ;'>" +
+            "<img class='rounded-circle mt-3 replyEpAvatar' src='/images/defUser.png'>" +
             "<br>" +
-            "<output name='replyUserName' style='font-weight: bold;'> + yellowstone123 + </output>" +
+            "<output class='replyUsernameEp' name='replyUserName'>" + yellowstone123 + "</output>" +
             "<br>" +
             "</div>" +
-            "<div class='row userRate' style='border: 1px solid lightgray;'>" +
-            "<div class='col-sm-6 text-center' style='background: #274B69;'>" +
+            "<div class='row userRate'>" +
+            "<div class='col-sm-6 text-center subjectRateRevEp'>" +
             "<img class='replySubjPageReviews' src='/images/subject.png'>" +
             "</div>" +
             "<div class='col-sm-6 text-center'>" +
@@ -243,29 +243,29 @@ $(document).ready(function () {
             "<p>" +
             "<a class='text-decoration-none mr-4' href='#'>Відповісти</a>" +
             "<div class='mr-3'>" +
-            "<i class='fa fa-thumbs-o-up' aria-hidden='true' style='color: #274B69;' ></i>" +
-            "<span name='likesReview' style='font-weight: bold;'> + 2 + </span>" +
+            "<i class='fa fa-thumbs-o-up likesRevEp' aria-hidden='true'></i>" +
+            "<span class='quantityLikesEp' name='likesReview'> + 2 + </span>" +
             "</div>" +
             "<a class='text-decoration-none mr-2' href='#'>Підтримую</a>" +
             "<a class='text-decoration-none mr-5' href='#'>Не погоджуюсь</a>" +
-            "<button data-toggle='modal' data-target='#complain' class='complainreplyButton btn' type='button' style='margin-top: -15px;'><i class='fa fa-exclamation-circle' style='color: #274B69;' aria-hidden='true'></i></button>" +
+            "<button data-toggle='modal' data-target='#complain' class='complainreplyButton btn' type='button'><i class='fa fa-exclamation-circle complIcon' aria-hidden='true'></i></button>" +
             "</p>" +
             "</div>" +
             "</div>" +
             "<a href='#' data-toggle='collapse' data-target='#otherSComments'>Ще  1  коментар</a>" +
             "<div id='otherSComments' class='mt-3 collapse'>" +
-            "<div class='container-fluid rounded mb-5' style='border: 1px solid lightgray;'>" +
+            "<div class='container-fluid rounded mb-5 borderReview'>" +
             "<div class='row'>" +
             "<div class='col-md-4'>" +
             "<div class='text-center mainInfoUser'>" +
             "<br>" +
-            "<img class='rounded-circle mt-3' src='/images/defUser.png' style='width:150px;height:150px ;'>" +
+            "<img class='rounded-circle mt-3 replyEpAvatar' src='/images/defUser.png'>" +
             "<br>" +
-            "<output name='replyUserName' style='font-weight: bold;'> + yellowstone123 + </output>" +
+            "<output class='replyUsernameEp' name='replyUserName'> + yellowstone123 + </output>" +
             "<br>" +
             "</div>" +
-            "<div class='row userRate' style='border: 1px solid lightgray;'>" +
-            "<div class='col-sm-6 text-center' style='background: #274B69;'>" +
+            "<div class='row userRate'>" +
+            "<div class='col-sm-6 text-center subjectRateRevEp'>" +
             "<img class='replySubjPageReviews' src='/images/subject.png'>" +
             "</div>" +
             "<div class='col-sm-6 text-center'>" +
@@ -283,12 +283,12 @@ $(document).ready(function () {
             "<p>" +
             "<a class='text-decoration-none mr-4' href='#'>Відповісти</a>" +
             "<div class='mr-3'>" +
-            "<i class='fa fa-thumbs-o-up' aria-hidden='true' style='color: #274B69;' ></i>" +
-            "<span name='likesReview' style='font-weight: bold;'> + 2 + </span>" +
+            "<i class='fa fa-thumbs-o-up likesRevEp' aria-hidden='true' ></i>" +
+            "<span class='quantityLikesEp' name='likesReview'> + 2 + </span>" +
             "</div>" +
             "<a class='text-decoration-none mr-2' href='#'>Підтримую</a>" +
             "<a class='text-decoration-none mr-5' href='#'>Не погоджуюсь</a>" +
-            "<button data-toggle='modal' data-target='#complain' class='complainreplyButton btn' type='button' style='margin-top: -15px;'><i class='fa fa-exclamation-circle' style='color: #274B69;' aria-hidden='true'></i></button>" +
+            "<button data-toggle='modal' data-target='#complain' class='complainreplyButton btn' type='button'><i class='fa fa-exclamation-circle complIcon' aria-hidden='true'></i></button>" +
             "</p>" +
             "</div>" +
             "</div>" +
