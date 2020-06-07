@@ -1,7 +1,10 @@
+'use strict'
+
+
 $('#entrance').submit(function () {
 
     $.post(
-        '/entr',
+        '/entr' + window.location.search,
 
         $("#entrance").serialize(),
 
