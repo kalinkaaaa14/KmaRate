@@ -2,7 +2,12 @@
 body{
     font-family: 'Ubuntu', sans-serif;
 }
-
+.subjectYearMain{
+    position: absolute;
+    top: 8px;
+    left: 16px;
+    font-size:18px;
+}
 .btnNext{
     background-color: black;
     color: white;
@@ -70,6 +75,7 @@ body{
 .subjectMain{
     width:250px;
     height: 150px;
+    object-fit: contain;
 }
 .subjectButton{
     background-color: #274B69;
@@ -85,6 +91,7 @@ body{
 .epMain{
     width:230px;
     height: 150px;
+    object-fit: contain;
 }
  @media screen and (max-width: 772px){
      .marginButtonS{
@@ -170,23 +177,38 @@ body{
     float:right;
 }
 .popularSubjBorder{
-    outline: 2px solid lightgray;
-    border: 0.1px solid #fff;
+    border: 1px solid lightgray;
 }
 .firstPart{
     background-color: #274B69;
 }
+.popSubjMain{
+    font-size: 20px;
+}
+.average{
+    font-size: 20px;
+}
+.buttonAllRev:hover{
+    opacity: 0.5;
+}
 .popSubjFaculty{
+    font-size: 18px;
     position: absolute;
     top: 8px;
     right: 16px;
 }
+.averageValue{
+    font-size:20px;
+    font-weight: bold;
+}
 .popSubjTeacher{
+    font-size: 18px;
     position: absolute;
     bottom: 8px;
     left: 16px;
 }
 .popSubjCourse{
+    font-size: 18px;
     position: absolute;
     bottom: 8px;
     right: 16px;

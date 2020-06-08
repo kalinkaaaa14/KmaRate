@@ -119,29 +119,28 @@
 
                 <div class="form-group">
                 <p class="ml-5 mr-5 mt-4 questionsRev">Мій рівень англійської *</p>
-                    <div class="row">
+                    <div class="row ml-1">
                         <div class="colOption">
-                <select name="engLevel" class="ml-5 mr-5 custom-select">
-                    <option value="a1">A1</option>
-                    <option value="a2">A2</option>
-                    <option value="b1">B1</option>
-                    <option value="b2">B2</option>
-                    <option value="c1">C1</option>
-                    <option value="c2">C2</option>
-                </select>
+                            <select name="engLevel" class="ml-5 mr-5 custom-select">
+                                <option value="a1">A1</option>
+                                <option value="a2">A2</option>
+                                <option value="b1">B1</option>
+                                <option value="b2">B2</option>
+                                <option value="c1">C1</option>
+                                <option value="c2">C2</option>
+                            </select>
                         </div>
                     </div>
                 </div>
 
-
-    <div class="form-group">
-    <p class="ml-5 mr-5 mt-4 questionsRev">Середній бал в КМА на момент поїздки *</p>
-        <div class="row">
-            <div class="colOption">
-            <input type="number" class="ml-5 mr-5 form-control" name="balKMA">
-        </div>
-        </div>
-    </div>
+                <div class="form-group">
+                    <p class="ml-5 mr-5 mt-4 questionsRev">Середній бал в КМА на момент поїздки *</p>
+                    <div class="row ml-1">
+                        <div class="colOption">
+                            <input type="number" class="ml-5 mr-5 form-control" name="balKMA">
+                        </div>
+                    </div>
+                </div>
 
                 <p class="ml-5 mr-5 mt-4 questionsRev">Адаптація пройшла успішно *</p>
                 <form class="ml-5 mr-5 rating">
@@ -234,19 +233,103 @@
                     </label>
                 </form>
 
-                <p class="ml-5 mr-5 mt-4 questionsRev">Складнощі:</p>
+                <p class="ml-5 mr-5 mt-4 questionsRev">Різниця в навчанні*</p>
+                <form class="ml-5 mr-5 rating">
+                    <label>
+                        <input type="radio" name="diffStudying" value="1"/>
+                        <span title="1" class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                    </label>
+                    <label>
+                        <input type="radio" name="diffStudying" value="2" />
+                        <span class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                        <span title="2" class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                    </label>
+                    <label>
+                        <input type="radio" name="diffStudying" value="3" />
+                        <span class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                        <span class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                        <span title="3" class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                    </label>
+                    <label>
+                        <input type="radio" name="diffStudying" value="4" />
+                        <span  class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                        <span  class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                        <span  class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                        <span title="4" class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                    </label>
+                    <label>
+                        <input type="radio" name="diffStudying" value="5" />
+                        <span  class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                        <span  class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                        <span  class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                        <span  class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                        <span title="5" class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                    </label>
+                    <label>
+                        <input type="radio" name="diffStudying" value="6" />
+                        <span  class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                        <span  class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                        <span  class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                        <span  class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                        <span  class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                        <span  title="6" class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                    </label>
+                    <label>
+                        <input type="radio" name="diffStudying" value="7" />
+                        <span  class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                        <span  class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                        <span  class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                        <span  class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                        <span  class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                        <span  class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                        <span title="7" class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                    </label>
+                    <label>
+                        <input type="radio" name="diffStudying" value="8" />
+                        <span  class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                        <span  class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                        <span  class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                        <span  class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                        <span  class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                        <span  class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                        <span  class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                        <span title="8" class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                    </label>
+                    <label>
+                        <input type="radio" name="diffStudying" value="9" />
+                        <span  class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                        <span  class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                        <span  class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                        <span  class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                        <span  class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                        <span  class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                        <span  class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                        <span  class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                        <span title="9" class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                    </label>
+                    <label>
+                        <input type="radio" name="diffStudying" value="10" />
+                        <span  class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                        <span  class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                        <span  class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                        <span  class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                        <span  class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                        <span  class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                        <span  class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                        <span  class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                        <span  class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                        <span title="10" class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
+                    </label>
+                </form>
+
+                <p class="ml-5 mr-5 mt-4 questionsRev">Розкажіть детальніше про Ваш власний досвід ТУТ</p>
                 <div class="text-center">
                     <textarea name="difficulties" class="ml-1 mr-1 mt-2 mb-2 difficultiesEP" placeholder="Опишіть складнощі, з якими Ви стикалися"></textarea>
                 </div>
 
-                <p class="ml-5 mr-5 mt-4 questionsRev">Різниця в навчанні:</p>
-                <div class="text-center">
-                    <textarea name="diffStudying" class="ml-1 mr-1 mt-2 mb-2 difficultiesEP" placeholder="Опишіть, яку різницю у навчанні Ви помітили" ></textarea>
-                </div>
-
                 <div>
 
-                    <button class="btn text-white ml-4 mt-5 mb-4 makeRevEp" type="button">Залишити відгук</button>
+                    <button class="btn btn-lg text-white ml-4 mt-5 mb-4 makeRevEp" type="button">Залишити відгук</button>
                 </div>
             </div>
 

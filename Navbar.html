@@ -1,22 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Review Subject</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/Navbar.css">
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="/Navbar.css">
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
-</head>
-<body>
 <nav class="navbar navbar-expand-xl" >
 
-
-    <a class="navbar-brand kmaRateIcon"><IMG src="/images/KmaRate.png"></a>
+    <a class="navbar-brand kmaRateIcon" href="/"><IMG src="/images/KmaRate.png"></a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
             aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,7 +32,7 @@
             <li class="nav-item">
                 <button onclick="window.location='/reg'" class="btn text-white mr-4 mb-2 regButtonNavbar btns" type="button"><i class="fa fa-user-plus" aria-hidden="true"></i> Зареєструватися</button>
             </li>
-             <? if(typeof user === 'undefined'){ ?>
+            <? if(typeof user === 'undefined'){ ?>
 
             <?-include('./NonregisteredUser.html')?>
 
@@ -59,4 +46,3 @@
 
     </div>
 </nav>
-</body>

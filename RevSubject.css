@@ -146,6 +146,7 @@ button:hover {
     border-radius: 1%;
 }
 .difficultiesEP{
+    font-size: 20px;
     width: 90%;
     height: 300px;
     resize: none;

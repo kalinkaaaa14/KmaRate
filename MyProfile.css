@@ -68,9 +68,14 @@ button:hover {
     opacity: 0.8;
 }
 
+@media screen and (max-width: 1200px) and (min-width: 993px){
+    .rateReview{
+        font-size: 30px;
+    }
+}
 @media screen and (max-width: 992px) and (min-width: 768px) {
 .rateReview{
-    font-size:25px ;
+    font-size:22px;
 }
 }
 .epPageReviews{
@@ -156,12 +161,15 @@ button:hover {
         margin-top: 7%;
     }
 }
+
 @media screen and (min-width: 985px) and(max-width: 1350px) {
 
     .socialBut{
         margin-top: 10%;
     }
+
 }
+
 @media screen and (max-width: 767px) and (min-width: 576px) {
     .mainInfoUser{
         width: 100%;
@@ -238,9 +246,18 @@ button:hover {
 .detailsReviewProfile{
     background-color: #274B69;
     color: white;
+    font-size: 18px;
+}
+.detailsReviewProfile:hover{
+    color: white;
 }
 .myReviews{
     font-size: 40px;
     font-style: normal;
+    font-weight: normal;
+}
+.myRevHeader{
+    font-size: 20px;
+
     font-weight: normal;
 }

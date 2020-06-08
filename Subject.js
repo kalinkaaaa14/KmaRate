@@ -78,6 +78,8 @@ $(document).ready(function () {
             res += "<div class='container-fluid rounded epFilters'>" +
                 "<div class='row'>" +
                 "<div class='col-sm-4 firstPart'>" +
+                "<span class='text-white subjectYearMain'><small>"+data.subjects[counter].year+"</small></span>"+
+           "<br>"+
                 "<span class='text-white epFiltersCourse'><small>"
                 + data.subjects[counter].faculty + "</small></span>"
                 + "<br>" + "<h6 class='text-white  mt-3' >"
