@@ -24,8 +24,6 @@ $(document).ready(function () {
     getInfo();
 
     function getInfo() {
-        // formatData(data);
-
         let urlPartsArr = window.location.href.split('/');
         let subject_id = urlPartsArr[urlPartsArr.length - 1];
 
@@ -33,11 +31,9 @@ $(document).ready(function () {
             url: "/subj/" + subject_id + "/data",
             type: 'GET',
             success: function (data, textStatus, xhr) {
-                console.log(data);
                 formatData(data);
             },
             error: function (xhr, textStatus, errorThrown) {
-
                 console.log('Error in Operation');
             }
         });

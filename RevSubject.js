@@ -25,9 +25,6 @@ $(document).ready(function () {
 
         };
 
-
-console.log(dataR);
-
         $.ajax({
             url:  '/subj/4/createReview',
             type: 'POST',

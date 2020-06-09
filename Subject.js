@@ -9,6 +9,8 @@ $(document).ready(function () {
 
     getInfo();
 
+    $('#searchSButton').click(getInfo);
+
     function getInfo() {
 
         var subj = {
@@ -25,7 +27,6 @@ $(document).ready(function () {
             type: 'GET',
             data: subj,
             success: function (data, textStatus, xhr) {
-                //console.log(data);
                 formatData(data);
             },
 
@@ -36,25 +37,20 @@ $(document).ready(function () {
     }
 
 
-    $('#searchSButton').click(getInfo);
-
-
-
-
-    function formatData(data){
-        let counter=0;
-        let i=data.subjects.length;
-        while(counter<i){
-            if(data.subjects[counter].faculty.length>2 && data.subjects[counter].faculty[1]==='п'){
-                data.subjects[counter].faculty=data.subjects[counter].faculty.slice(0,2).toUpperCase()+data.subjects[counter].faculty[2]+data.subjects[counter].faculty,slice(3);
-            }else{
-                data.subjects[counter].faculty=data.subjects[counter].faculty.toUpperCase();
+    function formatData(data) {
+        let counter = 0;
+        let i = data.subjects.length;
+        while (counter < i) {
+            if (data.subjects[counter].faculty.length > 2 && data.subjects[counter].faculty[1] === 'п') {
+                data.subjects[counter].faculty = data.subjects[counter].faculty.slice(0, 2).toUpperCase() +
+                    data.subjects[counter].faculty[2] + data.subjects[counter].faculty, slice(3);
+            } else {
+                data.subjects[counter].faculty = data.subjects[counter].faculty.toUpperCase();
             }
-            // data.subjects[counter].course=data.subjects[counter].course;
-            data.subjects[counter].title=data.subjects[counter].title[0].toUpperCase() + data.subjects[counter].title.slice(1);
-            data.subjects[counter].last_name= data.subjects[counter].last_name[0].toUpperCase() + data.subjects[counter].last_name.slice(1);
-            data.subjects[counter].first_name= data.subjects[counter].first_name[0].toUpperCase() + ".";
-            data.subjects[counter].patronymic=data.subjects[counter].patronymic[0].toUpperCase() + ".";
+            data.subjects[counter].title = data.subjects[counter].title[0].toUpperCase() + data.subjects[counter].title.slice(1);
+            data.subjects[counter].last_name = data.subjects[counter].last_name[0].toUpperCase() + data.subjects[counter].last_name.slice(1);
+            data.subjects[counter].first_name = data.subjects[counter].first_name[0].toUpperCase() + ".";
+            data.subjects[counter].patronymic = data.subjects[counter].patronymic[0].toUpperCase() + ".";
             counter++;
         }
 
@@ -90,7 +86,7 @@ $(document).ready(function () {
                 "<h5 class='mt-3 '>Середній рейтинг</h5>" +
                 "<span class='quantityEPreview'><small>" + data.subjects[counter].reviews_amount + " відгук(-ів)</small></span>" +
                 "</div>" + "<div class='col-sm-2 my-auto'>" + "<div>" +
-                "<button data-toggle='modal' data-target='#details' type='button' class='btn btn-lg'>" + data.subjects[counter].average_grade + "<i class='fa fa-sort-desc' aria-hidden='true'></i>" +
+                "<button data-toggle='modal' data-target='#details' type='button' class='btn btn-lg'>" + data.subjects[counter].average_grade +
                 "</button>" + "</div>" + "</div>" +
                 "<div class='col-sm-3  my-auto'>" +
                 "<a href='/subj/" + data.subjects[counter].id + "' class='btn text-white showAllEPReviews'>Усі відгуки</a>" +
