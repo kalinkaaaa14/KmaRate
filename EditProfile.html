@@ -17,7 +17,6 @@
 
 <?-include('./Navbar.html')?>
 
-
 <div class="modal fade" id="changePswrd">
     <div class="vertical-alignment-helper">
     <div class="modal-dialog modal-lg vertical-align-center">
@@ -30,17 +29,17 @@
 
             <div class="modal-body">
                 <label  for="oldPsw"><b>Старий пароль</b></label>
-                <input  class="form-control mb-3" type="password" placeholder="Старий пароль..." id="oldPsw" required>
+                <input name="oldPsw" class="form-control mb-3" type="password" placeholder="Старий пароль..." id="oldPsw" required>
 
                 <label  for="newPsw1"><b>Новий пароль</b></label>
-                <input  class="form-control mb-3" type="password" placeholder="Новий пароль..." id="newPsw1" required>
+                <input  name="newPsw1" class="form-control mb-3" type="password" placeholder="Новий пароль..." id="newPsw1" required>
 
                 <label  for="newPsw2"><b>Повторіть новий пароль</b></label>
-                <input  class="form-control mb-3" type="password" placeholder="Новий пароль..." id="newPsw2" required>
+                <input name="newPsw2" class="form-control mb-3" type="password" placeholder="Новий пароль..." id="newPsw2" required>
             </div>
 
             <div class="modal-footer">
-                    <button class="btn btn-lg btn-block text-white display-5 mb-1 saveEditForm" type="submit">Зберегти</button>
+                    <button id="saveEditPassword" class="btn btn-lg btn-block text-white display-5 mb-1 saveEditForm" type="button">Зберегти</button>
             </div>
         </div>
     </div>
@@ -48,105 +47,107 @@
 </div>
 
 <div class="container">
-<div class="row">
+    <div id="editProfileInfo"></div>
+<!--<div class="row">-->
 
-    <div class="col-sm-12">
-        <br>
-    <p class=" editHeader mb-4"> Редагування профілю</p>
-        <form class="editForm">
-            <div class="container">
-                <p class="userInfoEdit mt-4 ml-5"> Особиста інформація</p>
-            </div>
+<!--    <div class="col-sm-12">-->
+<!--        <br>-->
+<!--    <p class=" editHeader mb-4"> Редагування профілю</p>-->
+<!--        <form class="editForm">-->
+<!--            <div class="container">-->
+<!--                <p class="userInfoEdit mt-4 ml-5"> Особиста інформація</p>-->
+<!--            </div>-->
 
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-3"></div>
-                    <div class="col-sm-6">
-                        <div class="text-center">
-                            <img src="/images/defUser.png" alt="avatar" class="mt-1 rounded-circle editAvatar">
-                        </div>
-                    </div>
-                    <div class="col-sm-3"></div>
-                </div>
-                <div class="row mt-3">
-                   <!-- <input class="btn btn-lg text-white uploadPhoto" type="file"><i class="fa fa-picture-o mr-2" aria-hidden="true"></i> Завантажити своє фото</input>-->
-                  <div class="col-sm-3"></div>
-                    <div class="col-sm-6 custom-file ml-2 mr-2">
-                        <input type="file" class="custom-file-input" id="customFile">
-                        <label class="custom-file-label" for="customFile"><i class="fa fa-picture-o mr-1" aria-hidden="true"></i>Завантажити фото</label>
-                    </div>
-                    <div class="col-sm-3"></div>
-                   <!-- <input class="input-field text-white ml-3"  type="file"  id="customFile" oninput=" this.className = ''">-->
-                </div>
-            </div>
-<br>
-            <div class="container">
+<!--            <div class="container">-->
+<!--                <div class="row">-->
+<!--                    <div class="col-sm-3"></div>-->
+<!--                    <div class="col-sm-6">-->
+<!--                        <div class="text-center">-->
+<!--                            <img src="images/defUser.png" alt="avatar" class="mt-1 rounded-circle editAvatar">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-sm-3"></div>-->
+<!--                </div>-->
+<!--                <div class="row mt-3">-->
+<!--                   &lt;!&ndash; <input class="btn btn-lg text-white uploadPhoto" type="file"><i class="fa fa-picture-o mr-2" aria-hidden="true"></i> Завантажити своє фото</input>&ndash;&gt;-->
+<!--                  <div class="col-sm-3"></div>-->
+<!--                    <div class="col-sm-6 custom-file ml-2 mr-2">-->
+<!--                        <input type="file" class="custom-file-input" id="customFile">-->
+<!--                        <label class="custom-file-label" for="customFile"><i class="fa fa-picture-o mr-1" aria-hidden="true"></i>Завантажити фото</label>-->
+<!--                    </div>-->
+<!--                    <div class="col-sm-3"></div>-->
+<!--                   &lt;!&ndash; <input class="input-field text-white ml-3"  type="file"  id="customFile" oninput=" this.className = ''">&ndash;&gt;-->
+<!--                </div>-->
+<!--            </div>-->
+<!--<br>-->
+<!--            <div class="container">-->
 
-                    <div class="form-inline">
-                        <label class="ml-5 mr-5 loginEdit" for="uname2">Логін</label>
-                        <input  class=" form-control" type="text" value="kalinka" placeholder="Твій нікнейм..."  id="uname2" required>
-                    </div>
-                <br>
+<!--                    <div class="form-inline">-->
+<!--                        <label class="ml-5 mr-5 loginEdit" for="uname2">Логін</label>-->
+<!--                        <input  class=" form-control" type="text" value="kalinka" placeholder="Твій нікнейм..."  id="uname2" required>-->
+<!--                    </div>-->
+<!--                <br>-->
 
-                <div class="form-inline">
-                        <label class="ml-5 mr-5 loginEdit" >Спеціальність</label>
-                        <select name="userBranch" id="userBranch" class="custom-select" required>
-                            <option selected value="" disabled>Не обрано </option>
+<!--                <div class="form-inline">-->
+<!--                        <label class="ml-5 mr-5 loginEdit" >Спеціальність</label>-->
+<!--                        <select name="userBranch" id="userBranch" class="custom-select" required>-->
+<!--                            <option selected value="" disabled>Не обрано </option>-->
 
-                            <?for(let b of branchs){?>
-                            <option value="<?-b.id?>">
-                                <?=b.id + ' ' + b.title?>
-                            </option>
-                            <?}?>
-                        </select>
-                        <!--<input  class="ml-2 form-control" type="text" value="faculty" placeholder="Твоя пошта..." id="facultyU" required>-->
-                </div>
-            </div>
-<br>
-            <div class="container">
-                <h5 class="userInfoEdit ml-5 mt-4"> Безпека</h5>
-                <button data-toggle="modal" data-target="#changePswrd" class="ml-5 btn btn-primary text-white mt-3 editChangePswrd" type="button"><i class="fa fa-key" aria-hidden="true"></i> Змінити пароль</button>
-            </div>
-<br>
+<!--                            <?for(let b of branchs){?>-->
+<!--                            <option value="<?-b.id?>">-->
+<!--                                <?=b.id + ' ' + b.title?>-->
+<!--                            </option>-->
+<!--                            <?}?>-->
+<!--                        </select>-->
+<!--                        &lt;!&ndash;<input  class="ml-2 form-control" type="text" value="faculty" placeholder="Твоя пошта..." id="facultyU" required>&ndash;&gt;-->
+<!--                </div>-->
+<!--            </div>-->
+<!--<br>-->
+<!--            <div class="container">-->
+<!--                <h5 class="userInfoEdit ml-5 mt-4"> Безпека</h5>-->
+<!--                <button data-toggle="modal" data-target="#changePswrd" class="ml-5 btn btn-primary text-white mt-3 editChangePswrd" type="button"><i class="fa fa-key" aria-hidden="true"></i> Змінити пароль</button>-->
+<!--            </div>-->
+<!--<br>-->
 
-            <div class="container">
-                <h5 class="userInfoEdit ml-5 mt-4 mb-3"> Контакти</h5>
+<!--            <div class="container">-->
+<!--                <h5 class="userInfoEdit ml-5 mt-4 mb-3"> Контакти</h5>-->
 
-                <div class="form-inline">
-                    <label class="ml-5 mr-5 loginEdit" for="mailUser"><b>Пошта</b></label>
-                    <input  class="form-control" type="email" value="kalinkaaaa@gmail.com" id="mailUser" required>
+<!--                <div class="form-inline">-->
+<!--                    <label class="ml-5 mr-5 loginEdit" for="mailUser"><b>Пошта</b></label>-->
+<!--                    <input  class="form-control" type="email" value="kalinkaaaa@gmail.com" id="mailUser" required>-->
 
-                </div>
-<br>
-                <div class="form-inline">
-                        <label class="ml-5 mr-5 loginEdit" for="telega"><b>Telegram</b></label>
-                        <input  class="form-control" type="text" id="telega">
+<!--                </div>-->
+<!--<br>-->
+<!--                <div class="form-inline">-->
+<!--                        <label class="ml-5 mr-5 loginEdit" for="telega"><b>Telegram</b></label>-->
+<!--                        <input  class="form-control" type="text" id="telega">-->
 
-                </div>
-<br>
-                <div class="form-inline">
-                        <label class="ml-5 mr-5 loginEdit" for="fb"><b>Facebook</b></label>
-                        <input class="form-control" type="email"  id="fb">
-                </div>
-<br>
-                <div class="form-inline ">
-                     <label class="ml-5 mr-5 loginEdit" for="insta"><b>Instagram</b></label>
-                     <input  class="form-control" type="email"  id="insta">
-                </div>
-                <br>
-            </div>
+<!--                </div>-->
+<!--<br>-->
+<!--                <div class="form-inline">-->
+<!--                        <label class="ml-5 mr-5 loginEdit" for="fb"><b>Facebook</b></label>-->
+<!--                        <input class="form-control" type="email"  id="fb">-->
+<!--                </div>-->
+<!--<br>-->
+<!--                <div class="form-inline ">-->
+<!--                     <label class="ml-5 mr-5 loginEdit" for="insta"><b>Instagram</b></label>-->
+<!--                     <input  class="form-control" type="email"  id="insta">-->
+<!--                </div>-->
+<!--                <br>-->
+<!--            </div>-->
 
-            <div class="input-container-fluid endEditForm">
-                <button class="btn btn-lg mr-5 mb-4 text-white saveEditForm">Зберегти</button>
-            </div>
-        </form>
+<!--            <div class="input-container-fluid endEditForm">-->
+<!--                <button class="btn btn-lg mr-5 mb-4 text-white saveEditForm">Зберегти</button>-->
+<!--            </div>-->
+<!--        </form>-->
 
-    </div>
-    <div class="col-sm-3">
+<!--    </div>-->
+<!--    <div class="col-sm-3">-->
 
-    </div>
-    </div>
+<!--    </div>-->
+<!--    </div>-->
 </div>
+
 <div class="container-fluid">
     <footer class="pt-4 mt-5">
 

@@ -59,14 +59,14 @@
     <div class="container">
         <h4 class=" sizeRegistr text-center mt-5">Реєстрація</h4>
     </div>
-<div class="reg rounded mt-3" id="signup">
-    <form id="registration">
-        <div class="container">
-            <label  class="mt-1" for="uname2"><b>Логін</b></label>
-            <input  class="form-control" type="text" placeholder="Твій нікнейм..." id="uname2" name="nickname" required>
+    <div class="reg rounded mt-3" id="signup">
+        <form id="registration">
+            <div class="container">
+                <label  class="mt-1" for="uname2"><b>Логін</b></label>
+                <input  class="form-control" type="text" placeholder="Твій нікнейм..." id="uname2" name="nickname" required>
 
-            <label class="mt-1"  for="mailUser"><b>Пошта</b></label>
-            <input  class="form-control" type="email" placeholder="Твоя пошта..." id="mailUser" name="email" required>
+                <label class="mt-1"  for="mailUser"><b>Пошта</b></label>
+                <input  class="form-control" type="email" placeholder="Твоя пошта..." id="mailUser" name="email" required>
 
 
                 <label class="mt-1"><b>Спеціальність</b></label>
@@ -74,35 +74,35 @@
                     <option selected value="" disabled>Не обрано </option>
 
                     <?for(let b of branchs){?>
-                        <option value="<?-b.id?>">
-                            <?=b.id + ' ' + b.title?>
-                        </option>
+                    <option value="<?-b.id?>">
+                        <?=b.id + ' ' + b.title?>
+                    </option>
                     <?}?>
                 </select>
 
-            <label class="mt-1"  for="psw2"><b>Пароль</b></label>
-            <input  class="form-control" type="password" placeholder="Пароль..." id="psw2" name="password" required>
+                <label class="mt-1"  for="psw2"><b>Пароль</b></label>
+                <input  class="form-control" type="password" placeholder="Пароль..." id="psw2" name="password" required>
 
-            <label class="mt-1"  for="psw3"><b>Повторіть пароль</b></label>
-            <input  class="form-control" type="password" placeholder="Пароль..." id="psw3" name="password2" required>
+                <label class="mt-1"  for="psw3"><b>Повторіть пароль</b></label>
+                <input  class="form-control" type="password" placeholder="Пароль..." id="psw3" name="password2" required>
 
-            <div class="custom-control custom-checkbox mb-3">
-                <input type="checkbox" class="custom-control-input" checked="checked" id="acceptConditions" name="agree">
-                <label class="custom-control-label mt-2" for="acceptConditions">Я приймаю <a href='#'>умови конфіденційності</a></label>
+                <div class="custom-control custom-checkbox mb-3">
+                    <input type="checkbox" class="custom-control-input" checked="checked" id="acceptConditions" name="agree">
+                    <label class="custom-control-label mt-2" for="acceptConditions">Я приймаю <a href='#'>умови конфіденційності</a></label>
+                </div>
+                <div class="text-center" id="btnReg">
+                    <button class="btn btn-lg text-white display-5 registrationButton" type="submit">Зареєструватись</button>
+                </div>
             </div>
-            <div class="text-center" id="btnReg">
-                <button class="btn btn-lg text-white display-5 registrationButton" type="submit">Зареєструватись</button>
+            <br>
+            <div class="container text-center isRegisteredDiv">
+                <span><b> Вже є аккаунт?</b></span> <br>
+                <div class="text-center">
+                    <button class="btn text-white signInRegForm" type="button" onclick="document.getElementById('entrance').style.display='block'">Увійти</button>
+                </div>
             </div>
-        </div>
-        <br>
-        <div class="container text-center isRegisteredDiv">
-            <span><b> Вже є аккаунт?</b></span> <br>
-            <div class="text-center">
-                <button class="btn text-white signInRegForm" type="button" onclick="document.getElementById('entrance').style.display='block'">Увійти</button>
-            </div>
-        </div>
-    </form>
-</div>
+        </form>
+    </div>
     <footer class="page-footer font-small special-color-dark pt-4 mt-5">
 
         <div class="row">

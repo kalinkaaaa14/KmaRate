@@ -27,6 +27,7 @@ $(document).ready(function () {
             type: 'GET',
             data: subj,
             success: function (data, textStatus, xhr) {
+                //console.log(data);
                 formatData(data);
             },
 
@@ -47,6 +48,7 @@ $(document).ready(function () {
             } else {
                 data.subjects[counter].faculty = data.subjects[counter].faculty.toUpperCase();
             }
+            data.subjects[counter].semester = " "+data.subjects[counter].semester[0].toUpperCase() + data.subjects[counter].semester.slice(1);
             data.subjects[counter].title = data.subjects[counter].title[0].toUpperCase() + data.subjects[counter].title.slice(1);
             data.subjects[counter].last_name = data.subjects[counter].last_name[0].toUpperCase() + data.subjects[counter].last_name.slice(1);
             data.subjects[counter].first_name = data.subjects[counter].first_name[0].toUpperCase() + ".";
@@ -74,15 +76,18 @@ $(document).ready(function () {
             res += "<div class='container-fluid rounded epFilters'>" +
                 "<div class='row'>" +
                 "<div class='col-sm-4 firstPart'>" +
-                "<span class='text-white subjectYearMain'><small>"+data.subjects[counter].year+"</small></span>"+
-           "<br>"+
+                "<span class='text-white subjectYearMain'><small>"+data.subjects[counter].year+ data.subjects[counter].semester+"</small></span>"+
+                "<br>"+
                 "<span class='text-white epFiltersCourse'><small>"
                 + data.subjects[counter].faculty + "</small></span>"
                 + "<br>" + "<h6 class='text-white  mt-3' >"
                 + data.subjects[counter].title + "</h6>" + "<br> <br>" + "<span class='text-white subjectRevSNP'><small>"
                 + data.subjects[counter].last_name + " " + data.subjects[counter].first_name + " " + data.subjects[counter].patronymic
-                + "</small></span>" + "<span class='text-white subjectRevCourse'><small>"
-                + data.subjects[counter].course + "</small></span>" + "</div>" + "<div class='col-sm-3 my-auto'>" +
+                + "</small></span>"
+                + "<span class='text-white subjectRevCourse'><small>"
+                + data.subjects[counter].course + " курс</small></span>"
+                + "</div>"
+                + "<div class='col-sm-3 my-auto'>" +
                 "<h5 class='mt-3 '>Середній рейтинг</h5>" +
                 "<span class='quantityEPreview'><small>" + data.subjects[counter].reviews_amount + " відгук(-ів)</small></span>" +
                 "</div>" + "<div class='col-sm-2 my-auto'>" + "<div>" +
@@ -107,13 +112,11 @@ $(document).ready(function () {
               let c = 0;
             let details = "";
             while (c < data.subjects.length) {
-
             details +=
                 "<div class='modal-content'>" + "<div class='modal-header'>" +
                 "<h4 class='modal-title'>Детальніше...</h4>" +
                 "<button type='button' class='close' data-dismiss='modal'>&times;</button>"
                 + " </div>" +
-
                 "<div class='modal-body'>"
                 + "<div class='row'>"
                 + "<div class='col-sm-11'>"
@@ -123,7 +126,6 @@ $(document).ready(function () {
                 + "<output name='basicKnowledge' style='font-weight: bold;'>" + data.subjects[c].need_basic_knowledge + "</output>"
                 + "</div>"
                 + "</div>"
-
                 + "<div class='row'>"
                 + "<div class='col-sm-11'>"
                 + "<p>Критика зі сторони викладача була зрозумілою та обгрунтованою </p>"
@@ -132,7 +134,6 @@ $(document).ready(function () {
                 + "<output name='criticism' style='font-weight: bold;'>" + data.subjects[c].teacher_criticism + "</output>"
                 + "</div>"
                 + "</div>"
-
                 + "<div class='row'>"
                 + "<div class='col-sm-11'>"
                 + "<p>Матеріали курсу були актуальними </p>"
@@ -141,7 +142,6 @@ $(document).ready(function () {
                 + " <output name='modernMaterials' style='font-weight: bold;'>" + data.subjects[c].nowadays_knowledge + "</output>"
                 + "</div>"
                 + " </div>"
-
                 + "<div class='row'>"
                 + "<div class='col-sm-11'>"
                 + "<p>Практичні заняття відповідали теоретичним </p>"
@@ -150,7 +150,6 @@ $(document).ready(function () {
                 + "<output name='practiceToTheory' style='font-weight: bold;'>" + data.subjects[c].theory_practice + "</output>"
                 + "</div>"
                 + "</div>"
-
                 + "<div class='row'>"
                 + "<div class='col-sm-11'>"
                 + "<p>Курс був нескладним </p>"
@@ -159,7 +158,6 @@ $(document).ready(function () {
                 + "<output name='complexityCourse' style='font-weight: bold;'>" + data.subjects[c].course_complexity + "</output>"
                 + "</div>"
                 + "</div>"
-
                 + "<div class='row'>"
                 + "<div class='col-sm-11'>"
                 + "<p>Знання були корисні для реального життя </p>"
@@ -168,18 +166,14 @@ $(document).ready(function () {
                 + "<output name='valuableKnowl' style='font-weight: bold;'>" + data.subjects[c].using_knowledge + "</output>"
                 + "</div>"
                 + "</div>"
-
                 + "</div>"
-
                 + "<div class='modal-footer'>"
                 + "<button type='button' class='btn btn-danger' data-dismiss='modal'>Закрити</button>"
                 + "</div>"
                 + "</div>"
             +"</div>";
-
             c++;
               }
-
             return details;
         }*/
 });

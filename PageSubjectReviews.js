@@ -1,3 +1,37 @@
+function likeReview(review_id) {
+    $.ajax({
+        url:  "/subj/rate/reviews/"+review_id,
+        type: 'POST',
+        data:  {like: true},
+        success: function (data, textStatus, xhr) {
+            console.log(data);
+            //formatData(data);
+            return false;
+        },
+        error: function (xhr, textStatus, errorThrown) {
+
+            console.log('Error in Operation');
+        }
+    });
+
+}
+function dislikeReview(review_id) {
+    $.ajax({
+        url: "/subj/rate/reviews/"+review_id,
+        type: 'POST',
+        data:  {like: false},
+        success: function (data, textStatus, xhr) {
+            console.log(data);
+            //formatData(data);
+            return false;
+        },
+        error: function (xhr, textStatus, errorThrown) {
+
+            console.log('Error in Operation');
+        }
+    });
+}
+
 $(document).ready(function () {
     /*var data={
         subject:{
@@ -28,10 +62,13 @@ $(document).ready(function () {
         let subject_id = urlPartsArr[urlPartsArr.length - 1];
 
         $.ajax({
-            url: "/subj/" + subject_id + "/data",
+            url: "/subj/4/data",
             type: 'GET',
             success: function (data, textStatus, xhr) {
+                console.log(data);
                 formatData(data);
+               // $('#agree').click(likeReview);
+              //  $('#disagree').click(dislikeReview);
             },
             error: function (xhr, textStatus, errorThrown) {
                 console.log('Error in Operation');
@@ -46,6 +83,7 @@ $(document).ready(function () {
             data.subject.faculty = data.subject.faculty.toUpperCase();
         }
         // data.subjects[counter].course=data.subjects[counter].course+;
+        data.subject.semester = " "+data.subject.semester[0].toUpperCase() + data.subject.semester.slice(1);
         data.subject.title = data.subject.title[0].toUpperCase() + data.subject.title.slice(1);
         data.subject.last_name = data.subject.last_name[0].toUpperCase() + data.subject.last_name.slice(1);
         data.subject.first_name = data.subject.first_name[0].toUpperCase() + ".";
@@ -55,13 +93,12 @@ $(document).ready(function () {
         $('#allReviews').html(showReviews(data));
 
     }
-
     function showSubjInfo(data) {
         let res = "";
         res = "<div class='container-fluid mt-5 borderEP'>" +
             "<div class='row'>" +
             "<div class='col-sm-4 EPInfoBackground'>" +
-            "<span class='text-white subjectYearPage'><small>" + data.subject.year + "</small></span>" +
+            "<span class='text-white subjectYearPage'><small>" + data.subject.year +  data.subject.semester+"</small></span>" +
             "<br>" +
             "<span class='text-white subjectFacultyPage'><small>" + data.subject.faculty + "</small></span>" +
             "<br>" +
@@ -133,17 +170,17 @@ $(document).ready(function () {
                 "<div class='col-md-4'>" +
                 "<div class='text-center mainInfoUser'>" +
                 "<br>" +
-                "<img class='rounded-circle mt-3 avatarRevEP' src='/images/defUser.png'>" +
+                "<a href='/profile/"+data.reviews[counter].nickname+"'><img  class='rounded-circle mt-3 avatarRevEP' src='/images/defUser.png'></a>" +
                 "<br>" +
-                "<output class='characteristics' name='userName'>" + data.reviews[counter].nickname + "</output>" +
+                "<a href='/profile/"+data.reviews[counter].nickname+"' class='characteristics text-decoration-none' name='userName'>" + data.reviews[counter].nickname + "</a>" +
                 "<br>" +
                 "</div>" +
                 "<div class='row userRate text-center'>" +
                 "<div class='col-sm-6 text-center subjectRateRevEp'>" +
-                "<img class='subjPageReviews' src='/images/subject.png'>" +
+                "<img class='subjPageReviews' src='images/subject.png'>" +
                 "</div>" +
                 "<div class='col-sm-6 text-center'>" +
-                "<span>" + data.reviews[counter].reviewsAmount + "</span>" +
+                "<span>" + data.reviews[counter].subject_rate + "</span>" +
                 "</div>" +
                 "</div>" +
                 "</div>" +
@@ -196,8 +233,8 @@ $(document).ready(function () {
                 "<i class='fa fa-thumbs-o-up likesRevEp' aria-hidden='true'></i>" +
                 "<span class='quantityLikesEp' name='likesReview'>" + data.reviews[counter].rate + "</span>" +
                 "</div>" +
-                "<a class='text-decoration-none mr-2' href='#'>Підтримую</a>" +
-                "<a class='text-decoration-none mr-5' href='#'>Не погоджуюсь</a>" +
+                "<a class='text-decoration-none mr-2' href='#' onclick='likeReview("+data.reviews[counter].review_id+")'>Підтримую</a>" +
+                "<a id = 'disagree' onclick='dislikeReview("+data.reviews[counter].review_id+");' class='text-decoration-none mr-5' href='#'>Не погоджуюсь</a>" +
                 "<button data-toggle='modal' data-target='#complain' class='complainButton btn' type='button'><i class='fa fa-exclamation-circle complIcon' aria-hidden='true'></i></button>" +
                 "<div class='ml-auto'> " +
                 date.getDate() + '.'+ (date.getMonth() + 1)+'.' + date.getFullYear() + "  " + data.reviews[counter].time_rev.substr(0, 5) +
@@ -209,7 +246,7 @@ $(document).ready(function () {
 
             counter++;
         }
-        res += "<div class='reply'>" +
+       /* res += "<div class='reply'>" +
             "<div class='container-fluid rounded mb-5 borderReview'>" +
             "<div class='row'>" +
             "<div class='col-md-4'>" +
@@ -289,8 +326,9 @@ $(document).ready(function () {
             "</div>" +
             "</div>" +
             "</div>" +
-            "</div>";
+            "</div>";*/
 
         return res;
     }
+
 });

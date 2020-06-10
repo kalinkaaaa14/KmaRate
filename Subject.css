@@ -69,6 +69,12 @@ button:hover {
 .firstPart{
     background-color: #274B69;
 }
+.subjectYearMain{
+    position: absolute;
+    top: 8px;
+    left: 16px;
+    font-size:18px;
+}
 .epFilters{
     border: 1px solid lightgray;
 }
@@ -76,16 +82,19 @@ button:hover {
     position: absolute;
     top: 8px;
     right: 16px;
+    font-size:18px;
 }
 .epFiltersCountry{
      position: absolute;
     top:70px;
     left: 16px;
+    font-size:18px;
 }
 .epFiltersUni{
     position: absolute;
     top:100px;
     left: 16px;
+    font-size:18px;
 }
 .quantityEPreview{
     color: rgba(27,23,22,0.7);
@@ -102,9 +111,11 @@ button:hover {
     position: absolute;
     bottom: 8px;
     left: 16px;
+    font-size:18px;
 }
 .subjectRevCourse{
     position: absolute;
     bottom: 8px;
     right: 16px;
+    font-size:18px;
 }
