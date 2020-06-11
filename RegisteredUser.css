@@ -6,6 +6,12 @@ body{
     font-style: normal;
     font-weight: normal;
 }
+.downNavbar{
+   color: white;
+}
+.con{
+    margin-top: 90px;
+}
 .userInfoEdit{
     font-weight: 500;
     font-style: normal;

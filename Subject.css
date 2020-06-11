@@ -15,7 +15,7 @@ body{
 
 .subj{
     overflow-y: auto;
-    width: 74%;
+    width: 73%;
 }
 .spaceBetween{
     width: 2%;
@@ -64,6 +64,7 @@ button:hover {
 .formFiltersEP{
     outline: 1px solid lightgray;
     border: 20px solid #fff;
+    margin-left:4%;
 }
 
 .firstPart{
@@ -77,6 +78,7 @@ button:hover {
 }
 .epFilters{
     border: 1px solid lightgray;
+    margin-right: 4%;
 }
 .epFiltersCourse{
     position: absolute;

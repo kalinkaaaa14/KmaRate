@@ -4,6 +4,7 @@ body{
 .spaceBetwCols{
     width:8%;
 }
+
 .nameRev{
     display: table-cell;
     width: 60%;
@@ -257,9 +258,13 @@ button:hover {
     font-size: 40px;
     font-style: normal;
     font-weight: normal;
+    margin-top: 100px;
 }
 .myRevHeader{
     font-size: 20px;
 
     font-weight: normal;
+}
+.con{
+    margin-top: 90px;
 }

@@ -8,6 +8,9 @@ body{
     left: 16px;
     font-size:18px;
 }
+.con{
+    margin-top: 90px;
+}
 .btnNext{
     background-color: black;
     color: white;
