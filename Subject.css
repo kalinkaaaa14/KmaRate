@@ -103,9 +103,12 @@ button:hover {
     background-color: #274B69;
     margin-bottom: 5px;
 }
+.showAllEPReviews:hover{
+    opacity:0.8;
+}
 .makeEpRev{
     background-color: #274B69;
-    margin-bottom: 5px;
+    margin-bottom: 3px;
 }
 .subjectRevSNP{
     position: absolute;
