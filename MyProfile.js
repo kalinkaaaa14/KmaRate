@@ -9,7 +9,7 @@ $(document).ready(function () {
 
         $.ajax({
           //  url: "http://92.249.117.82:4321/profile/:" + user_nick + "/data",
-            url: "/profile/a/data",
+            url: "http://92.249.117.82:4321/profile/a/data",
             type: 'GET',
             success: function (data, textStatus, xhr) {
                 console.log(data);
@@ -27,7 +27,7 @@ $(document).ready(function () {
 
         $.ajax({
             //  url: "http://92.249.117.82:4321/profile/:" + user_nick + "/data",
-            url: "/profile/a/reviews",
+            url: "http://92.249.117.82:4321/profile/a/reviews",
             type: 'GET',
             success: function (data, textStatus, xhr) {
                 console.log(data);
