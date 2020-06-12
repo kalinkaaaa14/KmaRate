@@ -1,3 +1,9 @@
+function makeReply(id) {
+    document.getElementById("makeReplyDiv"+id).style.display = "block";
+}
+function cancelMakeReply(id) {
+    document.getElementById("makeReplyDiv"+id).style.display="none";
+}
 function likeReview(review_id, reviewerId, isLike) {
     $.ajax({
         url:  "/subj/rate/reviews/"+review_id,
@@ -254,7 +260,6 @@ $(document).ready(function () {
                 "</div>" +
                 "<div class='row ml-5 mr-5'>" +
                 "<p>" +
-                "<a class='text-decoration-none mr-4' href='#'>Відповісти</a>" +
                 "<div class='mr-3'>" +
                 "<i class='fa fa-thumbs-o-up likesRevEp' aria-hidden='true'></i>" +
                 "<span id='ReviewRate" + data.reviews[counter].review_id +"' class='quantityLikesEp' name='likesReview'>" + data.reviews[counter].rate + "</span>" +
@@ -262,12 +267,14 @@ $(document).ready(function () {
                 // <button  class='btn btn-lg rounded-circle socialBut' type='button'><i class='fa fa-instagram' aria-hidden='true'></i> </button>
                 "<button class='btn btn-lg text-decoration-none mr-2' onclick='likeReview("+data.reviews[counter].review_id+","+data.reviews[counter].user_id+",true)'>Підтримую</button>" +
                 "<button class='btn btn-lg text-decoration-none mr-2' onclick='likeReview("+data.reviews[counter].review_id+","+data.reviews[counter].user_id+",false)' >Не погоджуюсь</button>" +
+                "<button onclick='makeReply("+data.reviews[counter].review_id+");' class='btn btn-lg text-decoration-none mr-2'>Відповісти</button>"+
                 "<div class='ml-auto'> " +
                 date.getDate() + '.'+ (date.getMonth() + 1)+'.' + date.getFullYear() + "  " + data.reviews[counter].time_rev.substr(0, 5) +
                 "</div>" +
 
                 "</p>" +
                 "</div>" +
+                "<div id='makeReplyDiv"+data.reviews[counter].review_id+"' style='display: none'>"+makeReply+ "</div>"+
                 "</div>";
 
             if(counterReply<data.reviews[counter].replies.length){
