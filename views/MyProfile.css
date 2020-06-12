@@ -253,6 +253,7 @@ button:hover {
 }
 .detailsReviewProfile:hover{
     color: white;
+    background-color: firebrick;
 }
 .myReviews{
     font-size: 40px;
@@ -265,6 +266,7 @@ button:hover {
 
     font-weight: normal;
 }
+
 .con{
     margin-top: 90px;
 }

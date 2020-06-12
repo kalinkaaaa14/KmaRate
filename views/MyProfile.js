@@ -260,7 +260,7 @@ $(document).ready(function () {
                 "<div class='col-md-4'></div>"+
                 "<div class='col-md-4'></div>"+
                 "<div class='col-md-4'>"+
-                "<button class='btn btn-block detailsReviewProfile'>Інші відгуки</button>"+
+                "<a class='btn btn-block detailsReviewProfile' href='/subj/" + data.subject_reviews[counter].subject_id + "'>Інші відгуки</a>"+
             "</div>"+
             "</div>"+
             "</div>"+
