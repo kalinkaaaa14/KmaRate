@@ -23,11 +23,11 @@ $(document).ready(function () {
         };
 
         $.ajax({
-            url: 'http://92.249.117.82:4321/subj/filter',
+            url: '/subj/filter',
             type: 'GET',
             data: subj,
             success: function (data, textStatus, xhr) {
-                console.log(data);
+                //console.log(data);
                 formatData(data);
             },
 
@@ -81,7 +81,6 @@ $(document).ready(function () {
             }else{
                 reviews=" відгуків";
             }*/
-
             res += "<div class='container-fluid rounded epFilters'>" +
                 "<div class='row'>" +
                 "<div class='col-sm-4 firstPart'>" +
@@ -105,7 +104,7 @@ $(document).ready(function () {
                 "<div class='col-sm-3  my-auto'>" +
                 "<a href='/subj/" + data.subjects[counter].id + "' class='btn text-white showAllEPReviews'>Усі відгуки</a>" +
                 `<button onclick="window.location='/subj/${data.subjects[counter].id}/createReview'" class='btn text-white makeEpRev'>Залишити відгук</button>` +
-                 editSubject+
+                editSubject+
                 "</div>" +
                 "</div>" +
                 "</div>" + "<br>";

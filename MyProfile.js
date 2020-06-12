@@ -1,15 +1,17 @@
 $(document).ready(function () {
+    let urlPartsArr = window.location.href.split('/');
+    let user_nick = urlPartsArr[urlPartsArr.length - 1];
+
     getInfoUser();
     getInfoReviews();
 
     function getInfoUser() {
 
-        let urlPartsArr = window.location.href.split('/');
-        let user_nick = urlPartsArr[urlPartsArr.length - 1];
+
 
         $.ajax({
           //  url: "http://92.249.117.82:4321/profile/:" + user_nick + "/data",
-            url: "http://92.249.117.82:4321/profile/a/data",
+            url: "/profile/" + user_nick + "/data",
             type: 'GET',
             success: function (data, textStatus, xhr) {
                 console.log(data);
@@ -22,12 +24,12 @@ $(document).ready(function () {
         });
     }
     function getInfoReviews(){
-        let urlPartsArr = window.location.href.split('/');
-        let user_nick = urlPartsArr[urlPartsArr.length - 1];
+        // let urlPartsArr = window.location.href.split('/');
+        // let user_nick = urlPartsArr[urlPartsArr.length - 1];
 
         $.ajax({
             //  url: "http://92.249.117.82:4321/profile/:" + user_nick + "/data",
-            url: "http://92.249.117.82:4321/profile/a/reviews",
+            url: "/profile/" + user_nick + "/reviews",
             type: 'GET',
             success: function (data, textStatus, xhr) {
                 console.log(data);
@@ -290,7 +292,7 @@ $(document).ready(function () {
 
     function showUserInfo(data) {
         let res="";
-        res="<h4 class='myReviews mt-5 mb-3 ml-5'>Мій профіль</h4>"+
+        res="<h4 class='myReviews mt-5 mb-3 ml-5'>Профіль</h4>"+
             "<div class='container rounded mb-5 myProfileDiv'>"+
             "<div class='row'>"+
             "<div class='col-md-4'>"+
@@ -326,9 +328,9 @@ $(document).ready(function () {
             "<br>"+
             "<output class='courseInProfile' name='profileCourse'>"+data.faculty_title+"</output>"+
             "</p>"+
-            "<button  class='btn btn-lg rounded-circle socialBut'  type='button'><i class='fa fa-telegram'  aria-hidden='true'></i><a href='"+data.telegram+"'></a> </button>"+
-       "<button  class='btn btn-lg rounded-circle socialBut' type='button'><i class='fa fa-instagram' aria-hidden='true'></i><a href='"+data.instagram+"'></a> </button>"+
-        "<button  class='btn btn-lg rounded-circle socialBut' type='button'><i class='fa fa-facebook-square' aria-hidden='true'></i> <a href='"+data.facebook+"'></a></button>"+
+            "<a href='"+data.telegram+"'><button  class='btn btn-lg rounded-circle socialBut'  type='button'><i class='fa fa-telegram'  aria-hidden='true'></i></button></a>"+
+       "<a href='"+data.instagram+"'><button  class='btn btn-lg rounded-circle socialBut' type='button'><i class='fa fa-instagram' aria-hidden='true'></i> </button></a>"+
+        "<a href='"+data.facebook+"'><button  class='btn btn-lg rounded-circle socialBut' type='button'><i class='fa fa-facebook-square' aria-hidden='true'></i> </button></a>"+
         "</div>"+
         "<div class='spaceBetweenInfo'></div>"+
             "<div class='infoProfile2'>"+
@@ -343,7 +345,7 @@ $(document).ready(function () {
         "<div class='row'>"+
             "<div class='col-md-4'></div>"+
             "<div class='col-md-8'>"+
-            "<a href='/settings'><button class='btn btn-block text-white text-center mt-3 mb-2 editProfileButton'>Редагувати профіль <i class='fa fa-pencil editProfileIcon' aria-hidden='true'></i></button></a>"+
+            // "<a href='/settings'><button class='btn btn-block text-white text-center mt-3 mb-2 editProfileButton'>Редагувати профіль <i class='fa fa-pencil editProfileIcon' aria-hidden='true'></i></button></a>"+
 "</div>"+
         "</div>"+
         "</div>"+

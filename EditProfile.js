@@ -13,10 +13,10 @@ $(document).ready(function () {
 
         $.ajax({
 //url: /settings/data
-            url: "/settings/data/a",
+            url: "/settings/data",
             type: 'GET',
             success: function (data, textStatus, xhr) {
-                  console.log(data);
+                  // console.log(data);
                 formatData(data);
                 $('#saveEdit').click(sendInfo);
                 $('#saveEditPassword').click(changePassword);
@@ -41,12 +41,13 @@ $(document).ready(function () {
 
         $.ajax({
             //url: /settings/data
-            url: "/settings/data/a",
+            url: "/settings/data",
             type: 'POST',
             data:  subj,
             success: function (data, textStatus, xhr) {
-                console.log(data);
+                // console.log(data);
                 //formatData(data);
+                alert(data.message);
                 return false;
             },
             error: function (xhr, textStatus, errorThrown) {
@@ -68,12 +69,13 @@ $(document).ready(function () {
 
            $.ajax({
                //url: /settings/password
-               url: "/settings/password/a",
+               url: "/settings/password",
                type: 'POST',
                data:  changePswrd,
                success: function (data, textStatus, xhr) {
-                   console.log(data);
+                   // console.log(data);
                    //formatData(data);
+                   alert(data.message);
                    return false;
                },
                error: function (xhr, textStatus, errorThrown) {
@@ -184,7 +186,7 @@ $(document).ready(function () {
             "<br>"+
             "</div>"+
             "<div class='input-container-fluid endEditForm'>"+
-            "<button id='saveEdit' class='btn btn-lg mr-5 mb-4 text-black saveEditForm' type='button'>Зберегти</button>"+
+            "<button id='saveEdit' class='btn btn-lg mr-5 mb-4 text-white saveEditForm' type='button'>Зберегти</button>"+
             "</div>"+
             "</form>"+
             "</div>"+

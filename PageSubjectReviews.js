@@ -1,29 +1,20 @@
-function likeReview(review_id) {
+function likeReview(review_id, reviewerId, isLike) {
     $.ajax({
         url:  "/subj/rate/reviews/"+review_id,
         type: 'POST',
-        data:  {like: true},
+        data:  {like: isLike, user_id: reviewerId},
         success: function (data, textStatus, xhr) {
-            console.log(data);
-            //formatData(data);
-            return false;
-        },
-        error: function (xhr, textStatus, errorThrown) {
+            if(typeof data.rate !== 'undefined'){
+                console.log(data);
+                document.getElementById('UserRate' + review_id).innerHTML = data.subject_rate;
+                document.getElementById('ReviewRate' + review_id).innerHTML = data.rate;
 
-            console.log('Error in Operation');
-        }
-    });
-
-}
-function dislikeReview(review_id) {
-    $.ajax({
-        url: "/subj/rate/reviews/"+review_id,
-        type: 'POST',
-        data:  {like: false},
-        success: function (data, textStatus, xhr) {
-            console.log(data);
+            }else {
+                // console.log(data);
+                document.write(data);
+            }
+            // console.log(data);
             //formatData(data);
-            return false;
         },
         error: function (xhr, textStatus, errorThrown) {
 
@@ -31,6 +22,26 @@ function dislikeReview(review_id) {
         }
     });
 }
+
+// function dislikeReview(review_id) {
+//     $.ajax({
+//         url: "/subj/rate/reviews/"+review_id,
+//         type: 'POST',
+//         data:  {like: false},
+//         success: function (data, textStatus, xhr) {
+//             if(data.rate){
+//                 document.getElementsByName('likesReview')[0].innerHTML = data.rate;
+//                 subject_rate
+//             }else {
+//                 document.write(data);
+//             }
+//         },
+//         error: function (xhr, textStatus, errorThrown) {
+//
+//             console.log('Error in Operation');
+//         }
+//     });
+// }
 
 $(document).ready(function () {
     /*var data={
@@ -62,7 +73,7 @@ $(document).ready(function () {
         let subject_id = urlPartsArr[urlPartsArr.length - 1];
 
         $.ajax({
-            url: "http://92.249.117.82:4321/subj/4/data",
+            url: "/subj/" + subject_id + "/data",
             type: 'GET',
             success: function (data, textStatus, xhr) {
                 console.log(data);
@@ -178,10 +189,10 @@ $(document).ready(function () {
                 "</div>" +
                 "<div class='row userRate text-center'>" +
                 "<div class='col-sm-6 text-center subjectRateRevEp'>" +
-                "<img class='subjPageReviews' src='images/subject.png'>" +
+                "<img class='subjPageReviews' src='/images/subject.png'>" +
                 "</div>" +
                 "<div class='col-sm-6 text-center'>" +
-                "<span>" + data.reviews[counter].subject_rate + "</span>" +
+                "<span id='UserRate" + data.reviews[counter].review_id +"'>" + data.reviews[counter].subject_rate + "</span>" +
                 "</div>" +
                 "</div>" +
                 "</div>" +
@@ -232,10 +243,10 @@ $(document).ready(function () {
                 "<a class='text-decoration-none mr-4' href='#'>Відповісти</a>" +
                 "<div class='mr-3'>" +
                 "<i class='fa fa-thumbs-o-up likesRevEp' aria-hidden='true'></i>" +
-                "<span class='quantityLikesEp' name='likesReview'>" + data.reviews[counter].rate + "</span>" +
+                "<span id='ReviewRate" + data.reviews[counter].review_id +"' class='quantityLikesEp' name='likesReview'>" + data.reviews[counter].rate + "</span>" +
                 "</div>" +
-                "<a class='text-decoration-none mr-2' href='#' onclick='likeReview("+data.reviews[counter].review_id+")'>Підтримую</a>" +
-                "<a id = 'disagree' onclick='dislikeReview("+data.reviews[counter].review_id+");' class='text-decoration-none mr-5' href='#'>Не погоджуюсь</a>" +
+                "<section class='text-decoration-none mr-2' onclick='likeReview("+data.reviews[counter].review_id+","+data.reviews[counter].user_id+",true)'>Підтримую</section>" +
+                "<section id = 'disagree' onclick='likeReview("+data.reviews[counter].review_id+","+data.reviews[counter].user_id+",false)' class='text-decoration-none mr-5'>Не погоджуюсь</section>" +
                 "<div class='ml-auto'> " +
                 date.getDate() + '.'+ (date.getMonth() + 1)+'.' + date.getFullYear() + "  " + data.reviews[counter].time_rev.substr(0, 5) +
                 "</div>" +
@@ -264,79 +275,80 @@ $(document).ready(function () {
                     "<div class='col-sm-6 text-center'>" +
                     "<span>"+data.reviews[counter].replies[counterReply].subject_rate+"</span>" +
                     "</div>" +
-            "</div>" +
-            "</div>" +
-            "<div class='col-md-8 my-auto'>" +
-            "<div class='replyText my-auto review'>" +
-            "<p class='replyText'>" + data.reviews[counter].replies[counterReply].general_impression + "</p>" +
-            "</div>" +
-            "</div>" +
-            "</div>" +
-            "<div class='row mt-3 ml-5'>" +
-            "<p>" +
-            "<a class='text-decoration-none mr-4' href='#'>Відповісти</a>" +
-            "<div class='mr-3'>" +
-            "<i class='fa fa-thumbs-o-up likesRevEp' aria-hidden='true'></i>" +
-            "<span class='quantityLikesEp' name='likesReview'> "+ data.reviews[counter].replies[counterReply].rate  + "</span>" +
-            "</div>" +
+                    "</div>" +
+                    "</div>" +
+                    "<div class='col-md-8 my-auto'>" +
+                    "<div class='replyText my-auto review'>" +
+                    "<p class='replyText'>" + data.reviews[counter].replies[counterReply].general_impression + "</p>" +
+                    "</div>" +
+                    "</div>" +
+                    "</div>" +
+                    "<div class='row mt-3 ml-5'>" +
+                    "<p>" +
+                    "<a class='text-decoration-none mr-4' href='#'>Відповісти</a>" +
+                    "<div class='mr-3'>" +
+                    "<i class='fa fa-thumbs-o-up likesRevEp' aria-hidden='true'></i>" +
+                    "<span class='quantityLikesEp' name='likesReview'> "+ data.reviews[counter].replies[counterReply].rate  + "</span>" +
+                    "</div>" +
                     "<a class='text-decoration-none mr-2' href='#' onclick='likeReview("+data.reviews[counter].replies[counterReply].id+")'>Підтримую</a>" +
-                    "<a id = 'disagree' onclick='dislikeReview("+data.reviews[counter].replies[counterReply].id+");' class='text-decoration-none mr-5' href='#'>Не погоджуюсь</a>" +
+                    "<a id = 'disagree' onclick='likeReview("+data.reviews[counter].replies[counterReply].id+");' class='text-decoration-none mr-5' href='#'>Не погоджуюсь</a>" +
                     "<div class='ml-auto mr-5'>" + dateReply.getDate() + '.'+ (dateReply.getMonth() + 1)+'.' + dateReply.getFullYear() + "  " + data.reviews[counter].replies[counterReply].time_rev.substr(0, 5) +
                     "</div>" +
-            "</p>" +
-            "</div>" +
+                    "</p>" +
+                    "</div>" +
                     "</div>";
 
                 counterReply++;
 
-                    while(counterReply<data.reviews[counter].replies.length){
-                        let dateReply1 = new Date(data.reviews[counter].replies[counterReply].date_rev);
-                        res+= "<a href='#' data-toggle='collapse' data-target='#otherSComments'>Ще "+(data.reviews[counter].replies.length-1)+" коментар(-iв)</a>" +
-                            "<div id='otherSComments' class='mt-3 collapse'>" +
-                            "<div class='container-fluid rounded mb-5 borderReview'>" +
-                            "<div class='row'>" +
-                            "<div class='col-md-4'>" +
-                            "<div class='text-center mainInfoUser'>" +
-                            "<br>" +
-                            "<img class='rounded-circle mt-3 replyEpAvatar' src='/images/defUser.png'>" +
-                            "<br>" +
-                            "<output class='replyUsernameEp' name='replyUserName'>" +data.reviews[counter].replies[counterReply].nickname  + "</output>" +
-                            "<br>" +
-                            "</div>" +
-                            "<div class='row userRate'>" +
-                            "<div class='col-sm-6 text-center subjectRateRevEp'>" +
-                            "<img class='replySubjPageReviews' src='/images/subject.png'>" +
-                            "</div>" +
-                            "<div class='col-sm-6 text-center'>" +
-                            "<span> " +data.reviews[counter].replies[counterReply].subject_rate+"  </span>" +
-                            "</div>" +
-                            "</div>" +
-                            "</div>" +
-                            "<div class='col-md-8 my-auto'>" +
-                            "<div class='replyText my-auto review'>" +
-                            "<p class='replyText'>"+ data.reviews[counter].replies[counterReply].general_impression +"</p>" +
-                            "</div>" +
-                            "</div>" +
-                            "</div>" +
-                            "<div class='row mt-3 ml-5'>" +
-                            "<p>" +
-                            "<a class='text-decoration-none mr-4' href='#'>Відповісти</a>" +
-                            "<div class='mr-3'>" +
-                            "<i class='fa fa-thumbs-o-up likesRevEp' aria-hidden='true' ></i>" +
-                            "<span class='quantityLikesEp' name='likesReview'> "+ data.reviews[counter].replies[counterReply].rate + "</span>" +
-                            "</div>" +
-                            "<a class='text-decoration-none mr-2' href='#' onclick='likeReview("+data.reviews[counter].replies[counterReply].id+")'>Підтримую</a>" +
-                            "<a id = 'disagree' onclick='dislikeReview("+data.reviews[counter].replies[counterReply].id+");' class='text-decoration-none mr-5' href='#'>Не погоджуюсь</a>" +
-                            "<div class='ml-auto'>" + dateReply1.getDate() + '.'+ (dateReply1.getMonth() + 1)+'.' + dateReply1.getFullYear() + "  " + data.reviews[counter].replies[counterReply].time_rev.substr(0, 5) +
-                            "</div>" +
-                            "</p>" +
-                            "</div>" +
-                            "</div>" +
-                            "</div>";
-                        counterReply++;
-                    }
-                    res+="</div>";
+                while(counterReply<data.reviews[counter].replies.length){
+                    let dateReply1 = new Date(data.reviews[counter].replies[counterReply].date_rev);
+                    res+= "<a href='#' data-toggle='collapse' data-target='#otherSComments'>Ще "+(data.reviews[counter].replies.length-1)+" коментар(-iв)</a>" +
+                        "<div id='otherSComments' class='mt-3 collapse'>" +
+                        "<div class='container-fluid rounded mb-5 borderReview'>" +
+                        "<div class='row'>" +
+                        "<div class='col-md-4'>" +
+                        "<div class='text-center mainInfoUser'>" +
+                        "<br>" +
+                        "<img class='rounded-circle mt-3 replyEpAvatar' src='/images/defUser.png'>" +
+                        "<br>" +
+                        "<output class='replyUsernameEp' name='replyUserName'>" +data.reviews[counter].replies[counterReply].nickname  + "</output>" +
+                        "<br>" +
+                        "</div>" +
+                        "<div class='row userRate'>" +
+                        "<div class='col-sm-6 text-center subjectRateRevEp'>" +
+                        "<img class='replySubjPageReviews' src='/images/subject.png'>" +
+                        "</div>" +
+                        "<div class='col-sm-6 text-center'>" +
+                        "<span> " +data.reviews[counter].replies[counterReply].subject_rate+"  </span>" +
+                        "</div>" +
+                        "</div>" +
+                        "</div>" +
+                        "<div class='col-md-8 my-auto'>" +
+                        "<div class='replyText my-auto review'>" +
+                        "<p class='replyText'>"+ data.reviews[counter].replies[counterReply].general_impression +"</p>" +
+                        "</div>" +
+                        "</div>" +
+                        "</div>" +
+                        "<div class='row mt-3 ml-5'>" +
+                        "<p>" +
+                        "<a class='text-decoration-none mr-4' href='#'>Відповісти</a>" +
+                        "<div class='mr-3'>" +
+                        "<i class='fa fa-thumbs-o-up likesRevEp' aria-hidden='true' ></i>" +
+                        "<span class='quantityLikesEp' name='likesReview'> "+ data.reviews[counter].replies[counterReply].rate + "</span>" +
+                        "</div>" +
+                        "<a class='text-decoration-none mr-2' href='#' onclick='likeReview("+data.reviews[counter].replies[counterReply].id+")'>Підтримую</a>" +
+                        "<a id = 'disagree' onclick='likeReview("+data.reviews[counter].replies[counterReply].id+");' class='text-decoration-none mr-5' href='#'>Не погоджуюсь</a>" +
+                        "<div class='ml-auto'>" + dateReply1.getDate() + '.'+ (dateReply1.getMonth() + 1)+'.' + dateReply1.getFullYear() + "  " + data.reviews[counter].replies[counterReply].time_rev.substr(0, 5) +
+                        "</div>" +
+                        "</p>" +
+                        "</div>" +
+                        "</div>" +
+                        "</div>";
+                    counterReply++;
+                }
+                res+="</div>";
             }
+
             counter++;
         }
        /* res += "<div class='reply'>" +
