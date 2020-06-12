@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Review Subject</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="/Subject.css">
+    <link rel="stylesheet" href="/RegisteredUser.css">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- зареєстр або незареєстр-->
+<?-include('./Navbar.html')?>
+
+<!--<nav class="navbar navbar-expand-xl" >-->
+
+
+<!--            <a class="navbar-brand kmaRateIcon"><IMG src="/images/KmaRate.png"></a>-->
+
+<!--            <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#basicExampleNav"-->
+<!--                    aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--                <i class="fa fa-caret-square-o-down" aria-hidden="true"></i>-->
+<!--            </button>-->
+
+<!--            <div class="collapse navbar-collapse" id="basicExampleNav">-->
+<!--                <form class="form-inline">-->
+<!--                    <div class="md-form my-0">-->
+<!--                        <input class="form-control mr-sm-2 mb-2 search" type="text" placeholder="Пошук.." aria-label="Search">-->
+<!--                    </div>-->
+<!--                </form>-->
+
+<!--        <ul class="navbar-nav ml-auto ulRight">-->
+<!--            <li  class="nav-item mt-2">-->
+<!--                <a class="text-decoration-none text-reset mr-4 mb-2 allDis" href='/subj'>Всі дисципліни</a>-->
+<!--            </li>-->
+<!--            <li  class="nav-item mt-2">-->
+<!--                <a class="text-decoration-none text-reset mr-4 mb-2 allEP" href='/ep'>Всі програми обміну</a>-->
+<!--            </li>-->
+
+
+<!--            <li class="nav-item">-->
+<!--                <button onclick="window.location='/entr'" class="btn btn-white mr-4 mb-2 entButtonNavbar btns" type="button"><i class="fa fa-sign-in" aria-hidden="true"></i> Вхід</button>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--                <button onclick="window.location='/reg'" class="btn text-white mr-4 mb-2 regButtonNavbar btns" type="button"><i class="fa fa-user-plus" aria-hidden="true"></i> Зареєструватися</button>-->
+
+
+
+<!--        </ul>-->
+
+<!--    </div>-->
+<!--</nav>-->
+
+<div class="container-fluid mt-4 con">
+    <div class="row">
+        <div class ="filters">
+            <form class='formFiltersEP' id="subjectFilters">
+                <br>
+                <h4 class="text-center mt-1">Фільтр</h4>
+                <div class="form-group">
+                    <h5 for="nameSubj">Назва</h5>
+
+                    <input type="text" name="title"  class="form-control" id="title">
+                </div>
+
+                <div class="form-group">
+                    <h5 for="teacher">Викладач</h5>
+                    <input type="text" name="teacher" class="form-control" id="teacher">
+                </div>
+
+                <div class="form-group">
+                    <h5 for="yearConduct">Рік викладання</h5>
+                    <input type="number"  name="year" class="form-control" id="year">
+                </div>
+
+
+                <h5>Курс</h5>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="custom-control custom-radio">
+                            <input type="checkbox" id="bp1" name="courses[]" value=1 class="subjectCourse custom-control-input">
+                            <label class="custom-control-label" for="bp1">БП-1</label>
+                        </div>
+
+                        <div class="custom-control custom-radio">
+                            <input type="checkbox" id="bp2" name="courses[]" value=2 class="subjectCourse custom-control-input">
+                            <label class="custom-control-label" for="bp2">БП-2</label>
+                        </div>
+
+                        <div class="custom-control custom-radio">
+                            <input  type="checkbox" id="bp3" name="courses[]" value=3 class="subjectCourse custom-control-input">
+                            <label class="custom-control-label" for="bp3">БП-3</label>
+                        </div>
+
+                        <div class="custom-control custom-radio">
+                            <input  type="checkbox" id="bp4" name="courses[]" value=4 class="subjectCourse custom-control-input">
+                            <label class="custom-control-label" for="bp4">БП-4</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="custom-control custom-radio">
+                            <input  type="checkbox" id="mp1" name="courses[]" value=5 class="subjectCourse custom-control-input ">
+                            <label class="custom-control-label" for="mp1">МП-1</label>
+                        </div>
+
+                        <div class="custom-control custom-radio">
+                            <input  type="checkbox" id="mp2" name="courses[]" value=6 class="subjectCourse custom-control-input">
+                            <label class="custom-control-label" for="mp2">МП-2</label>
+                        </div>
+                    </div>
+                </div>
+
+                <h5 class="mt-1">Семестр</h5>
+                <div class="custom-control custom-radio">
+                    <input type="checkbox" id="autumn" name="semesters[]" value="осінь" class="semestersSubject custom-control-input">
+                    <label class="custom-control-label" for="autumn">Осінь</label>
+                </div>
+
+                <div class="custom-control custom-radio">
+                    <input type="checkbox" id="spring" name="semesters[]" value="весна" class="semestersSubject custom-control-input">
+                    <label class="custom-control-label" for="spring">Весна</label>
+                </div>
+
+                <div class="custom-control custom-radio">
+                    <input type="checkbox" id="summer" name="semesters[]" value="літо" class="semestersSubject custom-control-input">
+                    <label class="custom-control-label" for="summer">Літо</label>
+                </div>
+
+                <h5 class="mt-1">Факультет</h5>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="custom-control custom-radio">
+                            <input type="checkbox" id="fi" name="faculties[]" value="фі" class="facultiesSubject custom-control-input">
+                            <label class="custom-control-label" for="fi">ФІ</label>
+                        </div>
+
+                        <div class="custom-control custom-radio">
+                            <input type="checkbox" id="fen" name="faculties[]" value="фен" class="facultiesSubject custom-control-input">
+                            <label class="custom-control-label" for="fen">ФЕН</label>
+                        </div>
+
+                        <div class="custom-control custom-radio">
+                            <input type="checkbox" id="fsnst" name="faculties[]" value="фснст" class="facultiesSubject custom-control-input">
+                            <label class="custom-control-label" for="fsnst">ФСНСТ</label>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-6">
+
+                        <div class="custom-control custom-radio">
+                            <input type="checkbox" id="fprn" name="faculties[]" value="фпрн" class="facultiesSubject custom-control-input">
+                            <label class="custom-control-label" for="fprn">ФПРН</label>
+                        </div>
+
+                        <div class="custom-control custom-radio">
+                            <input type="checkbox" id="fpvn" name="faculties[]" value="фпвн" class="facultiesSubject custom-control-input">
+                            <label class="custom-control-label" for="fpvn">ФПВН</label>
+                        </div>
+
+                        <div class="custom-control custom-radio">
+                            <input type="checkbox" id="fgn" name="faculties[]" value="фгн" class="facultiesSubject custom-control-input">
+                            <label class="custom-control-label" for="fgn">ФГН</label>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="searchSButton" type="button" class="btn searchBS btn-block mt-4 text-white">Пошук</button>
+            </form>
+
+        </div>
+        <div class="spaceBetween"></div>
+
+        <div class="subj">
+            <h5 class="mb-1 allSubjPage">Всі дисципліни</h5>
+            <div id="subjectsFromServer" >
+
+                <!--                <div class='container-fluid rounded epFilters'>-->
+                <!--                <div class='row'>-->
+                <!--                    <div class='col-sm-4 firstPart'>-->
+                <!--                        <span class='text-white epFiltersCourse'><small>-->
+                <!--                ФПрН  "</small></span>-->
+                <!--                        <br>  <h6 class='text-white  mt-3' >-->
+                <!--                             Обробра зобрадень і моделювання графів математичних зображень  </h6>  <br> <br> <span class='text-white subjectRevSNP'><small>-->
+                <!--                 Захарійченко О.М.-->
+                <!--                    </small></span><span class='text-white subjectRevCourse'><small>-->
+                <!--                2 </small></span> </div> <div class='col-sm-3 my-auto'>-->
+                <!--                        <h5 class='mt-3 '>Середній рейтинг</h5>-->
+                <!--                        <span class='quantityEPreview'><small> 56 відгук(-ів)</small></span>-->
+                <!--                        </div><div class='col-sm-2 my-auto'><div>-->
+                <!--                        <button data-toggle='modal' data-target='#details' type='button' class='btn btn-lg'> 96<i class='fa fa-sort-desc' aria-hidden='true'></i>-->
+                <!--                            </button></div></div>-->
+                <!--                    <div class='col-sm-3  my-auto'>-->
+                <!--                        <a href='/subj/" + data.subjects[counter].id + "' class='btn text-white showAllEPReviews'>Усі відгуки</a>-->
+                <!--                        <button onclick="window.location='/subj/${data.subjects[counter].id}/createReview'" class='btn text-white makeEpRev'>Залишити відгук</button>-->
+                <!--                        </div>-->
+                <!--                    </div>-->
+                <!--                </div><br>-->
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="container-fluid">
+    <footer class="pt-4 mt-5">
+
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-2 text-center">
+                <a class='text-decoration-none text-reset' href='#'>Контакти</a>
+            </div>
+            <div class="col-sm-2 text-center">
+                <a class='text-decoration-none text-reset' href='#'>FAQ</a>
+            </div>
+            <div class="col-sm-2 text-center">
+                <a class='text-decoration-none text-reset' href='#'>Правила</a>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+    </footer>
+</div>
+
+<!--
+<div class='modal fade' id='details'>"
+    "<div class='modal-dialog modal-dialog-centered'>
+        <div id="detailsSubject">
+    </div>
+</div>
+</div>
+-->
+<script src="/Subject.js" charset="utf-8"></script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+body{
+    font-family: 'Ubuntu', sans-serif;
+}
+.kmaRateIcon{
+    margin-left: 3%;
+}
+.search{
+    margin-left: 60px;
+    /*margin-right: 50px;*/
+    margin-top: 15px;
+}
+.ulRight{
+    margin-top:15px;
+    margin-right: 30px;
+}
+.entButtonNavbar{
+    width:auto;
+    color: #274B69;
+}
+.regButtonNavbar{
+    width:auto;
+    background-color: #274B69;
+}
+.btns:active:focus,
+.btns:focus {
+    outline: 0!important;
+    outline-color: transparent!important;
+    outline-width: 0!important;
+    outline-style: none!important;
+    box-shadow: 0 0 0 0 rgba(0,123,255,0)!important;
+}
+@media screen and (max-width: 1201px) {
+    .ulRight{
+        margin-top: 0px;
+    }
+    .allDis{
+        margin-left: 15px;
+    }
+    .allEP{
+        margin-left: 15px;
+
+    }
+    .regButtonNavbar{
+        margin-left: 15px;
+    }
+    .entButtonNavbar{
+        margin-left: 5px;
+    }
+    .kmaRateIcon{
+        margin-left: 10px;
+    }
+    .marginButtonS{
+        margin-left: 13%;
+        margin-right: 7%;
+    }
+    .marginButtonEp{
+        margin-right: 13%;
+    }
+
+}
+
+@media screen and (max-width: 1300px)  {
+    .search{
+        margin-left: 15px;
+    }
+    .ulRight{
+        margin-right: 2px;
+    }
+}
+
+.bacNavbar{
+    background-color: #274B69;
+}

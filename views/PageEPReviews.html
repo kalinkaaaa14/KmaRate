@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Reviews on EP</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="/PageSubjectReviews.css">
+    <link rel="stylesheet" href="/RegisteredUser.css">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+</head>
+<body>
+
+
+<!-- зареєстр або незареєстр -->
+<?-include('./Navbar.html')?>
+
+<div class="container con">
+    <div class="container-fluid mt-5 borderEP">
+        <div class="row">
+            <div class="col-md-4 EPInfoBackground">
+                <h6 class="text-white  mt-4 mb-3 nameEpPage">Germanuan</h6>
+                <p class="text-white countryEpPage">Країна</p>
+                <p class="text-white courseEpPage">2 курс</p>
+                <p class="text-white mb-1 uniEpPage" >Університет</p>
+            </div>
+            <div class="colSpace"></div>
+            <div class="colFirstEp my-auto">
+                <p class="mt-4">
+                    <span class="fontSub">Оцінка місця проживання</span>
+                    <br>
+                    <output class="characteristics" name="basicKnowledgeSub">7.7</output>
+                </p>
+                <p>
+                    <span class="fontSub">Середній рівень англійської</span>
+                    <br>
+                    <output class="characteristics" name="technique">B1</output>
+                </p>
+            </div>
+            <div class="colSecondEp my-auto">
+                <p class="mt-4">
+                    <span class="fontSub">Успішність адаптації</span>
+                    <br>
+                    <output class="characteristics" name="modernMater">7.7</output>
+                </p>
+                <p>
+                    <span class="fontSub">Середній бал в КМА на момент поїздки</span>
+                    <br>
+                    <output class="characteristics" name="technique">97</output>
+                </p>
+            </div>
+            <div class="colThird my-auto text-center">
+                <h2 >7.7</h2>
+                <span class="quantityRevEPPage"><small>n відгуків</small></span>
+            </div>
+
+        </div>
+    </div>
+    <div >
+        <button onclick="document.location='/user/RevEP.html'"  class="btn btn-block text-white text-center makeEpPageRev"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Залишити відгук</button>
+    </div>
+
+    <h3 class="mt-5 mb-5 ml-5 allEpRev">Усі відгуки</h3>
+    <div class="container-fluid rounded mb-5 borderReview">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="text-center mainInfoUser">
+                    <br>
+                    <img class="rounded-circle mt-3 avatarRevEP" src="/images/defUser.png">
+                    <br>
+                    <output class="nickRevSub" name="userName">yellowstone123</output>
+                    <br>
+                </div>
+                <div class='row userRate text-center'>
+                    <div class='col-sm-6 text-center subjectRateRevEp'>
+                        <img class='subjPageReviews' src='/images/Vector.png'>
+                    </div>
+                    <div class='col-sm-6 text-center'>
+                        <span>10</span>
+                    </div>
+                </div>
+            </div>
+            <div class="colSpace"></div>
+            <div class="firstCol">
+                <p class="mt-4">
+                    <span class="fontSub" >Оцінка місця проживання</span>
+                    <br>
+                    <output class="optionsRevEp" name="basicKnowledgeSub">7.7</output>
+                </p>
+                <p>
+                    <span class="fontSub">Середній рівень англійської</span>
+                    <br>
+                    <output class="optionsRevEp" name="technique">B1</output>
+                </p>
+            </div>
+            <div class="secondCol">
+                <p class="mt-4">
+                    <span class="fontSub">Успішність адаптації</span>
+                    <br>
+                    <output class="optionsRevEp"  name="modernMater">7.7</output>
+                </p>
+                <p>
+                    <span class="fontSub">Середній бал в КМА на момент поїздки</span>
+                    <br>
+                    <output class="optionsRevEp" name="technique">97</output>
+                </p>
+            </div>
+            <div class=" thirdCol my-auto text-center">
+                <h2 >7.7</h2>
+            </div>
+        </div>
+        <div class="row mt-4 review">
+            Курс дуже сподобався. Юрій Олексійович все детально розповідав, питань майже не виникало. Однак хотілося би мати більш складніші домашні завдання та їх більший контроль.
+                Водночас, бали ставив досить високі. Загалом, якщо потрібні кредити - можна брати =)
+        </div>
+
+        <div class='row mt-3 buttonsUnderRev'>
+            <p>
+                <a class='text-decoration-none mr-4' href='#'>Відповісти</a>
+            <div class='mr-3'>
+                <i class='fa fa-thumbs-o-up likesRevEp' aria-hidden='true'></i>
+                <span class='quantityLikesEp' name='likesReview'>5</span>
+            </div>
+            <a class='text-decoration-none mr-4' href='#'>Підтримую</a>
+            <a class='text-decoration-none ' href='#'>Не погоджуюсь</a>
+            </p>
+        </div>
+
+        <div class="row mr-4 mb-1">
+            <div class='dateTime ml-auto'> 14.03.2019 11:05</div>
+        </div>
+    </div>
+
+    <div class='reply'>
+        <div class='container-fluid rounded mb-5 borderReview'>
+            <div class='row'>
+                <div class='col-md-4 mainI'>
+                    <div class='text-center mainInfoUser'>
+                        <br>
+                        <img class='rounded-circle mt-3 replyEpAvatar' src='/images/defUser.png'>
+                        <br>
+                        <output class='replyUsernameEp' name='replyUserName'>yellowstone123</output>
+                        <br>
+                    </div>
+                    <div class='row userRate'>
+                        <div class='col-sm-6 text-center subjectRateRevEp'>
+                            <img class='replySubjPageReviews' src='/images/Vector.png'>
+                        </div>
+                        <div class='col-sm-6 text-center'>
+                            <span>4</span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-md-8 my-auto'>
+                    <div class='replyText my-auto review'>
+                        <p class='replyText'>Курс Дуже Сподобався Курс Дуже Сподобався Курс Дуже Сподобався Курс Дуже Сподобався Курс Дуже Сподобався Курс Дуже Сподобався Курс Дуже Сподобався Курс Дуже Сподобався Курс Дуже Сподобався Курс Дуже Сподобався Курс Дуже Сподобався Курс Дуже Сподобався Курс Дуже Сподобався Курс Дуже Сподобався Курс Дуже Сподобався Курс Дуже Сподобався Курс Дуже Сподобався Курс Дуже Сподобався Курс Дуже Сподобався Курс Дуже Сподобався Курс Дуже Сподобався </p>
+                    </div>
+                </div>
+            </div>
+            <div class='row mt-3 buttonsUnderRev'>
+                <p>
+                    <a class='text-decoration-none mr-4' href='#'>Відповісти</a>
+                <div class='mr-3'>
+                    <i class='fa fa-thumbs-o-up likesRevEp' aria-hidden='true'></i>
+                    <span class='quantityLikesEp' name='likesReview'>2</span>
+                </div>
+                <a class='text-decoration-none mr-4' href='#'>Підтримую</a>
+                <a class='text-decoration-none' href='#'>Не погоджуюсь</a>
+                </p>
+            </div>
+
+            <div class="row mr-4 mb-1">
+                <div class=' dateTime ml-auto'> 14.03.2019 11:10</div>
+            </div>
+        </div>
+
+        <a href='#' data-toggle='collapse' data-target='#otherSComments'>Ще  1  коментар</a>
+        <div id='otherSComments' class='mt-3 collapse'>
+            <div class='container-fluid rounded mb-5 borderReview'>
+                <div class='row'>
+                    <div class='col-md-4 mainI'>
+                        <div class='text-center mainInfoUser'>
+                            <br>
+                            <img class='rounded-circle mt-3 replyEpAvatar' src='/images/defUser.png'>
+                            <br>
+                            <output class='replyUsernameEp' name='replyUserName'>yellowstone123</output>
+                            <br>
+                        </div>
+                        <div class='row userRate'>
+                            <div class='col-sm-6 text-center subjectRateRevEp'>
+                                <img class='replySubjPageReviews' src='/images/subject.png'>
+                            </div>
+                            <div class='col-sm-6 text-center'>
+                                <span>4</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='col-md-8 my-auto'>
+                        <div class='replyText my-auto review'>
+                            <p class='replyText'>Курс Дуже Сподобався Курс Дуже Сподобався Курс Дуже Сподобався Курс Дуже Сподобався Курс Дуже Сподобався Курс Дуже Сподобався Курс Дуже Сподобався Курс Дуже Сподобався Курс Дуже Сподобався Курс Дуже Сподобався Курс Дуже Сподобався Курс Дуже Сподобався Курс Дуже Сподобався Курс Дуже Сподобався Курс Дуже Сподобався Курс Дуже Сподобався Курс Дуже Сподобався Курс Дуже Сподобався Курс Дуже Сподобався Курс Дуже Сподобався Курс Дуже Сподобався </p>
+                        </div>
+                    </div>
+                </div>
+                <div class='row mt-3 buttonsUnderRev'>
+                    <p>
+                        <a class='text-decoration-none mr-4' href='#'>Відповісти</a>
+                    <div class='mr-3'>
+                        <i class='fa fa-thumbs-o-up likesRevEp' aria-hidden='true'></i>
+                        <span class='quantityLikesEp' name='likesReview'>2</span>
+                    </div>
+                    <a class='text-decoration-none mr-4' href='#'>Підтримую</a>
+                    <a class='text-decoration-none' href='#'>Не погоджуюсь</a>
+                    </p>
+                </div>
+
+                <div class="row mr-4 mb-1">
+                    <div class=' dateTime ml-auto'> 14.03.2019 11:10</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <footer class="pt-4 mt-5">
+
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-2 text-center">
+                <a class='text-decoration-none text-reset' href='#'>Контакти</a>
+            </div>
+            <div class="col-sm-2 text-center">
+                <a class='text-decoration-none text-reset' href='#'>FAQ</a>
+            </div>
+            <div class="col-sm-2 text-center">
+                <a class='text-decoration-none text-reset' href='#'>Правила</a>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+    </footer>
+</div>
+
+</body>
+</html>

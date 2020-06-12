@@ -1,0 +1,405 @@
+body{
+    font-family: 'Ubuntu', sans-serif;
+}
+.mainI{
+    padding: 3em 0;
+}
+.colSpace{
+    width:2%;
+}
+.colFirst{
+    width: 24%;
+}
+.colSecond{
+    width: 24%;
+}
+.colFirstEp{
+    width: 24%;
+}
+.colSecondEp{
+    width: 24%;
+}
+.colThird{
+    width:16%;
+}
+.buttonsUnderRev{
+    margin-right:50px;
+    margin-left: 45px;
+}
+.replyText{
+   /*padding: 3em 0;*/
+   margin-top: 60px;
+}
+.epPageReviews{
+
+    width: 25px;
+    height: 25px;
+}
+.subjPageReviews{
+    width: 25px;
+    height: 25px;
+}
+.replySubjPageReviews{
+    width: 18px;
+    height:18px;
+}
+.replyEpPageReviews{
+    width: 18px;
+    height:18px;
+}
+.firstCol{
+    width: 24%;
+    margin-top: 70px;
+}
+button:hover {
+    opacity: 0.8;
+}
+.infoProfile1{
+    width:25%;
+    margin-top: 40px;
+}
+.infoProfile2{
+    width: 38%;
+    margin-top: 125px;
+}
+.profileFacultyCourse{
+    margin-top: 33px;
+}
+.spaceBetweenInfo{
+    width:2.5%;
+}
+.socialBut{
+    margin-top: 16%;
+}
+.profileUsername{
+    font-size:36px;
+}
+.secondCol{
+    margin-top: 70px;
+    width:24%;
+}
+.thirdCol{
+    width: 16%;
+}
+.review{
+    font-size: 18px;
+    margin-right:50px;
+    margin-left: 45px;
+}
+.complainButton{
+    margin-top: -15px;
+    margin-left: 30px;
+}
+.complainreplyButton{
+    margin-left: 15px;
+    margin-top: -15px;
+}
+.complIcon{
+    color: #274B69;
+}
+.reply{
+
+    margin-left: 120px;
+    margin-bottom: 60px;
+}
+@media screen and (max-width: 575px) {
+    .colFirst{
+        width:53%;
+    }
+    .colSecond{
+        width:45%;
+    }
+    .colFirstEp{
+        width:55%;
+    }
+    .colSecondEp{
+        width:43%;
+    }
+    .colThird{
+        width: 100%;
+    }
+    .replyText{
+        margin-top: 25px;
+    }
+
+    .firstCol{
+    width: 53%;
+}
+    .secondCol{
+        width: 45%;
+    }
+    .thirdCol{
+        margin-top: 10px;
+        width: 100%;
+    }
+
+    .infoProfile1{
+        width:100%;
+    }
+    .spaceBetweenInfo{
+        width:0px;
+    }
+    .infoProfile2{
+        margin-top: 10px;
+        width:100%;
+    }
+    .review{
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .buttonsUnderRev{
+        margin-left: 0;
+        margin-right: 0;
+
+    }
+    .complainButton{
+        margin-left: -40px;
+    }
+    .complainreplyButton{
+        margin-left: -50px;
+    }
+  /*  .replyText{
+        margin-top: 40px;
+        margin-left: 0;
+        margin-right: 0;
+    }*/
+    .reply{
+        margin-left: 30px;
+    }
+
+    .profileUsername{
+        margin-left: 26%;
+    }
+
+   .socialBut{
+       margin-top: 0;
+   }
+}
+
+.userRate{
+    border: 1px solid lightgray;
+    margin-left: 45px;
+    margin-right: 45px;
+}
+.buttonCancel{
+    margin-left: 75px;
+    float:left;
+    width:30%;
+    margin-right: 30px;
+}
+.buttonAgree{
+    margin-right: 50px;
+    float:left;
+    width:30%;
+    background-color: #274B69;
+}
+@media screen and (max-width: 992px) and (min-width: 740px) {
+    .userRate{
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+}
+.socialBut{
+    margin-top: 7%;
+}
+.review{
+    margin-left:6px ;
+    margin-right: 6px;
+}
+.buttonsUnderRev{
+    margin-left:6px ;
+    margin-right: 6px;
+}
+}
+@media screen and (min-width: 985px) and(max-width: 1350px) {
+
+    .socialBut{
+        margin-top: 10%;
+    }
+}
+@media screen and (max-width: 767px) and (min-width: 576px) {
+    .review{
+        margin-left: 6px;
+        margin-right: 6px;
+    }
+    .replyText{
+        margin-top: 25px;
+    }
+    .buttonsUnderRev{
+        margin-left: 6px;
+        margin-right: 6px;
+    }
+    .colFirst{
+        width:45%;
+    }
+    .colSecond{
+        width: 35%;
+    }
+    .colFirstEp{
+        width:48%;
+    }
+    .colSecondEp{
+        width: 34%;
+    }
+    .colThird{
+        width: 16%;
+    }
+
+    .mainInfoUser{
+        width: 100%;
+    }
+    /*.replyText{
+        margin-top: 40px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }*/
+    .userRate{
+        margin-left: 0;
+        margin-right: 0;
+        width: 100%;
+    }
+    .firstCol{
+        width: 47%;
+    }
+    .secondCol{
+        width:33%;
+    }
+    .thirdCol{
+        width: 18%;
+        }
+    .infoProfile1{
+        width:36%;
+    }
+    .spaceBetweenInfo{
+        width:2%;
+    }
+    .infoProfile2{
+
+        width:62%;
+    }
+    .profileUsername{
+        margin-left: 80%;
+    }
+
+    .reply{
+        margin-left: 90px;
+    }
+}
+.borderEP{
+    outline: 2px solid lightgray;
+    border: 0.1px solid #fff;
+}
+.EPInfoBackground{
+    background-color: #274B69;
+}
+.nameEpPage{
+    text-align: left;
+    font-size: 21px;
+}
+.countryEpPage{
+    margin-bottom: 20px;
+    font-size:18px;
+}
+.courseEpPage{
+    margin-bottom: 20px;
+    font-size:18px;
+}
+.uniEpPage{
+    font-size:18px;
+}
+.characteristics{
+    font-weight: bold;
+}
+.quantityRevEPPage{
+    color: rgba(27,23,22,0.7);
+}
+.makeEpPageRev{
+    background-color: #274B69;
+}
+.allEpRev{
+    font-size: 36px;
+}
+.borderReview{
+    border: 1px solid lightgray;
+}
+.avatarRevEP{
+    width:200px;
+    height:200px;
+}
+
+.facultyRevEp{
+    color: rgba(39, 75, 105, 0.3);
+}
+.subjectRateRevEp{
+    background: #274B69;
+}
+.epRateRevEp{
+    background: #274B69;
+}
+.optionsRevEp{
+    font-weight: bold;
+}
+.likesRevEp{
+    color: #274B69;
+}
+.quantityLikesEp{
+    font-weight: bold;
+}
+.replyEpAvatar{
+    width:150px;
+    height:150px;
+}
+.replyUsernameEp{
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+.replyFacultyEp{
+    color: rgba(39, 75, 105, 0.3);
+}
+.sureToComplain{
+    font-size: 16px;
+    font-weight: bold;
+}
+.subjectYearPage{
+    position: absolute;
+    top: 8px;
+    left: 16px;
+    font-size:18px;
+}
+.subjectFacultyPage{
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    font-size:18px;
+}
+.subjectTitlePage{
+    text-align: left;
+    font-size: 21px;
+    }
+
+.subjectSNP{
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
+    font-size:18px;
+    }
+.subjectCoursePage{
+    position: absolute;
+    bottom: 8px;
+    right: 16px;
+    font-size:18px;
+}
+.fontSub{
+    font-size: 17px;
+    font-weight: normal;
+    font-style: normal;
+}
+.nickRevSub{
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+.dateTime{
+    font-weight: bold;
+}

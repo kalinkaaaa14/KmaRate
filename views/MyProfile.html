@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Profile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="/MyProfile.css">
+    <link rel="stylesheet" href="/RegisteredUser.css">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<?-include('./Navbar.html')?>
+
+
+<div class="container con">
+<div id="infoUser"> </div>
+
+
+    <div class="row" id="revInfo">
+<!--        <h4 class="myReviews mb-3 mt-1 ml-5"> Мої відгуки (43)</h4>-->
+<!--<br>-->
+<!--        <div class="container">-->
+<!--            <div id="accordion">-->
+<!--                <div class="card">-->
+<!--                    <div class="card-header cardHeaderProfile">-->
+<!--                                <div class="row rowCard">-->
+<!--                                    <div class="nameRev ml-3 text-white nameReviewProfile">-->
+<!--                                      Математичне мислення-->
+<!--                                    </div>-->
+<!--                                    <div class="spaceBetwCols"></div>-->
+<!--                                    <div class="avgGrade text-right text-white nameReviewProfile">8.3</div>-->
+<!--                                    <div class="spaceBetwCols"></div>-->
+<!--                                    <div class="dropDown text-right">-->
+<!--                                        <a class="card-link text-white nameReviewProfile" data-toggle="collapse" href='#collapseOne'>-->
+<!--                                            <i class="fa fa-chevron-down" aria-hidden="true"></i></a>-->
+<!--                                    </div>-->
+<!--                                    <div class="spaceBetwCols"></div>-->
+<!--                            </div>-->
+<!--                    </div>-->
+<!--                    <div id="collapseOne" class="collapse" data-parent="#accordion">-->
+<!--                        <div class="card-body">-->
+<!--                            <div class="row">-->
+<!--                                <div class="col-md-5">-->
+<!--                                    <p class="ml-3 myRevHeader">Для розуміння курсу не потрібні початкові знання </p>-->
+<!--                                    <form class="ml-4 rateReview">-->
+<!--                                    <label>-->
+<!--                                        <input type="radio" name="needBaseKnow" value="8" />-->
+<!--                                        <span class="iconRate"><i class="fa fa-circle-o mr-1 iconSize" aria-hidden="true"></i></span>-->
+<!--                                        <span class="iconRate"><i class="fa fa-circle-o mr-1 iconSize" aria-hidden="true"></i></span>-->
+<!--                                        <span class="iconRate"><i class="fa fa-circle-o mr-1 iconSize" aria-hidden="true"></i></span>-->
+<!--                                        <span class="iconRate"><i class="fa fa-circle-o mr-1 iconSize" aria-hidden="true"></i></span>-->
+<!--                                        <span class="iconRate"><i class="fa fa-circle-o mr-1 iconSize" aria-hidden="true"></i></span>-->
+<!--                                        <span class="iconRate"><i class="fa fa-circle-o mr-1 iconSize" aria-hidden="true"></i></span>-->
+<!--                                        <span class="iconRate"><i class="fa fa-circle-o mr-1 iconSize" aria-hidden="true"></i></span>-->
+<!--                                        <span class="iconRate"><i class="fa fa-circle-o mr-1 iconSize" aria-hidden="true"></i></span>-->
+<!--                                        <span class="iconTransp"><i class="fa fa-circle-o mr-1 iconSize" aria-hidden="true"></i></span>-->
+<!--                                        <span class="iconTransp"><i class="fa fa-circle-o iconSize" aria-hidden="true"></i></span>-->
+<!--                                    </label>-->
+<!--                                    </form>-->
+
+<!--                                    <p class="ml-3 myRevHeader">Мені сподобалась техніка викладання </p>-->
+<!--                                    <form class="ml-4 rateReview">-->
+<!--                                        <label>-->
+<!--                                            <input type="radio" name="likeTechnique" value="5" />-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o" aria-hidden="true"></i></span>-->
+<!--                                        </label>-->
+<!--                                    </form>-->
+
+<!--                                    <p class="ml-3 myRevHeader">Курс був складним </p>-->
+<!--                                    <form class="ml-4 rateReview">-->
+<!--                                        <label>-->
+<!--                                            <input type="radio" name="complexityOfCourse" value="6" />-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o" aria-hidden="true"></i></span>-->
+<!--                                        </label>-->
+<!--                                    </form>-->
+
+
+<!--                                    <p class="ml-3 myRevHeader">Знання були корисні для реального життя </p>-->
+<!--                                    <form class="ml-4 rateReview">-->
+<!--                                        <label>-->
+<!--                                            <input type="radio" name="complexityOfCourse" value="6" />-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o" aria-hidden="true"></i></span>-->
+<!--                                        </label>-->
+<!--                                    </form>-->
+
+<!--                                </div>-->
+<!--                                <div class="col-md-5">-->
+<!--                                    <p class="ml-3 myRevHeader">Матеріали курсу були актуальними </p>-->
+<!--                                    <form class="ml-4 rateReview">-->
+<!--                                        <label>-->
+<!--                                            <input type="radio" name="actualMaterials" value="10" />-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o" aria-hidden="true"></i></span>-->
+<!--                                        </label>-->
+<!--                                    </form>-->
+
+<!--                                    <p class="ml-3 myRevHeader">Практика повністю відповідала теорії </p>-->
+<!--                                    <form class="ml-4 rateReview">-->
+<!--                                        <label>-->
+<!--                                            <input type="radio" name="practiceToTheory" value="2" />-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o" aria-hidden="true"></i></span>-->
+<!--                                        </label>-->
+<!--                                    </form>-->
+
+<!--                                    <p class="ml-3 myRevHeader">Критика зі сторони викладача була зрозумілою та корисною </p>-->
+<!--                                    <form class="ml-4 rateReview">-->
+<!--                                        <label>-->
+<!--                                            <input type="radio" name="critics" value="2" />-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o" aria-hidden="true"></i></span>-->
+<!--                                        </label>-->
+<!--                                    </form>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="row mt-3 mr-3 ml-3 mb-4 myRevHeader">-->
+<!--                               Курс дуже сподобався, варто йти!-->
+<!--                            </div>-->
+<!--                            <div class="row">-->
+<!--                                <div class="col-md-4"></div>-->
+<!--                                <div class="col-md-4"></div>-->
+<!--                                <div class="col-md-4">-->
+<!--                                    <button class="btn btn-block detailsReviewProfile">Інші відгуки</button>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--<br>-->
+
+<!--        <div class="container">-->
+<!--            <div id="accordion2">-->
+<!--                <div class="card">-->
+<!--                    <div class="card-header cardHeaderProfile">-->
+<!--                        <div class="row rowCard">-->
+<!--                            <div class="nameRev ml-3 text-white nameReviewProfile">-->
+<!--                                Обробка зображень-->
+<!--                            </div>-->
+<!--                            <div class="spaceBetwCols"></div>-->
+<!--                            <div class="avgGrade text-right text-white nameReviewProfile">8.3</div>-->
+<!--                            <div class="spaceBetwCols"></div>-->
+<!--                            <div class="dropDown text-right">-->
+<!--                                <a class="card-link text-white nameReviewProfile" data-toggle="collapse" href='#collapseTwo'>-->
+<!--                                    <i class="fa fa-chevron-down" aria-hidden="true"></i></a>-->
+<!--                            </div>-->
+<!--                            <div class="spaceBetwCols"></div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div id="collapseTwo" class="collapse" data-parent="#accordion2">-->
+<!--                        <div class="card-body">-->
+<!--                            <div class="row">-->
+<!--                                <div class="col-md-5">-->
+<!--                                    <p class="ml-3 myRevHeader">Для розуміння курсу не потрібні початкові знання </p>-->
+<!--                                    <form class="ml-4 rateReview">-->
+<!--                                        <label>-->
+<!--                                            <input type="radio" name="needBaseKnow" value="8" />-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o" aria-hidden="true"></i></span>-->
+<!--                                        </label>-->
+<!--                                    </form>-->
+
+<!--                                    <p class="ml-3 myRevHeader">Мені сподобалась техніка викладання </p>-->
+<!--                                    <form class="ml-4 rateReview">-->
+<!--                                        <label>-->
+<!--                                            <input type="radio" name="likeTechnique" value="5" />-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o" aria-hidden="true"></i></span>-->
+<!--                                        </label>-->
+<!--                                    </form>-->
+
+<!--                                    <p class="ml-3 myRevHeader">Курс був складним </p>-->
+<!--                                    <form class="ml-4 rateReview">-->
+<!--                                        <label>-->
+<!--                                            <input type="radio" name="complexityOfCourse" value="6" />-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o" aria-hidden="true"></i></span>-->
+<!--                                        </label>-->
+<!--                                    </form>-->
+
+<!--                                    <p class="ml-3 myRevHeader">Знання були корисні для реального життя </p>-->
+<!--                                    <form class="ml-4 rateReview">-->
+<!--                                        <label>-->
+<!--                                            <input type="radio" name="complexityOfCourse" value="6" />-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o" aria-hidden="true"></i></span>-->
+<!--                                        </label>-->
+<!--                                    </form>-->
+
+<!--                                </div>-->
+<!--                                <div class="col-md-5">-->
+<!--                                    <p class="ml-3 myRevHeader">Матеріали курсу були актуальними </p>-->
+<!--                                    <form class="ml-4 rateReview">-->
+<!--                                        <label>-->
+<!--                                            <input type="radio" name="actualMaterials" value="10" />-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o" aria-hidden="true"></i></span>-->
+<!--                                        </label>-->
+<!--                                    </form>-->
+
+<!--                                    <p class="ml-3 myRevHeader">Практика повністю відповідала теорії </p>-->
+<!--                                    <form class="ml-4 rateReview">-->
+<!--                                        <label>-->
+<!--                                            <input type="radio" name="practiceToTheory" value="2" />-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o" aria-hidden="true"></i></span>-->
+<!--                                        </label>-->
+<!--                                    </form>-->
+
+<!--                                    <p class="ml-3 myRevHeader">Критика зі сторони викладача була зрозумілою та корисною </p>-->
+<!--                                    <form class="ml-4 rateReview">-->
+<!--                                        <label>-->
+<!--                                            <input type="radio" name="critics" value="2" />-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o" aria-hidden="true"></i></span>-->
+<!--                                        </label>-->
+<!--                                    </form>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="row mt-3 mr-3 ml-3 mb-4 myRevHeader">-->
+<!--                               Хороші лекції і практики, все змістовно пояснено,10 з 10!-->
+<!--                            </div>-->
+<!--                            <div class="row">-->
+<!--                                <div class="col-md-4"></div>-->
+<!--                                <div class="col-md-4"></div>-->
+<!--                                <div class="col-md-4">-->
+<!--                                    <button class="btn btn-block detailsReviewProfile">Інші відгуки</button>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--<br>-->
+<!--        <div class="container">-->
+<!--            <div id="accordion3">-->
+<!--                <div class="card">-->
+<!--                    <div class="card-header cardHeaderProfile">-->
+<!--                        <div class="row rowCard">-->
+<!--                            <div class="nameRev ml-3 text-white nameReviewProfile">-->
+<!--                                ММОЗ-->
+<!--                            </div>-->
+<!--                            <div class="spaceBetwCols"></div>-->
+<!--                            <div class="avgGrade text-right text-white nameReviewProfile">8.3</div>-->
+<!--                            <div class="spaceBetwCols"></div>-->
+<!--                            <div class="dropDown text-right">-->
+<!--                                <a class="card-link text-white nameReviewProfile" data-toggle="collapse" href='#collapseThree'>-->
+<!--                                    <i class="fa fa-chevron-down" aria-hidden="true"></i></a>-->
+<!--                            </div>-->
+<!--                            <div class="spaceBetwCols"></div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div id="collapseThree" class="collapse" data-parent="#accordion3">-->
+<!--                        <div class="card-body">-->
+<!--                            <div class="row">-->
+<!--                                <div class="col-md-5">-->
+<!--                                    <p class="ml-3 myRevHeader">Для розуміння курсу не потрібні початкові знання </p>-->
+<!--                                    <form class="ml-4 rateReview">-->
+<!--                                        <label>-->
+<!--                                            <input type="radio" name="needBaseKnow" value="8" />-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o" aria-hidden="true"></i></span>-->
+<!--                                        </label>-->
+<!--                                    </form>-->
+
+<!--                                    <p class="ml-3 myRevHeader">Мені сподобалась техніка викладання </p>-->
+<!--                                    <form class="ml-4 rateReview">-->
+<!--                                        <label>-->
+<!--                                            <input type="radio" name="likeTechnique" value="5" />-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                        </label>-->
+<!--                                    </form>-->
+
+<!--                                    <p class="ml-3 myRevHeader">Курс був складним </p>-->
+<!--                                    <form class="ml-4 rateReview">-->
+<!--                                        <label>-->
+<!--                                            <input type="radio" name="complexityOfCourse" value="6" />-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o" aria-hidden="true"></i></span>-->
+<!--                                        </label>-->
+<!--                                    </form>-->
+
+<!--                                    <p class="ml-3 myRevHeader">Знання були корисні для реального життя </p>-->
+<!--                                    <form class="ml-4 rateReview">-->
+<!--                                        <label>-->
+<!--                                            <input type="radio" name="complexityOfCourse" value="6" />-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o" aria-hidden="true"></i></span>-->
+<!--                                        </label>-->
+<!--                                    </form>-->
+<!--                                </div>-->
+<!--                                <div class="col-md-5">-->
+<!--                                    <p class="ml-3 myRevHeader">Матеріали курсу були актуальними </p>-->
+<!--                                    <form class="ml-4 rateReview">-->
+<!--                                        <label>-->
+<!--                                            <input type="radio" name="actualMaterials" value="10" />-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o" aria-hidden="true"></i></span>-->
+<!--                                        </label>-->
+<!--                                    </form>-->
+
+<!--                                    <p class="ml-3 myRevHeader">Практика повністю відповідала теорії </p>-->
+<!--                                    <form class="ml-4 rateReview">-->
+<!--                                        <label>-->
+<!--                                            <input type="radio" name="practiceToTheory" value="2" />-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                        </label>-->
+<!--                                    </form>-->
+
+<!--                                    <p class="ml-3 myRevHeader">Критика зі сторони викладача була зрозумілою та корисною </p>-->
+<!--                                    <form class="ml-4 rateReview">-->
+<!--                                        <label>-->
+<!--                                            <input type="radio" name="critics" value="2" />-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                        </label>-->
+<!--                                    </form>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="row mt-3 mr-3 ml-3 mb-4 myRevHeader">-->
+<!--                                Тут відгук дллдтвултулоатулоатузтазуотм улатуколатулотзоаув оатулоатзоцлутаоцута лтцуатуцомтоатуцоатуцлат-->
+<!--                            </div>-->
+<!--                            <div class="row">-->
+<!--                                <div class="col-md-4"></div>-->
+<!--                                <div class="col-md-4"></div>-->
+<!--                                <div class="col-md-4">-->
+<!--                                    <button class="btn btn-block detailsReviewProfile">Інші відгуки</button>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <br>-->
+
+<!--        <div class="container">-->
+<!--            <div id="accordion4">-->
+<!--                <div class="card">-->
+<!--                    <div class="card-header cardHeaderProfile">-->
+<!--                        <div class="row rowCard">-->
+<!--                        <div class="nameRev ml-3 text-white nameReviewProfile">-->
+<!--                            Бази даних-->
+<!--                        </div>-->
+<!--                        <div class="spaceBetwCols"></div>-->
+<!--                        <div class="avgGrade text-right text-white nameReviewProfile">8.3</div>-->
+<!--                        <div class="spaceBetwCols"></div>-->
+<!--                        <div class="dropDown text-right">-->
+<!--                            <a class="card-link text-white nameReviewProfile" data-toggle="collapse" href='#collapseFour'>-->
+<!--                                <i class="fa fa-chevron-down" aria-hidden="true"></i></a>-->
+<!--                        </div>-->
+<!--                        <div class="spaceBetwCols"></div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                    <div id="collapseFour" class="collapse" data-parent="#accordion4">-->
+<!--                        <div class="card-body">-->
+<!--                            <div class="row">-->
+<!--                                <div class="col-md-5">-->
+<!--                                    <p class="ml-3 myRevHeader">Для розуміння курсу не потрібні початкові знання </p>-->
+<!--                                    <form class="ml-4 rateReview">-->
+<!--                                        <label>-->
+<!--                                            <input type="radio" name="needBaseKnow" value="8" />-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o" aria-hidden="true"></i></span>-->
+<!--                                        </label>-->
+<!--                                    </form>-->
+
+<!--                                    <p class="ml-3 myRevHeader">Мені сподобалась техніка викладання </p>-->
+<!--                                    <form class="ml-4 rateReview">-->
+<!--                                        <label>-->
+<!--                                            <input type="radio" name="likeTechnique" value="5" />-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o" aria-hidden="true"></i></span>-->
+<!--                                        </label>-->
+<!--                                    </form>-->
+
+<!--                                    <p class="ml-3 myRevHeader">Курс був складним </p>-->
+<!--                                    <form class="ml-4 rateReview">-->
+<!--                                        <label>-->
+<!--                                            <input type="radio" name="complexityOfCourse" value="6" />-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o" aria-hidden="true"></i></span>-->
+<!--                                        </label>-->
+<!--                                    </form>-->
+
+<!--                                    <p class="ml-3 myRevHeader">Знання були корисні для реального життя </p>-->
+<!--                                    <form class="ml-4 rateReview">-->
+<!--                                        <label>-->
+<!--                                            <input type="radio" name="complexityOfCourse" value="6" />-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o" aria-hidden="true"></i></span>-->
+<!--                                        </label>-->
+<!--                                    </form>-->
+
+<!--                                </div>-->
+<!--                                <div class="col-md-5">-->
+<!--                                    <p class="ml-3 myRevHeader">Матеріали курсу були актуальними </p>-->
+<!--                                    <form class="ml-4 rateReview">-->
+<!--                                        <label>-->
+<!--                                            <input type="radio" name="actualMaterials" value="10" />-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o" aria-hidden="true"></i></span>-->
+<!--                                        </label>-->
+<!--                                    </form>-->
+
+<!--                                    <p class="ml-3 myRevHeader">Практика повністю відповідала теорії </p>-->
+<!--                                    <form class="ml-4 rateReview">-->
+<!--                                        <label>-->
+<!--                                            <input type="radio" name="practiceToTheory" value="2" />-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o" aria-hidden="true"></i></span>-->
+<!--                                        </label>-->
+<!--                                    </form>-->
+
+<!--                                    <p class="ml-3 myRevHeader">Критика зі сторони викладача була зрозумілою та корисною </p>-->
+<!--                                    <form class="ml-4 rateReview">-->
+<!--                                        <label>-->
+<!--                                            <input type="radio" name="critics" value="2" />-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o" aria-hidden="true"></i></span>-->
+<!--                                        </label>-->
+<!--                                    </form>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="row mt-3 mr-3 ml-3 mb-4 myRevHeader">-->
+<!--                                Тут відгук дллдтвултулоатулоатузтазуотм улатуколатулотзоаув оатулоатзоцлутаоцута лтцуатуцомтоатуцоатуцлат-->
+<!--                            </div>-->
+<!--                            <div class="row">-->
+<!--                                <div class="col-md-4"></div>-->
+<!--                                <div class="col-md-4"></div>-->
+<!--                                <div class="col-md-4">-->
+<!--                                    <button class="btn btn-block detailsReviewProfile">Інші відгуки</button>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--<br>-->
+<!--        <div class="container">-->
+<!--            <div id="accordion5">-->
+<!--                <div class="card">-->
+<!--                    <div class="card-header cardHeaderProfile">-->
+<!--                        <div class="row rowCard">-->
+<!--                            <div class="nameRev ml-3 text-white nameReviewProfile">-->
+<!--                                Математичний аналіз-->
+<!--                            </div>-->
+<!--                            <div class="spaceBetwCols"></div>-->
+<!--                            <div class="avgGrade text-right text-white nameReviewProfile">8.3</div>-->
+<!--                            <div class="spaceBetwCols"></div>-->
+<!--                            <div class="dropDown text-right">-->
+<!--                                <a class="card-link text-white nameReviewProfile" data-toggle="collapse" href='#collapseFive'>-->
+<!--                                    <i class="fa fa-chevron-down" aria-hidden="true"></i></a>-->
+<!--                            </div>-->
+<!--                            <div class="spaceBetwCols"></div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div id="collapseFive" class="collapse" data-parent="#accordion5">-->
+<!--                        <div class="card-body">-->
+<!--                            <div class="row">-->
+<!--                                <div class="col-md-5">-->
+<!--                                    <p class="ml-3 myRevHeader">Для розуміння курсу не потрібні початкові знання </p>-->
+<!--                                    <form class="ml-4 rateReview">-->
+<!--                                        <label>-->
+<!--                                            <input type="radio" name="needBaseKnow" value="8" />-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o" aria-hidden="true"></i></span>-->
+<!--                                        </label>-->
+<!--                                    </form>-->
+
+<!--                                    <p class="ml-3 myRevHeader">Мені сподобалась техніка викладання </p>-->
+<!--                                    <form class="ml-4 rateReview">-->
+<!--                                        <label>-->
+<!--                                            <input type="radio" name="likeTechnique" value="5" />-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o" aria-hidden="true"></i></span>-->
+<!--                                        </label>-->
+<!--                                    </form>-->
+
+<!--                                    <p class="ml-3 myRevHeader">Курс був складним </p>-->
+<!--                                    <form class="ml-4 rateReview">-->
+<!--                                        <label>-->
+<!--                                            <input type="radio" name="complexityOfCourse" value="6" />-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o" aria-hidden="true"></i></span>-->
+<!--                                        </label>-->
+<!--                                    </form>-->
+
+<!--                                    <p class="ml-3 myRevHeader">Знання були корисні для реального життя </p>-->
+<!--                                    <form class="ml-4 rateReview">-->
+<!--                                        <label>-->
+<!--                                            <input type="radio" name="complexityOfCourse" value="6" />-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o" aria-hidden="true"></i></span>-->
+<!--                                        </label>-->
+<!--                                    </form>-->
+
+<!--                                </div>-->
+<!--                                <div class="col-md-5">-->
+<!--                                    <p class="ml-3 myRevHeader">Матеріали курсу були актуальними </p>-->
+<!--                                    <form class="ml-4 rateReview">-->
+<!--                                        <label>-->
+<!--                                            <input type="radio" name="actualMaterials" value="10" />-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o" aria-hidden="true"></i></span>-->
+<!--                                        </label>-->
+<!--                                    </form>-->
+
+<!--                                    <p class="ml-3 myRevHeader">Практика повністю відповідала теорії </p>-->
+<!--                                    <form class="ml-4 rateReview">-->
+<!--                                        <label>-->
+<!--                                            <input type="radio" name="practiceToTheory" value="2" />-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o" aria-hidden="true"></i></span>-->
+<!--                                        </label>-->
+<!--                                    </form>-->
+
+<!--                                    <h6 class="ml-3">Критика зі сторони викладача була зрозумілою та корисною </h6>-->
+<!--                                    <form class="ml-4 rateReview">-->
+<!--                                        <label>-->
+<!--                                            <input type="radio" name="critics" value="2" />-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o" aria-hidden="true"></i></span>-->
+<!--                                        </label>-->
+<!--                                    </form>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="row mt-3 mr-3 ml-3 mb-4 myRevHeader">-->
+<!--                                Тут відгук дллдтвултулоатулоатузтазуотм улатуколатулотзоаув оатулоатзоцлутаоцута лтцуатуцомтоатуцоатуцлат-->
+<!--                            </div>-->
+<!--                            <div class="row">-->
+<!--                                <div class="col-md-4"></div>-->
+<!--                                <div class="col-md-4"></div>-->
+<!--                                <div class="col-md-4">-->
+<!--                                    <button class="btn btn-block detailsReviewProfile">Інші відгуки</button>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--<br>-->
+<!--        <div class="container">-->
+<!--            <div id="accordion6">-->
+<!--                <div class="card">-->
+<!--                    <div class="card-header cardHeaderProfile">-->
+<!--                        <div class="row rowCard">-->
+<!--                            <div class="nameRev ml-3 text-white nameReviewProfile">-->
+<!--                                Процедурне програмування-->
+<!--                            </div>-->
+<!--                            <div class="spaceBetwCols"></div>-->
+<!--                            <div class="avgGrade text-right text-white nameReviewProfile">8.3</div>-->
+<!--                            <div class="spaceBetwCols"></div>-->
+<!--                            <div class="dropDown text-right">-->
+<!--                                <a class="card-link text-white nameReviewProfile" data-toggle="collapse" href='#collapseSixth'>-->
+<!--                                    <i class="fa fa-chevron-down" aria-hidden="true"></i></a>-->
+<!--                            </div>-->
+<!--                            <div class="spaceBetwCols"></div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div id="collapseSixth" class="collapse" data-parent="#accordion6">-->
+<!--                        <div class="card-body">-->
+<!--                            <div class="row">-->
+<!--                                <div class="col-md-5">-->
+<!--                                    <p class="ml-3 myRevHeader">Для розуміння курсу не потрібні початкові знання </p>-->
+<!--                                    <form class="ml-4 rateReview">-->
+<!--                                        <label>-->
+<!--                                            <input type="radio" name="needBaseKnow" value="8" />-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                        </label>-->
+<!--                                    </form>-->
+
+<!--                                    <p class="ml-3 myRevHeader">Мені сподобалась техніка викладання </p>-->
+<!--                                    <form class="ml-4 rateReview">-->
+<!--                                        <label>-->
+<!--                                            <input type="radio" name="likeTechnique" value="5" />-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o" aria-hidden="true"></i></span>-->
+<!--                                        </label>-->
+<!--                                    </form>-->
+
+<!--                                    <p class="ml-3 myRevHeader">Курс був складним </p>-->
+<!--                                    <form class="ml-4 rateReview">-->
+<!--                                        <label>-->
+<!--                                            <input type="radio" name="complexityOfCourse" value="6" />-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o" aria-hidden="true"></i></span>-->
+<!--                                        </label>-->
+<!--                                    </form>-->
+
+<!--                                    <p class="ml-3 myRevHeader">Знання були корисні для реального життя </p>-->
+<!--                                    <form class="ml-4 rateReview">-->
+<!--                                        <label>-->
+<!--                                            <input type="radio" name="complexityOfCourse" value="6" />-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o" aria-hidden="true"></i></span>-->
+<!--                                        </label>-->
+<!--                                    </form>-->
+<!--                                </div>-->
+<!--                                <div class="col-md-5">-->
+<!--                                    <p class="ml-3 myRevHeader">Матеріали курсу були актуальними </p>-->
+<!--                                    <form class="ml-4 rateReview">-->
+<!--                                        <label>-->
+<!--                                            <input type="radio" name="actualMaterials" value="10" />-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o" aria-hidden="true"></i></span>-->
+<!--                                        </label>-->
+<!--                                    </form>-->
+
+<!--                                    <p class="ml-3 myRevHeader">Практика повністю відповідала теорії </p>-->
+<!--                                    <form class="ml-4 rateReview">-->
+<!--                                        <label>-->
+<!--                                            <input type="radio" name="practiceToTheory" value="2" />-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o" aria-hidden="true"></i></span>-->
+<!--                                        </label>-->
+<!--                                    </form>-->
+
+<!--                                    <p class="ml-3 myRevHeader">Критика зі сторони викладача була зрозумілою та корисною </p>-->
+<!--                                    <form class="ml-4 rateReview">-->
+<!--                                        <label>-->
+<!--                                            <input type="radio" name="critics" value="2" />-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconRate"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o mr-1" aria-hidden="true"></i></span>-->
+<!--                                            <span class="iconTransp"><i class="fa fa-circle-o" aria-hidden="true"></i></span>-->
+<!--                                        </label>-->
+<!--                                    </form>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="row mt-3 mr-3 ml-3 mb-4 myRevHeader">-->
+<!--                                Тут відгук дллдтвултулоатулоатузтазуотм улатуколатулотзоаув оатулоатзоцлутаоцута лтцуатуцомтоатуцоатуцлат-->
+<!--                            </div>-->
+<!--                            <div class="row">-->
+<!--                                <div class="col-md-4"></div>-->
+<!--                                <div class="col-md-4"></div>-->
+<!--                                <div class="col-md-4">-->
+<!--                                    <button class="btn btn-block detailsReviewProfile">Інші відгуки</button>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <br>-->
+    </div>
+</div>
+
+<div class="container-fluid">
+    <footer class="pt-4 mt-5">
+
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-2 text-center">
+                <a class='text-decoration-none text-reset' href='#'>Контакти</a>
+            </div>
+            <div class="col-sm-2 text-center">
+                <a class='text-decoration-none text-reset' href='#'>FAQ</a>
+            </div>
+            <div class="col-sm-2 text-center">
+                <a class='text-decoration-none text-reset' href='#'>Правила</a>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+    </footer>
+</div>
+<script src="/MyProfile.js" charset="utf-8"></script>
+</body>
+</html>

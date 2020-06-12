@@ -1,0 +1,175 @@
+body{
+    font-family: 'Ubuntu', sans-serif;
+}
+.rating {
+    display: inline-block;
+    position: relative;
+    height: 50px;
+    line-height: 50px;
+    font-size: 45px;
+}
+
+.rating label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    cursor: pointer;
+}
+
+.rating label:last-child {
+    position: static;
+}
+
+.rating label:nth-child(1) {
+    z-index: 10;
+}
+
+.rating label:nth-child(2) {
+    z-index: 9;
+}
+
+.rating label:nth-child(3) {
+    z-index: 8;
+}
+
+.rating label:nth-child(4) {
+    z-index: 7;
+}
+
+.rating label:nth-child(5) {
+    z-index: 6;
+}
+.rating label:nth-child(6) {
+    z-index: 5;
+}
+.rating label:nth-child(7) {
+    z-index: 4;
+}
+.rating label:nth-child(8) {
+    z-index: 3;
+}
+.rating label:nth-child(9) {
+    z-index: 2;
+}
+.rating label:nth-child(10) {
+    z-index: 1;
+}
+.rating label input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
+
+.iconCircle{
+font-size: 50px;
+}
+
+.rating label .iconRate {
+    float: left;
+    color: transparent;
+}
+
+.rating label:last-child .iconRate {
+    color: lightgray;
+}
+
+.rating:not(:hover) label input:checked ~ .iconRate,
+.rating:hover label:hover input ~ .iconRate {
+    color: #274B69;
+}
+
+.rating label input:focus:not(:checked) ~ .iconRate:last-child {
+    color: lightgray;
+    text-shadow: 0 0 5px #274B69;
+}
+button:hover {
+    opacity: 0.8;
+}
+.questionsRev{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 28px;
+}
+.revHeader{
+    font-size: 36px;
+    line-height: 41px;
+    font-weight: normal;
+    font-style: normal;
+}
+
+@media screen and (max-width: 575px)  {
+.iconCircle{
+    font-size: 31px;
+}
+}
+.profileDown:active:focus,
+.profileDown:focus {
+    outline: 0!important;
+    outline-color: transparent!important;
+    outline-width: 0!important;
+    outline-style: none!important;
+    box-shadow: 0 0 0 0 rgba(0,123,255,0)!important;
+}
+
+.colOption{
+    width: 30%;
+}
+.space{
+    width:10%;
+}
+.colOption1{
+    width:20%;
+}
+.colOption2{
+    width: 20%;
+}
+.colOption3{
+    width: 20%;
+}
+.contactsPage{
+    font-size: 24px;
+    font-weight: 500;
+    font-style: normal;
+    line-height: 28px;
+}
+.contactsValue{
+    font-size: 17px;
+    font-weight: normal;
+    font-style: normal;
+    line-height: 28px;
+}
+.makeRevDiv{
+    border: 5px solid lightgray;
+    border-radius: 1%;
+}
+.difficultiesEP{
+    font-size: 20px;
+    width: 90%;
+    height: 300px;
+    resize: none;
+}
+.makeRevEp{
+    background-color: #274B69;
+}
+
+@media screen and (max-width: 767px)  {
+    .iconCircle{
+        font-size: 35px;
+    }
+    .contactsPage{
+        font-size: 20px;
+    }
+    .contactsValue{
+        font-size: 15px;
+    }
+    .space{
+        width:8%;
+    }
+}
+
+.con{
+    margin-top: 90px;
+}

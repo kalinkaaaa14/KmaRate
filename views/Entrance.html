@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Вхід</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="/Entrance.css">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+</head>
+<body>
+
+
+<?-include('./Navbar.html')?>
+<!--<nav class="navbar navbar-expand-xl" >-->
+
+
+<!--    <a class="navbar-brand kmaRateIcon"><IMG src="/images/KmaRate.png"></a>-->
+
+<!--    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"-->
+<!--            aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--        <i class="fa fa-caret-square-o-down" aria-hidden="true"></i>-->
+<!--    </button>-->
+
+<!--    <div class="collapse navbar-collapse" id="basicExampleNav">-->
+<!--        <form class="form-inline">-->
+<!--            <div class="md-form my-0">-->
+<!--                <input class="form-control mr-sm-2 mb-2 search" type="text" placeholder="Пошук.." aria-label="Search">-->
+<!--            </div>-->
+<!--        </form>-->
+
+<!--        <ul class="navbar-nav ml-auto ulRight">-->
+<!--            <li  class="nav-item mt-2">-->
+<!--                <a class="text-decoration-none text-reset mr-4 mb-2 allDis" href='/subj'>Всі дисципліни</a>-->
+<!--            </li>-->
+<!--            <li  class="nav-item mt-2">-->
+<!--                <a class="text-decoration-none text-reset mr-4 mb-2 allEP" href='/ep'>Всі програми обміну</a>-->
+<!--            </li>-->
+
+
+<!--            <li class="nav-item">-->
+<!--                <button onclick="window.location='/entr'" class="btn btn-white mr-4 mb-2 entButtonNavbar btns" type="button"><i class="fa fa-sign-in" aria-hidden="true"></i> Вхід</button>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--                <button onclick="window.location='/reg'" class="btn text-white mr-4 mb-2 regButtonNavbar btns" type="button"><i class="fa fa-user-plus" aria-hidden="true"></i> Зареєструватися</button>-->
+
+
+
+<!--        </ul>-->
+
+<!--    </div>-->
+<!--</nav>-->
+
+
+ <div class="container con">
+
+    <div class="modal-dialog modal-l modal-dialog-centered-horizontal mt-5">
+        <form id="entrance">
+            <div class="modal-content">
+
+                <div class="container">
+                    <h4 class="text-center display-4 mt-1">Вхід</h4>
+                </div>
+
+                <div class="container">
+                    <label  for="uname"><b>Логін</b></label>
+                    <input  class="form-control mb-3" type="text" name="nickname" placeholder="Твій нікнейм..." id="uname" required>
+
+                    <label  for="psw"><b>Пароль</b></label>
+                    <input  class="form-control mb-3" type="password" name="password" placeholder="Пароль..." id="psw" required>
+
+                    <div class="custom-control mb-3 custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" checked="checked" id="rememberMe" name="rem">
+                        <label class="custom-control-label" for="rememberMe">Запам'ятати мене</label>
+                    </div>
+
+                    <div class="text-center">
+                        <button class="btn mb-4 btn-lg text-white display-5 backgroundButt" type="submit">Увійти</button>
+                    </div>
+                </div>
+
+                <div class="container text-center" >
+                    <span><b> Досі не з нами?</b></span> <br>
+                    <div class="text-center mb-3">
+                        <button class="btn text-white backgroundButt" type="button" onclick="document.location='Registration.html'">Зареєструватися</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+<div class="container-fluid">
+    <footer class="pt-4 mt-5">
+
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-2 text-center">
+                <a class='text-decoration-none text-reset' href='#'>Контакти</a>
+            </div>
+            <div class="col-sm-2 text-center">
+                <a class='text-decoration-none text-reset' href='#'>FAQ</a>
+            </div>
+            <div class="col-sm-2 text-center">
+                <a class='text-decoration-none text-reset' href='#'>Правила</a>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+    </footer>
+</div>
+<script src="/Entrance.js" charset="utf-8"></script>
+</body>
+
+</html>
+
+</html>

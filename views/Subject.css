@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+body{
+    font-family: 'Ubuntu', sans-serif;
+}
+.filters{
+    width: 24%;
+}
+.allSubjPage{
+    font-size: 36px;
+    margin-top: 36px;
+}
+.searchBS{
+    background-color: #274B69;
+}
+
+.subj{
+    overflow-y: auto;
+    width: 73%;
+}
+.spaceBetween{
+    width: 2%;
+}
+.spaceBetweenButtons{
+    width: 10%;
+}
+@media screen and (max-width: 576px)  {
+
+
+
+    .filters{
+        width: 100%;
+    }
+    .subj{
+        width: 100%;
+    }
+
+}
+@media screen and (max-width: 900px) and (min-width: 577px) {
+
+    .filters {
+        width: 70%;
+        margin: 0 auto;
+    }
+.subj{
+    width: 100%;
+}
+
+}
+
+span.psw {
+    float: right;
+    padding-top: 16px;
+}
+button:hover {
+    opacity: 0.8;
+}
+
+.fontDetails{
+    font-weight: bold;
+}
+.averageMarkDetails{
+    margin-left:-5px;
+}
+.formFiltersEP{
+    outline: 1px solid lightgray;
+    border: 20px solid #fff;
+    margin-left:4%;
+}
+
+.firstPart{
+    background-color: #274B69;
+}
+.subjectYearMain{
+    position: absolute;
+    top: 8px;
+    left: 16px;
+    font-size:18px;
+}
+.epFilters{
+    border: 1px solid lightgray;
+    margin-right: 4%;
+}
+.epFiltersCourse{
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    font-size:18px;
+}
+.epFiltersCountry{
+     position: absolute;
+    top:70px;
+    left: 16px;
+    font-size:18px;
+}
+.epFiltersUni{
+    position: absolute;
+    top:100px;
+    left: 16px;
+    font-size:18px;
+}
+.quantityEPreview{
+    color: rgba(27,23,22,0.7);
+}
+.showAllEPReviews{
+    background-color: #274B69;
+    margin-bottom: 5px;
+}
+.showAllEPReviews:hover{
+    opacity:0.8;
+}
+.makeEpRev{
+    background-color: #274B69;
+    margin-bottom: 3px;
+}
+.subjectRevSNP{
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
+    font-size:18px;
+}
+.subjectRevCourse{
+    position: absolute;
+    bottom: 8px;
+    right: 16px;
+    font-size:18px;
+}
