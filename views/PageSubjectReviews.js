@@ -174,8 +174,22 @@ $(document).ready(function () {
         let counter = 0;
         let counterReply=0;
         let res = "";
+        let makeReply="";
         while (counter < data.reviews.length) {
             let date = new Date(data.reviews[counter].date_rev);
+
+            makeReply="<div class='container-fluid rounded mb-5 borderReview'>" +
+                "<div class='row'>" +
+                "<textarea name='replyText' class='ml-1 mr-1 mt-2 mb-2 makeReplyText'></textarea>"+
+                "</div>"+
+                "<div class='row'>" +
+                "<div class='ml-auto'>" +
+                "<button onclick='cancelMakeReply("+data.reviews[counter].review_id+");' class='btn-lg mr-4 text-white btn-danger mb-2'>Скасувати</button>"+
+                "<button class='btn-lg mr-4 text-white makeEpPageRev mb-2'>Надіслати</button>"+
+                "</div>"+
+                "</div>"+
+                "</div>";
+
             res +=
                 "<div class='container-fluid rounded mb-5 borderReview'>" +
                 "<div class='row'>" +
