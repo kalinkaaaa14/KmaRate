@@ -151,6 +151,7 @@ router.post(links.RATE + links.REVIEWS + '/:reviewId', checkAuthenticated, funct
 router.post(links.REVIEWS + links.REPLY,  checkAuthenticated, function (req, res, next) {
     (async () => {
         try {
+            //req.body.user_id = req.user.id
             // await db.addReply({});
             res.json(req.body);
         }catch (e) {

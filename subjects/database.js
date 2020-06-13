@@ -176,7 +176,7 @@ async function getReviewReplies(reviewId) {
     users.id AS user_id
     
     FROM review_reply INNER JOIN users ON (review_reply.user_id = users.id)
-    WHERE parent_s_id = $1 
+    WHERE subject_review_id = $1 
     `, [reviewId]);
     return res.rows;
 }
@@ -244,7 +244,7 @@ async function addUserLikeSubjectReview(userId, reviewId, isLike){
     `, [userId, reviewId, isLike]);
 }
 
-async function addReply({time_rev, date_rev, general_impression,subject_review_id, reply_id, ep_review_id, user_id}){
+async function addReply({time_rev, date_rev, general_impression, subject_review_id, reply_id, ep_review_id, user_id}){
     let res = await pool.query(`
     INSERT INTO review_reply (time_rev, date_rev,general_impression, subject_review_id, reply_id, ep_review_id, user_id) 
     VALUES ($1, $2, $3, $4, $5, $6, $7)
