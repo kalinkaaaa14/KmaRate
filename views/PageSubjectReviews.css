@@ -29,6 +29,10 @@ body{
 .replyText{
    /*padding: 3em 0;*/
    margin-top: 60px;
+    word-break: break-all;
+}
+.genImpr{
+    word-break: break-all;
 }
 .epPageReviews{
 

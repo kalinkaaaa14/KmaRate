@@ -317,7 +317,7 @@ $(document).ready(function () {
                 "</div>" +
                 "</div>" +
                 "<div class='row mt-4 review'>" +
-                "<p>" + data.reviews[counter].general_impression + "</p>" +
+                "<p class='genImpr'>" + data.reviews[counter].general_impression + "</p>" +
                 "</div>" +
                 "<div class='row ml-5 mr-5'>" +
                 "<p>" +
@@ -398,8 +398,9 @@ $(document).ready(function () {
                     "</div>";
 
                 counterReply++;
-                res+= "<a href='#' data-toggle='collapse' data-target='#otherSComments'>Ще "+(data.reviews[counter].replies.length-1)+" коментар(-iв)</a>";
-
+                if((data.reviews[counter].replies.length-1)!= 0) {
+                    res += "<a href='#' data-toggle='collapse' data-target='#otherSComments'>Ще " + (data.reviews[counter].replies.length - 1) + " коментар(-iв)</a>";
+                }
                 while(counterReply<data.reviews[counter].replies.length){
                     makeReplyReply="<div class='container-fluid rounded mb-5 borderReview'>" +
                         "<div class='row'>" +
@@ -462,7 +463,7 @@ $(document).ready(function () {
                 }
                 res+="</div>";
             }
-
+            counterReply=0;
             counter++;
         }
        /* res += "<div class='reply'>" +
