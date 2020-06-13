@@ -1,19 +1,22 @@
+let getInfoFunction;
+
 function makeReply(id) {
-    document.getElementById("makeReplyDiv"+id).style.display = "block";
-    document.getElementById("buttonReplyHide"+id).style.display = "none";
+    document.getElementById("makeReplyDiv" + id).style.display = "block";
+    document.getElementById("buttonReplyHide" + id).style.display = "none";
 }
+
 function cancelMakeReply(id) {
-    document.getElementById("makeReplyDiv"+id).style.display="none";
-    document.getElementById("buttonReplyHide"+id).style.display = "block";
+    document.getElementById("makeReplyDiv" + id).style.display = "none";
+    document.getElementById("buttonReplyHide" + id).style.display = "block";
 }
 
 function sendMakeReply(id) {
-var now = new Date();
+    var now = new Date();
     var sendReply = {
         subject_review_id: id,
-        general_impression: document.getElementsByName('replyText'+id)[0].value,
-        date_rev: now.getDate()+"."+(now.getMonth()+1)+"."+now.getFullYear(),
-        time_rev:now.getHours()+":"+now.getMinutes()
+        general_impression: document.getElementsByName('replyText' + id)[0].value,
+        date_rev: now.getDate() + "." + (now.getMonth() + 1) + "." + now.getFullYear(),
+        time_rev: now.getHours() + ":" + now.getMinutes()
     };
     console.log(sendReply);
 
@@ -22,8 +25,17 @@ var now = new Date();
         type: 'POST',
         data: sendReply,
         success: function (data, textStatus, xhr) {
-            console.log(data);
-            alert("Вашу відповідь опубліковано");
+            if (data.err && data.message) {
+                alert(data.message);
+
+            } else if (data.message) {
+                alert(data.message);
+                // window.location = window.location;
+                getInfoFunction();
+
+            } else {
+                window.location = '/entr';
+            }
         },
         error: function (xhr, textStatus, errorThrown) {
             console.log('Error in Operation');
@@ -36,9 +48,9 @@ function sendMakeReplyReply(id) {
     var now = new Date();
     var sendReply = {
         reply_id: id,
-        general_impression: document.getElementsByName('replyTextR'+id)[0].value,
-        date_rev: now.getDate()+"."+(now.getMonth()+1)+"."+now.getFullYear(),
-        time_rev:now.getHours()+":"+now.getMinutes()
+        general_impression: document.getElementsByName('replyTextR' + id)[0].value,
+        date_rev: now.getDate() + "." + (now.getMonth() + 1) + "." + now.getFullYear(),
+        time_rev: now.getHours() + ":" + now.getMinutes()
     };
     console.log(sendReply);
 
@@ -47,8 +59,17 @@ function sendMakeReplyReply(id) {
         type: 'POST',
         data: sendReply,
         success: function (data, textStatus, xhr) {
-            console.log(data);
-            alert("Вашу відповідь опубліковано");
+            if (data.err && data.message) {
+                alert(data.message);
+
+            } else if (data.message) {
+                alert(data.message);
+                // window.location = window.location;
+                getInfoFunction();
+
+            } else {
+                window.location = '/entr';
+            }
         },
         error: function (xhr, textStatus, errorThrown) {
             console.log('Error in Operation');
@@ -57,25 +78,27 @@ function sendMakeReplyReply(id) {
 }
 
 function makeReplyReply(id) {
-    document.getElementById("makeReplyReplyDiv"+id).style.display = "block";
-    document.getElementById("buttonReplyReplyHide"+id).style.display = "none";
+    document.getElementById("makeReplyReplyDiv" + id).style.display = "block";
+    document.getElementById("buttonReplyReplyHide" + id).style.display = "none";
 }
+
 function cancelMakeReplyReply(id) {
-    document.getElementById("makeReplyReplyDiv"+id).style.display="none";
-    document.getElementById("buttonReplyReplyHide"+id).style.display = "block";
+    document.getElementById("makeReplyReplyDiv" + id).style.display = "none";
+    document.getElementById("buttonReplyReplyHide" + id).style.display = "block";
 }
+
 function likeReview(review_id, reviewerId, isLike) {
     $.ajax({
-        url:  "/subj/rate/reviews/"+review_id,
+        url: "/subj/rate/reviews/" + review_id,
         type: 'POST',
-        data:  {like: isLike, user_id: reviewerId},
+        data: {like: isLike, user_id: reviewerId},
         success: function (data, textStatus, xhr) {
-            if(typeof data.rate !== 'undefined'){
+            if (typeof data.rate !== 'undefined') {
                 console.log(data);
                 document.getElementById('UserRate' + review_id).innerHTML = data.subject_rate;
                 document.getElementById('ReviewRate' + review_id).innerHTML = data.rate;
 
-            }else {
+            } else {
                 // console.log(data);
                 document.write(data);
             }
@@ -133,6 +156,7 @@ $(document).ready(function () {
     }*/
 
     getInfo();
+    getInfoFunction = getInfo;
 
     function getInfo() {
         let urlPartsArr = window.location.href.split('/');
@@ -144,8 +168,8 @@ $(document).ready(function () {
             success: function (data, textStatus, xhr) {
                 console.log(data);
                 formatData(data);
-               // $('#agree').click(likeReview);
-              //  $('#disagree').click(dislikeReview);
+                // $('#agree').click(likeReview);
+                //  $('#disagree').click(dislikeReview);
             },
             error: function (xhr, textStatus, errorThrown) {
                 console.log('Error in Operation');
@@ -160,7 +184,7 @@ $(document).ready(function () {
             data.subject.faculty = data.subject.faculty.toUpperCase();
         }
         // data.subjects[counter].course=data.subjects[counter].course+;
-        data.subject.semester = " "+data.subject.semester[0].toUpperCase() + data.subject.semester.slice(1);
+        data.subject.semester = " " + data.subject.semester[0].toUpperCase() + data.subject.semester.slice(1);
         data.subject.title = data.subject.title[0].toUpperCase() + data.subject.title.slice(1);
         data.subject.last_name = data.subject.last_name[0].toUpperCase() + data.subject.last_name.slice(1);
         data.subject.first_name = data.subject.first_name[0].toUpperCase() + ".";
@@ -170,12 +194,13 @@ $(document).ready(function () {
         $('#allReviews').html(showReviews(data));
 
     }
+
     function showSubjInfo(data) {
         let res = "";
         res = "<div class='container-fluid mt-5 borderEP'>" +
             "<div class='row'>" +
             "<div class='col-sm-4 EPInfoBackground'>" +
-            "<span class='text-white subjectYearPage'><small>" + data.subject.year +  data.subject.semester+"</small></span>" +
+            "<span class='text-white subjectYearPage'><small>" + data.subject.year + data.subject.semester + "</small></span>" +
             "<br>" +
             "<span class='text-white subjectFacultyPage'><small>" + data.subject.faculty + "</small></span>" +
             "<br>" +
@@ -238,23 +263,23 @@ $(document).ready(function () {
 //додати час і дату відгукам
     function showReviews(data) {
         let counter = 0;
-        let counterReply=0;
+        let counterReply = 0;
         let res = "";
-        let makeReply="";
-        let makeReplyReply="";
+        let makeReply = "";
+        let makeReplyReply = "";
         while (counter < data.reviews.length) {
             let date = new Date(data.reviews[counter].date_rev);
 
-            makeReply="<div class='container-fluid rounded mb-5 borderReview'>" +
+            makeReply = "<div class='container-fluid rounded mb-5 borderReview'>" +
                 "<div class='row'>" +
-                "<textarea name='replyText"+data.reviews[counter].review_id+"' class='ml-1 mr-1 mt-2 mb-2 makeReplyText'></textarea>"+
-                "</div>"+
+                "<textarea name='replyText" + data.reviews[counter].review_id + "' class='ml-1 mr-1 mt-2 mb-2 makeReplyText'></textarea>" +
+                "</div>" +
                 "<div class='row'>" +
                 "<div class='ml-auto'>" +
-                "<button onclick='cancelMakeReply("+data.reviews[counter].review_id+");' class='btn-lg mr-4 text-white btn-danger mb-2'>Скасувати</button>"+
-                "<button onclick='sendMakeReply("+data.reviews[counter].review_id+");' class='btn-lg mr-4 text-white makeEpPageRev mb-2'>Надіслати</button>"+
-                "</div>"+
-                "</div>"+
+                "<button onclick='cancelMakeReply(" + data.reviews[counter].review_id + ");' class='btn-lg mr-4 text-white btn-danger mb-2'>Скасувати</button>" +
+                "<button onclick='sendMakeReply(" + data.reviews[counter].review_id + ");' class='btn-lg mr-4 text-white makeEpPageRev mb-2'>Надіслати</button>" +
+                "</div>" +
+                "</div>" +
                 "</div>";
 
             res +=
@@ -263,9 +288,9 @@ $(document).ready(function () {
                 "<div class='col-md-4'>" +
                 "<div class='text-center mainInfoUser'>" +
                 "<br>" +
-                "<a href='/profile/"+data.reviews[counter].nickname+"'><img  class='rounded-circle mt-3 avatarRevEP' src='/images/defUser.png'></a>" +
+                "<a href='/profile/" + data.reviews[counter].nickname + "'><img  class='rounded-circle mt-3 avatarRevEP' src='/images/defUser.png'></a>" +
                 "<br>" +
-                "<a href='/profile/"+data.reviews[counter].nickname+"' class='characteristics text-decoration-none' name='userName'>" + data.reviews[counter].nickname + "</a>" +
+                "<a href='/profile/" + data.reviews[counter].nickname + "' class='characteristics text-decoration-none' name='userName'>" + data.reviews[counter].nickname + "</a>" +
                 "<br>" +
                 "</div>" +
                 "<div class='row userRate text-center'>" +
@@ -273,7 +298,7 @@ $(document).ready(function () {
                 "<img class='subjPageReviews' src='/images/subject.png'>" +
                 "</div>" +
                 "<div class='col-sm-6 text-center'>" +
-                "<span id='UserRate" + data.reviews[counter].review_id +"'>" + data.reviews[counter].subject_rate + "</span>" +
+                "<span id='UserRate" + data.reviews[counter].review_id + "'>" + data.reviews[counter].subject_rate + "</span>" +
                 "</div>" +
                 "</div>" +
                 "</div>" +
@@ -323,45 +348,45 @@ $(document).ready(function () {
                 "<p>" +
                 "<div class='mr-3'>" +
                 "<i class='fa fa-thumbs-o-up likesRevEp' aria-hidden='true'></i>" +
-                "<span id='ReviewRate" + data.reviews[counter].review_id +"' class='quantityLikesEp' name='likesReview'>" + data.reviews[counter].rate + "</span>" +
+                "<span id='ReviewRate" + data.reviews[counter].review_id + "' class='quantityLikesEp' name='likesReview'>" + data.reviews[counter].rate + "</span>" +
                 "</div>" +
                 // <button  class='btn btn-lg rounded-circle socialBut' type='button'><i class='fa fa-instagram' aria-hidden='true'></i> </button>
-                "<button class='btn btn-lg text-decoration-none mr-2' onclick='likeReview("+data.reviews[counter].review_id+","+data.reviews[counter].user_id+",true)'>Підтримую</button>" +
-                "<button class='btn btn-lg text-decoration-none mr-2' onclick='likeReview("+data.reviews[counter].review_id+","+data.reviews[counter].user_id+",false)' >Не погоджуюсь</button>" +
-                "<div id='buttonReplyHide"+data.reviews[counter].review_id+"'>"+
-                "<button onclick='makeReply("+data.reviews[counter].review_id+");' class='btn btn-lg text-decoration-none mr-2'>Відповісти</button>"+
-                "</div>"+
+                "<button class='btn btn-lg text-decoration-none mr-2' onclick='likeReview(" + data.reviews[counter].review_id + "," + data.reviews[counter].user_id + ",true)'>Підтримую</button>" +
+                "<button class='btn btn-lg text-decoration-none mr-2' onclick='likeReview(" + data.reviews[counter].review_id + "," + data.reviews[counter].user_id + ",false)' >Не погоджуюсь</button>" +
+                "<div id='buttonReplyHide" + data.reviews[counter].review_id + "'>" +
+                "<button onclick='makeReply(" + data.reviews[counter].review_id + ");' class='btn btn-lg text-decoration-none mr-2'>Відповісти</button>" +
+                "</div>" +
                 "<div class='ml-auto'> " +
-                date.getDate() + '.'+ (date.getMonth() + 1)+'.' + date.getFullYear() + "  " + data.reviews[counter].time_rev.substr(0, 5) +
+                date.getDate() + '.' + (date.getMonth() + 1) + '.' + date.getFullYear() + "  " + data.reviews[counter].time_rev.substr(0, 5) +
                 "</div>" +
 
                 "</p>" +
                 "</div>" +
-                "<div id='makeReplyDiv"+data.reviews[counter].review_id+"' style='display: none'>"+makeReply+ "</div>"+
+                "<div id='makeReplyDiv" + data.reviews[counter].review_id + "' style='display: none'>" + makeReply + "</div>" +
                 "</div>";
 
-            if(counterReply<data.reviews[counter].replies.length){
-                makeReplyReply="<div class='container-fluid rounded mb-5 borderReview'>" +
+            if (counterReply < data.reviews[counter].replies.length) {
+                makeReplyReply = "<div class='container-fluid rounded mb-5 borderReview'>" +
                     "<div class='row'>" +
-                    "<textarea name='replyTextR"+data.reviews[counter].replies[counterReply].id+"' class='ml-1 mr-1 mt-2 mb-2 makeReplyText'></textarea>"+
-                    "</div>"+
+                    "<textarea name='replyTextR" + data.reviews[counter].replies[counterReply].id + "' class='ml-1 mr-1 mt-2 mb-2 makeReplyText'></textarea>" +
+                    "</div>" +
                     "<div class='row'>" +
                     "<div class='ml-auto'>" +
-                    "<button onclick='cancelMakeReplyReply("+data.reviews[counter].replies[counterReply].id+");' class='btn-lg mr-4 text-white btn-danger mb-2'>Скасувати</button>"+
-                    "<button onclick='sendMakeReplyReply("+data.reviews[counter].replies[counterReply].id+");' class='btn-lg mr-4 text-white makeEpPageRev mb-2'>Надіслати</button>"+
-                    "</div>"+
-                    "</div>"+
+                    "<button onclick='cancelMakeReplyReply(" + data.reviews[counter].replies[counterReply].id + ");' class='btn-lg mr-4 text-white btn-danger mb-2'>Скасувати</button>" +
+                    "<button onclick='sendMakeReplyReply(" + data.reviews[counter].replies[counterReply].id + ");' class='btn-lg mr-4 text-white makeEpPageRev mb-2'>Надіслати</button>" +
+                    "</div>" +
+                    "</div>" +
                     "</div>";
                 let dateReply = new Date(data.reviews[counter].replies[counterReply].date_rev);
-                res+= "<div class='reply'>" +
+                res += "<div class='reply'>" +
                     "<div class='container-fluid rounded mb-5 borderReview'>" +
                     "<div class='row'>" +
                     "<div class='col-md-4'>" +
                     "<div class='text-center mainInfoUser'>" +
                     "<br>" +
-                    "<a href='/profile/"+data.reviews[counter].replies[counterReply].nickname+"'><img   class='rounded-circle mt-3 replyEpAvatar' src='/images/defUser.png'></a>" +
+                    "<a href='/profile/" + data.reviews[counter].replies[counterReply].nickname + "'><img   class='rounded-circle mt-3 replyEpAvatar' src='/images/defUser.png'></a>" +
                     "<br>" +
-                    "<a href='/profile/"+data.reviews[counter].replies[counterReply].nickname+"' class='characteristics text-decoration-none' name='replyUserName'>" + data.reviews[counter].replies[counterReply].nickname + "</a>" +
+                    "<a href='/profile/" + data.reviews[counter].replies[counterReply].nickname + "' class='characteristics text-decoration-none' name='replyUserName'>" + data.reviews[counter].replies[counterReply].nickname + "</a>" +
                     "<br>" +
                     "</div>" +
                     "<div class='row userRate'>" +
@@ -369,7 +394,7 @@ $(document).ready(function () {
                     "<img class='replySubjPageReviews' src='/images/subject.png'>" +
                     "</div>" +
                     "<div class='col-sm-6 text-center'>" +
-                    "<span>"+data.reviews[counter].replies[counterReply].subject_rate+"</span>" +
+                    "<span>" + data.reviews[counter].replies[counterReply].subject_rate + "</span>" +
                     "</div>" +
                     "</div>" +
                     "</div>" +
@@ -383,47 +408,47 @@ $(document).ready(function () {
                     "<p>" +
                     "<div class='mr-3'>" +
                     "<i class='fa fa-thumbs-o-up likesRevEp' aria-hidden='true'></i>" +
-                    "<span class='quantityLikesEp' name='likesReview'> "+ data.reviews[counter].replies[counterReply].rate  + "</span>" +
+                    "<span class='quantityLikesEp' name='likesReview'> " + data.reviews[counter].replies[counterReply].rate + "</span>" +
                     "</div>" +
-                    "<button class='btn btn-lg text-decoration-none mr-2' onclick='likeReview("+data.reviews[counter].review_id+","+data.reviews[counter].user_id+",true)'>Підтримую</button>" +
-                    "<button id = 'disagree' onclick='likeReview("+data.reviews[counter].review_id+","+data.reviews[counter].user_id+",false)' class='btn btn-lg text-decoration-none mr-2' >Не погоджуюсь</button>" +
-                    "<div id='buttonReplyReplyHide"+data.reviews[counter].replies[counterReply].id+"'>"+
-                    "<button onclick='makeReplyReply("+data.reviews[counter].replies[counterReply].id+");' class='btn btn-lg text-decoration-none mr-2'>Відповісти</button>"+
-                    "</div>"+
-                    "<div class='ml-auto mr-5'>" + dateReply.getDate() + '.'+ (dateReply.getMonth() + 1)+'.' + dateReply.getFullYear() + "  " + data.reviews[counter].replies[counterReply].time_rev.substr(0, 5) +
+                    "<button class='btn btn-lg text-decoration-none mr-2' onclick='likeReview(" + data.reviews[counter].review_id + "," + data.reviews[counter].user_id + ",true)'>Підтримую</button>" +
+                    "<button id = 'disagree' onclick='likeReview(" + data.reviews[counter].review_id + "," + data.reviews[counter].user_id + ",false)' class='btn btn-lg text-decoration-none mr-2' >Не погоджуюсь</button>" +
+                    "<div id='buttonReplyReplyHide" + data.reviews[counter].replies[counterReply].id + "'>" +
+                    "<button onclick='makeReplyReply(" + data.reviews[counter].replies[counterReply].id + ");' class='btn btn-lg text-decoration-none mr-2'>Відповісти</button>" +
+                    "</div>" +
+                    "<div class='ml-auto mr-5'>" + dateReply.getDate() + '.' + (dateReply.getMonth() + 1) + '.' + dateReply.getFullYear() + "  " + data.reviews[counter].replies[counterReply].time_rev.substr(0, 5) +
                     "</div>" +
                     "</p>" +
                     "</div>" +
-                    "<div id='makeReplyReplyDiv"+data.reviews[counter].replies[counterReply].id+"' style='display: none'>"+makeReplyReply+ "</div>"+
+                    "<div id='makeReplyReplyDiv" + data.reviews[counter].replies[counterReply].id + "' style='display: none'>" + makeReplyReply + "</div>" +
                     "</div>";
 
                 counterReply++;
-                if((data.reviews[counter].replies.length-1)!= 0) {
+                if ((data.reviews[counter].replies.length - 1) != 0) {
                     res += "<a href='#' data-toggle='collapse' data-target='#otherSComments'>Ще " + (data.reviews[counter].replies.length - 1) + " коментар(-iв)</a>";
                 }
-                while(counterReply<data.reviews[counter].replies.length){
-                    makeReplyReply="<div class='container-fluid rounded mb-5 borderReview'>" +
+                while (counterReply < data.reviews[counter].replies.length) {
+                    makeReplyReply = "<div class='container-fluid rounded mb-5 borderReview'>" +
                         "<div class='row'>" +
-                        "<textarea name='replyTextR"+data.reviews[counter].replies[counterReply].id+"' class='ml-1 mr-1 mt-2 mb-2 makeReplyText'></textarea>"+
-                        "</div>"+
+                        "<textarea name='replyTextR" + data.reviews[counter].replies[counterReply].id + "' class='ml-1 mr-1 mt-2 mb-2 makeReplyText'></textarea>" +
+                        "</div>" +
                         "<div class='row'>" +
                         "<div class='ml-auto'>" +
-                        "<button onclick='cancelMakeReplyReply("+data.reviews[counter].replies[counterReply].id+");' class='btn-lg mr-4 text-white btn-danger mb-2'>Скасувати</button>"+
-                        "<button onclick='sendMakeReplyReply("+data.reviews[counter].replies[counterReply].id+");' class='btn-lg mr-4 text-white makeEpPageRev mb-2'>Надіслати</button>"+
-                        "</div>"+
-                        "</div>"+
+                        "<button onclick='cancelMakeReplyReply(" + data.reviews[counter].replies[counterReply].id + ");' class='btn-lg mr-4 text-white btn-danger mb-2'>Скасувати</button>" +
+                        "<button onclick='sendMakeReplyReply(" + data.reviews[counter].replies[counterReply].id + ");' class='btn-lg mr-4 text-white makeEpPageRev mb-2'>Надіслати</button>" +
+                        "</div>" +
+                        "</div>" +
                         "</div>";
 
                     let dateReply1 = new Date(data.reviews[counter].replies[counterReply].date_rev);
-                    res+= "<div id='otherSComments' class='mt-3 collapse'>" +
+                    res += "<div id='otherSComments' class='mt-3 collapse'>" +
                         "<div class='container-fluid rounded mb-5 borderReview'>" +
                         "<div class='row'>" +
                         "<div class='col-md-4'>" +
                         "<div class='text-center mainInfoUser'>" +
                         "<br>" +
-                        "<a href='/profile/"+data.reviews[counter].replies[counterReply].nickname+"'><img   class='rounded-circle mt-3 replyEpAvatar' src='/images/defUser.png'></a>" +
+                        "<a href='/profile/" + data.reviews[counter].replies[counterReply].nickname + "'><img   class='rounded-circle mt-3 replyEpAvatar' src='/images/defUser.png'></a>" +
                         "<br>" +
-                        "<a href='/profile/"+data.reviews[counter].replies[counterReply].nickname+"' class='characteristics text-decoration-none' name='replyUserName'>" + data.reviews[counter].replies[counterReply].nickname + "</a>" +
+                        "<a href='/profile/" + data.reviews[counter].replies[counterReply].nickname + "' class='characteristics text-decoration-none' name='replyUserName'>" + data.reviews[counter].replies[counterReply].nickname + "</a>" +
                         "<br>" +
                         "</div>" +
                         "<div class='row userRate'>" +
@@ -431,13 +456,13 @@ $(document).ready(function () {
                         "<img class='replySubjPageReviews' src='/images/subject.png'>" +
                         "</div>" +
                         "<div class='col-sm-6 text-center'>" +
-                        "<span> " +data.reviews[counter].replies[counterReply].subject_rate+"  </span>" +
+                        "<span> " + data.reviews[counter].replies[counterReply].subject_rate + "  </span>" +
                         "</div>" +
                         "</div>" +
                         "</div>" +
                         "<div class='col-md-8 my-auto'>" +
                         "<div class='replyText my-auto review'>" +
-                        "<p class='replyText'>"+ data.reviews[counter].replies[counterReply].general_impression +"</p>" +
+                        "<p class='replyText'>" + data.reviews[counter].replies[counterReply].general_impression + "</p>" +
                         "</div>" +
                         "</div>" +
                         "</div>" +
@@ -445,108 +470,108 @@ $(document).ready(function () {
                         "<p>" +
                         "<div class='mr-3'>" +
                         "<i class='fa fa-thumbs-o-up likesRevEp' aria-hidden='true' ></i>" +
-                        "<span class='quantityLikesEp' name='likesReview'> "+ data.reviews[counter].replies[counterReply].rate + "</span>" +
+                        "<span class='quantityLikesEp' name='likesReview'> " + data.reviews[counter].replies[counterReply].rate + "</span>" +
                         "</div>" +
-                        "<button class='btn btn-lg text-decoration-none mr-2' onclick='likeReview("+data.reviews[counter].review_id+","+data.reviews[counter].user_id+",true)'>Підтримую</button>" +
-                        "<button id = 'disagree' onclick='likeReview("+data.reviews[counter].review_id+","+data.reviews[counter].user_id+",false)' class='btn btn-lg text-decoration-none mr-2' >Не погоджуюсь</button>" +
-                        "<div id='buttonReplyReplyHide"+data.reviews[counter].replies[counterReply].id+"'>"+
-                        "<button onclick='makeReplyReply("+data.reviews[counter].replies[counterReply].id+");' class='btn btn-lg text-decoration-none mr-2'>Відповісти</button>"+
-                        "</div>"+
-                        "<div class='ml-auto mr-5'>" + dateReply1.getDate() + '.'+ (dateReply1.getMonth() + 1)+'.' + dateReply1.getFullYear() + "  " + data.reviews[counter].replies[counterReply].time_rev.substr(0, 5) +
+                        "<button class='btn btn-lg text-decoration-none mr-2' onclick='likeReview(" + data.reviews[counter].review_id + "," + data.reviews[counter].user_id + ",true)'>Підтримую</button>" +
+                        "<button id = 'disagree' onclick='likeReview(" + data.reviews[counter].review_id + "," + data.reviews[counter].user_id + ",false)' class='btn btn-lg text-decoration-none mr-2' >Не погоджуюсь</button>" +
+                        "<div id='buttonReplyReplyHide" + data.reviews[counter].replies[counterReply].id + "'>" +
+                        "<button onclick='makeReplyReply(" + data.reviews[counter].replies[counterReply].id + ");' class='btn btn-lg text-decoration-none mr-2'>Відповісти</button>" +
+                        "</div>" +
+                        "<div class='ml-auto mr-5'>" + dateReply1.getDate() + '.' + (dateReply1.getMonth() + 1) + '.' + dateReply1.getFullYear() + "  " + data.reviews[counter].replies[counterReply].time_rev.substr(0, 5) +
                         "</div>" +
                         "</p>" +
                         "</div>" +
-                        "<div id='makeReplyReplyDiv"+data.reviews[counter].replies[counterReply].id+"' style='display: none'>"+makeReplyReply+ "</div>"+
+                        "<div id='makeReplyReplyDiv" + data.reviews[counter].replies[counterReply].id + "' style='display: none'>" + makeReplyReply + "</div>" +
                         "</div>" +
                         "</div>";
                     counterReply++;
                 }
-                res+="</div>";
+                res += "</div>";
             }
-            counterReply=0;
+            counterReply = 0;
             counter++;
         }
-       /* res += "<div class='reply'>" +
-            "<div class='container-fluid rounded mb-5 borderReview'>" +
-            "<div class='row'>" +
-            "<div class='col-md-4'>" +
-            "<div class='text-center mainInfoUser'>" +
-            "<br>" +
-            "<img class='rounded-circle mt-3 replyEpAvatar' src='/images/defUser.png'>" +
-            "<br>" +
-            "<output class='replyUsernameEp' name='replyUserName'>" + yellowstone123 + "</output>" +
-            "<br>" +
-            "</div>" +
-            "<div class='row userRate'>" +
-            "<div class='col-sm-6 text-center subjectRateRevEp'>" +
-            "<img class='replySubjPageReviews' src='/images/subject.png'>" +
-            "</div>" +
-            "<div class='col-sm-6 text-center'>" +
-            "<span> 4  </span>" +
-            "</div>" +
-            "</div>" +
-            "</div>" +
-            "<div class='col-md-8 my-auto'>" +
-            "<div class='replyText my-auto review'>" +
-            "<p class='replyText'> + КурсДужеСподобався + </p>" +
-            "</div>" +
-            "</div>" +
-            "</div>" +
-            "<div class='row mt-3 ml-5'>" +
-            "<p>" +
-            "<a class='text-decoration-none mr-4' href='#'>Відповісти</a>" +
-            "<div class='mr-3'>" +
-            "<i class='fa fa-thumbs-o-up likesRevEp' aria-hidden='true'></i>" +
-            "<span class='quantityLikesEp' name='likesReview'> + 2 + </span>" +
-            "</div>" +
-            "<a class='text-decoration-none mr-2' href='#'>Підтримую</a>" +
-            "<a class='text-decoration-none mr-5' href='#'>Не погоджуюсь</a>" +
-            "<button data-toggle='modal' data-target='#complain' class='complainreplyButton btn' type='button'><i class='fa fa-exclamation-circle complIcon' aria-hidden='true'></i></button>" +
-            "</p>" +
-            "</div>" +
-            "</div>" +
-            "<a href='#' data-toggle='collapse' data-target='#otherSComments'>Ще  1  коментар</a>" +
-            "<div id='otherSComments' class='mt-3 collapse'>" +
-            "<div class='container-fluid rounded mb-5 borderReview'>" +
-            "<div class='row'>" +
-            "<div class='col-md-4'>" +
-            "<div class='text-center mainInfoUser'>" +
-            "<br>" +
-            "<img class='rounded-circle mt-3 replyEpAvatar' src='/images/defUser.png'>" +
-            "<br>" +
-            "<output class='replyUsernameEp' name='replyUserName'> + yellowstone123 + </output>" +
-            "<br>" +
-            "</div>" +
-            "<div class='row userRate'>" +
-            "<div class='col-sm-6 text-center subjectRateRevEp'>" +
-            "<img class='replySubjPageReviews' src='/images/subject.png'>" +
-            "</div>" +
-            "<div class='col-sm-6 text-center'>" +
-            "<span>  4  </span>" +
-            "</div>" +
-            "</div>" +
-            "</div>" +
-            "<div class='col-md-8 my-auto'>" +
-            "<div class='replyText my-auto review'>" +
-            "<p class='replyText'> + КурсДужеСподобався + </p>" +
-            "</div>" +
-            "</div>" +
-            "</div>" +
-            "<div class='row mt-3 ml-5'>" +
-            "<p>" +
-            "<a class='text-decoration-none mr-4' href='#'>Відповісти</a>" +
-            "<div class='mr-3'>" +
-            "<i class='fa fa-thumbs-o-up likesRevEp' aria-hidden='true' ></i>" +
-            "<span class='quantityLikesEp' name='likesReview'> + 2 + </span>" +
-            "</div>" +
-            "<a class='text-decoration-none mr-2' href='#'>Підтримую</a>" +
-            "<a class='text-decoration-none mr-5' href='#'>Не погоджуюсь</a>" +
-            "<button data-toggle='modal' data-target='#complain' class='complainreplyButton btn' type='button'><i class='fa fa-exclamation-circle complIcon' aria-hidden='true'></i></button>" +
-            "</p>" +
-            "</div>" +
-            "</div>" +
-            "</div>" +
-            "</div>";*/
+        /* res += "<div class='reply'>" +
+             "<div class='container-fluid rounded mb-5 borderReview'>" +
+             "<div class='row'>" +
+             "<div class='col-md-4'>" +
+             "<div class='text-center mainInfoUser'>" +
+             "<br>" +
+             "<img class='rounded-circle mt-3 replyEpAvatar' src='/images/defUser.png'>" +
+             "<br>" +
+             "<output class='replyUsernameEp' name='replyUserName'>" + yellowstone123 + "</output>" +
+             "<br>" +
+             "</div>" +
+             "<div class='row userRate'>" +
+             "<div class='col-sm-6 text-center subjectRateRevEp'>" +
+             "<img class='replySubjPageReviews' src='/images/subject.png'>" +
+             "</div>" +
+             "<div class='col-sm-6 text-center'>" +
+             "<span> 4  </span>" +
+             "</div>" +
+             "</div>" +
+             "</div>" +
+             "<div class='col-md-8 my-auto'>" +
+             "<div class='replyText my-auto review'>" +
+             "<p class='replyText'> + КурсДужеСподобався + </p>" +
+             "</div>" +
+             "</div>" +
+             "</div>" +
+             "<div class='row mt-3 ml-5'>" +
+             "<p>" +
+             "<a class='text-decoration-none mr-4' href='#'>Відповісти</a>" +
+             "<div class='mr-3'>" +
+             "<i class='fa fa-thumbs-o-up likesRevEp' aria-hidden='true'></i>" +
+             "<span class='quantityLikesEp' name='likesReview'> + 2 + </span>" +
+             "</div>" +
+             "<a class='text-decoration-none mr-2' href='#'>Підтримую</a>" +
+             "<a class='text-decoration-none mr-5' href='#'>Не погоджуюсь</a>" +
+             "<button data-toggle='modal' data-target='#complain' class='complainreplyButton btn' type='button'><i class='fa fa-exclamation-circle complIcon' aria-hidden='true'></i></button>" +
+             "</p>" +
+             "</div>" +
+             "</div>" +
+             "<a href='#' data-toggle='collapse' data-target='#otherSComments'>Ще  1  коментар</a>" +
+             "<div id='otherSComments' class='mt-3 collapse'>" +
+             "<div class='container-fluid rounded mb-5 borderReview'>" +
+             "<div class='row'>" +
+             "<div class='col-md-4'>" +
+             "<div class='text-center mainInfoUser'>" +
+             "<br>" +
+             "<img class='rounded-circle mt-3 replyEpAvatar' src='/images/defUser.png'>" +
+             "<br>" +
+             "<output class='replyUsernameEp' name='replyUserName'> + yellowstone123 + </output>" +
+             "<br>" +
+             "</div>" +
+             "<div class='row userRate'>" +
+             "<div class='col-sm-6 text-center subjectRateRevEp'>" +
+             "<img class='replySubjPageReviews' src='/images/subject.png'>" +
+             "</div>" +
+             "<div class='col-sm-6 text-center'>" +
+             "<span>  4  </span>" +
+             "</div>" +
+             "</div>" +
+             "</div>" +
+             "<div class='col-md-8 my-auto'>" +
+             "<div class='replyText my-auto review'>" +
+             "<p class='replyText'> + КурсДужеСподобався + </p>" +
+             "</div>" +
+             "</div>" +
+             "</div>" +
+             "<div class='row mt-3 ml-5'>" +
+             "<p>" +
+             "<a class='text-decoration-none mr-4' href='#'>Відповісти</a>" +
+             "<div class='mr-3'>" +
+             "<i class='fa fa-thumbs-o-up likesRevEp' aria-hidden='true' ></i>" +
+             "<span class='quantityLikesEp' name='likesReview'> + 2 + </span>" +
+             "</div>" +
+             "<a class='text-decoration-none mr-2' href='#'>Підтримую</a>" +
+             "<a class='text-decoration-none mr-5' href='#'>Не погоджуюсь</a>" +
+             "<button data-toggle='modal' data-target='#complain' class='complainreplyButton btn' type='button'><i class='fa fa-exclamation-circle complIcon' aria-hidden='true'></i></button>" +
+             "</p>" +
+             "</div>" +
+             "</div>" +
+             "</div>" +
+             "</div>";*/
 
         return res;
     }

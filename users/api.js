@@ -19,14 +19,23 @@ router.post(links.REGISTRATION, checkNotAuthenticated, function (req, res, next)
             //todo check email(send email and wait for confirm)
             //todo check password length <= 30;
 
-            let regexp = /[^a-zа-я0-9_#@!+\-'"`єї]/i;
+            let regexp = /[^a-zа-я0-9_#@!+\-'"`єїі]/i;
 
             if (regexp.test(req.body.nickname)) {
                 return res.json({message: 'Недопустимий символ в логіні'});
             }
 
-            if(req.body.nickname.length > 30){
-                return res.json({message: 'Логін не повинен первищувати 30 символів'});
+            if(req.body.nickname.length > 50){
+                return res.json({message: 'Логін не повинен первищувати 50 символів'});
+            }
+
+            if (req.body.email.length > 50){
+                return res.json({message: 'Емейл не повинен первищувати 50 символів'});
+            }
+
+
+            if(req.body.password.length > 50){
+                return res.json({message: 'Пароль не повинен первищувати 50 символів'});
             }
 
 
@@ -247,13 +256,28 @@ router.post(links.SETTINGS + links.DATA /*+ '/:nickname'*/, checkAuthenticated, 
         profileUpdates.facebook = 'https://www.facebook.com/' + profileUpdates.facebook;
     }
 
+    let regexp = /[^a-zа-я0-9_#@!+\-'"`єїі]/i;
+
+    if (regexp.test(profileUpdates.nickname)) {
+        return res.json({message: 'Недопустимий символ в логіні'});
+    }
+
+    if(profileUpdates.nickname.length > 50){
+        return res.json({message: 'Логін не повинен первищувати 50 символів'});
+    }
+
+    if (profileUpdates.email.length > 50){
+        return res.json({message: 'Емейл не повинен первищувати 50 символів'});
+    }
+
+
     db.updateProfile(profileUpdates)
         .then(function (result) {
             return res.json({message: 'Зміни збережені'});
         })
         .catch(function (e) {
             //todo handle errors
-            res.json({message: 'Помилка'});
+            res.json({message: 'Невідома помилка'});
             return next(e);
         });
 
@@ -279,6 +303,20 @@ router.post(links.SETTINGS + links.PASSWORD /*+ '/:nickname'*/, checkAuthenticat
     (async () => {
         try {
             let passwords = req.body;
+
+            let regexp = /[^a-zа-я0-9_#@!+\-'"`єїі]/i;
+            if(passwords.newPassword.length > 50){
+                return res.json({message: 'Пароль не повинен первищувати 50 символів'});
+            }
+
+            if (regexp.test(passwords.newPassword)) {
+                return res.json({message: 'Недопустимий символ в паролі'});
+            }
+
+            if (passwords.newPassword.length < 6) {
+                return res.json({message: 'Пароль має містити не менше 6-ти символів'});
+            }
+
 
             if (await bcrypt.compare(passwords.oldPassword, req.user.password)) {
                 //todo check result of promise

@@ -65,7 +65,7 @@ router.get(links.REGISTRATION, checkNotAuthenticated, function (req, res, next) 
 //login
 router.get(links.ENTRANCE, checkNotAuthenticated, function (req, res) {
     console.log('entr');
-    res.render('Entrance.html');
+    return res.render('Entrance.html');
 });
 
 

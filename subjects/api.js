@@ -151,11 +151,14 @@ router.post(links.RATE + links.REVIEWS + '/:reviewId', checkAuthenticated, funct
 router.post(links.REVIEWS + links.REPLY,  checkAuthenticated, function (req, res, next) {
     (async () => {
         try {
-            //req.body.user_id = req.user.id
-            // await db.addReply({});
-            res.json(req.body);
+            if(req.body.general_impression.length > 1000){
+                return res.json({message: "Занадто велика відповідь", err: "err"});
+            }
+            req.body.user_id = req.user.id;
+            await db.addReply(req.body);
+            return res.json({message: "Вашу відповідь опубліковано"});
         }catch (e) {
-            next(e);
+            return next(e);
         }
     })();
 });
