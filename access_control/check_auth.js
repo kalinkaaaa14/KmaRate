@@ -1,6 +1,7 @@
 'use strict'
 
 const links = require('../links');
+const {getAdmin} = require('./database');
 
 function checkAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
@@ -21,10 +22,24 @@ function checkNotAuthenticated(req, res, next) {
         return res.redirect(links.MAIN);
         // return hackerHandle(req, res);
     }
-    next();
+    return next();
 }
 
-function hackerHandle(req, res){
+function checkAdmin(req, res, next) {
+    // if(typeof req.user)
+    getAdmin(req.user.id).then(function (adminId) {
+        if (typeof adminId === 'number') {
+            return next();
+        } else {
+            return res.send(`<p style="text-align: center; font-size:xx-large">(-_-)</p>
+              <p style="text-align: center; font-size:xx-large">Well, I wrote down your IP.</p>`);
+        }
+    }).catch(function (e) {
+        return next(e);
+    });
+}
+
+function hackerHandle(req, res) {
     console.log('===============================');
     console.log('===============================');
     console.log('hack');
@@ -35,4 +50,4 @@ function hackerHandle(req, res){
               <p style="text-align: center; font-size:xx-large">Well, I wrote down your IP.</p>`);
 }
 
-module.exports = {checkAuthenticated, checkNotAuthenticated};
+module.exports = {checkAuthenticated, checkNotAuthenticated, checkAdmin};

@@ -26,19 +26,19 @@ router.get('/', function (req, res, next) {
 
 
 //subjects
-router.get(links.SUBJECTS, function (req, res) {
+router.get(links.SUBJ, function (req, res) {
     res.render('Subject.html');
 });
 
 
 //concrete subject
-router.get(links.SUBJECTS + '/:id', function (req, res) {
+router.get(links.SUBJ + '/:id', function (req, res) {
     res.render('PageSubjectReviews.html');
 });
 
 
 //subjects create review
-router.get(links.SUBJECTS + '/:id' + links.CREATE_REVIEW, checkAuthenticated, function (req, res) {
+router.get(links.SUBJ + '/:id' + links.CREATE_REVIEW, checkAuthenticated, function (req, res) {
     res.render('RevSubject.html');
 });
 

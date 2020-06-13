@@ -73,7 +73,7 @@ app.use(function (req, res, next) {
 
 
 //routes
-app.use(links.SUBJECTS, require('./subjects/api'));
+app.use(links.SUBJ, require('./subjects/api'));
 app.use(links.MAIN, require('./users/api'));
 //attention! order matters (/subj/:id)
 app.use(links.MAIN, require('./web_server/api'));

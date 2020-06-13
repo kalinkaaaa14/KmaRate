@@ -57,7 +57,7 @@ router.get(links.FILTERED_SUBJECTS, function (req, res, next) {
             }
 
             // console.log(filteredSubjects);
-            // console.log(filteredSubjects[0].teachers);
+            console.log(filteredSubjects[0].teachers);
 
             return res.json({subjects: filteredSubjects});
         } catch (e) {
@@ -101,13 +101,13 @@ router.get('/:id' + links.DATA, function (req, res, next) {
     (async () => {
         try {
             let subject = (await db.getSubjects({id: req.params.id}))[0];
+            subject.teachers = await db.getSubjectTeachers(subj.id);
 
             await addAVGRateToSubject(subject);
 
             let reviews = await db.getSubjectReviews(req.params.id);
             for (let rev of reviews) {
                 rev.rate = await db.getSubjectReviewRate(rev.review_id);
-                // rev.reviewsAmount = await db.getAmountUserSubjectReviews(rev.user_id);
                 rev.subject_rate = await db.getSubjectReviewsUserRate(rev.user_id);
                 rev.average_grade = ((rev.edu_technique
                     + rev.nowadays_knowledge + rev.using_knowledge) / 3).toFixed(1);
@@ -117,7 +117,6 @@ router.get('/:id' + links.DATA, function (req, res, next) {
                 for (let repl of rev.replies) {
                     repl.rate = await db.getReplyRate(repl.id);
                     repl.subject_rate = await db.getSubjectReviewsUserRate(repl.user_id);
-                    // repl.reviewsAmount = await db.getAmountUserSubjectReviews(repl.user_id);
                 }
             }
 

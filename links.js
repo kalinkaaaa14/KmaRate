@@ -3,7 +3,7 @@ module.exports = {
     MAIN: '/',
     REGISTRATION: '/reg',
     EP: '/ep',
-    SUBJECTS: '/subj',
+    SUBJ: '/subj',
     ENTRANCE: '/entr',
     LOGOUT: '/logout',
     SETTINGS: '/settings',
@@ -15,7 +15,10 @@ module.exports = {
     PASSWORD: '/password',
     RATE: '/rate',
     REPLY: '/reply',
-    TEACHERS: '/teachers'
+    TEACHERS: '/teachers',
+    ADMIN: '/admin',
+    NEW: '/new',
+    SUBJECT: '/subject',
 
     // revSubj: '/revSubj',
 };

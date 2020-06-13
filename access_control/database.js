@@ -5,7 +5,7 @@ const pool = require('../db_connection');
 async function getUserByNickname(nickname) {
     try {
         let {rows} = await pool.query(`SELECT id, nickname, password
-                                       FROM Users
+                                       FROM users
                                        WHERE nickname = $1`, [nickname]);
         // console.log(rows);
         // console.log('authenticateUser');
@@ -18,7 +18,7 @@ async function getUserByNickname(nickname) {
 async function getUserById(id) {
     try {
         let {rows} = await pool.query(`SELECT */*id, nickname*/
-                                     FROM Users
+                                     FROM users
                                      WHERE id = $1`, [id]);
         // console.log('deserializeUser');
         // console.log(rows);
@@ -28,7 +28,15 @@ async function getUserById(id) {
     }
 }
 
+async function getAdmin(id) {
+    let res = await pool.query(`SELECT user_id
+                                     FROM admins
+                                     WHERE user_id = $1`, [id]);
+    return res.rows[0];
+}
+
 module.exports = {
     getUserByNickname,
     getUserById,
+    getAdmin,
 }

@@ -6,7 +6,7 @@ const passport = require('../access_control/passport-config');
 const bcrypt = require('bcrypt');
 
 const links = require('../links');
-const {checkNotAuthenticated, checkAuthenticated} = require('../access_control/check_auth');
+const {checkNotAuthenticated, checkAuthenticated, checkAdmin} = require('../access_control/check_auth');
 
 
 router.post(links.REGISTRATION, checkNotAuthenticated, function (req, res, next) {
@@ -25,8 +25,8 @@ router.post(links.REGISTRATION, checkNotAuthenticated, function (req, res, next)
                 return res.json({message: 'Недопустимий символ в логіні'});
             }
 
-            if(req.body.nickname.length > 50){
-                return res.json({message: 'Логін не повинен первищувати 50 символів'});
+            if(req.body.nickname.length > 30){
+                return res.json({message: 'Логін не повинен первищувати 30 символів'});
             }
 
             if (req.body.email.length > 50){
@@ -34,8 +34,8 @@ router.post(links.REGISTRATION, checkNotAuthenticated, function (req, res, next)
             }
 
 
-            if(req.body.password.length > 50){
-                return res.json({message: 'Пароль не повинен первищувати 50 символів'});
+            if(req.body.password.length > 30){
+                return res.json({message: 'Пароль не повинен первищувати 30 символів'});
             }
 
 
@@ -262,8 +262,8 @@ router.post(links.SETTINGS + links.DATA /*+ '/:nickname'*/, checkAuthenticated, 
         return res.json({message: 'Недопустимий символ в логіні'});
     }
 
-    if(profileUpdates.nickname.length > 50){
-        return res.json({message: 'Логін не повинен первищувати 50 символів'});
+    if(profileUpdates.nickname.length > 30){
+        return res.json({message: 'Логін не повинен первищувати 30 символів'});
     }
 
     if (profileUpdates.email.length > 50){
@@ -305,8 +305,8 @@ router.post(links.SETTINGS + links.PASSWORD /*+ '/:nickname'*/, checkAuthenticat
             let passwords = req.body;
 
             let regexp = /[^a-zа-я0-9_#@!+\-'"`єїі]/i;
-            if(passwords.newPassword.length > 50){
-                return res.json({message: 'Пароль не повинен первищувати 50 символів'});
+            if(passwords.newPassword.length > 30){
+                return res.json({message: 'Пароль не повинен первищувати 30 символів'});
             }
 
             if (regexp.test(passwords.newPassword)) {
@@ -330,5 +330,11 @@ router.post(links.SETTINGS + links.PASSWORD /*+ '/:nickname'*/, checkAuthenticat
         }
     })();
 });
+
+
+router.post(links.ADMIN + links.NEW + links.SUBJECT, checkAuthenticated, checkAdmin, function (req, res, next) {
+
+});
+
 
 module.exports = router;
