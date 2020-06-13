@@ -11,7 +11,7 @@ function sendMakeReply(id) {
 var now = new Date();
     var sendReply = {
         subject_review_id: id,
-        general_impression: document.getElementsByName('replyText')[0].value,
+        general_impression: document.getElementsByName('replyText'+id)[0].value,
         date_rev: now.getDate()+"."+(now.getMonth()+1)+"."+now.getFullYear(),
         time_rev:now.getHours()+":"+now.getMinutes()
     };
@@ -36,7 +36,7 @@ function sendMakeReplyReply(id) {
     var now = new Date();
     var sendReply = {
         reply_id: id,
-        general_impression: document.getElementsByName('replyTextR')[0].value,
+        general_impression: document.getElementsByName('replyTextR'+id)[0].value,
         date_rev: now.getDate()+"."+(now.getMonth()+1)+"."+now.getFullYear(),
         time_rev:now.getHours()+":"+now.getMinutes()
     };
@@ -55,29 +55,7 @@ function sendMakeReplyReply(id) {
         }
     });
 }
-function sendMakeReplyReply2(id) {
-    var now = new Date();
-    var sendReply = {
-        reply_id: id,
-        general_impression: document.getElementsByName('replyTextR2')[0].value,
-        date_rev: now.getDate()+"."+(now.getMonth()+1)+"."+now.getFullYear(),
-        time_rev:now.getHours()+":"+now.getMinutes()
-    };
-    console.log(sendReply);
 
-    $.ajax({
-        url: '/subj/reviews/reply',
-        type: 'POST',
-        data: sendReply,
-        success: function (data, textStatus, xhr) {
-            console.log(data);
-            alert("Вашу відповідь опубліковано");
-        },
-        error: function (xhr, textStatus, errorThrown) {
-            console.log('Error in Operation');
-        }
-    });
-}
 function makeReplyReply(id) {
     document.getElementById("makeReplyReplyDiv"+id).style.display = "block";
     document.getElementById("buttonReplyReplyHide"+id).style.display = "none";
@@ -269,7 +247,7 @@ $(document).ready(function () {
 
             makeReply="<div class='container-fluid rounded mb-5 borderReview'>" +
                 "<div class='row'>" +
-                "<textarea name='replyText' class='ml-1 mr-1 mt-2 mb-2 makeReplyText'></textarea>"+
+                "<textarea name='replyText"+data.reviews[counter].review_id+"' class='ml-1 mr-1 mt-2 mb-2 makeReplyText'></textarea>"+
                 "</div>"+
                 "<div class='row'>" +
                 "<div class='ml-auto'>" +
@@ -278,8 +256,6 @@ $(document).ready(function () {
                 "</div>"+
                 "</div>"+
                 "</div>";
-
-
 
             res +=
                 "<div class='container-fluid rounded mb-5 borderReview'>" +
@@ -367,7 +343,7 @@ $(document).ready(function () {
             if(counterReply<data.reviews[counter].replies.length){
                 makeReplyReply="<div class='container-fluid rounded mb-5 borderReview'>" +
                     "<div class='row'>" +
-                    "<textarea name='replyTextR' class='ml-1 mr-1 mt-2 mb-2 makeReplyText'></textarea>"+
+                    "<textarea name='replyTextR"+data.reviews[counter].replies[counterReply].id+"' class='ml-1 mr-1 mt-2 mb-2 makeReplyText'></textarea>"+
                     "</div>"+
                     "<div class='row'>" +
                     "<div class='ml-auto'>" +
@@ -426,12 +402,12 @@ $(document).ready(function () {
                 while(counterReply<data.reviews[counter].replies.length){
                     makeReplyReply="<div class='container-fluid rounded mb-5 borderReview'>" +
                         "<div class='row'>" +
-                        "<textarea name='replyTextR2' class='ml-1 mr-1 mt-2 mb-2 makeReplyText'></textarea>"+
+                        "<textarea name='replyTextR"+data.reviews[counter].replies[counterReply].id+"' class='ml-1 mr-1 mt-2 mb-2 makeReplyText'></textarea>"+
                         "</div>"+
                         "<div class='row'>" +
                         "<div class='ml-auto'>" +
                         "<button onclick='cancelMakeReplyReply("+data.reviews[counter].replies[counterReply].id+");' class='btn-lg mr-4 text-white btn-danger mb-2'>Скасувати</button>"+
-                        "<button onclick='sendMakeReplyReply2("+data.reviews[counter].replies[counterReply].id+");' class='btn-lg mr-4 text-white makeEpPageRev mb-2'>Надіслати</button>"+
+                        "<button onclick='sendMakeReplyReply("+data.reviews[counter].replies[counterReply].id+");' class='btn-lg mr-4 text-white makeEpPageRev mb-2'>Надіслати</button>"+
                         "</div>"+
                         "</div>"+
                         "</div>";
