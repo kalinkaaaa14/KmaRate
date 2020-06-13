@@ -101,7 +101,7 @@ router.get('/:id' + links.DATA, function (req, res, next) {
     (async () => {
         try {
             let subject = (await db.getSubjects({id: req.params.id}))[0];
-            subject.teachers = await db.getSubjectTeachers(subj.id);
+            subject.teachers = await db.getSubjectTeachers(subject.id);
 
             await addAVGRateToSubject(subject);
 
