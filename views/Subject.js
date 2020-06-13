@@ -1,3 +1,12 @@
+function addTeacher(i){
+    document.getElementById("addTeacher"+i).style.display = "block";
+    document.getElementById("buttonAdd"+i).style.display = "none";
+}
+function cancelTeacher(i){
+    document.getElementById("addTeacher"+i).style.display = "none";
+    document.getElementById("buttonAdd"+i).style.display = "block";
+}
+
 $(document).ready(function () {
     let today = new Date().getMonth();
     // alert(today);//4
@@ -8,6 +17,7 @@ $(document).ready(function () {
     }
 
     getInfo();
+    allTeachers();
 
     $('#searchSButton').click(getInfo);
 
@@ -27,7 +37,7 @@ $(document).ready(function () {
             type: 'GET',
             data: subj,
             success: function (data, textStatus, xhr) {
-                //console.log(data);
+                console.log(data);
                 formatData(data);
             },
 
@@ -37,9 +47,43 @@ $(document).ready(function () {
         });
     }
 
+    function allTeachers() {
+
+        $.ajax({
+            url: '/subj/teachers',
+            type: 'GET',
+            success: function (data, textStatus, xhr) {
+         //       console.log(data);
+               formatTeachers(data);
+            },
+
+            error: function (xhr, textStatus, errorThrown) {
+                console.log('Error in Operation');
+            }
+        });
+    }
+    let teachers="";
+    function formatTeachers(data) {
+        for(s=0; s<data.length;s++){
+            data[s].first_name= data[s].first_name[0].toUpperCase()+ data[s].first_name.slice(1);
+            data[s].last_name= data[s].last_name[0].toUpperCase()+ data[s].last_name.slice(1);
+            data[s].patronymic= data[s].patronymic[0].toUpperCase()+ data[s].patronymic.slice(1);
+        }
+
+        let dataL = 0;
+
+        teachers+="<select name='chooseTeacher' id='chooseTeacher' class='custom-select' required>";
+        while(dataL<data.length){
+            teachers+=  "<option>"+data[dataL].last_name+" "+data[dataL].first_name+" "+ data[dataL].patronymic+"</option>";
+            dataL++;
+        }
+        teachers+="</select>";
+    }
 
     function formatData(data) {
+
         let counter = 0;
+        let teach="";
         let i = data.subjects.length;
         while (counter < i) {
             if (data.subjects[counter].faculty.length > 2 && data.subjects[counter].faculty[1] === 'п') {
@@ -48,6 +92,8 @@ $(document).ready(function () {
             } else {
                 data.subjects[counter].faculty = data.subjects[counter].faculty.toUpperCase();
             }
+
+
             data.subjects[counter].semester = " "+data.subjects[counter].semester[0].toUpperCase() + data.subjects[counter].semester.slice(1);
             data.subjects[counter].title = data.subjects[counter].title[0].toUpperCase() + data.subjects[counter].title.slice(1);
             data.subjects[counter].last_name = data.subjects[counter].last_name[0].toUpperCase() + data.subjects[counter].last_name.slice(1);
@@ -66,12 +112,171 @@ $(document).ready(function () {
         let reviews="";
         let editSubject="";
         let addSubject="";
+        let editSubjectDiv="";
+        let addSubjectDiv="";
+        let isAdmin=true;
+        var i=0;
+
         //let isAdmin=false;
-        if (data.isAdmin == true){
-            editSubject="<button class='btn text-white makeEpRev'>Редагувати</button>";
-            addSubject="<button class='btn btn-block text-white makeEpRev mb-3'>Додати дисципліну</button>";
+        if (isAdmin == true){
+            editSubject="<button data-toggle='collapse' data-target='#editSubject' class='btn text-white makeEpRev'>Редагувати</button>";
+            addSubject="<button data-toggle='collapse' data-target='#addSubject' class='btn btn-block text-white makeEpRev mb-3'>Додати дисципліну</button>";
+            addSubjectDiv="<div id='addSubject' class='collapse'>" +
+                "<div class='row'>" +
+                "<div class='col-sm-3'></div>"+
+                "<div class='col-sm-7'>" +
+                "<div class='form-inline mb-2'>"+
+                "<label class='ml-5 mr-5' for='titleCreate'>Назва</label>"+
+                "<input type='text' name='titleCreate' class='form-control ml-5' id='titleCreate'>"+
+                "</div>"+
+                "<div class='form-inline mb-2'>"+
+                "<label class='ml-5 mr-5' for='courseCreate'>Курс </label>"+
+                "<select id='courseCreate'  name='courseCreate' class='custom-select courseAdd'>"+
+                "<option value='bp1'>БП-1</option>"+
+                "<option value='bp2'>БП-2</option>"+
+                "<option value='bp3'>БП-3</option>"+
+                "<option value='bp4'>БП-4</option>"+
+                "<option value='mp1'>МП-1</option>"+
+                "<option value='mp2'>МП-2</option>"+
+                "</select>"+
+               // "<input type='number' name='courseCreate' class='form-control courseAdd' id='courseCreate'>"+
+                "</div>"+
+                "<div class='form-inline mb-2'>"+
+                "<label class='ml-5 mr-5' for='facultyCreate'>Факультет</label>"+
+                "<select id='facultyCreate' name='facultyCreate' class='custom-select facultyAdd'>"+
+                "<option value='fi'>ФІ</option>"+
+                "<option value='fen'>ФЕН</option>"+
+                "<option value='fgn'>ФГН</option>"+
+                "<option value='fprn'>ФПрН</option>"+
+                "<option value='fpvn'>ФПвН</option>"+
+                "<option value='fsnst'>ФСНСТ</option>"+
+                "</select>"+
+              //  "<input type='text' name='facultyCreate' class='form-control facultyAdd' id='facultyCreate'>"+
+                "</div>"+
+                "<div class='form-inline mb-2'>"+
+                "<label class='ml-5 mr-4' for='yearCreate'>Рік викладання</label>"+
+                "<input type='number' name='yearCreate' class='form-control ' id='yearCreate'>"+
+                "</div>"+
+                "<div class='form-inline mb-2'>"+
+                "<label class='ml-5 mr-5' for='semesterCreate'>Семестр</label>"+
+                "<select id='semesterCreate'  name='semesterCreate' class='custom-select semesterAdd'>"+
+                "<option value='autumn'>Осінь</option>"+
+                "<option value='spring'>Весна</option>"+
+                "<option value='summer'>Літо</option>"+
+                "</select>"+
+                //"<input type='text' name='semesterCreate' class='form-control semesterAdd' id='semesterCreate'>"+
+                "</div>"+
+                "</div>"+
+                "</div>"+
+                "<div class='row'>"+
+                "<div class='col-sm-3'></div>"+
+                "<div class='col-sm-6'>" +
+                "<div class='text-center'>"+
+                "<div id='buttonAdd0'>"+
+                "<button onclick='addTeacher("+0+")' class='btn makeEpRev text-white  mt-3 ml-4 mb-2'>Додати викладача</button>"+
+                "</div>"+
+                "</div>"+
+                "</div>"+
+                "<div class='col-sm-3'></div>"+
+                "</div>"+
+                "<div id='addTeacher0' style='display: none'>"+
+                "<div class='row'>"+
+                "<div class='col-sm-3'></div>"+
+                "<div class='col-sm-6'>" +
+                  teachers+
+                "<div class='text-center'>"+
+                "<div id='buttonAdd1'>"+
+                "<button onclick='cancelTeacher("+0+")' class='btn bg-danger text-white mt-3 mb-2 mr-1'>Скасувати</button>"+
+                "<button onclick='addTeacher("+1+")' class='btn makeEpRev text-white  mt-3 ml-4 mb-2'>Додати викладача</button>"+
+                "<button onclick='' class='btn bg-dark text-white  mt-3 ml-4 mb-2'>Підтвердити</button>"+
+                "</div>"+
+                "</div>"+
+                "</div>"+
+                "<div class='col-sm-3'></div>"+
+                "</div>"+
+                "<div id='addTeacher1' style='display: none'>"+
+                "<div class='row'>"+
+                "<div class='col-sm-3'></div>"+
+                "<div class='col-sm-6'>" +
+                teachers+
+                "<div class='text-center'>"+
+                "<div id='buttonAdd2'>"+
+                "<button onclick='cancelTeacher("+1+")' class='btn bg-danger text-white mt-3 mb-2 mr-1'>Скасувати</button>"+
+                "<button onclick='addTeacher("+2+")' class='btn makeEpRev text-white  mt-3 ml-4 mb-2'>Додати викладача</button>"+
+                "<button onclick='' class='btn  bg-dark text-white  mt-3 ml-4 mb-2'>Підтвердити</button>"+
+                "</div>"+
+                "</div>"+
+                "</div>"+
+                "<div class='col-sm-3'></div>"+
+                "</div>"+
+                "<div id='addTeacher2' style='display: none'>"+
+                "<div class='row'>"+
+                "<div class='col-sm-3'></div>"+
+                "<div class='col-sm-6'>" +
+                teachers+
+                "<div class='text-center'>"+
+                "<div id='buttonAdd3'>"+
+                "<button onclick='cancelTeacher("+2+")' class='btn bg-danger text-white mt-3 mb-2 mr-3'>Скасувати</button>"+
+                "<button onclick='addTeacher("+3+")' class='btn makeEpRev text-white  mt-3 ml-4 mb-2'>Додати викладача</button>"+
+                "<button onclick='' class='btn  bg-dark text-white  mt-3 ml-4 mb-2'>Підтвердити</button>"+
+                "</div>"+
+                "</div>"+
+                "</div>"+
+                "<div class='col-sm-3'></div>"+
+                "</div>"+
+                "<div id='addTeacher3' style='display: none'>"+
+                "<div class='row'>"+
+                "<div class='col-sm-3'></div>"+
+                "<div class='col-sm-6'>" +
+                teachers+
+                "<div class='text-center'>"+
+                "<div id='buttonAdd4'>"+
+                "<button onclick='cancelTeacher("+3+")' class='btn bg-danger text-white mt-3 mb-2 mr-1'>Скасувати</button>"+
+                "<button onclick='addTeacher("+4+")' class='btn makeEpRev text-white  mt-3 ml-4 mb-2'>Додати викладача</button>"+
+                "<button onclick='' class='btn  bg-dark text-white  mt-3 ml-4 mb-2'>Підтвердити</button>"+
+                "</div>"+
+                "</div>"+
+                "</div>"+
+                "<div class='col-sm-3'></div>"+
+                "</div>"+
+                "<div id='addTeacher4' style='display: none'>"+
+                "<div class='row'>"+
+                "<div class='col-sm-3'></div>"+
+                "<div class='col-sm-6'>" +
+                teachers+
+                "<div class='text-center'>"+
+                "<div id='buttonAdd5'>"+
+                "<button onclick='cancelTeacher("+4+")' class='btn bg-danger text-white mt-3 mb-2 mr-1'>Скасувати</button>"+
+                "<button onclick='addTeacher("+5+")' class='btn makeEpRev text-white  mt-3 ml-4 mb-2'>Додати викладача</button>"+
+                "<button onclick='' class='btn  bg-dark text-white  mt-3 ml-4 mb-2'>Підтвердити</button>"+
+                "</div>"+
+                "</div>"+
+                "</div>"+
+                "<div class='col-sm-3'></div>"+
+                "</div>"+
+                "<div id='addTeacher5' style='display: none'>"+
+                "<div class='row'>"+
+                "<div class='col-sm-3'></div>"+
+                "<div class='col-sm-6'>" +
+                 teachers+
+                "<div class='text-center'>"+
+                "<button onclick='cancelTeacher("+5+")' class='btn bg-danger text-white mt-3 mb-2 mr-5'>Скасувати</button>"+
+                "<button onclick='' class='btn  bg-dark text-white  mt-3 ml-4 mb-2'>Підтвердити</button>"+
+                "</div>"+
+                "</div>"+
+                "<div class='col-sm-3'></div>"+
+                "</div>"+
+                "</div>"+
+                "</div>"+
+                "</div>"+
+                "</div>"+
+                "</div>"+
+                "</div>"+
+                "</div>";
         }
+
         res+=addSubject;
+        res+=addSubjectDiv;
         while (counter < data.subjects.length) {
             /*
             if(data.subjects[counter].reviews_amount == 1){
@@ -81,6 +286,49 @@ $(document).ready(function () {
             }else{
                 reviews=" відгуків";
             }*/
+            // editSubjectDiv="<div id='editSubject' class='collapse'>" +
+            //     "<div class='row'>" +
+            //     "<div class='col-sm-7'>" +
+            //     "<div class='form-inline'>"+
+            //     "<label class='ml-5 mr-5' for='titleEdit'>Назва</label>"+
+            //     "<input type='text' name='titleEdit' class='form-control' id='titleEdit' value='"+data.subjects[counter].title+"'>"+
+            //     "</div>"+
+            //     "<div class='form-inline'>"+
+            //     "<label class='ml-5 mr-5' for='surnameEdit'>Прізвище викладача</label>"+
+            //     "<input type='text' name='surnameEdit' class='form-control' id='surnameEdit' value='"+data.subjects[counter].last_name+"'>"+
+            //     "</div>"+
+            //     "<div class='form-inline'>"+
+            //     "<label class='ml-5 mr-5' for='nameEdit'>Ім'я викладача</label>"+
+            //     "<input type='text' name='nameEdit' class='form-control' id='nameEdit' value='"+data.subjects[counter].first_name+"'>"+
+            //     "</div>"+
+            //     "<div class='form-inline'>"+
+            //     "<label class='ml-5 mr-5' for='patronymicEdit'>По-батькові викладача</label>"+
+            //     "<input type='text' name='patronymicEdit' class='form-control' id='patronymicEdit' value='"+data.subjects[counter].patronymic+"'>"+
+            //     "</div>"+
+            //     "</div>"+
+            //     "<div class='col-sm-2'></div>"+
+            //     "<div class='col-sm-3'>" +
+            //     "<div class='form-inline'>"+
+            //     "<label class='ml-5 mr-5' for='courseEdit'>Курс</label>"+
+            //     "<input type='number' name='courseEdit' class='form-control' id='courseEdit' value='"+data.subjects[counter].course+"'>"+
+            //     "</div>"+
+            //     "<div class='form-inline'>"+
+            //     "<label class='ml-5 mr-5' for='facultyEdit'>Факультет</label>"+
+            //     "<input type='text' name='facultyEdit' class='form-control' id='facultyEdit' value='"+data.subjects[counter].faculty+"'>"+
+            //     "</div>"+
+            //     "<div class='form-inline'>"+
+            //     "<label class='ml-5 mr-5' for='yearEdit'>Рік викладання</label>"+
+            //     "<input type='number' name='yearEdit' class='form-control' id='yearEdit' value='"+data.subjects[counter].year+"'>"+
+            //     "</div>"+
+            //     "<div class='form-inline'>"+
+            //     "<label class='ml-5 mr-5' for='semesterEdit'>Семестр</label>"+
+            //     "<input type='text' name='semesterEdit' class='form-control' id='semesterEdit' value='"+data.subjects[counter].semester+"'>"+
+            //     "</div>"+
+            //     "</div>"+
+            //     "</div>"+
+            //     "</div>";
+
+
             res += "<div class='container-fluid rounded epFilters'>" +
                 "<div class='row'>" +
                 "<div class='col-sm-4 firstPart'>" +
@@ -107,7 +355,7 @@ $(document).ready(function () {
                 editSubject+
                 "</div>" +
                 "</div>" +
-                "</div>" + "<br>";
+                "</div>" +editSubjectDiv+ "<br>";
 
             counter++;
         }

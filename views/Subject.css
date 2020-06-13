@@ -41,9 +41,9 @@ body{
         width: 70%;
         margin: 0 auto;
     }
-.subj{
-    width: 100%;
-}
+    .subj{
+        width: 100%;
+    }
 
 }
 
@@ -87,7 +87,7 @@ button:hover {
     font-size:18px;
 }
 .epFiltersCountry{
-     position: absolute;
+    position: absolute;
     top:70px;
     left: 16px;
     font-size:18px;
@@ -124,3 +124,16 @@ button:hover {
     right: 16px;
     font-size:18px;
 }
+.courseAdd{
+    margin-left:9%;
+}
+.facultyAdd{
+    margin-left: 2%;
+}
+.semesterAdd{
+    margin-left: 4.6%;
+}
+.nameAdd{
+    margin-left: 10.7%;
+}
+
