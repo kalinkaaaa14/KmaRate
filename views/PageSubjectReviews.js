@@ -359,9 +359,9 @@ $(document).ready(function () {
                     "<div class='col-md-4'>" +
                     "<div class='text-center mainInfoUser'>" +
                     "<br>" +
-                    "<img class='rounded-circle mt-3 replyEpAvatar' src='/images/defUser.png'>" +
+                    "<a href='/profile/"+data.reviews[counter].replies[counterReply].nickname+"'><img   class='rounded-circle mt-3 replyEpAvatar' src='/images/defUser.png'></a>" +
                     "<br>" +
-                    "<output class='replyUsernameEp' name='replyUserName'>" + data.reviews[counter].replies[counterReply].nickname + "</output>" +
+                    "<a href='/profile/"+data.reviews[counter].replies[counterReply].nickname+"' class='characteristics text-decoration-none' name='replyUserName'>" + data.reviews[counter].replies[counterReply].nickname + "</a>" +
                     "<br>" +
                     "</div>" +
                     "<div class='row userRate'>" +
@@ -398,6 +398,7 @@ $(document).ready(function () {
                     "</div>";
 
                 counterReply++;
+                res+= "<a href='#' data-toggle='collapse' data-target='#otherSComments'>Ще "+(data.reviews[counter].replies.length-1)+" коментар(-iв)</a>";
 
                 while(counterReply<data.reviews[counter].replies.length){
                     makeReplyReply="<div class='container-fluid rounded mb-5 borderReview'>" +
@@ -413,16 +414,15 @@ $(document).ready(function () {
                         "</div>";
 
                     let dateReply1 = new Date(data.reviews[counter].replies[counterReply].date_rev);
-                    res+= "<a href='#' data-toggle='collapse' data-target='#otherSComments'>Ще "+(data.reviews[counter].replies.length-1)+" коментар(-iв)</a>" +
-                        "<div id='otherSComments' class='mt-3 collapse'>" +
+                    res+= "<div id='otherSComments' class='mt-3 collapse'>" +
                         "<div class='container-fluid rounded mb-5 borderReview'>" +
                         "<div class='row'>" +
                         "<div class='col-md-4'>" +
                         "<div class='text-center mainInfoUser'>" +
                         "<br>" +
-                        "<img class='rounded-circle mt-3 replyEpAvatar' src='/images/defUser.png'>" +
+                        "<a href='/profile/"+data.reviews[counter].replies[counterReply].nickname+"'><img   class='rounded-circle mt-3 replyEpAvatar' src='/images/defUser.png'></a>" +
                         "<br>" +
-                        "<output class='replyUsernameEp' name='replyUserName'>" +data.reviews[counter].replies[counterReply].nickname  + "</output>" +
+                        "<a href='/profile/"+data.reviews[counter].replies[counterReply].nickname+"' class='characteristics text-decoration-none' name='replyUserName'>" + data.reviews[counter].replies[counterReply].nickname + "</a>" +
                         "<br>" +
                         "</div>" +
                         "<div class='row userRate'>" +
