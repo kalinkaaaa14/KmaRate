@@ -290,7 +290,7 @@ $(document).ready(function () {
                 "<br>" +
                 "<a href='/profile/" + data.reviews[counter].nickname + "'><img  class='rounded-circle mt-3 avatarRevEP' src='/images/defUser.png'></a>" +
                 "<br>" +
-                "<a href='/profile/" + data.reviews[counter].nickname + "' class='characteristics text-decoration-none' name='userName'>" + data.reviews[counter].nickname + "</a>" +
+                "<a href='/profile/" + data.reviews[counter].nickname + "' class='characteristics text-decoration-none genImpr' name='userName'>" + data.reviews[counter].nickname + "</a>" +
                 "<br>" +
                 "</div>" +
                 "<div class='row userRate text-center'>" +
@@ -386,7 +386,7 @@ $(document).ready(function () {
                     "<br>" +
                     "<a href='/profile/" + data.reviews[counter].replies[counterReply].nickname + "'><img   class='rounded-circle mt-3 replyEpAvatar' src='/images/defUser.png'></a>" +
                     "<br>" +
-                    "<a href='/profile/" + data.reviews[counter].replies[counterReply].nickname + "' class='characteristics text-decoration-none' name='replyUserName'>" + data.reviews[counter].replies[counterReply].nickname + "</a>" +
+                    "<a href='/profile/" + data.reviews[counter].replies[counterReply].nickname + "' class='genImpr characteristics text-decoration-none' name='replyUserName'>" + data.reviews[counter].replies[counterReply].nickname + "</a>" +
                     "<br>" +
                     "</div>" +
                     "<div class='row userRate'>" +
@@ -448,7 +448,7 @@ $(document).ready(function () {
                         "<br>" +
                         "<a href='/profile/" + data.reviews[counter].replies[counterReply].nickname + "'><img   class='rounded-circle mt-3 replyEpAvatar' src='/images/defUser.png'></a>" +
                         "<br>" +
-                        "<a href='/profile/" + data.reviews[counter].replies[counterReply].nickname + "' class='characteristics text-decoration-none' name='replyUserName'>" + data.reviews[counter].replies[counterReply].nickname + "</a>" +
+                        "<a href='/profile/" + data.reviews[counter].replies[counterReply].nickname + "' class='genImpr characteristics text-decoration-none' name='replyUserName'>" + data.reviews[counter].replies[counterReply].nickname + "</a>" +
                         "<br>" +
                         "</div>" +
                         "<div class='row userRate'>" +
