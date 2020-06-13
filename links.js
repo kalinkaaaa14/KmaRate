@@ -14,5 +14,8 @@ module.exports = {
     REVIEWS: '/reviews',
     PASSWORD: '/password',
     RATE: '/rate',
+    REPLY: '/reply',
+    TEACHERS: '/teachers'
+
     // revSubj: '/revSubj',
 };

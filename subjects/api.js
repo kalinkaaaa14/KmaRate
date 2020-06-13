@@ -51,6 +51,15 @@ async function addAVGRateToSubject(subject) {
     subject.reviews_amount = (+subject.reviews_amount).toFixed(0);
 }
 
+router.get(links.TEACHERS, function (req, res, next) {
+    (async () => {
+        try {
+            res.json(await db.getAllTeachers());
+        }catch (e) {
+            next(e);
+        }
+    })();
+});
 
 //get subject & reviews
 router.get('/:id' + links.DATA, function (req, res, next) {
@@ -137,5 +146,18 @@ router.post(links.RATE + links.REVIEWS + '/:reviewId', checkAuthenticated, funct
         }
     })();
 });
+
+
+router.post(links.REVIEWS + links.REPLY,  checkAuthenticated, function (req, res, next) {
+    (async () => {
+        try {
+            // await db.addReply({});
+            res.json(req.body);
+        }catch (e) {
+            next(e);
+        }
+    })();
+});
+
 
 module.exports = router;
