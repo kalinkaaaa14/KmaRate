@@ -102,7 +102,6 @@ button:hover {
 
 .infoProfile2{
     width: 38%;
-    margin-top: 125px;
 }
 
 .profileFacultyCourse{
@@ -123,6 +122,7 @@ button:hover {
     font-size:36px;
     font-style: normal;
     font-weight: normal;
+    word-break: break-all;
 }
 
 
@@ -269,4 +269,7 @@ button:hover {
 
 .con{
     margin-top: 90px;
+}
+.nameUserProfile{
+    width: 100%;
 }
