@@ -9,7 +9,8 @@ const {checkNotAuthenticated, checkAuthenticated} = require('../access_control/c
 
 //get filtered subjects
 router.get(links.FILTERED_SUBJECTS, function (req, res, next) {
-
+    console.log('============================');
+    console.log('============================');
     console.log(req.query);
     //todo check data (empty array...)
     (async () => {
@@ -19,12 +20,46 @@ router.get(links.FILTERED_SUBJECTS, function (req, res, next) {
 
             let subjects = await db.getSubjects(dataFromClient);
 
+
+            //add teachers
             for (let subj of subjects) {
+                subj.teachers = await db.getSubjectTeachers(subj.id);
+                // console.log(subj.teachers);
+            }
+
+            let nameParts = dataFromClient.teacher.split(' ');
+            let filteredSubjects;
+
+            if (nameParts.length > 0) {
+                filteredSubjects = subjects.filter(function (subj) {
+
+                    if (nameParts.length > 3) {
+                        nameParts.length = 3;
+                    }
+
+                    for (let teacher of subj.teachers) {
+                        for (let part of nameParts) {
+                            if (teacher.last_name.includes(part) ||
+                                teacher.first_name.includes(part) || teacher.patronymic.includes(part)) {
+                                return true;
+                            }
+                        }
+                    }
+                    return false;
+                });
+
+            } else {
+                filteredSubjects = subjects;
+            }
+
+            for (let subj of filteredSubjects) {
                 await addAVGRateToSubject(subj);
             }
-            console.log(subjects);
 
-            return res.json({subjects});
+            // console.log(filteredSubjects);
+            // console.log(filteredSubjects[0].teachers);
+
+            return res.json({subjects: filteredSubjects});
         } catch (e) {
             return next(e);
         }
@@ -55,7 +90,7 @@ router.get(links.TEACHERS, function (req, res, next) {
     (async () => {
         try {
             res.json(await db.getAllTeachers());
-        }catch (e) {
+        } catch (e) {
             next(e);
         }
     })();
@@ -148,16 +183,16 @@ router.post(links.RATE + links.REVIEWS + '/:reviewId', checkAuthenticated, funct
 });
 
 
-router.post(links.REVIEWS + links.REPLY,  checkAuthenticated, function (req, res, next) {
+router.post(links.REVIEWS + links.REPLY, checkAuthenticated, function (req, res, next) {
     (async () => {
         try {
-            if(req.body.general_impression.length > 1000){
+            if (req.body.general_impression.length > 1000) {
                 return res.json({message: "Занадто велика відповідь", err: "err"});
             }
             req.body.user_id = req.user.id;
             await db.addReply(req.body);
             return res.json({message: "Вашу відповідь опубліковано"});
-        }catch (e) {
+        } catch (e) {
             return next(e);
         }
     })();

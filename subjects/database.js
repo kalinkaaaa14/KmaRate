@@ -3,8 +3,26 @@
 const pool = require('../db_connection');
 
 
+async function getSubjectTeachers(subjId) {
+
+    let res = await pool.query(`
+        SELECT lecturer.last_name, lecturer.first_name, lecturer.patronymic
+            
+        FROM subjects INNER JOIN lecturer_teach_subj ON (subjects.id = lecturer_teach_subj.code)
+             INNER JOIN lecturer ON (lecturer_teach_subj.email = lecturer.email)
+         
+        WHERE subjects.id = $1`, [subjId]);
+
+    // console.log(res.rows);
+    return res.rows;
+}
+
+// lecturer.last_name, lecturer.first_name, lecturer.patronymic,
+// INNER JOIN lecturer_teach_subj ON (subjects.id = lecturer_teach_subj.code)
+// INNER JOIN lecturer ON (lecturer_teach_subj.email = lecturer.email)
+
 async function getSubjects({
-                               id = null, title = null, teacher = null, year = null,
+                               id = null, title = null, year = null,
                                courses = null, semesters = null, faculties = null
                            } = {}) {
 
@@ -16,12 +34,6 @@ async function getSubjects({
         titlePart = 'subjects.title LIKE \'%\' || $' + paramArray.length + ' || \'%\'';
     }
 
-    //todo not only last name
-    let teacherPart = true;
-    if (teacher) {
-        paramArray.push(teacher);
-        teacherPart = `lecturer.last_name LIKE '%' || $${paramArray.length} || '%'`;
-    }
 
     let yearPart = true;
     if (year) {
@@ -73,23 +85,19 @@ async function getSubjects({
     if (id) {
         res = await pool.query(`
         SELECT subjects.id, subjects.title, faculty.title AS faculty, subjects.course, 
-               lecturer.last_name, lecturer.first_name, lecturer.patronymic, subjects.year, subjects.semester
+                subjects.year, subjects.semester
             
         FROM subjects INNER JOIN faculty ON (subjects.faculty_id = faculty.id)
-        INNER JOIN lecturer_teach_subj ON (subjects.id = lecturer_teach_subj.code) 
-        INNER JOIN lecturer ON (lecturer_teach_subj.email = lecturer.email)
         
         WHERE subjects.id = $1`, [id]);
     } else {
         res = await pool.query(`
         SELECT subjects.id, subjects.title, faculty.title AS faculty, subjects.course, 
-            lecturer.last_name, lecturer.first_name, lecturer.patronymic, subjects.year, subjects.semester
+             subjects.year, subjects.semester
             
         FROM subjects INNER JOIN faculty ON (subjects.faculty_id = faculty.id)
-        INNER JOIN lecturer_teach_subj ON (subjects.id = lecturer_teach_subj.code) 
-        INNER JOIN lecturer ON (lecturer_teach_subj.email = lecturer.email)
          
-        WHERE ${titlePart} AND ${teacherPart} AND ${yearPart} AND
+        WHERE ${titlePart} AND ${yearPart} AND
                 ${coursesPart} AND ${semestersPart} AND ${facultiesPart}`, paramArray);
     }
 
@@ -194,7 +202,7 @@ async function saveReview({
             theory_practice, teacher_criticism, using_knowledge, general_impression, subject_id, user_id]);
 }
 
-async function getSubjectReviewsUserRate(userId){
+async function getSubjectReviewsUserRate(userId) {
     let likes = await pool.query(`
     SELECT COUNT(*) AS likes
     FROM review_subject INNER JOIN user_response_subject ON (review_subject.id = user_response_subject.review_subject_id)
@@ -213,7 +221,7 @@ async function getSubjectReviewsUserRate(userId){
 }
 
 
-async function deleteUserLikeSubjectReview(userId, reviewId){
+async function deleteUserLikeSubjectReview(userId, reviewId) {
     let res = await pool.query(`
     DELETE FROM user_response_subject
     WHERE user_id = $1 AND review_subject_id = $2
@@ -229,7 +237,7 @@ async function updateUserLikeSubjectReview(userId, reviewId, isLike) {
 }
 
 
-async function getUserLikeSubjectReview(userId, reviewId){
+async function getUserLikeSubjectReview(userId, reviewId) {
     let res = await pool.query(`
     SELECT "like" 
     FROM user_response_subject 
@@ -238,20 +246,20 @@ async function getUserLikeSubjectReview(userId, reviewId){
     return res.rows[0];
 }
 
-async function addUserLikeSubjectReview(userId, reviewId, isLike){
+async function addUserLikeSubjectReview(userId, reviewId, isLike) {
     let res = await pool.query(`
     INSERT INTO user_response_subject (user_id, review_subject_id, "like") VALUES ($1, $2, $3)
     `, [userId, reviewId, isLike]);
 }
 
-async function addReply({time_rev, date_rev, general_impression, subject_review_id, reply_id, ep_review_id, user_id}){
+async function addReply({time_rev, date_rev, general_impression, subject_review_id, reply_id, ep_review_id, user_id}) {
     let res = await pool.query(`
     INSERT INTO review_reply (time_rev, date_rev,general_impression, subject_review_id, reply_id, ep_review_id, user_id) 
     VALUES ($1, $2, $3, $4, $5, $6, $7)
     `, [time_rev, date_rev, general_impression, subject_review_id, reply_id, ep_review_id, user_id]);
 }
 
-async function getAllTeachers(){
+async function getAllTeachers() {
     let res = await pool.query(`
     SELECT first_name, last_name, patronymic
     FROM lecturer
@@ -265,5 +273,5 @@ module.exports = {
     getAVGSubjectRate, getSubjectReviews, getSubjectReviewRate,
     getAmountUserSubjectReviews, getReviewReplies, getReplyRate, saveReview, getSubjectReviewsUserRate,
     addUserLikeSubjectReview, getUserLikeSubjectReview, updateUserLikeSubjectReview, deleteUserLikeSubjectReview,
-    addReply, getAllTeachers
+    addReply, getAllTeachers, getSubjectTeachers
 };
