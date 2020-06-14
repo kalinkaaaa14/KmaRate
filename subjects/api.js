@@ -8,12 +8,11 @@ const {checkNotAuthenticated, checkAuthenticated, checkAdmin} = require('../acce
 db.getAdmin = require('../access_control/database').getAdmin;
 
 //get filtered subjects
-router.get(links.FILTERED_SUBJECTS, function (req, res, next) {
+router.get(links.FILTERED_SUBJECTS, async function (req, res, next) {
     console.log('============================');
     console.log('============================');
     console.log(req.query);
     //todo check data (empty array...)
-    (async () => {
         try {
             let dataFromClient = req.query;
             trimAndLowercaseValues(dataFromClient);
@@ -70,7 +69,6 @@ router.get(links.FILTERED_SUBJECTS, function (req, res, next) {
         } catch (e) {
             return next(e);
         }
-    })();
 });
 
 function trimAndLowercaseValues(obj) {
@@ -93,19 +91,16 @@ async function addAVGRateToSubject(subject) {
     subject.reviews_amount = (+subject.reviews_amount).toFixed(0);
 }
 
-router.get(links.TEACHERS, function (req, res, next) {
-    (async () => {
+router.get(links.TEACHERS, async function (req, res, next) {
         try {
             res.json(await db.getAllTeachers());
         } catch (e) {
             next(e);
         }
-    })();
 });
 
 //get subject & reviews
-router.get('/:id' + links.DATA, function (req, res, next) {
-    (async () => {
+router.get('/:id' + links.DATA, async function (req, res, next) {
         try {
             let subject = (await db.getSubjects({id: req.params.id}))[0];
             subject.teachers = await db.getSubjectTeachers(subject.id);
@@ -133,7 +128,6 @@ router.get('/:id' + links.DATA, function (req, res, next) {
         } catch (e) {
             return next(e);
         }
-    })();
 });
 
 
@@ -160,8 +154,7 @@ router.post('/:id' + links.CREATE_REVIEW, checkAuthenticated, function (req, res
 });
 
 
-router.post(links.RATE + links.REVIEWS + '/:reviewId', checkAuthenticated, function (req, res, next) {
-    (async () => {
+router.post(links.RATE + links.REVIEWS + '/:reviewId', checkAuthenticated, async function (req, res, next) {
         try {
             console.log('review');
 
@@ -188,11 +181,9 @@ router.post(links.RATE + links.REVIEWS + '/:reviewId', checkAuthenticated, funct
         } catch (e) {
             return next(e);
         }
-    })();
 });
 
-router.post(links.RATE + links.REPLY + '/:replyId', checkAuthenticated, function (req, res, next) {
-    (async () => {
+router.post(links.RATE + links.REPLY + '/:replyId', checkAuthenticated, async function (req, res, next) {
         try {
 
             console.log('reply');
@@ -221,12 +212,10 @@ router.post(links.RATE + links.REPLY + '/:replyId', checkAuthenticated, function
         } catch (e) {
             return next(e);
         }
-    })();
 });
 
 
-router.post(links.REVIEWS + links.REPLY, checkAuthenticated, function (req, res, next) {
-    (async () => {
+router.post(links.REVIEWS + links.REPLY, checkAuthenticated, async function (req, res, next) {
         try {
             if (req.body.general_impression.length > 1000) {
                 return res.json({message: "Занадто велика відповідь", err: "err"});
@@ -237,15 +226,20 @@ router.post(links.REVIEWS + links.REPLY, checkAuthenticated, function (req, res,
         } catch (e) {
             return next(e);
         }
-    })();
 });
 
-router.post(links.NEW + links.SUBJECT, checkAuthenticated, checkAdmin, function (req, res, next) {
-    (async () => {
-        let subject = req.body;
-        await db.addSubject(subject.title, subject.course, subject.year, subject.semester, subject.faculty.id);
+router.post(links.NEW + links.SUBJECT, checkAuthenticated, checkAdmin, async function (req, res, next) {
+        try {
+            let subject = req.body;
+            let subjectInDB = await db.addSubject(subject.title, subject.course, subject.year, subject.semester, subject.faculty.id);
 
-    })();
+            for (let teach of subject.teachers) {
+                await db.addSubjectLecturer(subjectInDB.id, teach.email);
+            }
+            return res.json({message: 'Дисципліну додано'});
+        }catch (e) {
+            next(e);
+        }
 });
 
 

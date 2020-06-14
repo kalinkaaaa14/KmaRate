@@ -133,9 +133,6 @@ async function getSubjectReviews(subjectId) {
 }
 
 
-
-
-
 async function getAmountUserSubjectReviews(userId) {
     let res = await pool.query(`
     SELECT COUNT(id) AS amount
@@ -188,8 +185,6 @@ async function getSubjectReviewsUserRate(userId) {
 
     return rate;
 }
-
-
 
 
 //like review
@@ -295,7 +290,6 @@ async function deleteUserLikeSubjectReply(userId, replyId) {
 }
 
 
-
 async function addReply({time_rev, date_rev, general_impression, subject_review_id, reply_id, ep_review_id, user_id}) {
     let res = await pool.query(`
     INSERT INTO review_reply (time_rev, date_rev,general_impression, subject_review_id, reply_id, ep_review_id, user_id) 
@@ -305,24 +299,29 @@ async function addReply({time_rev, date_rev, general_impression, subject_review_
 
 async function getAllTeachers() {
     let res = await pool.query(`
-    SELECT first_name, last_name, patronymic
+    SELECT email, first_name, last_name, patronymic
     FROM lecturer
     `);
     return res.rows;
 }
 
 
-
-
-async function addSubject(title, course, year, semester, faculty_id){
+async function addSubject(title, course, year, semester, faculty_id) {
     let res = await pool.query(`
-   INSERT INTO subjects (title, course, year, semester, faculty_id) 
-    VALUES ($1, $2, $3, $4, $5)
+    INSERT INTO subjects (title, course, year, semester, faculty_id) 
+    VALUES ($1, $2, $3, $4, $5) 
+    RETURNING *
     `, [title, course, year, semester, faculty_id]);
+    // console.log(res);
+    return res.rows[0];
 }
 
-// async function addSubjectTeacher()
-
+async function addSubjectLecturer(subjId, lecturerEmail) {
+    let res = await pool.query(`
+    INSERT INTO lecturer_teach_subj (code, email) 
+    VALUES ($1, $2)
+    `, [subjId, lecturerEmail]);
+}
 
 
 module.exports = {
@@ -336,5 +335,6 @@ module.exports = {
     updateUserLikeSubjectReply,
     deleteUserLikeSubjectReply,
     getSubjectReplyRate,
-    addSubject
+    addSubject,
+    addSubjectLecturer
 };
