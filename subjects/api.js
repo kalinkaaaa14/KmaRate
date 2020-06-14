@@ -4,8 +4,8 @@ const router = require('express').Router();
 const db = require('./database');
 
 const links = require('../links');
-const {checkNotAuthenticated, checkAuthenticated} = require('../access_control/check_auth');
-
+const {checkNotAuthenticated, checkAuthenticated, checkAdmin} = require('../access_control/check_auth');
+db.getAdmin = require('../access_control/database').getAdmin;
 
 //get filtered subjects
 router.get(links.FILTERED_SUBJECTS, function (req, res, next) {
@@ -57,7 +57,14 @@ router.get(links.FILTERED_SUBJECTS, function (req, res, next) {
             }
 
             // console.log(filteredSubjects);
-            console.log(filteredSubjects[0].teachers);
+            console.log(filteredSubjects[1].teachers);
+            filteredSubjects.isAdmin = false;
+            if (req.user) {
+                let adminId = await db.getAdmin(req.user.id);
+                if (typeof adminId === 'number') {
+                    filteredSubjects.isAdmin = true;
+                }
+            }
 
             return res.json({subjects: filteredSubjects});
         } catch (e) {
@@ -218,7 +225,6 @@ router.post(links.RATE + links.REPLY + '/:replyId', checkAuthenticated, function
 });
 
 
-
 router.post(links.REVIEWS + links.REPLY, checkAuthenticated, function (req, res, next) {
     (async () => {
         try {
@@ -231,6 +237,14 @@ router.post(links.REVIEWS + links.REPLY, checkAuthenticated, function (req, res,
         } catch (e) {
             return next(e);
         }
+    })();
+});
+
+router.post(links.NEW + links.SUBJECT, checkAuthenticated, checkAdmin, function (req, res, next) {
+    (async () => {
+        let subject = req.body;
+        await db.addSubject(subject.title, subject.course, subject.year, subject.semester, subject.faculty.id);
+
     })();
 });
 

@@ -6,7 +6,7 @@ const pool = require('../db_connection');
 async function getSubjectTeachers(subjId) {
 
     let res = await pool.query(`
-        SELECT lecturer.last_name, lecturer.first_name, lecturer.patronymic
+        SELECT lecturer.email, lecturer.last_name, lecturer.first_name, lecturer.patronymic
             
         FROM subjects INNER JOIN lecturer_teach_subj ON (subjects.id = lecturer_teach_subj.code)
              INNER JOIN lecturer ON (lecturer_teach_subj.email = lecturer.email)
@@ -312,6 +312,19 @@ async function getAllTeachers() {
 }
 
 
+
+
+async function addSubject(title, course, year, semester, faculty_id){
+    let res = await pool.query(`
+   INSERT INTO subjects (title, course, year, semester, faculty_id) 
+    VALUES ($1, $2, $3, $4, $5)
+    `, [title, course, year, semester, faculty_id]);
+}
+
+// async function addSubjectTeacher()
+
+
+
 module.exports = {
     getSubjects,
     getAVGSubjectRate, getSubjectReviews, getSubjectReviewRate,
@@ -322,5 +335,6 @@ module.exports = {
     getUserLikeSubjectReply,
     updateUserLikeSubjectReply,
     deleteUserLikeSubjectReply,
-    getSubjectReplyRate
+    getSubjectReplyRate,
+    addSubject
 };

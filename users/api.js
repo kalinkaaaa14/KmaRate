@@ -332,9 +332,5 @@ router.post(links.SETTINGS + links.PASSWORD /*+ '/:nickname'*/, checkAuthenticat
 });
 
 
-router.post(links.ADMIN + links.NEW + links.SUBJECT, checkAuthenticated, checkAdmin, function (req, res, next) {
-
-});
-
 
 module.exports = router;
