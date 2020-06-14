@@ -115,7 +115,7 @@ router.get('/:id' + links.DATA, function (req, res, next) {
                 rev.replies = await db.getReviewReplies(rev.review_id);
 
                 for (let repl of rev.replies) {
-                    repl.rate = await db.getReplyRate(repl.id);
+                    repl.rate = await db.getSubjectReplyRate(repl.id);
                     repl.subject_rate = await db.getSubjectReviewsUserRate(repl.user_id);
                 }
             }
@@ -180,6 +180,37 @@ router.post(links.RATE + links.REVIEWS + '/:reviewId', checkAuthenticated, funct
         }
     })();
 });
+
+router.post(links.RATE + links.REPLY + '/:replyId', checkAuthenticated, function (req, res, next) {
+    (async () => {
+        try {
+
+            // console.log(req.body);
+            let isLikeObj = await db.getUserLikeSubjectReply(req.user.id, req.params.replyId);
+            if (isLikeObj) {
+                if (isLikeObj.like + '' === req.body.like) {
+                    await db.deleteUserLikeSubjectReply(req.user.id, req.params.replyId);
+                } else {
+                    await db.updateUserLikeSubjectReply(req.user.id, req.params.replyId, req.body.like);
+                }
+            } else {
+                await db.addUserLikeSubjectReply(req.user.id, req.params.replyId, req.body.like)
+            }
+            // console.log({
+            //     rate: await db.getSubjectReviewRate(req.params.reviewId),
+            //     subject_rate: await db.getSubjectReviewsUserRate(req.body.user_id)
+            // });
+
+            return res.json({
+                rate: await db.getSubjectReplyRate(req.params.replyId),
+                subject_rate: await db.getSubjectReviewsUserRate(req.body.user_id)
+            });
+        } catch (e) {
+            return next(e);
+        }
+    })();
+});
+
 
 
 router.post(links.REVIEWS + links.REPLY, checkAuthenticated, function (req, res, next) {
