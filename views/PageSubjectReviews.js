@@ -111,6 +111,30 @@ function likeReview(review_id, reviewerId, isLike) {
         }
     });
 }
+function likeReply(reply_id, reviewerId, isLike) {
+    $.ajax({
+        url: "/subj/rate/reply/" + reply_id,
+        type: 'POST',
+        data: {like: isLike, user_id: reviewerId},
+        success: function (data, textStatus, xhr) {
+            if (typeof data.rate !== 'undefined') {
+                console.log(data);
+                document.getElementById('UserReply' + reply_id).innerHTML = data.subject_rate;
+                document.getElementById('ReplyRate' + reply_id).innerHTML = data.rate;
+
+            } else {
+                // console.log(data);
+                document.write(data);
+            }
+            // console.log(data);
+            //formatData(data);
+        },
+        error: function (xhr, textStatus, errorThrown) {
+
+            console.log('Error in Operation');
+        }
+    });
+}
 
 // function dislikeReview(review_id) {
 //     $.ajax({
@@ -408,7 +432,7 @@ $(document).ready(function () {
                     "<img class='replySubjPageReviews' src='/images/subject.png'>" +
                     "</div>" +
                     "<div class='col-sm-6 text-center'>" +
-                    "<span>" + data.reviews[counter].replies[counterReply].subject_rate + "</span>" +
+                    "<span id='UserReply"+data.reviews[counter].replies[counterReply].id+"'>" + data.reviews[counter].replies[counterReply].subject_rate + "</span>" +
                     "</div>" +
                     "</div>" +
                     "</div>" +
@@ -422,10 +446,10 @@ $(document).ready(function () {
                     "<p>" +
                     "<div class='mr-3'>" +
                     "<i class='fa fa-thumbs-o-up likesRevEp' aria-hidden='true'></i>" +
-                    "<span class='quantityLikesEp' name='likesReview'> " + data.reviews[counter].replies[counterReply].rate + "</span>" +
+                    "<span id='ReplyRate+"+data.reviews[counter].replies[counterReply].id+"' class='quantityLikesEp' name='likesReview'> " + data.reviews[counter].replies[counterReply].rate + "</span>" +
                     "</div>" +
-                    "<button class='btn btn-lg text-decoration-none mr-2' onclick='likeReview(" + data.reviews[counter].replies[counterReply].id + "," + data.reviews[counter].replies[counterReply].user_id + ",true)'>Підтримую</button>" +
-                    "<button id = 'disagree' onclick='likeReview(" + data.reviews[counter].replies[counterReply].review_id + "," + data.reviews[counter].replies[counterReply].user_id + ",false)' class='btn btn-lg text-decoration-none mr-2' >Не погоджуюсь</button>" +
+                    "<button class='btn btn-lg text-decoration-none mr-2' onclick='likeReply(" + data.reviews[counter].replies[counterReply].id + "," + data.reviews[counter].replies[counterReply].user_id + ",true)'>Підтримую</button>" +
+                    "<button id = 'disagree' onclick='likeReply(" + data.reviews[counter].replies[counterReply].review_id + "," + data.reviews[counter].replies[counterReply].user_id + ",false)' class='btn btn-lg text-decoration-none mr-2' >Не погоджуюсь</button>" +
                     "<div id='buttonReplyReplyHide" + data.reviews[counter].replies[counterReply].id + "'>" +
                     "<button onclick='makeReplyReply(" + data.reviews[counter].replies[counterReply].id + ");' class='btn btn-lg text-decoration-none mr-2'>Відповісти</button>" +
                     "</div>" +
@@ -470,7 +494,7 @@ $(document).ready(function () {
                         "<img class='replySubjPageReviews' src='/images/subject.png'>" +
                         "</div>" +
                         "<div class='col-sm-6 text-center'>" +
-                        "<span> " + data.reviews[counter].replies[counterReply].subject_rate + "  </span>" +
+                        "<span id='UserReply"+data.reviews[counter].replies[counterReply].id+"'> " + data.reviews[counter].replies[counterReply].subject_rate + "  </span>" +
                         "</div>" +
                         "</div>" +
                         "</div>" +
@@ -484,10 +508,10 @@ $(document).ready(function () {
                         "<p>" +
                         "<div class='mr-3'>" +
                         "<i class='fa fa-thumbs-o-up likesRevEp' aria-hidden='true' ></i>" +
-                        "<span class='quantityLikesEp' name='likesReview'> " + data.reviews[counter].replies[counterReply].rate + "</span>" +
+                        "<span id='ReplyRate+"+data.reviews[counter].replies[counterReply].id+"' class='quantityLikesEp' name='likesReview'> " + data.reviews[counter].replies[counterReply].rate + "</span>" +
                         "</div>" +
-                        "<button class='btn btn-lg text-decoration-none mr-2' onclick='likeReview(" + data.reviews[counter].replies[counterReply].review_id + "," + data.reviews[counter].replies[counterReply].user_id + ",true)'>Підтримую</button>" +
-                        "<button id = 'disagree' onclick='likeReview(" + data.reviews[counter].replies[counterReply].review_id + "," + data.reviews[counter].replies[counterReply].user_id + ",false)' class='btn btn-lg text-decoration-none mr-2' >Не погоджуюсь</button>" +
+                        "<button class='btn btn-lg text-decoration-none mr-2' onclick='likeReply(" + data.reviews[counter].replies[counterReply].review_id + "," + data.reviews[counter].replies[counterReply].user_id + ",true)'>Підтримую</button>" +
+                        "<button id = 'disagree' onclick='likeReply(" + data.reviews[counter].replies[counterReply].review_id + "," + data.reviews[counter].replies[counterReply].user_id + ",false)' class='btn btn-lg text-decoration-none mr-2' >Не погоджуюсь</button>" +
                         "<div id='buttonReplyReplyHide" + data.reviews[counter].replies[counterReply].id + "'>" +
                         "<button onclick='makeReplyReply(" + data.reviews[counter].replies[counterReply].id + ");' class='btn btn-lg text-decoration-none mr-2'>Відповісти</button>" +
                         "</div>" +
