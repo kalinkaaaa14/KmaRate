@@ -28,7 +28,7 @@ function checkNotAuthenticated(req, res, next) {
 function checkAdmin(req, res, next) {
     // if(typeof req.user)
     getAdmin(req.user.id).then(function (adminId) {
-        if (typeof adminId === 'number') {
+        if (typeof adminId.user_id === 'number') {
             return next();
         } else {
             return res.send(`<p style="text-align: center; font-size:xx-large">(-_-)</p>

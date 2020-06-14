@@ -57,15 +57,15 @@ router.get(links.FILTERED_SUBJECTS, async function (req, res, next) {
 
             // console.log(filteredSubjects);
             console.log(filteredSubjects[1].teachers);
-            filteredSubjects.isAdmin = false;
+            let isAdmin = false;
             if (req.user) {
                 let adminId = await db.getAdmin(req.user.id);
-                if (typeof adminId === 'number') {
-                    filteredSubjects.isAdmin = true;
+                if (typeof adminId.user_id === 'number') {
+                    isAdmin = true;
                 }
             }
 
-            return res.json({subjects: filteredSubjects});
+            return res.json({subjects: filteredSubjects, isAdmin});
         } catch (e) {
             return next(e);
         }
@@ -231,10 +231,15 @@ router.post(links.REVIEWS + links.REPLY, checkAuthenticated, async function (req
 router.post(links.NEW + links.SUBJECT, checkAuthenticated, checkAdmin, async function (req, res, next) {
         try {
             let subject = req.body;
-            let subjectInDB = await db.addSubject(subject.title, subject.course, subject.year, subject.semester, subject.faculty.id);
 
-            for (let teach of subject.teachers) {
-                await db.addSubjectLecturer(subjectInDB.id, teach.email);
+            if(subject.title.length > 50){
+                return res.json({message: 'Назва предмету перевищує 50 символів'});
+            }
+
+            let subjectInDB = await db.addSubject(subject.title, subject.course, subject.year, subject.semester, subject.faculty_id);
+
+            for (let email of subject.teachers) {
+                await db.addSubjectLecturer(subjectInDB.id, email);
             }
             return res.json({message: 'Дисципліну додано'});
         }catch (e) {

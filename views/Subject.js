@@ -39,6 +39,9 @@ function createNewSubject(l){
         data: createSubject,
         success: function (data, textStatus, xhr) {
            console.log(data);
+           if(data.message){
+               alert(data.message);
+           }
         },
         error: function (xhr, textStatus, errorThrown) {
             console.log('Error in Operation');
@@ -111,7 +114,7 @@ $(document).ready(function () {
         while (counter < i) {
             if (data.subjects[counter].faculty.length > 2 && data.subjects[counter].faculty[1] === 'п') {
                 data.subjects[counter].faculty = data.subjects[counter].faculty.slice(0, 2).toUpperCase() +
-                    data.subjects[counter].faculty[2] + data.subjects[counter].faculty, slice(3);
+                    data.subjects[counter].faculty[2] + data.subjects[counter].faculty[3].toUpperCase();
             } else {
                 data.subjects[counter].faculty = data.subjects[counter].faculty.toUpperCase();
             }
@@ -184,11 +187,11 @@ $(document).ready(function () {
         let editSubjectDiv="";
         let addSubjectDiv="";
         let tooltipTeachers="";
-        let isAdmin=true;
+        // let isAdmin=true;
         var i=0;
 
         //let isAdmin=false;
-        if (isAdmin == true){
+        if (data.isAdmin === true){
 
             addSubject="<button data-toggle='collapse' data-target='#addSubject' class='btn btn-block text-white makeEpRev mb-3'>Додати дисципліну</button>";
 
@@ -539,7 +542,7 @@ $(document).ready(function () {
                 "</div>"+
                 "</div>";
 
-            if (isAdmin == true) {
+            if (data.isAdmin === true) {
                 res += "<div class='container-fluid rounded epFilters'>" +
                     "<div class='row'>" +
                     "<div class='col-sm-4 firstPart'>" +
