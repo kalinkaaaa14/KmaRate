@@ -328,7 +328,7 @@ $(document).ready(function () {
                 "<div class='col-md-4'>" +
                 "<div class='text-center mainInfoUser'>" +
                 "<br>" +
-                "<a href='/profile/" + data.reviews[counter].nickname + "'><img  class='rounded-circle mt-3 avatarRevEP' src='/images/defUser.png'></a>" +
+                "<a href='/profile/" + data.reviews[counter].nickname + "'><img  class='rounded-circle mt-3 avatarRevEP' src="+ data.reviews[counter].image_string +"></a>" +
                 "<br>" +
                 "<a href='/profile/" + data.reviews[counter].nickname + "' class='characteristics text-decoration-none genImpr' name='userName'>" + data.reviews[counter].nickname + "</a>" +
                 "<br>" +
@@ -424,7 +424,7 @@ $(document).ready(function () {
                     "<div class='col-md-4'>" +
                     "<div class='text-center mainInfoUser'>" +
                     "<br>" +
-                    "<a href='/profile/" + data.reviews[counter].replies[counterReply].nickname + "'><img   class='rounded-circle mt-3 replyEpAvatar' src='/images/defUser.png'></a>" +
+                    "<a href='/profile/" + data.reviews[counter].replies[counterReply].nickname + "'><img   class='rounded-circle mt-3 replyEpAvatar' src=" + data.reviews[counter].replies[counterReply].image_string + "></a>" +
                     "<br>" +
                     "<a href='/profile/" + data.reviews[counter].replies[counterReply].nickname + "' class='genImpr characteristics text-decoration-none' name='replyUserName'>" + data.reviews[counter].replies[counterReply].nickname + "</a>" +
                     "<br>" +
@@ -486,7 +486,7 @@ $(document).ready(function () {
                         "<div class='col-md-4'>" +
                         "<div class='text-center mainInfoUser'>" +
                         "<br>" +
-                        "<a href='/profile/" + data.reviews[counter].replies[counterReply].nickname + "'><img   class='rounded-circle mt-3 replyEpAvatar' src='/images/defUser.png'></a>" +
+                        "<a href='/profile/" + data.reviews[counter].replies[counterReply].nickname + "'><img   class='rounded-circle mt-3 replyEpAvatar' src=" + data.reviews[counter].replies[counterReply].image_string + "></a>" +
                         "<br>" +
                         "<a href='/profile/" + data.reviews[counter].replies[counterReply].nickname + "' class='genImpr characteristics text-decoration-none' name='replyUserName'>" + data.reviews[counter].replies[counterReply].nickname + "</a>" +
                         "<br>" +

@@ -298,7 +298,7 @@ $(document).ready(function () {
             "<div class='col-md-4'>"+
             "<div class='text-center mainInfoUser'>"+
             "<br>"+
-            "<img class='rounded-circle mt-3 avatarInProfile' src='/images/defUser.png'>"+
+            "<img class='rounded-circle mt-3 avatarInProfile' src=" + data.image_string + ">"+
             "<br>"+
             "<output class='mt-1 rateProfile' name='facultyUser'>Рейтинг</output>"+
             "<br>"+

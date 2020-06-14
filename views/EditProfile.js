@@ -10,7 +10,9 @@ $(document).ready(function () {
                 console.log(event);
                 console.log(event.target.result.length);
                 // get loaded data and render thumbnail.
-                document.getElementById("userImage").src = event.target.result;
+                if(event.target.result.startsWith('data:image/')) {
+                    document.getElementById("userImage").src = event.target.result;
+                }
             };
             // read the image file as a data URL.
             reader.readAsDataURL(this.files[0]);

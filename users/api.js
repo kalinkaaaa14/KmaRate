@@ -155,6 +155,8 @@ router.get(links.PROFILE + '/:nickname' + links.DATA, function (req, res, next) 
             userData.subject_rate = await db.getSubjectReviewsRate(user.id);
             userData.ep_rate = await db.getEPReviewsRate(user.id);
 
+            userData.image_string = (await db.getUser(userData.nickname)).image_string;
+
             return res.json(userData);
         } catch (e) {
             return next(e);
@@ -243,7 +245,7 @@ router.post(links.SETTINGS + links.DATA /*+ '/:nickname'*/, checkAuthenticated, 
     console.log('=====================');
     console.log(req.user.nickname + ': change user data' );
 
-    console.log(req.body);
+    // console.log(req.body);
     //todo check input
     let profileUpdates = req.body;
     profileUpdates.user_id = req.user.id;
@@ -274,8 +276,8 @@ router.post(links.SETTINGS + links.DATA /*+ '/:nickname'*/, checkAuthenticated, 
         return res.json({message: 'Емейл не повинен первищувати 50 символів'});
     }
 
-    if(profileUpdates.image_string.length > 60000){
-        return res.json({message: 'Зображення не може бути більше 6 мегабайт'});
+    if(profileUpdates.image_string.length > 1048576){
+        return res.json({message: 'Зображення не може бути більше 1 мегабайта'});
     }
 
 

@@ -6,6 +6,7 @@ const db = require('./database');
 const links = require('../links');
 const {checkNotAuthenticated, checkAuthenticated, checkAdmin} = require('../access_control/check_auth');
 db.getAdmin = require('../access_control/database').getAdmin;
+db.getUser = require('../users/database').getUser;
 
 //get filtered subjects
 router.get(links.FILTERED_SUBJECTS, async function (req, res, next) {
@@ -111,12 +112,15 @@ router.get('/:id' + links.DATA, async function (req, res, next) {
             for (let rev of reviews) {
                 rev.rate = await db.getSubjectReviewRate(rev.review_id);
                 rev.subject_rate = await db.getSubjectReviewsUserRate(rev.user_id);
+                rev.image_string = (await db.getUser(rev.nickname)).image_string;
+
                 rev.average_grade = ((rev.edu_technique
                     + rev.nowadays_knowledge + rev.using_knowledge) / 3).toFixed(1);
 
                 rev.replies = await db.getReviewReplies(rev.review_id);
 
                 for (let repl of rev.replies) {
+                    repl.image_string = (await db.getUser(repl.nickname)).image_string;
                     repl.rate = await db.getSubjectReplyRate(repl.id);
                     repl.subject_rate = await db.getSubjectReviewsUserRate(repl.user_id);
                 }

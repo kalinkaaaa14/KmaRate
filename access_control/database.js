@@ -17,7 +17,7 @@ async function getUserByNickname(nickname) {
 
 async function getUserById(id) {
     try {
-        let {rows} = await pool.query(`SELECT */*id, nickname*/
+        let {rows} = await pool.query(`SELECT nickname, email, telegram, instagram, facebook, branch_id, id
                                      FROM users
                                      WHERE id = $1`, [id]);
         // console.log('deserializeUser');
