@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
 body{
     font-family: 'Ubuntu', sans-serif;
+    overflow-x: hidden;
 }
 .filters{
     width: 24%;
@@ -78,7 +79,7 @@ button:hover {
 }
 .epFilters{
     border: 1px solid lightgray;
-    margin-right: 4%;
+
 }
 .epFiltersCourse{
     position: absolute;
@@ -118,6 +119,9 @@ button:hover {
     left: 16px;
     font-size:18px;
 }
+.quantityTeach{
+    font-size:16px;
+}
 .subjectRevCourse{
     position: absolute;
     bottom: 8px;
@@ -125,15 +129,32 @@ button:hover {
     font-size:18px;
 }
 .courseAdd{
-    margin-left:9%;
+    margin-left:11%;
+}
+.courseEdit{
+    margin-left:11%;
 }
 .facultyAdd{
-    margin-left: 2%;
+    margin-left: 2.7%;
+}
+.facultyEdit{
+    margin-left: 2.7%;
 }
 .semesterAdd{
-    margin-left: 4.6%;
+    margin-left: 5.6%;
+}
+.semesterEdit{
+    margin-left: 5.3%;
 }
 .nameAdd{
     margin-left: 10.7%;
+}
+.deleteTeacher:active:focus,
+.deleteTeacher:focus{
+    outline: 0!important;
+    outline-color: transparent!important;
+    outline-width: 0!important;
+    outline-style: none!important;
+    box-shadow: 0 0 0 0 rgba(0,123,255,0)!important;
 }
 

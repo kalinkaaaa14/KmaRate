@@ -294,12 +294,6 @@ $(document).ready(function () {
         let res="";
         res="<h4 class='myReviews mt-5 mb-3 ml-5'>Профіль</h4>"+
             "<div class='container rounded mb-5 myProfileDiv'>"+
-            "<div class='row'>" +
-            "<div class='col-md-4'></div>"+
-            "<div class='col-md-8'>" +
-            "<output class='profileUsername' name='profileUsername'>"+data.nickname+"</output>"+
-            "</div>"+
-            "</div>"+
             "<div class='row'>"+
             "<div class='col-md-4'>"+
             "<div class='text-center mainInfoUser'>"+
@@ -325,6 +319,9 @@ $(document).ready(function () {
             "</div>"+
             "</div>"+
             "<div class='infoProfile1'>"+
+            "<p>"+
+            "<output class='profileUsername' name='profileUsername'>"+data.nickname+"</output>"+
+            "</p>"+
             "<p class='profileFacultyCourse'>"+
             "<output class='facultyInProfile' name='profileFaculty'>Факультет </output>"+
             "<br>"+
@@ -335,8 +332,8 @@ $(document).ready(function () {
         "<a href='"+data.facebook+"'><button  class='btn btn-lg rounded-circle socialBut' type='button'><i class='fa fa-facebook-square' aria-hidden='true'></i> </button></a>"+
         "</div>"+
         "<div class='spaceBetweenInfo'></div>"+
-            "<div class='infoProfile1'>"+
-            "<p class='profileFacultyCourse'>"+
+            "<div class='infoProfile2'>"+
+            "<p>"+
             "<span class='emailInProfile'>Спеціальність</span>"+
             "<br>"+
            "<output class='emailInProfile' name='profileEmail'>"+data.branch_id+ data.branch_title+"</output>"+

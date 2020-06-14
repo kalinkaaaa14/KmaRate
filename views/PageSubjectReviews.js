@@ -186,17 +186,29 @@ $(document).ready(function () {
         // data.subjects[counter].course=data.subjects[counter].course+;
         data.subject.semester = " " + data.subject.semester[0].toUpperCase() + data.subject.semester.slice(1);
         data.subject.title = data.subject.title[0].toUpperCase() + data.subject.title.slice(1);
-        data.subject.last_name = data.subject.last_name[0].toUpperCase() + data.subject.last_name.slice(1);
-        data.subject.first_name = data.subject.first_name[0].toUpperCase() + ".";
-        data.subject.patronymic = data.subject.patronymic[0].toUpperCase() + ".";
+
+        for(k=0;k<data.subject.teachers.length;k++){
+            data.subject.teachers[k].last_name = data.subject.teachers[k].last_name[0].toUpperCase() + data.subject.teachers[k].last_name.slice(1);
+            data.subject.teachers[k].first_name = data.subject.teachers[k].first_name[0].toUpperCase() + ".";
+            data.subject.teachers[k].patronymic = data.subject.teachers[k].patronymic[0].toUpperCase() + ".";
+        }
 
         $('#infoSubj').html(showSubjInfo(data));
         $('#allReviews').html(showReviews(data));
-
     }
 
     function showSubjInfo(data) {
         let res = "";
+        let tooltipTeachers="";
+        let quantityTeach="";
+
+        if(data.subject.teachers.length>1){
+            for(q=1;q<data.subject.teachers.length;q++){
+                tooltipTeachers+=data.subject.teachers[q].last_name+" "+data.subject.teachers[q].first_name+" "+data.subject.teachers[q].patronymic+", ";
+            }
+            quantityTeach=" +"+(data.subject.teachers.length-1);
+        }
+
         res = "<div class='container-fluid mt-5 borderEP'>" +
             "<div class='row'>" +
             "<div class='col-sm-4 EPInfoBackground'>" +
@@ -207,7 +219,9 @@ $(document).ready(function () {
 
             "<h6 class='text-white  mt-5 mb-5 subjectTitlePage'>" + data.subject.title + "</h6>" +
 
-            "<span class='text-white subjectSNP'><small>" + data.subject.last_name + " " + data.subject.first_name + data.subject.patronymic + "</small></span>" +
+            "<span class='text-white subjectSNP'><small>" + data.subject.teachers[0].last_name + " " + data.subject.teachers[0].first_name + data.subject.teachers[0].patronymic + "</small>"+
+            "<a href='#' class='text-white quantityTeach' data-toggle='tooltip' data-html='true' title='"+tooltipTeachers+"'>"+quantityTeach+"</a>"+
+            "</span>" +
             "<span class='text-white subjectCoursePage'><small>" + data.subject.course + "курс </small></span>" +
             "</div>" +
 
@@ -410,8 +424,8 @@ $(document).ready(function () {
                     "<i class='fa fa-thumbs-o-up likesRevEp' aria-hidden='true'></i>" +
                     "<span class='quantityLikesEp' name='likesReview'> " + data.reviews[counter].replies[counterReply].rate + "</span>" +
                     "</div>" +
-                    "<button class='btn btn-lg text-decoration-none mr-2' onclick='likeReview(" + data.reviews[counter].review_id + "," + data.reviews[counter].user_id + ",true)'>Підтримую</button>" +
-                    "<button id = 'disagree' onclick='likeReview(" + data.reviews[counter].review_id + "," + data.reviews[counter].user_id + ",false)' class='btn btn-lg text-decoration-none mr-2' >Не погоджуюсь</button>" +
+                    "<button class='btn btn-lg text-decoration-none mr-2' onclick='likeReview(" + data.reviews[counter].replies[counterReply].id + "," + data.reviews[counter].replies[counterReply].user_id + ",true)'>Підтримую</button>" +
+                    "<button id = 'disagree' onclick='likeReview(" + data.reviews[counter].replies[counterReply].review_id + "," + data.reviews[counter].replies[counterReply].user_id + ",false)' class='btn btn-lg text-decoration-none mr-2' >Не погоджуюсь</button>" +
                     "<div id='buttonReplyReplyHide" + data.reviews[counter].replies[counterReply].id + "'>" +
                     "<button onclick='makeReplyReply(" + data.reviews[counter].replies[counterReply].id + ");' class='btn btn-lg text-decoration-none mr-2'>Відповісти</button>" +
                     "</div>" +
@@ -472,8 +486,8 @@ $(document).ready(function () {
                         "<i class='fa fa-thumbs-o-up likesRevEp' aria-hidden='true' ></i>" +
                         "<span class='quantityLikesEp' name='likesReview'> " + data.reviews[counter].replies[counterReply].rate + "</span>" +
                         "</div>" +
-                        "<button class='btn btn-lg text-decoration-none mr-2' onclick='likeReview(" + data.reviews[counter].review_id + "," + data.reviews[counter].user_id + ",true)'>Підтримую</button>" +
-                        "<button id = 'disagree' onclick='likeReview(" + data.reviews[counter].review_id + "," + data.reviews[counter].user_id + ",false)' class='btn btn-lg text-decoration-none mr-2' >Не погоджуюсь</button>" +
+                        "<button class='btn btn-lg text-decoration-none mr-2' onclick='likeReview(" + data.reviews[counter].replies[counterReply].review_id + "," + data.reviews[counter].replies[counterReply].user_id + ",true)'>Підтримую</button>" +
+                        "<button id = 'disagree' onclick='likeReview(" + data.reviews[counter].replies[counterReply].review_id + "," + data.reviews[counter].replies[counterReply].user_id + ",false)' class='btn btn-lg text-decoration-none mr-2' >Не погоджуюсь</button>" +
                         "<div id='buttonReplyReplyHide" + data.reviews[counter].replies[counterReply].id + "'>" +
                         "<button onclick='makeReplyReply(" + data.reviews[counter].replies[counterReply].id + ");' class='btn btn-lg text-decoration-none mr-2'>Відповісти</button>" +
                         "</div>" +

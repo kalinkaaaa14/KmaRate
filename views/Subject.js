@@ -6,7 +6,17 @@ function cancelTeacher(i){
     document.getElementById("addTeacher"+i).style.display = "none";
     document.getElementById("buttonAdd"+i).style.display = "block";
 }
-
+function addTeacherEdit(i){
+    document.getElementById("addTeacherEdit"+i).style.display = "block";
+    document.getElementById("buttonAddTeacher"+i).style.display = "none";
+}
+function cancelAddTeacherEdit(i){
+    document.getElementById("addTeacherEdit"+i).style.display = "none";
+    document.getElementById("buttonAddTeacher"+i).style.display = "block";
+}
+function hideDeleteTeacher(id){
+    document.getElementById("teacherEdit"+id).style.display = "none";
+}
 $(document).ready(function () {
     let today = new Date().getMonth();
     // alert(today);//4
@@ -72,7 +82,7 @@ $(document).ready(function () {
 
         let dataL = 0;
 
-        teachers+="<select name='chooseTeacher' id='chooseTeacher' class='custom-select' required>";
+        teachers+="<select name='chooseTeacher' id='chooseTeacher' class='custom-select mb-2' required>";
         while(dataL<data.length){
             teachers+=  "<option>"+data[dataL].last_name+" "+data[dataL].first_name+" "+ data[dataL].patronymic+"</option>";
             dataL++;
@@ -93,14 +103,19 @@ $(document).ready(function () {
                 data.subjects[counter].faculty = data.subjects[counter].faculty.toUpperCase();
             }
 
-
             data.subjects[counter].semester = " "+data.subjects[counter].semester[0].toUpperCase() + data.subjects[counter].semester.slice(1);
             data.subjects[counter].title = data.subjects[counter].title[0].toUpperCase() + data.subjects[counter].title.slice(1);
-            data.subjects[counter].last_name = data.subjects[counter].last_name[0].toUpperCase() + data.subjects[counter].last_name.slice(1);
-            data.subjects[counter].first_name = data.subjects[counter].first_name[0].toUpperCase() + ".";
-            data.subjects[counter].patronymic = data.subjects[counter].patronymic[0].toUpperCase() + ".";
+
+            for(k=0;k<data.subjects[counter].teachers.length;k++){
+                data.subjects[counter].teachers[k].last_name = data.subjects[counter].teachers[k].last_name[0].toUpperCase() + data.subjects[counter].teachers[k].last_name.slice(1);
+                data.subjects[counter].teachers[k].first_name = data.subjects[counter].teachers[k].first_name[0].toUpperCase() + ".";
+                data.subjects[counter].teachers[k].patronymic = data.subjects[counter].teachers[k].patronymic[0].toUpperCase() + ".";
+            }
+
             counter++;
         }
+
+
 
         $('#subjectsFromServer').html(showSubjects(data));
     }
@@ -114,14 +129,16 @@ $(document).ready(function () {
         let addSubject="";
         let editSubjectDiv="";
         let addSubjectDiv="";
+        let tooltipTeachers="";
         let isAdmin=true;
         var i=0;
 
         //let isAdmin=false;
         if (isAdmin == true){
-            editSubject="<button data-toggle='collapse' data-target='#editSubject' class='btn text-white makeEpRev'>Редагувати</button>";
+
             addSubject="<button data-toggle='collapse' data-target='#addSubject' class='btn btn-block text-white makeEpRev mb-3'>Додати дисципліну</button>";
-            addSubjectDiv="<div id='addSubject' class='collapse'>" +
+
+            addSubjectDiv="<div id='addSubject' class='collapse' style='overflow: hidden'>" +
                 "<div class='row'>" +
                 "<div class='col-sm-3'></div>"+
                 "<div class='col-sm-7'>" +
@@ -167,6 +184,7 @@ $(document).ready(function () {
                 //"<input type='text' name='semesterCreate' class='form-control semesterAdd' id='semesterCreate'>"+
                 "</div>"+
                 "</div>"+
+                "<div class='col-sm-2'></div>"+
                 "</div>"+
                 "<div class='row'>"+
                 "<div class='col-sm-3'></div>"+
@@ -277,91 +295,258 @@ $(document).ready(function () {
 
         res+=addSubject;
         res+=addSubjectDiv;
+
+
         while (counter < data.subjects.length) {
-            /*
-            if(data.subjects[counter].reviews_amount == 1){
-                reviews=" відгук";
-            }else if(data.subjects[counter].reviews_amount ===2 || data.subjects[counter].reviews_amount === 3 || data.subjects[counter].reviews_amount===4){
-                reviews=" відгуки";
-            }else{
-                reviews=" відгуків";
-            }*/
-            // editSubjectDiv="<div id='editSubject' class='collapse'>" +
-            //     "<div class='row'>" +
-            //     "<div class='col-sm-7'>" +
-            //     "<div class='form-inline'>"+
-            //     "<label class='ml-5 mr-5' for='titleEdit'>Назва</label>"+
-            //     "<input type='text' name='titleEdit' class='form-control' id='titleEdit' value='"+data.subjects[counter].title+"'>"+
-            //     "</div>"+
-            //     "<div class='form-inline'>"+
-            //     "<label class='ml-5 mr-5' for='surnameEdit'>Прізвище викладача</label>"+
-            //     "<input type='text' name='surnameEdit' class='form-control' id='surnameEdit' value='"+data.subjects[counter].last_name+"'>"+
-            //     "</div>"+
-            //     "<div class='form-inline'>"+
-            //     "<label class='ml-5 mr-5' for='nameEdit'>Ім'я викладача</label>"+
-            //     "<input type='text' name='nameEdit' class='form-control' id='nameEdit' value='"+data.subjects[counter].first_name+"'>"+
-            //     "</div>"+
-            //     "<div class='form-inline'>"+
-            //     "<label class='ml-5 mr-5' for='patronymicEdit'>По-батькові викладача</label>"+
-            //     "<input type='text' name='patronymicEdit' class='form-control' id='patronymicEdit' value='"+data.subjects[counter].patronymic+"'>"+
-            //     "</div>"+
-            //     "</div>"+
-            //     "<div class='col-sm-2'></div>"+
-            //     "<div class='col-sm-3'>" +
-            //     "<div class='form-inline'>"+
-            //     "<label class='ml-5 mr-5' for='courseEdit'>Курс</label>"+
-            //     "<input type='number' name='courseEdit' class='form-control' id='courseEdit' value='"+data.subjects[counter].course+"'>"+
-            //     "</div>"+
-            //     "<div class='form-inline'>"+
-            //     "<label class='ml-5 mr-5' for='facultyEdit'>Факультет</label>"+
-            //     "<input type='text' name='facultyEdit' class='form-control' id='facultyEdit' value='"+data.subjects[counter].faculty+"'>"+
-            //     "</div>"+
-            //     "<div class='form-inline'>"+
-            //     "<label class='ml-5 mr-5' for='yearEdit'>Рік викладання</label>"+
-            //     "<input type='number' name='yearEdit' class='form-control' id='yearEdit' value='"+data.subjects[counter].year+"'>"+
-            //     "</div>"+
-            //     "<div class='form-inline'>"+
-            //     "<label class='ml-5 mr-5' for='semesterEdit'>Семестр</label>"+
-            //     "<input type='text' name='semesterEdit' class='form-control' id='semesterEdit' value='"+data.subjects[counter].semester+"'>"+
-            //     "</div>"+
-            //     "</div>"+
-            //     "</div>"+
-            //     "</div>";
+            let quantityTeach="";
+            let teacherAll="";
+
+           if(data.subjects[counter].teachers.length>1){
+                for(q=1;q<data.subjects[counter].teachers.length;q++){
+                    tooltipTeachers+=data.subjects[counter].teachers[q].last_name+" "+data.subjects[counter].teachers[q].first_name+" "+data.subjects[counter].teachers[q].patronymic+", ";
+                    }
+                quantityTeach=" +"+(data.subjects[counter].teachers.length-1);
+
+           }
+
+           for(j=0; j<data.subjects[counter].teachers.length;j++){
+                   teacherAll+="<div class='row' id='teacherEdit"+counter+j+"'>"+
+                       "<div class='col-sm-8'>" +
+                       "<input value='"+data.subjects[counter].teachers[j].last_name+" "+data.subjects[counter].teachers[j].first_name+" "+data.subjects[counter].teachers[j].patronymic+"' type='text' name='teacherEdit"+counter+j+"' class='form-control ml-5 mt-3'>"+
+                       "</div>"+
+                       "<div class='col-sm-4'>" +
+                       "<a><button  onclick='hideDeleteTeacher("+counter+j+")' class='btn btn-lg rounded-circle mt-3 ml-3 deleteTeacher' type='button'><i class='fa fa-times' aria-hidden='true'></i> </button></a>"+
+                       "</div>"+
+                       "</div>";
+           }
 
 
-            res += "<div class='container-fluid rounded epFilters'>" +
+
+
+            editSubjectDiv = "<div id='editSubject" + data.subjects[counter].id + "' class='collapse' style='overflow: hidden'>" +
                 "<div class='row'>" +
-                "<div class='col-sm-4 firstPart'>" +
-                "<span class='text-white subjectYearMain'><small>"+data.subjects[counter].year+ data.subjects[counter].semester+"</small></span>"+
-                "<br>"+
-                "<span class='text-white epFiltersCourse'><small>"
-                + data.subjects[counter].faculty + "</small></span>"
-                + "<br>" + "<h6 class='text-white  mt-3' >"
-                + data.subjects[counter].title + "</h6>" + "<br> <br>" + "<span class='text-white subjectRevSNP'><small>"
-                + data.subjects[counter].last_name + " " + data.subjects[counter].first_name + " " + data.subjects[counter].patronymic
-                + "</small></span>"
-                + "<span class='text-white subjectRevCourse'><small>"
-                + data.subjects[counter].course + " курс</small></span>"
-                + "</div>"
-                + "<div class='col-sm-3 my-auto'>" +
-                "<h5 class='mt-3 '>Середній рейтинг</h5>" +
-                "<span class='quantityEPreview'><small>" + data.subjects[counter].reviews_amount + " відгук(-ів)</small></span>" +
-                "</div>" + "<div class='col-sm-2 my-auto'>" + "<div>" +
-                "<button data-toggle='modal' data-target='#details' type='button' class='btn btn-lg'>" + data.subjects[counter].average_grade +
-                "</button>" + "</div>" + "</div>" +
-                "<div class='col-sm-3  my-auto'>" +
-                "<a href='/subj/" + data.subjects[counter].id + "' class='btn text-white showAllEPReviews'>Усі відгуки</a>" +
-                `<button onclick="window.location='/subj/${data.subjects[counter].id}/createReview'" class='btn text-white makeEpRev'>Залишити відгук</button>` +
-                editSubject+
+                "<div class='col-sm-6'>" +
+                "<div class='form-inline mb-2'>" +
+                "<label class='ml-5 mr-5 mt-4' for='titleEdit'>Назва</label>" +
+                "<input type='text' name='titleEdit' class='form-control ml-5 mt-4' id='titleEdit' value='" + data.subjects[counter].title + "'>" +
+                "</div>" +
+                "<div class='form-inline mb-2'>" +
+                "<label class='ml-5 mr-5' for='courseEdit'>Курс </label>" +
+                "<select id='courseEdit'  name='courseEdit' class='custom-select courseEdit'>" +
+                "<option selected>" + data.subjects[counter].course + "</option>" +
+                "<option value='bp1'>БП-1</option>" +
+                "<option value='bp2'>БП-2</option>" +
+                "<option value='bp3'>БП-3</option>" +
+                "<option value='bp4'>БП-4</option>" +
+                "<option value='mp1'>МП-1</option>" +
+                "<option value='mp2'>МП-2</option>" +
+                "</select>" +
+                // "<input type='number' name='courseCreate' class='form-control courseAdd' id='courseCreate'>"+
+                "</div>" +
+                "<div class='form-inline mb-2'>" +
+                "<label class='ml-5 mr-5' for='facultyEdit'>Факультет</label>" +
+                "<select id='facultyEdit' name='facultyEdit' class='custom-select facultyEdit'>" +
+                "<option selected>" + data.subjects[counter].faculty + "</option>" +
+                "<option value='fi'>ФІ</option>" +
+                "<option value='fen'>ФЕН</option>" +
+                "<option value='fgn'>ФГН</option>" +
+                "<option value='fprn'>ФПрН</option>" +
+                "<option value='fpvn'>ФПвН</option>" +
+                "<option value='fsnst'>ФСНСТ</option>" +
+                "</select>" +
+                //  "<input type='text' name='facultyCreate' class='form-control facultyAdd' id='facultyCreate'>"+
+                "</div>" +
+                "<div class='form-inline mb-2'>" +
+                "<label class='ml-5 mr-4' for='yearEdit'>Рік викладання</label>" +
+                "<input value='" + data.subjects[counter].year + "' type='number' name='yearEdit' class='form-control ' id='yearEdit'>" +
+                "</div>" +
+                "<div class='form-inline mb-2'>" +
+                "<label class='ml-5 mr-5' for='semesterEdit'>Семестр</label>" +
+                "<select id='semesterEdit'  name='semesterEdit' class='custom-select semesterEdit'>" +
+                "<option selected>" + data.subjects[counter].semester + "</option>" +
+                "<option value='spring'>Весна</option>" +
+                "<option value='summer'>Літо</option>" +
+                "<option value='autumn'>Осінь</option>" +
+                "</select>" +
+                //"<input type='text' name='semesterCreate' class='form-control semesterAdd' id='semesterCreate'>"+
                 "</div>" +
                 "</div>" +
-                "</div>" +editSubjectDiv+ "<br>";
+                "<div class='col-sm-6'>" +
+                teacherAll+
 
-            counter++;
+                "<div class='row'>"+
+                "<div class='col-sm-3'></div>"+
+                "<div class='col-sm-6'>" +
+                "<div class='text-center'>"+
+                "<div id='buttonAddTeacher"+data.subjects[counter].id+0+"'>"+
+                "<button onclick='addTeacherEdit("+data.subjects[counter].id+0+")' class='btn makeEpRev text-white  mt-3  mb-2'>Додати викладача</button>"+
+                "</div>"+
+                "</div>"+
+                "</div>"+
+                "<div class='col-sm-3'></div>"+
+                "</div>"+
+                "<div id='addTeacherEdit"+data.subjects[counter].id+0+"' style='display: none'>"+
+                "<div class='row'>"+
+                "<div class='col-sm-1'></div>"+
+                "<div class='col-sm-10'>" +
+                teachers+
+                "<div class='text-center'>"+
+                "<div id='buttonAddTeacher"+data.subjects[counter].id+1+"'>"+
+                "<button onclick='cancelAddTeacherEdit("+data.subjects[counter].id+0+")' class='btn bg-danger text-white mt-3 mb-2 mr-1'>Скасувати</button>"+
+                "<button onclick='addTeacherEdit("+data.subjects[counter].id+1+")' class='btn makeEpRev text-white mr-1 mt-3 mb-2'>Додати викладача</button>"+
+                "</div>"+
+                "</div>"+
+                "</div>"+
+                "<div class='col-sm-1'></div>"+
+                "</div>"+
+                "<div id='addTeacherEdit"+data.subjects[counter].id+1+"' style='display: none'>"+
+                "<div class='row'>"+
+                "<div class='col-sm-1'></div>"+
+                "<div class='col-sm-10'>" +
+                 teachers+
+                "<div class='text-center'>"+
+                "<div id='buttonAddTeacher"+data.subjects[counter].id+2+"'>"+
+                "<button onclick='cancelAddTeacherEdit("+data.subjects[counter].id+1+")' class='btn bg-danger text-white mt-3 mb-2 mr-1'>Скасувати</button>"+
+                "<button onclick='addTeacherEdit("+data.subjects[counter].id+2+")' class='btn makeEpRev text-white  mt-3 mr-1 mb-2'>Додати викладача</button>"+
+                "</div>"+
+                "</div>"+
+                "</div>"+
+                "<div class='col-sm-1'></div>"+
+                "</div>"+
+                "<div id='addTeacherEdit"+data.subjects[counter].id+2+"' style='display: none'>"+
+                "<div class='row'>"+
+                "<div class='col-sm-1'></div>"+
+                "<div class='col-sm-10'>" +
+                teachers+
+                "<div class='text-center'>"+
+                "<div id='buttonAddTeacher"+data.subjects[counter].id+3+"'>"+
+                "<button onclick='cancelAddTeacherEdit("+data.subjects[counter].id+2+")' class='btn bg-danger text-white mt-3 mb-2 mr-1'>Скасувати</button>"+
+                "<button onclick='addTeacherEdit("+data.subjects[counter].id+3+")' class='btn makeEpRev text-white  mt-3 mr-1 mb-2'>Додати викладача</button>"+
+                "</div>"+
+                "</div>"+
+                "</div>"+
+                "<div class='col-sm-1'></div>"+
+                "</div>"+
+                "<div id='addTeacherEdit"+data.subjects[counter].id+3+"' style='display: none'>"+
+                "<div class='row'>"+
+                "<div class='col-sm-1'></div>"+
+                "<div class='col-sm-10'>" +
+                teachers+
+                "<div class='text-center'>"+
+                "<div id='buttonAddTeacher"+data.subjects[counter].id+4+"'>"+
+                "<button onclick='cancelAddTeacherEdit("+data.subjects[counter].id+3+")' class='btn bg-danger text-white mt-3 mb-2 mr-1'>Скасувати</button>"+
+                "<button onclick='addTeacherEdit("+data.subjects[counter].id+4+")' class='btn makeEpRev text-white  mt-3 mr-1 mb-2'>Додати викладача</button>"+
+                "</div>"+
+                "</div>"+
+                "</div>"+
+                "<div class='col-sm-1'></div>"+
+                "</div>"+
+                "<div id='addTeacherEdit"+data.subjects[counter].id+4+"' style='display: none'>"+
+                "<div class='row'>"+
+                "<div class='col-sm-1'></div>"+
+                "<div class='col-sm-10'>" +
+                teachers+
+                "<div class='text-center'>"+
+                "<div id='buttonAddTeacher"+data.subjects[counter].id+5+"'>"+
+                "<button onclick='cancelAddTeacherEdit("+data.subjects[counter].id+4+")' class='btn bg-danger text-white mt-3 mb-2 mr-1'>Скасувати</button>"+
+                "<button onclick='addTeacherEdit("+data.subjects[counter].id+5+")' class='btn makeEpRev text-white  mt-3 mr-1 mb-2'>Додати викладача</button>"+
+                "</div>"+
+                "</div>"+
+                "</div>"+
+                "<div class='col-sm-1'></div>"+
+                "</div>"+
+                "<div id='addTeacherEdit"+data.subjects[counter].id+5+"' style='display: none'>"+
+                "<div class='row'>"+
+                "<div class='col-sm-1'></div>"+
+                "<div class='col-sm-10'>" +
+                teachers+
+                "<div class='text-center'>"+
+                "<button onclick='cancelAddTeacherEdit("+data.subjects[counter].id+5+")' class='btn bg-danger text-white mt-3 mb-2 mr-2'>Скасувати</button>"+
+                "</div>"+
+                "</div>"+
+                "<div class='col-sm-1'></div>"+
+                "</div>"+
+                "</div>"+
+                "</div>"+
+                "</div>"+
+                "</div>"+
+                "</div>"+
+                "</div>"+
+
+
+                "</div>"+
+                "</div>" +
+                "<div class='row'>" +
+                "<div class='col-sm-4'></div>"+
+                "<div class='col-sm-4'>" +
+                "<button onclick='' class='btn btn-block bg-dark text-white  mt-3 mb-2'>Оновити</button>"+
+                "</div>"+
+                "<div class='col-sm-4'></div>"+
+                "</div>"+
+                "</div>";
+
+            if (isAdmin == true) {
+                res += "<div class='container-fluid rounded epFilters'>" +
+                    "<div class='row'>" +
+                    "<div class='col-sm-4 firstPart'>" +
+                    "<span class='text-white subjectYearMain'><small>" + data.subjects[counter].year + data.subjects[counter].semester + "</small></span>" +
+                    "<br>" +
+                    "<span class='text-white epFiltersCourse'><small>"
+                    + data.subjects[counter].faculty + "</small></span>"
+                    + "<br>" + "<h6 class='text-white  mt-3' >"
+                    + data.subjects[counter].title + "</h6>" + "<br> <br>" + "<span class='text-white subjectRevSNP'><small>"
+                    +data.subjects[counter].teachers[0].last_name+" "+data.subjects[counter].teachers[0].first_name
+                    + "</small><a href='#' class='text-white quantityTeach' data-toggle='tooltip' data-html='true' title='"+tooltipTeachers+"'>"+quantityTeach+"</a></span>"
+                    + "<span class='text-white subjectRevCourse'><small>"
+                    + data.subjects[counter].course + " курс</small></span>"
+                    + "</div>"
+                    + "<div class='col-sm-3 my-auto'>" +
+                    "<h5 class='mt-3 '>Середній рейтинг</h5>" +
+                    "<span class='quantityEPreview'><small>" + data.subjects[counter].reviews_amount + " відгук(-ів)</small></span>" +
+                    "</div>" + "<div class='col-sm-2 my-auto'>" + "<div>" +
+                    "<button data-toggle='modal' data-target='#details' type='button' class='btn btn-lg'>" + data.subjects[counter].average_grade +
+                    "</button>" + "</div>" + "</div>" +
+                    "<div class='col-sm-3  my-auto'>" +
+                    "<a href='/subj/" + data.subjects[counter].id + "' class='btn text-white showAllEPReviews'>Усі відгуки</a>" +
+                    `<button onclick="window.location='/subj/${data.subjects[counter].id}/createReview'" class='btn text-white makeEpRev'>Залишити відгук</button>` +
+                    "<button data-toggle='collapse' data-target='#editSubject" + data.subjects[counter].id + "' class='btn text-white makeEpRev'>Редагувати</button>" +
+                    "</div>" +
+                    "</div>" +
+                    "</div>" + editSubjectDiv + "<br>";
+            }else{
+                res += "<div class='container-fluid rounded epFilters'>" +
+                    "<div class='row'>" +
+                    "<div class='col-sm-4 firstPart'>" +
+                    "<span class='text-white subjectYearMain'><small>" + data.subjects[counter].year + data.subjects[counter].semester + "</small></span>" +
+                    "<br>" +
+                    "<span class='text-white epFiltersCourse'><small>"
+                    + data.subjects[counter].faculty + "</small></span>"
+                    + "<br>" + "<h6 class='text-white  mt-3' >"
+                    + data.subjects[counter].title + "</h6>" + "<br> <br>" +
+                    "<span class='text-white subjectRevSNP'><small>"+data.subjects[counter].teachers[0].last_name+" "+data.subjects[counter].teachers[0].first_name+" "
+                    +data.subjects[counter].teachers[0].patronymic
+               + "</small><a href='#' class='text-white quantityTeach' data-toggle='tooltip' data-html='true' title='"+tooltipTeachers+"'>"+quantityTeach+"</a></span>"
+                    + "<span class='text-white subjectRevCourse'><small>"
+                    + data.subjects[counter].course + " курс</small></span>"
+                    + "</div>"
+                    + "<div class='col-sm-3 my-auto'>" +
+                    "<h5 class='mt-3 '>Середній рейтинг</h5>" +
+                    "<span class='quantityEPreview'><small>" + data.subjects[counter].reviews_amount + " відгук(-ів)</small></span>" +
+                    "</div>" + "<div class='col-sm-2 my-auto'>" + "<div>" +
+                    "<button data-toggle='modal' data-target='#details' type='button' class='btn btn-lg'>" + data.subjects[counter].average_grade +
+                    "</button>" + "</div>" + "</div>" +
+                    "<div class='col-sm-3  my-auto'>" +
+                    "<a href='/subj/" + data.subjects[counter].id + "' class='btn text-white showAllEPReviews'>Усі відгуки</a>" +
+                    `<button onclick="window.location='/subj/${data.subjects[counter].id}/createReview'" class='btn text-white makeEpRev'>Залишити відгук</button>` +
+                    "</div>" +
+                    "</div>" +
+                    "</div>" +"<br>";
+            }
+                counter++;
+
         }
         return res;
     }
-
 
     /*
     function detalization(data){
