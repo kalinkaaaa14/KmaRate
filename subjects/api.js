@@ -120,6 +120,8 @@ router.get('/:id' + links.DATA, function (req, res, next) {
                 }
             }
 
+            // console.log(reviews[0].replies);
+
             return res.json({subject, reviews});
         } catch (e) {
             return next(e);
@@ -154,8 +156,9 @@ router.post('/:id' + links.CREATE_REVIEW, checkAuthenticated, function (req, res
 router.post(links.RATE + links.REVIEWS + '/:reviewId', checkAuthenticated, function (req, res, next) {
     (async () => {
         try {
+            console.log('review');
 
-            // console.log(req.body);
+            console.log(req.body);
             let isLikeObj = await db.getUserLikeSubjectReview(req.user.id, req.params.reviewId);
             if (isLikeObj) {
                 if (isLikeObj.like + '' === req.body.like) {
@@ -185,7 +188,10 @@ router.post(links.RATE + links.REPLY + '/:replyId', checkAuthenticated, function
     (async () => {
         try {
 
-            // console.log(req.body);
+            console.log('reply');
+            console.log(req.params.replyId);
+            console.log(req.user.id);
+            console.log(req.body);
             let isLikeObj = await db.getUserLikeSubjectReply(req.user.id, req.params.replyId);
             if (isLikeObj) {
                 if (isLikeObj.like + '' === req.body.like) {
