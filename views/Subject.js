@@ -17,6 +17,35 @@ function cancelAddTeacherEdit(i){
 function hideDeleteTeacher(id){
     document.getElementById("teacherEdit"+id).style.display = "none";
 }
+//дороити перевірку на ввід
+function createNewSubject(l){
+    var tchrs=[];
+    for(i=0;i<l;i++){
+        tchrs[i]=document.getElementsByName('chooseTeacher'+i)[0].value;
+    }
+    var createSubject = {
+        title: document.getElementsByName('titleCreate')[0].value,
+        course: document.getElementsByName('courseCreate')[0].value,
+        faculty_id: document.getElementsByName('facultyCreate')[0].value,
+        year: document.getElementsByName('yearCreate')[0].value,
+        semester: document.getElementsByName("semesterCreate")[0].value,
+        teachers: tchrs
+    };
+    //console.log(createSubject);
+
+    $.ajax({
+        url: '/subj/new/subject',
+        type: 'POST',
+        data: createSubject,
+        success: function (data, textStatus, xhr) {
+           console.log(data);
+        },
+        error: function (xhr, textStatus, errorThrown) {
+            console.log('Error in Operation');
+        }
+    });
+}
+
 $(document).ready(function () {
     let today = new Date().getMonth();
     // alert(today);//4
@@ -63,7 +92,7 @@ $(document).ready(function () {
             url: '/subj/teachers',
             type: 'GET',
             success: function (data, textStatus, xhr) {
-         //       console.log(data);
+               console.log(data);
                formatTeachers(data);
             },
 
@@ -72,23 +101,7 @@ $(document).ready(function () {
             }
         });
     }
-    let teachers="";
-    function formatTeachers(data) {
-        for(s=0; s<data.length;s++){
-            data[s].first_name= data[s].first_name[0].toUpperCase()+ data[s].first_name.slice(1);
-            data[s].last_name= data[s].last_name[0].toUpperCase()+ data[s].last_name.slice(1);
-            data[s].patronymic= data[s].patronymic[0].toUpperCase()+ data[s].patronymic.slice(1);
-        }
 
-        let dataL = 0;
-
-        teachers+="<select name='chooseTeacher' id='chooseTeacher' class='custom-select mb-2' required>";
-        while(dataL<data.length){
-            teachers+=  "<option>"+data[dataL].last_name+" "+data[dataL].first_name+" "+ data[dataL].patronymic+"</option>";
-            dataL++;
-        }
-        teachers+="</select>";
-    }
 
     function formatData(data) {
 
@@ -120,6 +133,47 @@ $(document).ready(function () {
         $('#subjectsFromServer').html(showSubjects(data));
     }
 
+    let teachers0="";
+    let teachers1="";
+    let teachers2="";
+    let teachers3="";
+    let teachers4="";
+    let teachers5="";
+
+    function formatTeachers(data) {
+        for(s=0; s<data.length;s++){
+            data[s].first_name= data[s].first_name[0].toUpperCase()+ data[s].first_name.slice(1);
+            data[s].last_name= data[s].last_name[0].toUpperCase()+ data[s].last_name.slice(1);
+            data[s].patronymic= data[s].patronymic[0].toUpperCase()+ data[s].patronymic.slice(1);
+        }
+
+        let dataL = 0;
+
+        teachers0+="<select name='chooseTeacher"+0+"' class='custom-select mb-2' required>";
+        teachers1+="<select name='chooseTeacher"+1+"' class='custom-select mb-2' required>";
+        teachers2+="<select name='chooseTeacher"+2+"' class='custom-select mb-2' required>";
+        teachers3+="<select name='chooseTeacher"+3+"' class='custom-select mb-2' required>";
+        teachers4+="<select name='chooseTeacher"+4+"' class='custom-select mb-2' required>";
+        teachers5+="<select name='chooseTeacher"+5+"' class='custom-select mb-2' required>";
+        while(dataL<data.length){
+            teachers0+=  "<option value='"+data[dataL].email+"'>"+data[dataL].last_name+" "+data[dataL].first_name+" "+ data[dataL].patronymic+"</option>";
+            teachers1+=  "<option value='"+data[dataL].email+"'>"+data[dataL].last_name+" "+data[dataL].first_name+" "+ data[dataL].patronymic+"</option>";
+            teachers2+=  "<option value='"+data[dataL].email+"'>"+data[dataL].last_name+" "+data[dataL].first_name+" "+ data[dataL].patronymic+"</option>";
+            teachers3+=  "<option value='"+data[dataL].email+"'>"+data[dataL].last_name+" "+data[dataL].first_name+" "+ data[dataL].patronymic+"</option>";
+            teachers4+=  "<option value='"+data[dataL].email+"'>"+data[dataL].last_name+" "+data[dataL].first_name+" "+ data[dataL].patronymic+"</option>";
+            teachers5+=  "<option value='"+data[dataL].email+"'>"+data[dataL].last_name+" "+data[dataL].first_name+" "+ data[dataL].patronymic+"</option>";
+
+            dataL++;
+        }
+        teachers0+="</select>";
+        teachers1+="</select>";
+        teachers2+="</select>";
+        teachers3+="</select>";
+        teachers4+="</select>";
+        teachers5+="</select>";
+
+    }
+
     function showSubjects(data) {
 
         let counter = 0;
@@ -149,24 +203,24 @@ $(document).ready(function () {
                 "<div class='form-inline mb-2'>"+
                 "<label class='ml-5 mr-5' for='courseCreate'>Курс </label>"+
                 "<select id='courseCreate'  name='courseCreate' class='custom-select courseAdd'>"+
-                "<option value='bp1'>БП-1</option>"+
-                "<option value='bp2'>БП-2</option>"+
-                "<option value='bp3'>БП-3</option>"+
-                "<option value='bp4'>БП-4</option>"+
-                "<option value='mp1'>МП-1</option>"+
-                "<option value='mp2'>МП-2</option>"+
+                "<option value='1'>БП-1</option>"+
+                "<option value='2'>БП-2</option>"+
+                "<option value='3'>БП-3</option>"+
+                "<option value='4'>БП-4</option>"+
+                "<option value='5'>МП-1</option>"+
+                "<option value='6'>МП-2</option>"+
                 "</select>"+
                // "<input type='number' name='courseCreate' class='form-control courseAdd' id='courseCreate'>"+
                 "</div>"+
                 "<div class='form-inline mb-2'>"+
                 "<label class='ml-5 mr-5' for='facultyCreate'>Факультет</label>"+
                 "<select id='facultyCreate' name='facultyCreate' class='custom-select facultyAdd'>"+
-                "<option value='fi'>ФІ</option>"+
-                "<option value='fen'>ФЕН</option>"+
-                "<option value='fgn'>ФГН</option>"+
-                "<option value='fprn'>ФПрН</option>"+
-                "<option value='fpvn'>ФПвН</option>"+
-                "<option value='fsnst'>ФСНСТ</option>"+
+                "<option value='1'>ФІ</option>"+
+                "<option value='2'>ФЕН</option>"+
+                "<option value='3'>ФГН</option>"+
+                "<option value='4'>ФПрН</option>"+
+                "<option value='5'>ФПвН</option>"+
+                "<option value='6'>ФСНСТ</option>"+
                 "</select>"+
               //  "<input type='text' name='facultyCreate' class='form-control facultyAdd' id='facultyCreate'>"+
                 "</div>"+
@@ -177,9 +231,9 @@ $(document).ready(function () {
                 "<div class='form-inline mb-2'>"+
                 "<label class='ml-5 mr-5' for='semesterCreate'>Семестр</label>"+
                 "<select id='semesterCreate'  name='semesterCreate' class='custom-select semesterAdd'>"+
-                "<option value='autumn'>Осінь</option>"+
-                "<option value='spring'>Весна</option>"+
-                "<option value='summer'>Літо</option>"+
+                "<option value='осінь'>Осінь</option>"+
+                "<option value='весна'>Весна</option>"+
+                "<option value='літо'>Літо</option>"+
                 "</select>"+
                 //"<input type='text' name='semesterCreate' class='form-control semesterAdd' id='semesterCreate'>"+
                 "</div>"+
@@ -201,12 +255,12 @@ $(document).ready(function () {
                 "<div class='row'>"+
                 "<div class='col-sm-3'></div>"+
                 "<div class='col-sm-6'>" +
-                  teachers+
+                  teachers0+
                 "<div class='text-center'>"+
                 "<div id='buttonAdd1'>"+
                 "<button onclick='cancelTeacher("+0+")' class='btn bg-danger text-white mt-3 mb-2 mr-1'>Скасувати</button>"+
                 "<button onclick='addTeacher("+1+")' class='btn makeEpRev text-white  mt-3 ml-4 mb-2'>Додати викладача</button>"+
-                "<button onclick='' class='btn bg-dark text-white  mt-3 ml-4 mb-2'>Підтвердити</button>"+
+                "<button onclick='createNewSubject("+1+");' class='btn bg-dark text-white  mt-3 ml-4 mb-2'>Підтвердити</button>"+
                 "</div>"+
                 "</div>"+
                 "</div>"+
@@ -216,12 +270,12 @@ $(document).ready(function () {
                 "<div class='row'>"+
                 "<div class='col-sm-3'></div>"+
                 "<div class='col-sm-6'>" +
-                teachers+
+                teachers1+
                 "<div class='text-center'>"+
                 "<div id='buttonAdd2'>"+
                 "<button onclick='cancelTeacher("+1+")' class='btn bg-danger text-white mt-3 mb-2 mr-1'>Скасувати</button>"+
                 "<button onclick='addTeacher("+2+")' class='btn makeEpRev text-white  mt-3 ml-4 mb-2'>Додати викладача</button>"+
-                "<button onclick='' class='btn  bg-dark text-white  mt-3 ml-4 mb-2'>Підтвердити</button>"+
+                "<button onclick='createNewSubject("+2+")' class='btn  bg-dark text-white  mt-3 ml-4 mb-2'>Підтвердити</button>"+
                 "</div>"+
                 "</div>"+
                 "</div>"+
@@ -231,12 +285,12 @@ $(document).ready(function () {
                 "<div class='row'>"+
                 "<div class='col-sm-3'></div>"+
                 "<div class='col-sm-6'>" +
-                teachers+
+                teachers2+
                 "<div class='text-center'>"+
                 "<div id='buttonAdd3'>"+
                 "<button onclick='cancelTeacher("+2+")' class='btn bg-danger text-white mt-3 mb-2 mr-3'>Скасувати</button>"+
                 "<button onclick='addTeacher("+3+")' class='btn makeEpRev text-white  mt-3 ml-4 mb-2'>Додати викладача</button>"+
-                "<button onclick='' class='btn  bg-dark text-white  mt-3 ml-4 mb-2'>Підтвердити</button>"+
+                "<button onclick=''createNewSubject("+3+") class='btn  bg-dark text-white  mt-3 ml-4 mb-2'>Підтвердити</button>"+
                 "</div>"+
                 "</div>"+
                 "</div>"+
@@ -246,12 +300,12 @@ $(document).ready(function () {
                 "<div class='row'>"+
                 "<div class='col-sm-3'></div>"+
                 "<div class='col-sm-6'>" +
-                teachers+
+                teachers3+
                 "<div class='text-center'>"+
                 "<div id='buttonAdd4'>"+
                 "<button onclick='cancelTeacher("+3+")' class='btn bg-danger text-white mt-3 mb-2 mr-1'>Скасувати</button>"+
                 "<button onclick='addTeacher("+4+")' class='btn makeEpRev text-white  mt-3 ml-4 mb-2'>Додати викладача</button>"+
-                "<button onclick='' class='btn  bg-dark text-white  mt-3 ml-4 mb-2'>Підтвердити</button>"+
+                "<button onclick='createNewSubject("+4+")' class='btn  bg-dark text-white  mt-3 ml-4 mb-2'>Підтвердити</button>"+
                 "</div>"+
                 "</div>"+
                 "</div>"+
@@ -261,12 +315,12 @@ $(document).ready(function () {
                 "<div class='row'>"+
                 "<div class='col-sm-3'></div>"+
                 "<div class='col-sm-6'>" +
-                teachers+
+                teachers4+
                 "<div class='text-center'>"+
                 "<div id='buttonAdd5'>"+
                 "<button onclick='cancelTeacher("+4+")' class='btn bg-danger text-white mt-3 mb-2 mr-1'>Скасувати</button>"+
                 "<button onclick='addTeacher("+5+")' class='btn makeEpRev text-white  mt-3 ml-4 mb-2'>Додати викладача</button>"+
-                "<button onclick='' class='btn  bg-dark text-white  mt-3 ml-4 mb-2'>Підтвердити</button>"+
+                "<button onclick='createNewSubject("+5+")' class='btn  bg-dark text-white  mt-3 ml-4 mb-2'>Підтвердити</button>"+
                 "</div>"+
                 "</div>"+
                 "</div>"+
@@ -276,10 +330,10 @@ $(document).ready(function () {
                 "<div class='row'>"+
                 "<div class='col-sm-3'></div>"+
                 "<div class='col-sm-6'>" +
-                 teachers+
+                 teachers5+
                 "<div class='text-center'>"+
                 "<button onclick='cancelTeacher("+5+")' class='btn bg-danger text-white mt-3 mb-2 mr-5'>Скасувати</button>"+
-                "<button onclick='' class='btn  bg-dark text-white  mt-3 ml-4 mb-2'>Підтвердити</button>"+
+                "<button onclick='createNewSubject("+6+")' class='btn  bg-dark text-white  mt-3 ml-4 mb-2'>Підтвердити</button>"+
                 "</div>"+
                 "</div>"+
                 "<div class='col-sm-3'></div>"+
@@ -389,7 +443,7 @@ $(document).ready(function () {
                 "<div class='row'>"+
                 "<div class='col-sm-1'></div>"+
                 "<div class='col-sm-10'>" +
-                teachers+
+                teachers0+
                 "<div class='text-center'>"+
                 "<div id='buttonAddTeacher"+data.subjects[counter].id+1+"'>"+
                 "<button onclick='cancelAddTeacherEdit("+data.subjects[counter].id+0+")' class='btn bg-danger text-white mt-3 mb-2 mr-1'>Скасувати</button>"+
@@ -403,7 +457,7 @@ $(document).ready(function () {
                 "<div class='row'>"+
                 "<div class='col-sm-1'></div>"+
                 "<div class='col-sm-10'>" +
-                 teachers+
+                 teachers1+
                 "<div class='text-center'>"+
                 "<div id='buttonAddTeacher"+data.subjects[counter].id+2+"'>"+
                 "<button onclick='cancelAddTeacherEdit("+data.subjects[counter].id+1+")' class='btn bg-danger text-white mt-3 mb-2 mr-1'>Скасувати</button>"+
@@ -417,7 +471,7 @@ $(document).ready(function () {
                 "<div class='row'>"+
                 "<div class='col-sm-1'></div>"+
                 "<div class='col-sm-10'>" +
-                teachers+
+                teachers2+
                 "<div class='text-center'>"+
                 "<div id='buttonAddTeacher"+data.subjects[counter].id+3+"'>"+
                 "<button onclick='cancelAddTeacherEdit("+data.subjects[counter].id+2+")' class='btn bg-danger text-white mt-3 mb-2 mr-1'>Скасувати</button>"+
@@ -431,7 +485,7 @@ $(document).ready(function () {
                 "<div class='row'>"+
                 "<div class='col-sm-1'></div>"+
                 "<div class='col-sm-10'>" +
-                teachers+
+                teachers3+
                 "<div class='text-center'>"+
                 "<div id='buttonAddTeacher"+data.subjects[counter].id+4+"'>"+
                 "<button onclick='cancelAddTeacherEdit("+data.subjects[counter].id+3+")' class='btn bg-danger text-white mt-3 mb-2 mr-1'>Скасувати</button>"+
@@ -445,7 +499,7 @@ $(document).ready(function () {
                 "<div class='row'>"+
                 "<div class='col-sm-1'></div>"+
                 "<div class='col-sm-10'>" +
-                teachers+
+                teachers4+
                 "<div class='text-center'>"+
                 "<div id='buttonAddTeacher"+data.subjects[counter].id+5+"'>"+
                 "<button onclick='cancelAddTeacherEdit("+data.subjects[counter].id+4+")' class='btn bg-danger text-white mt-3 mb-2 mr-1'>Скасувати</button>"+
@@ -459,7 +513,7 @@ $(document).ready(function () {
                 "<div class='row'>"+
                 "<div class='col-sm-1'></div>"+
                 "<div class='col-sm-10'>" +
-                teachers+
+                teachers5+
                 "<div class='text-center'>"+
                 "<button onclick='cancelAddTeacherEdit("+data.subjects[counter].id+5+")' class='btn bg-danger text-white mt-3 mb-2 mr-2'>Скасувати</button>"+
                 "</div>"+
