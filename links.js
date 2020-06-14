@@ -19,6 +19,7 @@ module.exports = {
     ADMIN: '/admin',
     NEW: '/new',
     SUBJECT: '/subject',
+    EDIT: '/edit',
 
     // revSubj: '/revSubj',
 };

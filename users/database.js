@@ -126,12 +126,12 @@ async function getEPReviews(userId){
 
 // updateProfile({nickname: 't', email: 't', telegram: 't', instagram: 't', facebook: 't', branch_id: 122, uesr_id: 67});
 
-async function updateProfile({nickname, email, telegram, instagram, facebook, branch_id, user_id}){
+async function updateProfile({nickname, email, telegram, instagram, facebook, branch_id, image_string, user_id}){
     let res = await pool.query(`
     UPDATE users 
-    SET nickname = $1, email = $2, telegram = $3, instagram = $4, facebook = $5, branch_id = $6
-    WHERE id = $7 
-    `, [nickname, email, telegram, instagram, facebook, branch_id, user_id]);
+    SET nickname = $1, email = $2, telegram = $3, instagram = $4, facebook = $5, branch_id = $6, image_string = $7
+    WHERE id = $8
+    `, [nickname, email, telegram, instagram, facebook, branch_id, image_string, user_id]);
     return res;
 }
 

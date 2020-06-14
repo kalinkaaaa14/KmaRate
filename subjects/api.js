@@ -56,7 +56,7 @@ router.get(links.FILTERED_SUBJECTS, async function (req, res, next) {
             }
 
             // console.log(filteredSubjects);
-            console.log(filteredSubjects[1].teachers);
+            // console.log(filteredSubjects[1].teachers);
             let isAdmin = false;
             if (req.user) {
                 let adminId = await db.getAdmin(req.user.id);
@@ -245,6 +245,30 @@ router.post(links.NEW + links.SUBJECT, checkAuthenticated, checkAdmin, async fun
         }catch (e) {
             next(e);
         }
+});
+
+
+
+router.post(links.EDIT + links.SUBJECT, checkAuthenticated, checkAdmin, async function (req, res, next) {
+    try {
+        let subject = req.body;
+
+        if(subject.title.length > 50){
+            return res.json({message: 'Назва предмету перевищує 50 символів'});
+        }
+
+        await db.updateSubject(subject.id, subject.title, subject.course, subject.year, subject.semester, subject.faculty_id);
+
+        await db.deleteAllSubjectTeachers(subject.id);
+
+        for (let email of subject.teachers) {
+            await db.addSubjectLecturer(subject.id, email);
+        }
+
+        return res.json({message: 'Дисципліну змінено'});
+    }catch (e) {
+        next(e);
+    }
 });
 
 

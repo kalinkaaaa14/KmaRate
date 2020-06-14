@@ -92,7 +92,7 @@ $(document).ready(function () {
         let notTheoryPractice="";
         let teacherCriricism="";
         let notTeacherCriticism="";
-        res+= "<h4 class='myReviews mb-3 mt-1 ml-5'> Мої відгуки ("+(data.subject_reviews.length+data.ep_reviews.length)+")</h4>";
+        res+= "<h4 class='myReviews mb-3 mt-1 ml-5'> Відгуки ("+(data.subject_reviews.length+data.ep_reviews.length)+")</h4>";
         while (counter < data.subject_reviews.length) {
             let dNK=10-data.subject_reviews[counter].need_basic_knowledge;
             let dLT=10-data.subject_reviews[counter].edu_technique;

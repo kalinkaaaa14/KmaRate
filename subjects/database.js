@@ -128,6 +128,7 @@ async function getSubjectReviews(subjectId) {
     
     FROM review_subject INNER JOIN users ON (review_subject.user_id = users.id)
     WHERE subject_id = $1
+    ORDER BY review_subject.date_rev DESC, review_subject.time_rev DESC
     `, [subjectId]);
     return res.rows;
 }
@@ -150,6 +151,7 @@ async function getReviewReplies(reviewId) {
     
     FROM review_reply INNER JOIN users ON (review_reply.user_id = users.id)
     WHERE subject_review_id = $1 
+    ORDER BY review_reply.date_rev ASC, review_reply.time_rev ASC 
     `, [reviewId]);
     return res.rows;
 }
@@ -324,6 +326,21 @@ async function addSubjectLecturer(subjId, lecturerEmail) {
 }
 
 
+async function updateSubject(subjId, title, course, year, semester, faculty_id) {
+    let res = await pool.query(`
+    UPDATE subjects 
+    SET title = $2, course = $3, year = $4, semester = $5, faculty_id = $6
+    WHERE id = $1
+    `, [subjId, title, course, year, semester, faculty_id]);
+}
+
+async function deleteAllSubjectTeachers(subjId) {
+    let res = await pool.query(`
+    DELETE FROM lecturer_teach_subj
+    WHERE lecturer_teach_subj.code = $1;
+    `, [subjId]);
+}
+
 module.exports = {
     getSubjects,
     getAVGSubjectRate, getSubjectReviews, getSubjectReviewRate,
@@ -336,5 +353,7 @@ module.exports = {
     deleteUserLikeSubjectReply,
     getSubjectReplyRate,
     addSubject,
-    addSubjectLecturer
+    addSubjectLecturer,
+    updateSubject,
+    deleteAllSubjectTeachers,
 };

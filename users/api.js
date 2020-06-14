@@ -228,7 +228,9 @@ router.get(links.SETTINGS + links.DATA /*+ '/:nickname'*/, checkAuthenticated, f
                 userData.instagram = user.instagram.slice('https://www.instagram.com/'.length, user.instagram.length);
             }
 
-            return res.json(userData);
+            userData.image_string = (await db.getUser(userData.nickname)).image_string;
+
+            return res.json({userData, branchs: await require('../web_server/database').getBranchs()});
         } catch (e) {
             return next(e);
         }
@@ -239,7 +241,9 @@ router.get(links.SETTINGS + links.DATA /*+ '/:nickname'*/, checkAuthenticated, f
 router.post(links.SETTINGS + links.DATA /*+ '/:nickname'*/, checkAuthenticated, function (req, res, next) {
     console.log('=====================');
     console.log('=====================');
-    // console.log(req.body);
+    console.log(req.user.nickname + ': change user data' );
+
+    console.log(req.body);
     //todo check input
     let profileUpdates = req.body;
     profileUpdates.user_id = req.user.id;
@@ -270,14 +274,18 @@ router.post(links.SETTINGS + links.DATA /*+ '/:nickname'*/, checkAuthenticated, 
         return res.json({message: 'Емейл не повинен первищувати 50 символів'});
     }
 
+    if(profileUpdates.image_string.length > 60000){
+        return res.json({message: 'Зображення не може бути більше 6 мегабайт'});
+    }
+
 
     db.updateProfile(profileUpdates)
         .then(function (result) {
-            return res.json({message: 'Зміни збережені'});
+            return res.json({message: 'Зміни збережені', redirect: '/profile/' + profileUpdates.nickname});
         })
         .catch(function (e) {
             //todo handle errors
-            res.json({message: 'Невідома помилка'});
+            res.json({message: 'Невідома помилка', err: 'err'});
             return next(e);
         });
 
@@ -321,7 +329,11 @@ router.post(links.SETTINGS + links.PASSWORD /*+ '/:nickname'*/, checkAuthenticat
             if (await bcrypt.compare(passwords.oldPassword, req.user.password)) {
                 //todo check result of promise
                 await db.updatePassword({newPassword: await bcrypt.hash(passwords.newPassword, 10), user_id: req.user.id});
-                return res.json({message: 'Пароль оновлено'});
+
+                req.session.destroy(function (err) {
+                    if (err) return next(err);
+                    res.json({message: 'Пароль оновлено', redirect: '/entr'});
+                });
             } else {
                 return res.json({message: 'Неправильний пароль'});
             }
