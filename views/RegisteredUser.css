@@ -52,7 +52,8 @@ button:hover {
     border-radius: 2%;
 }
 .editAvatar{
-    width:250px;
+    width:280px;
+    height:280px;
 }
 .editChangePswrd{
     width:auto;

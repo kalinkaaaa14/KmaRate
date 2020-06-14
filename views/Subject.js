@@ -49,6 +49,29 @@ function createNewSubject(l){
     });
 }
 
+function editSubject(id,counter, l){
+var tchrs=[];
+for(i=0;i<l;i++){
+    tchrs[i]=document.getElementsByName("teacherEdit"+counter+i)[0].value;
+}
+for(i=0;i<6;i++){
+   if(document.getElementById("editTeacher"+counter+i).style.display==="block") {
+       tchrs.push(document.getElementsByName("editTeacher" + counter + i)[0].value);
+   }
+}
+       var editS={
+       id: id,
+        title: document.getElementsByName('titleEdit'+counter)[0].value,
+        course: document.getElementsByName('courseEdit'+counter)[0].value,
+        faculty_id: document.getElementsByName('facultyEdit'+counter)[0].value,
+        year: document.getElementsByName('yearEdit'+counter)[0].value,
+        semester: document.getElementsByName('semesterEdit'+counter)[0].value,
+        teachers: tchrs
+    }
+    console.log(editS);
+
+}
+
 $(document).ready(function () {
     let today = new Date().getMonth();
     // alert(today);//4
@@ -124,8 +147,8 @@ $(document).ready(function () {
 
             for(k=0;k<data.subjects[counter].teachers.length;k++){
                 data.subjects[counter].teachers[k].last_name = data.subjects[counter].teachers[k].last_name[0].toUpperCase() + data.subjects[counter].teachers[k].last_name.slice(1);
-                data.subjects[counter].teachers[k].first_name = data.subjects[counter].teachers[k].first_name[0].toUpperCase() + ".";
-                data.subjects[counter].teachers[k].patronymic = data.subjects[counter].teachers[k].patronymic[0].toUpperCase() + ".";
+                data.subjects[counter].teachers[k].first_name = data.subjects[counter].teachers[k].first_name[0].toUpperCase() + data.subjects[counter].teachers[k].first_name.slice(1);
+                data.subjects[counter].teachers[k].patronymic = data.subjects[counter].teachers[k].patronymic[0].toUpperCase() + data.subjects[counter].teachers[k].patronymic.slice(1);
             }
 
             counter++;
@@ -143,6 +166,13 @@ $(document).ready(function () {
     let teachers4="";
     let teachers5="";
 
+    let teachersEdit0="";
+    let teachersEdit1="";
+    let teachersEdit2="";
+    let teachersEdit3="";
+    let teachersEdit4="";
+    let teachersEdit5="";
+    let arrT=[];
     function formatTeachers(data) {
         for(s=0; s<data.length;s++){
             data[s].first_name= data[s].first_name[0].toUpperCase()+ data[s].first_name.slice(1);
@@ -158,8 +188,17 @@ $(document).ready(function () {
         teachers3+="<select name='chooseTeacher"+3+"' class='custom-select mb-2' required>";
         teachers4+="<select name='chooseTeacher"+4+"' class='custom-select mb-2' required>";
         teachers5+="<select name='chooseTeacher"+5+"' class='custom-select mb-2' required>";
+
         while(dataL<data.length){
-            teachers0+=  "<option value='"+data[dataL].email+"'>"+data[dataL].last_name+" "+data[dataL].first_name+" "+ data[dataL].patronymic+"</option>";
+
+            teachersEdit0+=  "<option value='"+data[dataL].email+"'>"+data[dataL].last_name+ " "+data[dataL].first_name+" "+ data[dataL].patronymic+"</option>";
+            teachersEdit1+=  "<option value='"+data[dataL].email+"'>"+data[dataL].last_name+" "+data[dataL].first_name+" "+ data[dataL].patronymic+"</option>";
+            teachersEdit2+=  "<option value='"+data[dataL].email+"'>"+data[dataL].last_name+" "+data[dataL].first_name+" "+ data[dataL].patronymic+"</option>";
+            teachersEdit3+=  "<option value='"+data[dataL].email+"'>"+data[dataL].last_name+" "+data[dataL].first_name+" "+ data[dataL].patronymic+"</option>";
+            teachersEdit4+=  "<option value='"+data[dataL].email+"'>"+data[dataL].last_name+" "+data[dataL].first_name+" "+ data[dataL].patronymic+"</option>";
+            teachersEdit5+=  "<option value='"+data[dataL].email+"'>"+data[dataL].last_name+" "+data[dataL].first_name+" "+ data[dataL].patronymic+"</option>";
+
+            teachers0+=  "<option value='"+data[dataL].email+"'>"+data[dataL].last_name+ " "+data[dataL].first_name+" "+ data[dataL].patronymic+"</option>";
             teachers1+=  "<option value='"+data[dataL].email+"'>"+data[dataL].last_name+" "+data[dataL].first_name+" "+ data[dataL].patronymic+"</option>";
             teachers2+=  "<option value='"+data[dataL].email+"'>"+data[dataL].last_name+" "+data[dataL].first_name+" "+ data[dataL].patronymic+"</option>";
             teachers3+=  "<option value='"+data[dataL].email+"'>"+data[dataL].last_name+" "+data[dataL].first_name+" "+ data[dataL].patronymic+"</option>";
@@ -175,6 +214,49 @@ $(document).ready(function () {
         teachers4+="</select>";
         teachers5+="</select>";
 
+        teachersEdit0+="</select>";
+        teachersEdit1+="</select>";
+        teachersEdit2+="</select>";
+        teachersEdit3+="</select>";
+        teachersEdit4+="</select>";
+        teachersEdit5+="</select>";
+
+        arrT=data;
+    }
+
+    function allTeachersBesides(data,i) {
+let allOptions="";
+        for(k=0; k<data.length;k++) {
+            if (k === i) {
+                allOptions += "<option selected value='" + data[k].email + "'>" + data[k].last_name + " " + data[k].first_name + " " + data[k].patronymic + "</option>";
+            } else {
+                allOptions += "<option value='" + data[k].email + "'>" + data[k].last_name + " " + data[k].first_name + " " + data[k].patronymic + "</option>";
+            }
+        }
+        let indexes =[];
+        let counter=0;
+        for(q=0;q<arrT.length; q++){
+            for(w=0;w<data.length;w++){
+                if(arrT[q].email ===data[w].email){
+                   indexes[counter]=q;
+                   counter++;
+                   break;
+                }
+            }
+        }
+
+        for(d=0;d<arrT.length;d++){
+            let notHere=true;
+            for(f=0; f<indexes.length;f++){
+                if(d === indexes[f]){
+                    notHere=false;
+                }
+            }
+            if(notHere) {
+                allOptions += "<option value='" + arrT[d].email + "'>" + arrT[d].last_name + " " + arrT[d].first_name + " " + arrT[d].patronymic + "</option>";
+            }
+        }
+        return allOptions;
     }
 
     function showSubjects(data) {
@@ -221,8 +303,8 @@ $(document).ready(function () {
                 "<option value='1'>ФІ</option>"+
                 "<option value='2'>ФЕН</option>"+
                 "<option value='3'>ФГН</option>"+
-                "<option value='4'>ФПрН</option>"+
-                "<option value='5'>ФПвН</option>"+
+                "<option value='4'>ФПвН</option>"+
+                "<option value='5'>ФПрН</option>"+
                 "<option value='6'>ФСНСТ</option>"+
                 "</select>"+
               //  "<input type='text' name='facultyCreate' class='form-control facultyAdd' id='facultyCreate'>"+
@@ -363,13 +445,19 @@ $(document).ready(function () {
                     tooltipTeachers+=data.subjects[counter].teachers[q].last_name+" "+data.subjects[counter].teachers[q].first_name+" "+data.subjects[counter].teachers[q].patronymic+", ";
                     }
                 quantityTeach=" +"+(data.subjects[counter].teachers.length-1);
-
            }
 
+           //  console.log(arrT);
+
+
+
+
            for(j=0; j<data.subjects[counter].teachers.length;j++){
-                   teacherAll+="<div class='row' id='teacherEdit"+counter+j+"'>"+
+                   teacherAll+="<div class='row'  id='teacherEdit"+counter+j+"'>"+
                        "<div class='col-sm-8'>" +
-                       "<input value='"+data.subjects[counter].teachers[j].last_name+" "+data.subjects[counter].teachers[j].first_name+" "+data.subjects[counter].teachers[j].patronymic+"' type='text' name='teacherEdit"+counter+j+"' class='form-control ml-5 mt-3'>"+
+                       "<select name='teacherEdit"+counter+j+"' class='custom-select facultyEdit mt-4'>"+
+                     allTeachersBesides(data.subjects[counter].teachers,j)+
+                       "</select>"+
                        "</div>"+
                        "<div class='col-sm-4'>" +
                        "<a><button  onclick='hideDeleteTeacher("+counter+j+")' class='btn btn-lg rounded-circle mt-3 ml-3 deleteTeacher' type='button'><i class='fa fa-times' aria-hidden='true'></i> </button></a>"+
@@ -377,54 +465,155 @@ $(document).ready(function () {
                        "</div>";
            }
 
+           let facultyOptions= "<select id='facultyEdit' name='facultyEdit"+counter+"' class='custom-select facultyEdit'>";
+           let courseOptions= "<select id='courseEdit'  name='courseEdit"+counter+"' class='custom-select courseEdit'>";
+           let semesterOptions= "<select id='semesterEdit'  name='semesterEdit"+counter+"' class='custom-select semesterEdit'>";
+       switch(data.subjects[counter].semester){
+           case " Осінь":
+              semesterOptions+= "<option value='весна'>Весна</option>" +
+               "<option value='літо'>Літо</option>" +
+               "<option selected value='осінь'>Осінь</option>";
+              break;
+           case " Весна":
+               semesterOptions+= "<option selected value='весна'>Весна</option>" +
+                   "<option value='літо'>Літо</option>" +
+                   "<option value='осінь'>Осінь</option>";
+               break;
+           case " Літо":
+               semesterOptions+= "<option value='весна'>Весна</option>" +
+                   "<option selected value='літо'>Літо</option>" +
+                   "<option value='осінь'>Осінь</option>";
+               break;
+       }
+       semesterOptions+="</select>";
 
-
+            switch (data.subjects[counter].course) {
+                case 1:
+                  courseOptions+=  "<option selected value='1'>БП-1</option>" +
+                    "<option value='2'>БП-2</option>" +
+                    "<option value='3'>БП-3</option>" +
+                    "<option value='4'>БП-4</option>" +
+                    "<option value='5'>МП-1</option>" +
+                    "<option value='6'>МП-2</option>";
+                  break;
+                  case 2:
+                      courseOptions+=  "<option  value='1'>БП-1</option>" +
+                          "<option selected value='2'>БП-2</option>" +
+                          "<option value='3'>БП-3</option>" +
+                          "<option value='4'>БП-4</option>" +
+                          "<option value='5'>МП-1</option>" +
+                          "<option value='6'>МП-2</option>";
+                      break;
+                    case 3:
+                        courseOptions+=  "<option  value='1'>БП-1</option>" +
+                            "<option value='2'>БП-2</option>" +
+                            "<option selected value='3'>БП-3</option>" +
+                            "<option value='4'>БП-4</option>" +
+                            "<option value='5'>МП-1</option>" +
+                            "<option value='6'>МП-2</option>";
+                        break;
+                case 4:
+                    courseOptions+=  "<option  value='1'>БП-1</option>" +
+                        "<option value='2'>БП-2</option>" +
+                        "<option value='3'>БП-3</option>" +
+                        "<option selected value='4'>БП-4</option>" +
+                        "<option value='5'>МП-1</option>" +
+                        "<option value='6'>МП-2</option>";
+                    break;
+                case 5:
+                    courseOptions+=  "<option  value='1'>БП-1</option>" +
+                        "<option value='2'>БП-2</option>" +
+                        "<option  value='3'>БП-3</option>" +
+                        "<option value='4'>БП-4</option>" +
+                        "<option selected value='5'>МП-1</option>" +
+                        "<option value='6'>МП-2</option>";
+                    break;
+                case 6:
+                    courseOptions+=  "<option  value='1'>БП-1</option>" +
+                        "<option value='2'>БП-2</option>" +
+                        "<option  value='3'>БП-3</option>" +
+                        "<option value='4'>БП-4</option>" +
+                        "<option selected value='5'>МП-1</option>" +
+                        "<option value='6'>МП-2</option>";
+                    break;
+            }
+            courseOptions+="</select>";
+           switch (data.subjects[counter].faculty) {
+               case "ФІ":
+                   facultyOptions +="<option selected value='1'>ФІ</option>"+
+                       "<option value='2'>ФЕН</option>"+
+                       "<option value='3'>ФГН</option>"+
+                       "<option value='4'>ФПвН</option>"+
+                       "<option value='5'>ФПрН</option>"+
+                       "<option value='6'>ФСНСТ</option>";
+                   break;
+               case "ФЕН":
+                   facultyOptions +="<option value='1'>ФІ</option>"+
+                       "<option selected value='2'>ФЕН</option>"+
+                       "<option value='3'>ФГН</option>"+
+                       "<option value='4'>ФПвН</option>"+
+                       "<option value='5'>ФПрН</option>"+
+                       "<option value='6'>ФСНСТ</option>";
+                   break;
+               case "ФГН":
+                   facultyOptions +="<option value='1'>ФІ</option>"+
+                       "<option value='2'>ФЕН</option>"+
+                       "<option selected value='3'>ФГН</option>"+
+                       "<option value='4'>ФПвН</option>"+
+                       "<option value='5'>ФПрН</option>"+
+                       "<option value='6'>ФСНСТ</option>";
+                   break;
+               case "ФПвН":
+                   facultyOptions +="<option value='1'>ФІ</option>"+
+                       "<option value='2'>ФЕН</option>"+
+                       "<option value='3'>ФГН</option>"+
+                       "<option selected value='4'>ФПвН</option>"+
+                       "<option value='5'>ФПрН</option>"+
+                       "<option value='6'>ФСНСТ</option>";
+                   break;
+               case "ФПрН":
+                   facultyOptions +="<option value='1'>ФІ</option>"+
+                       "<option value='2'>ФЕН</option>"+
+                       "<option value='3'>ФГН</option>"+
+                       "<option value='4'>ФПвН</option>"+
+                       "<option  selected  value='5'>ФПрН</option>"+
+                       "<option value='6'>ФСНСТ</option>";
+                   break;
+               case "ФСНСТ":
+                   facultyOptions +="<option value='1'>ФІ</option>"+
+                       "<option value='2'>ФЕН</option>"+
+                       "<option value='3'>ФГН</option>"+
+                       "<option value='4'>ФПвН</option>"+
+                       "<option value='5'>ФПрН</option>"+
+                       "<option  selected value='6'>ФСНСТ</option>";
+                   break;
+           }
+           facultyOptions+="</select>";
 
             editSubjectDiv = "<div id='editSubject" + data.subjects[counter].id + "' class='collapse' style='overflow: hidden'>" +
                 "<div class='row'>" +
                 "<div class='col-sm-6'>" +
                 "<div class='form-inline mb-2'>" +
-                "<label class='ml-5 mr-5 mt-4' for='titleEdit'>Назва</label>" +
-                "<input type='text' name='titleEdit' class='form-control ml-5 mt-4' id='titleEdit' value='" + data.subjects[counter].title + "'>" +
+                "<label class='ml-5 mr-5 mt-4' for='titleEdit"+counter+"'>Назва</label>" +
+                "<input type='text' name='titleEdit"+counter+"' class='form-control ml-5 mt-4' id='titleEdit' value='" + data.subjects[counter].title + "'>" +
                 "</div>" +
                 "<div class='form-inline mb-2'>" +
                 "<label class='ml-5 mr-5' for='courseEdit'>Курс </label>" +
-                "<select id='courseEdit'  name='courseEdit' class='custom-select courseEdit'>" +
-                "<option selected>" + data.subjects[counter].course + "</option>" +
-                "<option value='bp1'>БП-1</option>" +
-                "<option value='bp2'>БП-2</option>" +
-                "<option value='bp3'>БП-3</option>" +
-                "<option value='bp4'>БП-4</option>" +
-                "<option value='mp1'>МП-1</option>" +
-                "<option value='mp2'>МП-2</option>" +
-                "</select>" +
+             courseOptions+
                 // "<input type='number' name='courseCreate' class='form-control courseAdd' id='courseCreate'>"+
                 "</div>" +
                 "<div class='form-inline mb-2'>" +
                 "<label class='ml-5 mr-5' for='facultyEdit'>Факультет</label>" +
-                "<select id='facultyEdit' name='facultyEdit' class='custom-select facultyEdit'>" +
-                "<option selected>" + data.subjects[counter].faculty + "</option>" +
-                "<option value='fi'>ФІ</option>" +
-                "<option value='fen'>ФЕН</option>" +
-                "<option value='fgn'>ФГН</option>" +
-                "<option value='fprn'>ФПрН</option>" +
-                "<option value='fpvn'>ФПвН</option>" +
-                "<option value='fsnst'>ФСНСТ</option>" +
-                "</select>" +
+                 facultyOptions+
                 //  "<input type='text' name='facultyCreate' class='form-control facultyAdd' id='facultyCreate'>"+
                 "</div>" +
                 "<div class='form-inline mb-2'>" +
                 "<label class='ml-5 mr-4' for='yearEdit'>Рік викладання</label>" +
-                "<input value='" + data.subjects[counter].year + "' type='number' name='yearEdit' class='form-control ' id='yearEdit'>" +
+                "<input value='" + data.subjects[counter].year + "' type='number' name='yearEdit"+counter+"' class='form-control ' id='yearEdit'>" +
                 "</div>" +
                 "<div class='form-inline mb-2'>" +
                 "<label class='ml-5 mr-5' for='semesterEdit'>Семестр</label>" +
-                "<select id='semesterEdit'  name='semesterEdit' class='custom-select semesterEdit'>" +
-                "<option selected>" + data.subjects[counter].semester + "</option>" +
-                "<option value='spring'>Весна</option>" +
-                "<option value='summer'>Літо</option>" +
-                "<option value='autumn'>Осінь</option>" +
-                "</select>" +
+                semesterOptions+
                 //"<input type='text' name='semesterCreate' class='form-control semesterAdd' id='semesterCreate'>"+
                 "</div>" +
                 "</div>" +
@@ -444,9 +633,9 @@ $(document).ready(function () {
                 "</div>"+
                 "<div id='addTeacherEdit"+data.subjects[counter].id+0+"' style='display: none'>"+
                 "<div class='row'>"+
-                "<div class='col-sm-1'></div>"+
-                "<div class='col-sm-10'>" +
-                teachers0+
+                "<div class='col-sm-10 ml-2 mt-2'>" +
+                "<select id='editTeacher"+counter+0+"' name='editTeacher"+counter+0+"' class='custom-select mb-2' required>"+
+                teachersEdit0+
                 "<div class='text-center'>"+
                 "<div id='buttonAddTeacher"+data.subjects[counter].id+1+"'>"+
                 "<button onclick='cancelAddTeacherEdit("+data.subjects[counter].id+0+")' class='btn bg-danger text-white mt-3 mb-2 mr-1'>Скасувати</button>"+
@@ -458,9 +647,9 @@ $(document).ready(function () {
                 "</div>"+
                 "<div id='addTeacherEdit"+data.subjects[counter].id+1+"' style='display: none'>"+
                 "<div class='row'>"+
-                "<div class='col-sm-1'></div>"+
-                "<div class='col-sm-10'>" +
-                 teachers1+
+                "<div class='col-sm-10 ml-2 mt-2'>" +
+                "<select name='editTeacher"+counter+1+"' id='editTeacher"+counter+1+"' class='custom-select mb-2' required>"+
+                 teachersEdit1+
                 "<div class='text-center'>"+
                 "<div id='buttonAddTeacher"+data.subjects[counter].id+2+"'>"+
                 "<button onclick='cancelAddTeacherEdit("+data.subjects[counter].id+1+")' class='btn bg-danger text-white mt-3 mb-2 mr-1'>Скасувати</button>"+
@@ -472,9 +661,9 @@ $(document).ready(function () {
                 "</div>"+
                 "<div id='addTeacherEdit"+data.subjects[counter].id+2+"' style='display: none'>"+
                 "<div class='row'>"+
-                "<div class='col-sm-1'></div>"+
-                "<div class='col-sm-10'>" +
-                teachers2+
+                "<div class='col-sm-10 ml-2 mt-2'>" +
+                 "<select name='editTeacher"+counter+2+"' id='editTeacher"+counter+2+"' class='custom-select mb-2' required>"+
+                teachersEdit2+
                 "<div class='text-center'>"+
                 "<div id='buttonAddTeacher"+data.subjects[counter].id+3+"'>"+
                 "<button onclick='cancelAddTeacherEdit("+data.subjects[counter].id+2+")' class='btn bg-danger text-white mt-3 mb-2 mr-1'>Скасувати</button>"+
@@ -486,9 +675,9 @@ $(document).ready(function () {
                 "</div>"+
                 "<div id='addTeacherEdit"+data.subjects[counter].id+3+"' style='display: none'>"+
                 "<div class='row'>"+
-                "<div class='col-sm-1'></div>"+
-                "<div class='col-sm-10'>" +
-                teachers3+
+                "<div class='col-sm-10 ml-2 mt-2'>" +
+                "<select name='editTeacher"+counter+3+"' id='editTeacher"+counter+3+"' class='custom-select mb-2' required>"+
+                teachersEdit3+
                 "<div class='text-center'>"+
                 "<div id='buttonAddTeacher"+data.subjects[counter].id+4+"'>"+
                 "<button onclick='cancelAddTeacherEdit("+data.subjects[counter].id+3+")' class='btn bg-danger text-white mt-3 mb-2 mr-1'>Скасувати</button>"+
@@ -500,9 +689,9 @@ $(document).ready(function () {
                 "</div>"+
                 "<div id='addTeacherEdit"+data.subjects[counter].id+4+"' style='display: none'>"+
                 "<div class='row'>"+
-                "<div class='col-sm-1'></div>"+
-                "<div class='col-sm-10'>" +
-                teachers4+
+                "<div class='col-sm-10 ml-2 mt-2'>" +
+                "<select name='editTeacher"+counter+4+"' id='editTeacher"+counter+4+"' class='custom-select mb-2' required>"+
+                teachersEdit4+
                 "<div class='text-center'>"+
                 "<div id='buttonAddTeacher"+data.subjects[counter].id+5+"'>"+
                 "<button onclick='cancelAddTeacherEdit("+data.subjects[counter].id+4+")' class='btn bg-danger text-white mt-3 mb-2 mr-1'>Скасувати</button>"+
@@ -514,9 +703,9 @@ $(document).ready(function () {
                 "</div>"+
                 "<div id='addTeacherEdit"+data.subjects[counter].id+5+"' style='display: none'>"+
                 "<div class='row'>"+
-                "<div class='col-sm-1'></div>"+
-                "<div class='col-sm-10'>" +
-                teachers5+
+                "<div class='col-sm-10 ml-2 mt-2'>" +
+                "<select name='editTeacher"+counter+5+"' id='editTeacher"+counter+5+"' class='custom-select mb-2' required>"+
+                teachersEdit5+
                 "<div class='text-center'>"+
                 "<button onclick='cancelAddTeacherEdit("+data.subjects[counter].id+5+")' class='btn bg-danger text-white mt-3 mb-2 mr-2'>Скасувати</button>"+
                 "</div>"+
@@ -529,14 +718,12 @@ $(document).ready(function () {
                 "</div>"+
                 "</div>"+
                 "</div>"+
-
-
                 "</div>"+
                 "</div>" +
                 "<div class='row'>" +
                 "<div class='col-sm-4'></div>"+
                 "<div class='col-sm-4'>" +
-                "<button onclick='' class='btn btn-block bg-dark text-white  mt-3 mb-2'>Оновити</button>"+
+                "<button onclick='editSubject("+data.subjects[counter].id+","+counter+","+data.subjects[counter].teachers.length+")' class='btn btn-block bg-dark text-white  mt-3 mb-2'>Оновити</button>"+
                 "</div>"+
                 "<div class='col-sm-4'></div>"+
                 "</div>"+
@@ -552,7 +739,8 @@ $(document).ready(function () {
                     + data.subjects[counter].faculty + "</small></span>"
                     + "<br>" + "<h6 class='text-white  mt-3' >"
                     + data.subjects[counter].title + "</h6>" + "<br> <br>" + "<span class='text-white subjectRevSNP'><small>"
-                    +data.subjects[counter].teachers[0].last_name+" "+data.subjects[counter].teachers[0].first_name
+                    +data.subjects[counter].teachers[0].last_name+" "+(data.subjects[counter].teachers[0].first_name[0].toUpperCase()
+                        +".") +" "+(data.subjects[counter].teachers[0].patronymic[0].toUpperCase()+".")
                     + "</small><a href='#' class='text-white quantityTeach' data-toggle='tooltip' data-html='true' title='"+tooltipTeachers+"'>"+quantityTeach+"</a></span>"
                     + "<span class='text-white subjectRevCourse'><small>"
                     + data.subjects[counter].course + " курс</small></span>"
@@ -580,8 +768,8 @@ $(document).ready(function () {
                     + data.subjects[counter].faculty + "</small></span>"
                     + "<br>" + "<h6 class='text-white  mt-3' >"
                     + data.subjects[counter].title + "</h6>" + "<br> <br>" +
-                    "<span class='text-white subjectRevSNP'><small>"+data.subjects[counter].teachers[0].last_name+" "+data.subjects[counter].teachers[0].first_name+" "
-                    +data.subjects[counter].teachers[0].patronymic
+                    "<span class='text-white subjectRevSNP'><small>"+data.subjects[counter].teachers[0].last_name+" "+(data.subjects[counter].teachers[0].first_name[0].toUpperCase()
+                        +".") +" "+(data.subjects[counter].teachers[0].patronymic[0].toUpperCase()+".")
                + "</small><a href='#' class='text-white quantityTeach' data-toggle='tooltip' data-html='true' title='"+tooltipTeachers+"'>"+quantityTeach+"</a></span>"
                     + "<span class='text-white subjectRevCourse'><small>"
                     + data.subjects[counter].course + " курс</small></span>"
