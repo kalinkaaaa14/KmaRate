@@ -2,6 +2,10 @@ $(document).ready(function () {
     let urlPartsArr = window.location.href.split('/');
     let user_nick = urlPartsArr[urlPartsArr.length - 1];
 
+    let showTelegram="";
+    let showFacebook="";
+    let showInstagram="";
+
     getInfoUser();
     getInfoReviews();
 
@@ -51,6 +55,15 @@ $(document).ready(function () {
 
         data.branch_title = " "+data.branch_title[0].toUpperCase() + data.branch_title.slice(1);
 
+        if(data.telegram !== "" && data.telegram !== null){
+            showTelegram= "<a href='"+data.telegram+"'><button  class='btn btn-lg rounded-circle socialBut'  type='button'><i class='fa fa-telegram'  aria-hidden='true'></i></button></a>";
+        }
+        if(data.facebook !== "" &&  data.facebook !== null){
+            showFacebook= "<a href='"+data.facebook+"'><button  class='btn btn-lg rounded-circle socialBut' type='button'><i class='fa fa-facebook-square' aria-hidden='true'></i> </button></a>";
+        }
+        if(data.instagram !== "" &&  data.instagram !== null){
+        showInstagram = "<a href='"+data.instagram+"'><button  class='btn btn-lg rounded-circle socialBut' type='button'><i class='fa fa-instagram' aria-hidden='true'></i> </button></a>";
+        }
        switch (data.faculty_title) {
            case "фі":
                data.faculty_title = "інформатики";
@@ -327,9 +340,9 @@ $(document).ready(function () {
             "<br>"+
             "<output class='courseInProfile' name='profileCourse'>"+data.faculty_title+"</output>"+
             "</p>"+
-            "<a href='"+data.telegram+"'><button  class='btn btn-lg rounded-circle socialBut'  type='button'><i class='fa fa-telegram'  aria-hidden='true'></i></button></a>"+
-       "<a href='"+data.instagram+"'><button  class='btn btn-lg rounded-circle socialBut' type='button'><i class='fa fa-instagram' aria-hidden='true'></i> </button></a>"+
-        "<a href='"+data.facebook+"'><button  class='btn btn-lg rounded-circle socialBut' type='button'><i class='fa fa-facebook-square' aria-hidden='true'></i> </button></a>"+
+          showTelegram+
+            showInstagram+
+            showFacebook+
         "</div>"+
         "<div class='spaceBetweenInfo'></div>"+
             "<div class='infoProfile2'>"+
