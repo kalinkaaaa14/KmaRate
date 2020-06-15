@@ -107,80 +107,8 @@
 
 
 <div class="container-fluid con mt-4">
-    <div class="row">
-        <div class ="filters">
-            <form class="formFiltersEP">
-                <br>
-                <h4 class="text-center mt-1">Фільтр</h4>
-                <div class="form-group">
-                    <h5 for="nameSubj">Назва</h5>
-                    <!--вибрати з усіх -->
-                    <input type="email" class="form-control" id="nameSubj">
-                </div>
-
-                <div class="form-group">
-                    <h5 for="branch">Спеціальність</h5>
-                    <!--вибрати з усіх -->
-                    <input type="email" class="form-control" id="branch">
-                </div>
-
-                <h5>Ступінь</h5>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="bp1" name="customRadio" class="custom-control-input">
-                            <label class="custom-control-label" for="bp1">БП-1</label>
-                        </div>
-
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="bp2" name="customRadio" class="custom-control-input">
-                            <label class="custom-control-label" for="bp2">БП-2</label>
-                        </div>
-
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="bp3" name="customRadio" class="custom-control-input">
-                            <label class="custom-control-label" for="bp3">БП-3</label>
-                        </div>
-
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="bp4" name="customRadio" class="custom-control-input">
-                            <label class="custom-control-label" for="bp4">БП-4</label>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="mp1" name="customRadio" class="custom-control-input">
-                            <label class="custom-control-label" for="mp1">МП-1</label>
-                        </div>
-
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="mp2" name="customRadio" class="custom-control-input">
-                            <label class="custom-control-label" for="mp2">МП-2</label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <h5>Університет</h5>
-                <select name="uni" class="custom-select">
-                    <option value="uni1">Uni1</option>
-                    <option value="uni2">Uni2</option>
-                    <option value="uni3">Uni3</option>
-                </select>
-                </div>
-
-                <div class="form-group">
-                    <h5>Країна</h5>
-                    <select name="country" class="custom-select">
-                        <option value="c1">1</option>
-                        <option value="c2">2</option>
-                        <option value="c3">3</option>
-                    </select>
-                </div>
-
-
-                <button type="button" class="btn searchBS text-white btn-block mt-4">Пошук</button>
-            </form>
+    <div  class="row">
+        <div id="filtersEp" class ='filters'>
         </div>
         <div class="spaceBetween"></div>
         <div class="subj">
@@ -460,5 +388,6 @@
     </footer>
 </div>
 
+<script src="/EP.js" charset="utf-8"></script>
 </body>
 </html>
