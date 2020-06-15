@@ -1,6 +1,8 @@
 let arrT=[];
 let arrayTeachersToEdit=[];
 let chosenT=[];
+let moreT=0;
+
 function addTeacher(i){
     document.getElementById("addTeacher"+i).style.display = "block";
     document.getElementById("buttonAdd"+i).style.display = "none";
@@ -10,6 +12,7 @@ function cancelTeacher(i){
     document.getElementById("buttonAdd"+i).style.display = "block";
 }
 function addTeacherEdit(i){
+    moreT++;
     document.getElementById("addTeacherEdit"+i).style.display = "block";
     document.getElementById("buttonAddTeacher"+i).style.display = "none";
 }
@@ -21,6 +24,12 @@ function cancelAddTeacherEdit(counter,i){
 function hideDeleteTeacher(counter,id){
     document.getElementById("teacherEdit"+counter+id).style.display = "none";
 }
+function hideDeleteTeacherEdit(counter,id){
+    document.getElementById("row"+counter+id).style.display = "none";
+    document.getElementById("buttonAddTeacher"+counter+i).style.display = "block";
+    //document.getElementById("buttonAddTeacher"+counter+id).style.display = "block";
+}
+
 //дороити перевірку на ввід
 function createNewTeacher() {
     let identical = false;
@@ -881,14 +890,14 @@ $(document).ready(function () {
                 "<div class='col-sm-3'></div>"+
                 "</div>"+
                 "<div id='addTeacherEdit"+data.subjects[counter].id+0+"' style='display: none'>"+
-                "<div class='row'>"+
+                "<div id='row"+data.subjects[counter].id+0+"' class='row'>"+
                 "<div class='col-sm-8 '>" +
                 "<select id='editTeacher"+counter+0+"' name='editTeacher"+counter+0+"' class='custom-select facultyEdit mt-2' required>"+
                 teachersEdit0+
                 "</select>"+
                 "</div>"+
                 "<div class='col-sm-4'>" +
-                "<a><button  onclick='cancelAddTeacherEdit("+data.subjects[counter].id+","+0+")' class='btn btn-lg rounded-circle  ml-3 deleteTeacher' type='button'><i class='fa fa-times' aria-hidden='true'></i> </button></a>"+
+                "<a><button  onclick='hideDeleteTeacherEdit("+data.subjects[counter].id+","+0+")' class='btn btn-lg rounded-circle  ml-3 deleteTeacher' type='button'><i class='fa fa-times' aria-hidden='true'></i> </button></a>"+
                 "</div>"+
                 "</div>"+
                 "<div class='row'>" +
@@ -900,16 +909,16 @@ $(document).ready(function () {
                 "<div class='col-sm-3'></div>"+
                 "</div>"+
                 "</div>" +
+                "</div>"+
                 "<div id='addTeacherEdit"+data.subjects[counter].id+1+"' style='display: none'>"+
-                "<div class='row'>"+
+                "<div id='row"+data.subjects[counter].id+1+"' class='row'>"+
                 "<div class='col-sm-8'>" +
                 "<select name='editTeacher"+counter+1+"' id='editTeacher"+counter+1+"' class='custom-select facultyEdit mt-2' required>"+
                  teachersEdit1+
-
                "</select>"+
                 "</div>"+
                 "<div class='col-sm-4'>"+
-                "<a><button   onclick='cancelAddTeacherEdit("+data.subjects[counter].id+","+1+")' class='btn btn-lg rounded-circle  ml-3 deleteTeacher' type='button'><i class='fa fa-times' aria-hidden='true'></i> </button></a>"+
+                "<a><button   onclick='hideDeleteTeacherEdit("+data.subjects[counter].id+","+1+")' class='btn btn-lg rounded-circle  ml-3 deleteTeacher' type='button'><i class='fa fa-times' aria-hidden='true'></i> </button></a>"+
                 "</div>"+
                 "</div>"+
                 "<div class='row'>" +
@@ -921,15 +930,16 @@ $(document).ready(function () {
                 "</div>"+
                 "<div class='col-sm-3'></div>"+
                 "</div>"+
+                "</div>"+
                 "<div id='addTeacherEdit"+data.subjects[counter].id+2+"' style='display: none'>"+
-                "<div class='row'>"+
+                "<div id='row"+data.subjects[counter].id+2+"' class='row'>"+
                 "<div class='col-sm-8'>" +
                  "<select name='editTeacher"+counter+2+"' id='editTeacher"+counter+2+"' class='custom-select facultyEdit mt-2' required>"+
                 teachersEdit2+
                 "</select>"+
                 "</div>"+
                 "<div class='col-sm-4'>" +
-                "<a><button  onclick='cancelAddTeacherEdit("+data.subjects[counter].id+","+2+")'  class='btn btn-lg rounded-circle  ml-3 deleteTeacher' type='button'><i class='fa fa-times' aria-hidden='true'></i> </button></a>"+
+                "<a><button  onclick='hideDeleteTeacherEdit("+data.subjects[counter].id+","+2+")'  class='btn btn-lg rounded-circle  ml-3 deleteTeacher' type='button'><i class='fa fa-times' aria-hidden='true'></i> </button></a>"+
                 "</div>"+
                 "</div>"+
                 "<div class='row'>" +
@@ -941,15 +951,16 @@ $(document).ready(function () {
                 "</div>"+
                 "<div class='col-sm-3'></div>"+
                 "</div>"+
+                "</div>"+
                 "<div id='addTeacherEdit"+data.subjects[counter].id+3+"' style='display: none'>"+
-                "<div class='row'>"+
+                "<div id='row"+data.subjects[counter].id+3+"' class='row'>"+
                 "<div class='col-sm-8'>" +
                 "<select name='editTeacher"+counter+3+"' id='editTeacher"+counter+3+"' class='custom-select facultyEdit mt-2' required>"+
                 teachersEdit3+
                 "</select>"+
                 "</div>"+
                 "<div class='col-sm-4'>" +
-                "<a><button  onclick='cancelAddTeacherEdit("+data.subjects[counter].id+","+3+")'  class='btn btn-lg rounded-circle  ml-3 deleteTeacher' type='button'><i class='fa fa-times' aria-hidden='true'></i> </button></a>"+
+                "<a><button  onclick='hideDeleteTeacherEdit("+data.subjects[counter].id+","+3+")'  class='btn btn-lg rounded-circle  ml-3 deleteTeacher' type='button'><i class='fa fa-times' aria-hidden='true'></i> </button></a>"+
                 "</div>"+
                 "</div>"+
                 "<div class='row'>"+
@@ -961,15 +972,16 @@ $(document).ready(function () {
                 "</div>"+
                 "<div class='col-sm-3'></div>"+
                 "</div>"+
+                "</div>"+
                 "<div id='addTeacherEdit"+data.subjects[counter].id+4+"' style='display: none'>"+
-                "<div class='row'>"+
+                "<div id='row"+data.subjects[counter].id+4+"' class='row'>"+
                 "<div class='col-sm-8'>" +
                 "<select name='editTeacher"+counter+4+"' id='editTeacher"+counter+4+"' class='custom-select facultyEdit mt-2' required>"+
                 teachersEdit4+
                 "</select>"+
                 "</div>"+
                 "<div class='col-sm-4'>" +
-                "<a><button  onclick='cancelAddTeacherEdit("+data.subjects[counter].id+","+4+")'   class='btn btn-lg rounded-circle  ml-3 deleteTeacher' type='button'><i class='fa fa-times' aria-hidden='true'></i> </button></a>"+
+                "<a><button  onclick='hideDeleteTeacherEdit("+data.subjects[counter].id+","+4+")'   class='btn btn-lg rounded-circle  ml-3 deleteTeacher' type='button'><i class='fa fa-times' aria-hidden='true'></i> </button></a>"+
                 "</div>"+
                 "</div>"+
                 "<div class='row'>"+
@@ -981,20 +993,16 @@ $(document).ready(function () {
                 "</div>"+
                 "<div class='col-sm-3'></div>"+
                 "</div>"+
+                "</div>"+
                 "<div id='addTeacherEdit"+data.subjects[counter].id+5+"' style='display: none'>"+
-                "<div class='row'>"+
+                "<div id='row"+data.subjects[counter].id+5+"' class='row'>"+
                 "<div class='col-sm-8'>" +
                 "<select name='editTeacher"+counter+5+"' id='editTeacher"+counter+5+"' class='custom-select facultyEdit mt-2' required>"+
                 teachersEdit5+
                 "</select>"+
                 "</div>"+
                 "<div class='col-sm-4'>" +
-                "<a><button  onclick='cancelAddTeacherEdit("+data.subjects[counter].id+","+5+")'   class='btn btn-lg rounded-circle  ml-3 deleteTeacher' type='button'><i class='fa fa-times' aria-hidden='true'></i> </button></a>"+
-                "</div>"+
-                "</div>"+
-                "</div>"+
-                "</div>"+
-                "</div>"+
+                "<a><button  onclick='hideDeleteTeacherEdit("+data.subjects[counter].id+","+5+")'   class='btn btn-lg rounded-circle  ml-3 deleteTeacher' type='button'><i class='fa fa-times' aria-hidden='true'></i> </button></a>"+
                 "</div>"+
                 "</div>"+
                 "</div>"+
