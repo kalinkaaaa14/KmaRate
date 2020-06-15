@@ -1,4 +1,6 @@
 let arrT=[];
+let arrayTeachersToEdit=[];
+let chosenT=[];
 function addTeacher(i){
     document.getElementById("addTeacher"+i).style.display = "block";
     document.getElementById("buttonAdd"+i).style.display = "none";
@@ -89,8 +91,13 @@ function createNewSubject(l) {
             }
         }
     }
+
     //console.log(createSubject);
-    if (createSubject.title === "" ||
+    let regexp = /[^a-zа-я'"`єїі ]/i;
+
+    if (regexp.test(createSubject.title)){
+        alert("Некоректний символ при вводі імені дисципліни.");
+    } else if (createSubject.title === "" ||
         createSubject.year === "" ||
         createSubject.course === "" ||
         createSubject.faculty_id === "" ||
@@ -182,8 +189,61 @@ for(m=0; m<editS.teachers.length-1;m++){
     }
 
 }
+function editTeacherValue() {
 
+    let m =  document.getElementsByName('chooseEditTeacher')[0].value;
+    let arr_m = m.split(" ");
+
+    for(i=0;i<arr_m.length;i++){
+        arrayTeachersToEdit[i]=arr_m[i];
+    }
+   // console.log (document.getElementById("surnameEdit"));
+    document.getElementById("surnameEdit").value=arrayTeachersToEdit[2];
+    document.getElementById("nameEdit").value=arrayTeachersToEdit[1];
+    document.getElementById("patronEdit").value=arrayTeachersToEdit[3];
+    document.getElementById("chosenTeacherToEdit").style.display="block";
+    document.getElementById("chooseTValueButton").style.display="none";
+//console.log(m);
+}
+function editTeacherServer(){
+    let identical=false;
+    var d={
+        email:arrayTeachersToEdit[0],
+        first_name:document.getElementsByName('nameEdit')[0].value,
+        last_name:document.getElementsByName('surnameEdit')[0].value,
+        patronymic:document.getElementsByName('patronEdit')[0].value
+    }
+    for (m = 0; m < arrT.length; m++) {
+        if (arrT[m].last_name.toString().toLowerCase() === d.last_name.toString().toLowerCase() &&
+            arrT[m].first_name.toString().toLowerCase() === d.first_name.toString().toLowerCase() &&
+            arrT[m].patronymic.toString().toLowerCase() === d.patronymic.toString().toLowerCase()) {
+            identical = true;
+            break;
+        }
+    }
+    if(identical){
+       return alert("Викладач з таким ім'ям, прізвищем та по-батькові вже існує.");
+    }
+        $.ajax({
+            url: '/subj/edit/teacher',
+            type: 'POST',
+            data: d,
+            success: function (data, textStatus, xhr) {
+                console.log(data);
+                if (data.message) {
+                    alert(data.message);
+                    window.location = window.location;
+                }
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                console.log('Error in Operation');
+            }
+        });
+
+
+}
 $(document).ready(function () {
+
     let today = new Date().getMonth();
     // alert(today);//4
     if (today < 8) {
@@ -279,7 +339,7 @@ $(document).ready(function () {
 
         $('#subjectsFromServer').html(showSubjects(data));
     }
-
+    let chooseEditTeacher="";
     let teachers0="";
     let teachers1="";
     let teachers2="";
@@ -303,7 +363,7 @@ $(document).ready(function () {
         }
 
         let dataL = 0;
-
+        chooseEditTeacher+="<select name='chooseEditTeacher' class='custom-select mb-2' required>";
         teachers0+="<select name='chooseTeacher"+0+"' class='custom-select mb-2' required>";
         teachers0+=  "<option selected value=''></option>";
         teachers1+="<select name='chooseTeacher"+1+"' class='custom-select mb-2' required>";
@@ -313,7 +373,7 @@ $(document).ready(function () {
         teachers5+="<select name='chooseTeacher"+5+"' class='custom-select mb-2' required>";
 
         while(dataL<data.length){
-
+            chooseEditTeacher+="<option value='"+data[dataL].email+" "+data[dataL].first_name +" "+data[dataL].last_name+" "+data[dataL].patronymic+"'>"+data[dataL].last_name+ " "+data[dataL].first_name+" "+ data[dataL].patronymic+"</option>";
             teachersEdit0+=  "<option value='"+data[dataL].email+"'>"+data[dataL].last_name+ " "+data[dataL].first_name+" "+ data[dataL].patronymic+"</option>";
             teachersEdit1+=  "<option value='"+data[dataL].email+"'>"+data[dataL].last_name+" "+data[dataL].first_name+" "+ data[dataL].patronymic+"</option>";
             teachersEdit2+=  "<option value='"+data[dataL].email+"'>"+data[dataL].last_name+" "+data[dataL].first_name+" "+ data[dataL].patronymic+"</option>";
@@ -330,6 +390,7 @@ $(document).ready(function () {
 
             dataL++;
         }
+        chooseEditTeacher+="</select>";
         teachers0+="</select>";
         teachers1+="</select>";
         teachers2+="</select>";
@@ -339,6 +400,7 @@ $(document).ready(function () {
 
         arrT=data;
     }
+
 
     function allTeachersBesides(data,i) {
         let allOptions="";
@@ -381,6 +443,8 @@ $(document).ready(function () {
         let res = "";
         let reviews="";
         let editSubject="";
+        let editTeacher="";
+        let editTeacherDiv="";
         let addSubject="";
         let addTeacher="";
         let editSubjectDiv="";
@@ -395,7 +459,44 @@ $(document).ready(function () {
 
             addSubject="<button data-toggle='collapse' data-target='#addSubject' class='btn btn-block text-white makeEpRev mb-3'>Додати дисципліну</button>";
             addTeacher="<button data-toggle='collapse' data-target='#addNewTeacher' class='btn btn-block text-white makeEpRev mb-3'>Додати викладача</button>";
+            editTeacher="<button data-toggle='collapse' data-target='#editTeacher' class='btn btn-block text-white makeEpRev mb-3'>Редагувати викладача</button>";
 
+            editTeacherDiv="<div id='editTeacher' class='collapse' style='overflow: hidden'>" +
+                "<div class='row'>" +
+                "<div class='col-sm-3'></div>"+
+                "<div class='col-sm-7'>" +
+                chooseEditTeacher+
+                "</div>"+
+                "</div>"+
+                "<div class='row'>" +
+                "<div class='col-sm-5'></div>"+
+                "<div class='col-sm-2' id='chooseTValueButton'>" +
+                "<button onclick='editTeacherValue()' class='btn btn-block text-white makeEpRev mt-3 mb-3'>Обрати</button>"+
+                "</div>"+
+                "</div>"+
+                "<div class='row'>" +
+                "<div class='col-sm-3'></div>"+
+                "<div class='col-sm-7'>" +
+                "<div id='chosenTeacherToEdit' style='display: none' >" +
+                "<div class='form-inline mb-2'>"+
+                "<label class='ml-5 mr-5' for='surnameEdit'>Прізвище </label>"+
+                "<input  type='text'  name='surnameEdit' class='form-control ml-5' id='surnameEdit'>"+
+                "</div>"+
+                "<div class='form-inline mb-2'>"+
+                "<label class='ml-5 mr-5' for='nameEdit'>Ім'я </label>"+
+                "<input type='text'  name='nameEdit' class='form-control nameNew' id='nameEdit' >"+
+                "</div>"+
+                "<div class='form-inline mb-2'>"+
+                "<label class='ml-5 mr-5' for='patronEdit'>По-батькові </label>"+
+                "<input type='text'  name='patronEdit' class='form-control patronymicNew' id='patronEdit'>"+
+                "</div>"+
+                "<div class='text-center'>"+
+                "<button onclick='editTeacherServer()' class='btn btn-block text-white makeEpRev mt-3 mb-3'>Оновити</button>" +
+                "</div>"+
+                "</div>"+
+                "</div>"+
+                "</div>"+
+                "</div>";
             addTeacherDiv="<div id='addNewTeacher' class='collapse' style='overflow: hidden'>"+
                 "<div class='row'>" +
                 "<div class='col-sm-3'></div>"+
@@ -578,6 +679,8 @@ $(document).ready(function () {
         }
         res+=addTeacher;
         res+=addTeacherDiv;
+        res+=editTeacher;
+        res+=editTeacherDiv;
         res+=addSubject;
         res+=addSubjectDiv;
 
@@ -1042,4 +1145,5 @@ $(document).ready(function () {
               }
             return details;
         }*/
+
 });
