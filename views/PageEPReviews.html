@@ -12,6 +12,7 @@
 
     <link rel="stylesheet" href="/PageSubjectReviews.css">
     <link rel="stylesheet" href="/RegisteredUser.css">
+    <script src="/PageEPReviews.js" charset="utf-8"></script>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -21,51 +22,12 @@
 <?-include('./Navbar.html')?>
 
 <div class="container con">
-    <div class="container-fluid mt-5 borderEP">
-        <div class="row">
-            <div class="col-md-4 EPInfoBackground">
-                <h6 class="text-white  mt-4 mb-3 nameEpPage">Germanuan</h6>
-                <p class="text-white countryEpPage">Країна</p>
-                <p class="text-white courseEpPage">2 курс</p>
-                <p class="text-white mb-1 uniEpPage" >Університет</p>
-            </div>
-            <div class="colSpace"></div>
-            <div class="colFirstEp my-auto">
-                <p class="mt-4">
-                    <span class="fontSub">Оцінка місця проживання</span>
-                    <br>
-                    <output class="characteristics" name="basicKnowledgeSub">7.7</output>
-                </p>
-                <p>
-                    <span class="fontSub">Середній рівень англійської</span>
-                    <br>
-                    <output class="characteristics" name="technique">B1</output>
-                </p>
-            </div>
-            <div class="colSecondEp my-auto">
-                <p class="mt-4">
-                    <span class="fontSub">Успішність адаптації</span>
-                    <br>
-                    <output class="characteristics" name="modernMater">7.7</output>
-                </p>
-                <p>
-                    <span class="fontSub">Середній бал в КМА на момент поїздки</span>
-                    <br>
-                    <output class="characteristics" name="technique">97</output>
-                </p>
-            </div>
-            <div class="colThird my-auto text-center">
-                <h2 >7.7</h2>
-                <span class="quantityRevEPPage"><small>n відгуків</small></span>
-            </div>
+    <div id="infoEp">
 
-        </div>
-    </div>
-    <div >
-        <button onclick="document.location='/user/RevEP.html'"  class="btn btn-block text-white text-center makeEpPageRev"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Залишити відгук</button>
     </div>
 
     <h3 class="mt-5 mb-5 ml-5 allEpRev">Усі відгуки</h3>
+    <div id="allEPReviews"></div>
     <div class="container-fluid rounded mb-5 borderReview">
         <div class="row">
             <div class="col-md-4">
