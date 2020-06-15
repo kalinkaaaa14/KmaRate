@@ -32,7 +32,7 @@ router.post(links.NEW + links.EXCHANGE_PROGRAM, checkAuthenticated, checkAdmin, 
 });
 
 
-router(links.EDIT + links.EXCHANGE_PROGRAM, checkAuthenticated, checkAdmin, async function (req, res, next) {
+router.post(links.EDIT + links.EXCHANGE_PROGRAM, checkAuthenticated, checkAdmin, async function (req, res, next) {
     try {
         let ep = req.body;
 
