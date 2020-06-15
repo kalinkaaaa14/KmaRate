@@ -7,8 +7,7 @@ const links = require('../links');
 const {checkNotAuthenticated, checkAuthenticated, checkAdmin} = require('../access_control/check_auth');
 db.getAdmin = require('../access_control/database').getAdmin;
 db.getUser = require('../users/database').getUser;
-
-
+db.getBranches = require('../web_server/database').getBranches;
 
 
 router.post(links.NEW + links.EXCHANGE_PROGRAM, checkAuthenticated, checkAdmin, async function (req, res, next) {
@@ -59,11 +58,40 @@ router.post(links.EDIT + links.EXCHANGE_PROGRAM, checkAuthenticated, checkAdmin,
 });
 
 
-router.get(links.FILTER, function (req, res, next) {
-
-
-
+router.get(links.DATA, async  function (req, res, next) {
+    try {
+        let branches = await db.getBranches();
+        let universities_titles = await db.getUniversitiesTitles();
+        res.json({branches, universities_titles});
+    }catch (e) {
+        next(e);
+    }
 });
+
+router.get(links.FILTER, async function (req, res, next) {
+
+    //title
+    //university
+    //branch_id
+    let query = req.query;
+
+    query.title = query.title.toLowerCase();
+    query.university = query.university.toLowerCase();
+
+    let eps = await db.getPrograms(query.title, query.university, query.branch_id);
+
+    for(let ep of eps){
+        await addAVGRateToEP(ep);
+        ep.branches =  await db.getEPBranches(ep.id);
+    }
+});
+
+async function addAVGRateToEP(ep){
+
+    let rates = await db.getAVG_EPRate(ep.id);
+
+    // ep.average_grade =
+}
 
 
 

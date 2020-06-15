@@ -14,7 +14,7 @@ router.get('/', function (req, res, next) {
     //to optimize
     // ejs.renderFile(path.dirname(__dirname) + '/views/Main.html').then((html)=> res.send(html));
     // console.log('MAIN ' + JSON.stringify(req.users));
-    db.getBranchs()
+    db.getBranches()
         .then(function (branchs) {
             res.render('Main.html', {branchs});
         })
@@ -52,7 +52,7 @@ router.get(links.EP, function (req, res) {
 
 //registration
 router.get(links.REGISTRATION, checkNotAuthenticated, function (req, res, next) {
-    db.getBranchs()
+    db.getBranches()
         .then(function (branchs) {
             res.render('Registration.html', {branchs});
         })
@@ -77,7 +77,7 @@ router.get(links.PROFILE + '/:nickname', /*checkAuthenticated,*/ function (req, 
 
 //settings
 router.get(links.SETTINGS, checkAuthenticated, function (req, res, next) {
-    db.getBranchs()
+    db.getBranches()
         .then(function (branchs) {
             res.render('EditProfile.html', {branchs});
         })

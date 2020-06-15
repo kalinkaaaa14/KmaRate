@@ -232,7 +232,7 @@ router.get(links.SETTINGS + links.DATA /*+ '/:nickname'*/, checkAuthenticated, f
 
             userData.image_string = (await db.getUser(userData.nickname)).image_string;
 
-            return res.json({userData, branchs: await require('../web_server/database').getBranchs()});
+            return res.json({userData, branchs: await require('../web_server/database').getBranches()});
         } catch (e) {
             return next(e);
         }

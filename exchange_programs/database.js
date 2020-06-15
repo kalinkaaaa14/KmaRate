@@ -34,10 +34,69 @@ async function deleteAllEPBranch(ep_id){
     `, [ep_id]);
 }
 
+async function getUniversitiesTitles(){
+    let res = await pool.query(`
+    SELECT DISTINCT university AS title
+    FROM exchange_program
+    `);
+    return res.rows
+}
+
+async function getPrograms(title, university, branch_id){
+
+    let paramArray = [];
+
+    let titlePart = true;
+    if(title){
+        paramArray.push(title);
+        titlePart = 'exchange_program.title LIKE \'%\' || $' + paramArray.length + ' || \'%\'';
+    }
+
+    let universityPart = true;
+    if(university){
+        paramArray.push(university);
+        universityPart = 'exchange_program.university LIKE \'%\' || $' + paramArray.length + ' || \'%\'';
+    }
+
+    let branchPart = true;
+    if(branch_id){
+        paramArray.push(branch_id);
+        branchPart = 'branch_regarding_ep.branch_id = $' + paramArray.length;
+    }
+
+    let res = await pool.query(`
+    SELECT DISTINCT exchange_program.id, exchange_program.title, exchange_program.university
+    
+    FROM exchange_program INNER JOIN branch_regarding_ep ON (exchange_program.id = branch_regarding_ep.ep_id)
+    
+    WHERE ${titlePart} AND ${universityPart} AND ${branchPart}
+    `, paramArray);
+
+    return res.rows;
+}
+
+async function getEPBranches(epId){
+    let res  = await pool.query(`
+    SELECT DISTINCT branch.id, branch.title
+    FROM branch INNER JOIN branch_regarding_ep ON (branch.id = branch_regarding_ep.branch_id)
+    WHERE branch_regarding_ep.ep_id = $1
+    `, [epId]);
+    return res.rows;
+}
+
+async function getAVG_EPRate(epId){
+
+}
+
+
 module.exports = {
     addEP,
     addEPBranch,
     updateEP,
     deleteAllEPBranch,
+    getPrograms,
+    getEPBranches,
+    getAVG_EPRate,
+    getUniversitiesTitles,
 
 }

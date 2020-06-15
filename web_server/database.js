@@ -3,7 +3,7 @@
 const pool = require('../db_connection');
 
 
-async function getBranchs() {
+async function getBranches() {
     // console.log('=========================================================');
     // console.log('=========================================================');
     let res = await pool.query(
@@ -14,4 +14,4 @@ async function getBranchs() {
     return res.rows;
 }
 
-module.exports = {getBranchs};
+module.exports = {getBranches};
