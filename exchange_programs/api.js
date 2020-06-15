@@ -131,4 +131,18 @@ router.post('/:id' + links.CREATE_REVIEW, checkAuthenticated, function (req, res
 
 });
 
+
+router.get('/:id' + links.DATA + links.EXCHANGE_PROGRAM, async function (req, res, next) {
+    try {
+        let ep = await db.getProgram(req.params.id);
+
+        await addAVGRateToEP(ep);
+        ep.branches = await db.getEPBranches(ep.id);
+
+        return res.json({exchange_program: ep});
+    }catch(e){
+        next(e);
+    }
+});
+
 module.exports = router;

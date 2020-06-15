@@ -83,6 +83,17 @@ async function getPrograms(title, university, branch_id){
     return res.rows;
 }
 
+
+async function getProgram(epId){
+    let res = await pool.query(`
+    SELECT exchange_program.id, exchange_program.title, exchange_program.university
+    FROM exchange_program 
+    WHERE id = $1
+    `, [epId]);
+
+    return res.rows[0];
+}
+
 async function getEPBranches(epId){
     let res  = await pool.query(`
     SELECT DISTINCT branch.id, branch.title
@@ -106,7 +117,7 @@ async function getAVG_EPRate(epId){
 async function saveReview({time_rev, date_rev, place_rating, foreign_language, adaptation, edu_difference, general_impression = null, ep_id, user_id}){
 
     let res = await pool.query(`
-    INSERT INTO review_subject 
+    INSERT INTO review_ep 
     (time_rev, date_rev, place_rating, foreign_language, adaptation, edu_difference, general_impression, ep_id, user_id)
     VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9)
     `, [time_rev, date_rev, place_rating, foreign_language, adaptation, edu_difference, general_impression, ep_id, user_id]);
@@ -120,6 +131,7 @@ module.exports = {
     updateEP,
     deleteAllEPBranch,
     getPrograms,
+    getProgram,
     getEPBranches,
     getAVG_EPRate,
     getUniversitiesTitles,
