@@ -62,7 +62,8 @@ router.get(links.DATA, async function (req, res, next) {
     try {
         let branches = await db.getBranches();
         let universities_titles = await db.getUniversitiesTitles();
-        res.json({branches, universities_titles});
+        let programs_titles = await db.getProgramsTitles();
+        res.json({branches, universities_titles, programs_titles});
     } catch (e) {
         next(e);
     }

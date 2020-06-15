@@ -42,6 +42,14 @@ async function getUniversitiesTitles(){
     return res.rows
 }
 
+async function getProgramsTitles(){
+    let res = await pool.query(`
+    SELECT DISTINCT title
+    FROM exchange_program
+    `);
+    return res.rows
+}
+
 async function getPrograms(title, university, branch_id){
 
     let paramArray = [];
@@ -104,5 +112,6 @@ module.exports = {
     getEPBranches,
     getAVG_EPRate,
     getUniversitiesTitles,
+    getProgramsTitles,
 
 }

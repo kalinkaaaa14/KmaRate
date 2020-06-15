@@ -49,6 +49,16 @@ router.get(links.EP, function (req, res) {
     res.render('EP.html');
 });
 
+router.get(links.EP + '/:id', function (req, res) {
+    res.render('PageEPReviews.html');
+});
+
+router.get(links.EP + '/:id' + links.CREATE_REVIEW, checkAuthenticated, function (req, res) {
+    res.render('RevEP.html');
+});
+
+
+
 
 //registration
 router.get(links.REGISTRATION, checkNotAuthenticated, function (req, res, next) {
