@@ -298,8 +298,10 @@ router.post(links.NEW + links.TEACHER, checkAuthenticated, checkAdmin, async fun
         }
 
         await db.addTeacher(teacher.first_name, teacher.last_name, teacher.patronymic);
+        return res.json({message: 'Додано викладача'});
     }catch (e) {
-        next(e);
+        res.json({message: 'Невідома помилка'});
+        return  next(e);
     }
 });
 

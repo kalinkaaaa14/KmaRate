@@ -25,16 +25,16 @@ router.post(links.REGISTRATION, checkNotAuthenticated, function (req, res, next)
                 return res.json({message: 'Недопустимий символ в логіні'});
             }
 
-            if(req.body.nickname.length > 30){
+            if (req.body.nickname.length > 30) {
                 return res.json({message: 'Логін не повинен первищувати 30 символів'});
             }
 
-            if (req.body.email.length > 50){
+            if (req.body.email.length > 50) {
                 return res.json({message: 'Емейл не повинен первищувати 50 символів'});
             }
 
 
-            if(req.body.password.length > 30){
+            if (req.body.password.length > 30) {
                 return res.json({message: 'Пароль не повинен первищувати 30 символів'});
             }
 
@@ -81,7 +81,7 @@ router.post(links.REGISTRATION, checkNotAuthenticated, function (req, res, next)
             }
 
             return res.json(info);
-        }catch (e) {
+        } catch (e) {
             next(e);
         }
 
@@ -216,17 +216,17 @@ router.get(links.SETTINGS + links.DATA /*+ '/:nickname'*/, checkAuthenticated, f
             userData.email = user.email;
 
             userData.telegram = '';
-            if(user.telegram){
+            if (user.telegram) {
                 userData.telegram = user.telegram.slice('https://t.me/'.length, user.telegram.length);
             }
 
             userData.facebook = '';
-            if(user.facebook){
+            if (user.facebook) {
                 userData.facebook = user.facebook.slice('https://www.facebook.com/'.length, user.facebook.length);
             }
 
             userData.instagram = '';
-            if(user.instagram) {
+            if (user.instagram) {
                 userData.instagram = user.instagram.slice('https://www.instagram.com/'.length, user.instagram.length);
             }
 
@@ -240,25 +240,25 @@ router.get(links.SETTINGS + links.DATA /*+ '/:nickname'*/, checkAuthenticated, f
 });
 
 //change user info
-router.post(links.SETTINGS + links.DATA /*+ '/:nickname'*/, checkAuthenticated, function (req, res, next) {
+router.post(links.SETTINGS + links.DATA /*+ '/:nickname'*/, checkAuthenticated, async function (req, res, next) {
     console.log('=====================');
     console.log('=====================');
-    console.log(req.user.nickname + ': change user data' );
+    console.log(req.user.nickname + ': change user data');
 
     // console.log(req.body);
     //todo check input
     let profileUpdates = req.body;
     profileUpdates.user_id = req.user.id;
 
-    if(profileUpdates.telegram){
+    if (profileUpdates.telegram) {
         profileUpdates.telegram = 'https://t.me/' + profileUpdates.telegram;
     }
 
-    if(profileUpdates.instagram){
+    if (profileUpdates.instagram) {
         profileUpdates.instagram = 'https://www.instagram.com/' + profileUpdates.instagram;
     }
 
-    if(profileUpdates.facebook){
+    if (profileUpdates.facebook) {
         profileUpdates.facebook = 'https://www.facebook.com/' + profileUpdates.facebook;
     }
 
@@ -268,38 +268,44 @@ router.post(links.SETTINGS + links.DATA /*+ '/:nickname'*/, checkAuthenticated, 
         return res.json({message: 'Недопустимий символ в логіні'});
     }
 
-    if(profileUpdates.nickname.length > 30){
+    if (profileUpdates.nickname.length > 30) {
         return res.json({message: 'Логін не повинен первищувати 30 символів'});
     }
 
-    if (profileUpdates.email.length > 50){
+    if (profileUpdates.email.length > 50) {
         return res.json({message: 'Емейл не повинен первищувати 50 символів'});
     }
 
-    if(profileUpdates.image_string.length > 1048576){
+    if (profileUpdates.image_string.length > 1048576) {
         return res.json({message: 'Зображення не може бути більше 1 мегабайта'});
     }
 
+    try {
+        await db.updateProfile(profileUpdates);
+        return res.json({message: 'Зміни збережені', redirect: '/profile/' + profileUpdates.nickname});
 
-    db.updateProfile(profileUpdates)
-        .then(function (result) {
-            return res.json({message: 'Зміни збережені', redirect: '/profile/' + profileUpdates.nickname});
-        })
-        .catch(function (e) {
-            //todo handle errors
-            res.json({message: 'Невідома помилка', err: 'err'});
-            return next(e);
-        });
+    } catch (e) {
+        let message;
 
-    // {
-    //     nickname: 'a',
-    //         branch_id: '122',
-    //     branch_title: 'Комп’ютерні науки',
-    //     email: 'a@a',
-    //     facebook: '',
-    //     instagram: '',
-    //     telegram: ''
-    // }
+        switch (e.constraint) {
+            case 'users_nickname_key':
+                message = `Таке ім'я зайняте`;
+                break;
+            case 'users_email_key':
+                message = `Такий емейл вже зареєстрований`;
+                break;
+            case'users_password_check':
+                message = `Пароль має містити більше символів`;
+                break;
+            default:
+                message = 'Невідома помилка';
+                res.json({message, err: 'err'});
+                return next(e);
+        }
+
+        res.json({message});
+        return next(e);
+    }
 });
 
 //change password
@@ -315,7 +321,7 @@ router.post(links.SETTINGS + links.PASSWORD /*+ '/:nickname'*/, checkAuthenticat
             let passwords = req.body;
 
             let regexp = /[^a-zа-я0-9_#@!+\-'"`єїі]/i;
-            if(passwords.newPassword.length > 30){
+            if (passwords.newPassword.length > 30) {
                 return res.json({message: 'Пароль не повинен первищувати 30 символів'});
             }
 
@@ -330,7 +336,10 @@ router.post(links.SETTINGS + links.PASSWORD /*+ '/:nickname'*/, checkAuthenticat
 
             if (await bcrypt.compare(passwords.oldPassword, req.user.password)) {
                 //todo check result of promise
-                await db.updatePassword({newPassword: await bcrypt.hash(passwords.newPassword, 10), user_id: req.user.id});
+                await db.updatePassword({
+                    newPassword: await bcrypt.hash(passwords.newPassword, 10),
+                    user_id: req.user.id
+                });
 
                 req.session.destroy(function (err) {
                     if (err) return next(err);
@@ -340,11 +349,11 @@ router.post(links.SETTINGS + links.PASSWORD /*+ '/:nickname'*/, checkAuthenticat
                 return res.json({message: 'Неправильний пароль'});
             }
         } catch (e) {
+
             return next(e);
         }
     })();
 });
-
 
 
 module.exports = router;
