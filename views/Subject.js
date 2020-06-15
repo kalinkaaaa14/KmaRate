@@ -42,8 +42,8 @@ function createNewTeacher() {
         regexp.test(newTeacher.first_name) ||
         regexp.test(newTeacher.patronymic)){
         alert("Некоректний символ при вводі.");
-    } else if (newTeacher.name === "" ||
-        newTeacher.surname === "" ||
+    } else if (newTeacher.first_name === "" ||
+        newTeacher.last_name === "" ||
         newTeacher.patronymic === "") {
         alert("Заповніть всі поля, позначені *");
     } else if (identical) {
