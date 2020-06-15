@@ -110,4 +110,25 @@ async function addAVGRateToEP(ep) {
 }
 
 
+router.post('/:id' + links.CREATE_REVIEW, checkAuthenticated, function (req, res, next) {
+
+    console.log('===============================');
+    console.log('===============================');
+    console.log('postRev EXC');
+    // console.log(req.body);
+    // console.log(req.users.id);
+    req.body.user_id = req.user.id;
+    db.saveReview(req.body)
+        .then(function () {
+            res.json({message: 'Відгук збережено', redirect: '/ep'});
+        })
+        .catch(function (e) {
+            if (e.constraint === 'review_ep_user_id_ep_id_excl') {
+                return res.json({message: 'Ви вже залишали відгук на цю програму обміну', redirect: '/ep'});
+            }
+            next(e);
+        });
+
+});
+
 module.exports = router;

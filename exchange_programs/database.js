@@ -103,6 +103,17 @@ async function getAVG_EPRate(epId){
 }
 
 
+async function saveReview({time_rev, date_rev, place_rating, foreign_language, adaptation, edu_difference, general_impression = null, ep_id, user_id}){
+
+    let res = await pool.query(`
+    INSERT INTO review_subject 
+    (time_rev, date_rev, place_rating, foreign_language, adaptation, edu_difference, general_impression, ep_id, user_id)
+    VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9)
+    `, [time_rev, date_rev, place_rating, foreign_language, adaptation, edu_difference, general_impression, ep_id, user_id]);
+
+}
+
+
 module.exports = {
     addEP,
     addEPBranch,
@@ -113,5 +124,6 @@ module.exports = {
     getAVG_EPRate,
     getUniversitiesTitles,
     getProgramsTitles,
+    saveReview,
 
 }

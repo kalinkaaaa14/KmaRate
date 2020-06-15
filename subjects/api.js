@@ -150,7 +150,6 @@ router.get('/:id' + links.DATA + links.REVIEWS + '/:offset', async function (req
 
 router.post('/:id' + links.CREATE_REVIEW, checkAuthenticated, function (req, res, next) {
 
-    //todo переход если закончилась сессия
     console.log('===============================');
     console.log('===============================');
     console.log('postRev');
