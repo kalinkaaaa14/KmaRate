@@ -61,7 +61,7 @@ router.get(links.FILTERED_SUBJECTS, async function (req, res, next) {
             let isAdmin = false;
             if (req.user) {
                 let adminId = await db.getAdmin(req.user.id);
-                if (typeof adminId.user_id === 'number') {
+                if (typeof adminId !== 'undefined') {
                     isAdmin = true;
                 }
             }
@@ -100,19 +100,32 @@ router.get(links.TEACHERS, async function (req, res, next) {
         }
 });
 
-//get subject & reviews
-router.get('/:id' + links.DATA, async function (req, res, next) {
+//get subject
+router.get('/:id' + links.DATA + links.SUBJECT, async function (req, res, next) {
+    try {
+        let subject = (await db.getSubjects({id: req.params.id}))[0];
+        subject.teachers = await db.getSubjectTeachers(subject.id);
+
+        await addAVGRateToSubject(subject);
+        return res.json({subject});
+    }catch(e){
+        next(e);
+    }
+});
+
+//get part subject reviews
+router.get('/:id' + links.DATA + links.REVIEWS + '/:offset', async function (req, res, next) {
+
         try {
-            let subject = (await db.getSubjects({id: req.params.id}))[0];
-            subject.teachers = await db.getSubjectTeachers(subject.id);
 
-            await addAVGRateToSubject(subject);
+            let reviews = await db.getSubjectReviews(req.params.id, req.params.offset);
+            if(reviews.length === 0){
+                return res.json(null);
+            }
 
-            let reviews = await db.getSubjectReviews(req.params.id);
             for (let rev of reviews) {
                 rev.rate = await db.getSubjectReviewRate(rev.review_id);
                 rev.subject_rate = await db.getSubjectReviewsUserRate(rev.user_id);
-                rev.image_string = (await db.getUser(rev.nickname)).image_string;
 
                 rev.average_grade = ((rev.edu_technique
                     + rev.nowadays_knowledge + rev.using_knowledge) / 3).toFixed(1);
@@ -120,15 +133,12 @@ router.get('/:id' + links.DATA, async function (req, res, next) {
                 rev.replies = await db.getReviewReplies(rev.review_id);
 
                 for (let repl of rev.replies) {
-                    repl.image_string = (await db.getUser(repl.nickname)).image_string;
                     repl.rate = await db.getSubjectReplyRate(repl.id);
                     repl.subject_rate = await db.getSubjectReviewsUserRate(repl.user_id);
                 }
             }
 
-            // console.log(reviews[0].replies);
-
-            return res.json({subject, reviews});
+            return res.json({ reviews});
         } catch (e) {
             return next(e);
         }

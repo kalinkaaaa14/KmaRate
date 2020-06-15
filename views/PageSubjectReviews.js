@@ -192,20 +192,45 @@ $(document).ready(function () {
     function getInfo() {
         let urlPartsArr = window.location.href.split('/');
         let subject_id = urlPartsArr[urlPartsArr.length - 1];
+        document.getElementById('allReviews').innerHTML = '';
+
 
         $.ajax({
-            url: "/subj/" + subject_id + "/data",
+            url: "/subj/" + subject_id + "/data/subject",
             type: 'GET',
             success: function (data, textStatus, xhr) {
                 console.log(data);
                 formatData(data);
-                // $('#agree').click(likeReview);
-                //  $('#disagree').click(dislikeReview);
+
+                //no code after
+
             },
             error: function (xhr, textStatus, errorThrown) {
                 console.log('Error in Operation');
             }
         });
+
+        setTimeout(getReviews, 0, 0);
+
+        function getReviews(offset){
+
+            $.ajax({
+                url: "/subj/" + subject_id + "/data/reviews/" + offset,
+                type: 'GET',
+                success: function (data, textStatus, xhr) {
+                    console.log(data);
+                    if(data !== null) {
+                        let revLength = data.reviews.length;
+                        showReviews(data);
+                        setTimeout(getReviews, 0, offset + revLength);
+                        // getReviews();
+                    }
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log('Error in Operation');
+                }
+            });
+        }
     }
 
     function formatData(data) {
@@ -225,8 +250,6 @@ $(document).ready(function () {
         }
 
         $('#infoSubj').html(showSubjInfo(data));
-        showReviews(data);
-        //no code after
     }
 
     function showSubjInfo(data) {
@@ -312,14 +335,18 @@ $(document).ready(function () {
 
         let counter = 0;
 
-        let showPart = () => {
+        while(counter < data.reviews.length){
             allReviewsElement.innerHTML += buildReviewWithReplies(data, counter);
             ++counter;
-            if (counter < data.reviews.length) {
-                setTimeout(showPart);
-            }
         }
-        showPart();
+
+        // let showPart = () => {
+        //
+        //     if (counter < data.reviews.length) {
+        //         setTimeout(showPart);
+        //     }
+        // }
+        // showPart();
     }
 
     function buildReviewWithReplies(data, counter) {

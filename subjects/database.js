@@ -118,18 +118,19 @@ async function getAVGSubjectRate(subjectId) {
 }
 
 
-async function getSubjectReviews(subjectId) {
-    let res = await pool.query(`
+async function getSubjectReviews(subjectId, offset) {
+        let res = await pool.query(`
     SELECT review_subject.id AS review_id, review_subject.time_rev, review_subject.date_rev, review_subject.general_impression, 
     review_subject.need_basic_knowledge, review_subject.edu_technique, review_subject.course_complexity,
     review_subject.teacher_criticism, review_subject.nowadays_knowledge, review_subject.theory_practice,
     review_subject.using_knowledge,
-    users.id AS user_id, users.nickname
+    users.id AS user_id, users.nickname, users.image_string
     
     FROM review_subject INNER JOIN users ON (review_subject.user_id = users.id)
     WHERE subject_id = $1
     ORDER BY review_subject.date_rev DESC, review_subject.time_rev DESC
-    `, [subjectId]);
+    OFFSET $2 LIMIT 1
+    `, [subjectId, offset]);
     return res.rows;
 }
 
@@ -147,10 +148,13 @@ async function getAmountUserSubjectReviews(userId) {
 async function getReviewReplies(reviewId) {
     let res = await pool.query(`
     SELECT review_reply.id, review_reply.time_rev, review_reply.date_rev, review_reply.general_impression, users.nickname, 
-    users.id AS user_id
+    users.id AS user_id, users.image_string
     
     FROM review_reply INNER JOIN users ON (review_reply.user_id = users.id)
-    WHERE subject_review_id = $1 
+    WHERE subject_review_id = $1 OR reply_id IN 
+    (SELECT id
+    FROM review_reply
+    WHERE subject_review_id = $1)
     ORDER BY review_reply.date_rev ASC, review_reply.time_rev ASC 
     `, [reviewId]);
     return res.rows;
