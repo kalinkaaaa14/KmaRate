@@ -557,9 +557,9 @@ $(document).ready(function () {
                     "<p>" +
                     "<div class='mr-3'>" +
                     "<i class='fa fa-thumbs-o-up likesRevEp' aria-hidden='true' ></i>" +
-                    "<span id='ReplyRate+" + data.reviews[counter].replies[counterReply].id + "' class='quantityLikesEp' name='likesReview'> " + data.reviews[counter].replies[counterReply].rate + "</span>" +
+                    "<span id='ReplyRate" + data.reviews[counter].replies[counterReply].id + "' class='quantityLikesEp' name='likesReview'> " + data.reviews[counter].replies[counterReply].rate + "</span>" +
                     "</div>" +
-                    "<button class='btn btn-lg text-decoration-none mr-2' onclick='likeReply(" + data.reviews[counter].replies[counterReply].review_id + "," + data.reviews[counter].replies[counterReply].user_id + ",true)'>Підтримую</button>" +
+                    "<button class='btn btn-lg text-decoration-none mr-2' onclick='likeReply(" + data.reviews[counter].replies[counterReply].id + "," + data.reviews[counter].replies[counterReply].user_id + ",true)'>Підтримую</button>" +
                     "<button id = 'disagree' onclick='likeReply(" + data.reviews[counter].replies[counterReply].id + "," + data.reviews[counter].replies[counterReply].user_id + ",false)' class='btn btn-lg text-decoration-none mr-2' >Не погоджуюсь</button>" +
                     "<div id='buttonReplyReplyHide" + data.reviews[counter].replies[counterReply].id + "'>" +
                     "<button onclick='makeReplyReply(" + data.reviews[counter].replies[counterReply].id + ");' class='btn btn-lg text-decoration-none mr-2'>Відповісти</button>" +
