@@ -349,7 +349,6 @@ router.post(links.SETTINGS + links.PASSWORD /*+ '/:nickname'*/, checkAuthenticat
                 return res.json({message: 'Неправильний пароль'});
             }
         } catch (e) {
-
             return next(e);
         }
     })();
