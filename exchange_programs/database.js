@@ -106,7 +106,8 @@ async function getEPBranches(epId){
 async function getAVG_EPRate(epId){
     let res  = await pool.query(`
     SELECT COALESCE(AVG(place_rating), 0) AS place_rating, COALESCE(AVG(adaptation), 0) AS adaptation, COUNT(id) AS reviews_amount,
-    COALESCE(AVG(edu_difference), 0) AS edu_difference, COALESCE(AVG(foreign_language), 0) AS foreign_language 
+    COALESCE(AVG(edu_difference), 0) AS edu_difference, COALESCE(AVG(foreign_language), 0) AS foreign_language, 
+    COALESCE(AVG("avarage_bal_KMA"), 0) AS "avarage_bal_KMA"  
     FROM review_ep
     WHERE ep_id = $1
     `, [epId]);
@@ -115,15 +116,16 @@ async function getAVG_EPRate(epId){
 }
 
 
-async function saveReview({time_rev, date_rev, place_rating, foreign_language, adaptation, edu_difference, general_impression = null, ep_id, user_id}){
+async function saveReview({time_rev, date_rev, place_rating, foreign_language, adaptation, edu_difference, avarage_bal_KMA, general_impression = null, ep_id, user_id}){
 
     let res = await pool.query(`
     INSERT INTO review_ep 
-    (time_rev, date_rev, place_rating, foreign_language, adaptation, edu_difference, general_impression, ep_id, user_id)
-    VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9)
-    `, [time_rev, date_rev, place_rating, foreign_language, adaptation, edu_difference, general_impression, ep_id, user_id]);
+    (time_rev, date_rev, place_rating, foreign_language, adaptation, edu_difference, "avarage_bal_KMA", general_impression, ep_id, user_id)
+    VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+    `, [time_rev, date_rev, place_rating, foreign_language, adaptation, edu_difference, avarage_bal_KMA, general_impression, ep_id, user_id]);
 
 }
+
 
 async function getEPReviews(){
 

@@ -107,6 +107,7 @@ async function addAVGRateToEP(ep) {
     ep.place_rating = (+rates.place_rating).toFixed(1);
     ep.adaptation = (+rates.adaptation).toFixed(1);
     ep.edu_difference = (+rates.edu_difference).toFixed(1);
+    ep.avarage_bal_KMA = (+rates.avarage_bal_KMA).toFixed(1);
 
     let lang_level = Math.round((+rates.foreign_language));
 
