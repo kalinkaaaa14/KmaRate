@@ -429,7 +429,7 @@ $(document).ready(function () {
             "</div>" +
             "</div>" +
             "<div class='row mt-4 review'>" +
-            "<p class='genImpr'>" + data.reviews[counter].general_impression + "</p>" +
+            "<pre><code class='genImpr'>" + data.reviews[counter].general_impression.replace(/&/g, '&amp;').replace(/</g, '&lt;') + "</code></pre>" +
             "</div>" +
             "<div class='row ml-5 mr-5'>" +
             "<p>" +
@@ -487,7 +487,7 @@ $(document).ready(function () {
                 "</div>" +
                 "<div class='col-md-8 my-auto'>" +
                 "<div class='replyText my-auto review'>" +
-                "<p class='replyText'>" + data.reviews[counter].replies[counterReply].general_impression + "</p>" +
+                "<pre><code class='genImpr'>" + data.reviews[counter].replies[counterReply].general_impression.replace(/&/g, '&amp;').replace(/</g, '&lt;') + "</code></pre>" +
                 "</div>" +
                 "</div>" +
                 "</div>" +
@@ -549,7 +549,7 @@ $(document).ready(function () {
                     "</div>" +
                     "<div class='col-md-8 my-auto'>" +
                     "<div class='replyText my-auto review'>" +
-                    "<p class='replyText'>" + data.reviews[counter].replies[counterReply].general_impression + "</p>" +
+                    "<pre><code class='genImpr'>" + data.reviews[counter].replies[counterReply].general_impression.replace(/&/g, '&amp;').replace(/</g, '&lt;') + "</code></pre>" +
                     "</div>" +
                     "</div>" +
                     "</div>" +
