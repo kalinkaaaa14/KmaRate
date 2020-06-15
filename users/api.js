@@ -299,12 +299,12 @@ router.post(links.SETTINGS + links.DATA /*+ '/:nickname'*/, checkAuthenticated, 
                 break;
             default:
                 message = 'Невідома помилка';
-                res.json({message, err: 'err'});
+                // res.json({message, err: 'err'});
                 return next(e);
         }
 
-        res.json({message});
-        return next(e);
+        return res.json({message});
+        // return next(e);
     }
 });
 

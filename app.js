@@ -104,7 +104,7 @@ app.use(function (err, req, res, next) {
     // }else {
         res.status(err.status || 500).json({
             message: err.message,
-            error: err,
+            // error: err,
         });
     // }
 
