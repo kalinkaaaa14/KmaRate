@@ -345,6 +345,12 @@ async function deleteAllSubjectTeachers(subjId) {
     `, [subjId]);
 }
 
+async function addTeacher(first_name, last_name, patronymic){
+    await pool.query(`
+    INSERT INTO lecturer (first_name, last_name, patronymic) 
+    VALUES ($1, $2, $3)`, [first_name, last_name, patronymic]);
+}
+
 module.exports = {
     getSubjects,
     getAVGSubjectRate, getSubjectReviews, getSubjectReviewRate,
@@ -360,4 +366,5 @@ module.exports = {
     addSubjectLecturer,
     updateSubject,
     deleteAllSubjectTeachers,
+    addTeacher,
 };

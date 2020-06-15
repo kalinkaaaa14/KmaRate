@@ -20,6 +20,7 @@ module.exports = {
     NEW: '/new',
     SUBJECT: '/subject',
     EDIT: '/edit',
+    TEACHER: '/TEACHER',
 
     // revSubj: '/revSubj',
 };

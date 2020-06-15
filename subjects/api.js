@@ -117,6 +117,8 @@ router.get('/:id' + links.DATA + links.SUBJECT, async function (req, res, next) 
 router.get('/:id' + links.DATA + links.REVIEWS + '/:offset', async function (req, res, next) {
 
         try {
+            console.log("start");
+            let start = Date.now();
 
             let reviews = await db.getSubjectReviews(req.params.id, req.params.offset);
             if(reviews.length === 0){
@@ -138,6 +140,7 @@ router.get('/:id' + links.DATA + links.REVIEWS + '/:offset', async function (req
                 }
             }
 
+            console.log(Date.now() - start);
             return res.json({ reviews});
         } catch (e) {
             return next(e);
@@ -280,6 +283,21 @@ router.post(links.EDIT + links.SUBJECT, checkAuthenticated, checkAdmin, async fu
         }
 
         return res.json({message: 'Дисципліну змінено'});
+    }catch (e) {
+        next(e);
+    }
+});
+
+
+router.post(links.NEW + links.TEACHER, checkAuthenticated, checkAdmin, async function (req, res, next) {
+    try {
+        let teacher = req.body;
+
+        if(teacher.first_name.length > 50 || teacher.last_name.length > 50 || teacher.patronymic.length > 50){
+            return res.json({message: 'Кожна частина ПІБ не повинна перевищувати 50 символів'})
+        }
+
+        await db.addTeacher(teacher.first_name, teacher.last_name, teacher.patronymic);
     }catch (e) {
         next(e);
     }
