@@ -75,7 +75,7 @@ router.get(links.FILTER, async function (req, res, next) {
         //university_title
         //branch_id
         let query = req.query;
-        console.log(query);
+        // console.log(query);
 
         query.title = query.title.toLowerCase();
 
@@ -93,7 +93,7 @@ router.get(links.FILTER, async function (req, res, next) {
                 isAdmin = true;
             }
         }
-        console.log(eps);
+        // console.log(eps);
 
         return res.json({exchange_programs: eps, isAdmin});
     } catch (e) {
@@ -103,7 +103,36 @@ router.get(links.FILTER, async function (req, res, next) {
 
 async function addAVGRateToEP(ep) {
     let rates = await db.getAVG_EPRate(ep.id);
-    console.log(rates);
+
+    ep.place_rating = (+rates.place_rating).toFixed(1);
+    ep.adaptation = (+rates.adaptation).toFixed(1);
+    ep.edu_difference = (+rates.edu_difference).toFixed(1);
+
+    let lang_level = Math.round((+rates.foreign_language));
+
+    switch (lang_level) {
+        case 0:
+            ep.foreign_language = '-';
+            break;
+        case 1:
+            ep.foreign_language = 'A1';
+            break;
+        case 2:
+            ep.foreign_language = 'A2';
+            break;
+        case 3:
+            ep.foreign_language = 'B1';
+            break;
+        case 4:
+            ep.foreign_language = 'B2';
+            break;
+        case 5:
+            ep.foreign_language = 'C1';
+            break;
+        case 6:
+            ep.foreign_language = 'C2';
+            break;
+    }
 
     ep.average_grade = ((+rates.place_rating + +rates.adaptation) / 2).toFixed(1);
     ep.reviews_amount = (+rates.reviews_amount).toFixed(0);
@@ -118,6 +147,28 @@ router.post('/:id' + links.CREATE_REVIEW, checkAuthenticated, function (req, res
     // console.log(req.body);
     // console.log(req.users.id);
     req.body.user_id = req.user.id;
+
+    switch (rea.body.foreign_language) {
+        case 'A1':
+            req.body.foreign_language = 1;
+            break;
+        case 'A2':
+            req.body.foreign_language = 2;
+            break;
+        case 'B1':
+            req.body.foreign_language = 3;
+            break;
+        case 'B2':
+            req.body.foreign_language = 4;
+            break;
+        case 'C1':
+            req.body.foreign_language = 5;
+            break;
+        case 'C2':
+            req.body.foreign_language = 6;
+            break;
+    }
+
     db.saveReview(req.body)
         .then(function () {
             res.json({message: 'Відгук збережено', redirect: '/ep'});
@@ -144,5 +195,37 @@ router.get('/:id' + links.DATA + links.EXCHANGE_PROGRAM, async function (req, re
         next(e);
     }
 });
+
+router.get('/:id' + links.DATA + links.REVIEWS + '/:offset', async function (req, res, next) {
+
+    try {
+
+        let reviews = await db.getEPReviews(req.params.id, req.params.offset);
+        if(reviews.length === 0){
+            return res.json(null);
+        }
+
+        for (let rev of reviews) {
+            rev.rate = await db.getSubjectReviewRate(rev.review_id);
+            rev.subject_rate = await db.getSubjectReviewsUserRate(rev.user_id);
+
+            rev.average_grade = ((rev.edu_technique
+                + rev.nowadays_knowledge + rev.using_knowledge) / 3).toFixed(1);
+
+            rev.replies = await db.getReviewReplies(rev.review_id);
+
+            for (let repl of rev.replies) {
+                repl.rate = await db.getSubjectReplyRate(repl.id);
+                repl.subject_rate = await db.getSubjectReviewsUserRate(repl.user_id);
+            }
+        }
+
+        console.log(Date.now() - start);
+        return res.json({ reviews});
+    } catch (e) {
+        return next(e);
+    }
+});
+
 
 module.exports = router;

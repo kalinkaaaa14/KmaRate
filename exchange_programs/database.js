@@ -105,7 +105,8 @@ async function getEPBranches(epId){
 
 async function getAVG_EPRate(epId){
     let res  = await pool.query(`
-    SELECT COALESCE(AVG(place_rating), 0) AS place_rating, COALESCE(AVG(adaptation), 0) AS adaptation, COUNT(id) AS reviews_amount
+    SELECT COALESCE(AVG(place_rating), 0) AS place_rating, COALESCE(AVG(adaptation), 0) AS adaptation, COUNT(id) AS reviews_amount,
+    COALESCE(AVG(edu_difference), 0) AS edu_difference, COALESCE(AVG(foreign_language), 0) AS foreign_language 
     FROM review_ep
     WHERE ep_id = $1
     `, [epId]);
@@ -124,6 +125,10 @@ async function saveReview({time_rev, date_rev, place_rating, foreign_language, a
 
 }
 
+async function getEPReviews(){
+
+}
+
 
 module.exports = {
     addEP,
@@ -137,5 +142,6 @@ module.exports = {
     getUniversitiesTitles,
     getProgramsTitles,
     saveReview,
+    getEPReviews,
 
 }
