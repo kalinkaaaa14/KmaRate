@@ -1,10 +1,3 @@
-let teachersEdit0="";
-let teachersEdit1="";
-let teachersEdit2="";
-let teachersEdit3="";
-let teachersEdit4="";
-let teachersEdit5="";
-
 function addTeacher(i){
     document.getElementById("addTeacher"+i).style.display = "block";
     document.getElementById("buttonAdd"+i).style.display = "none";
@@ -17,21 +10,21 @@ function addTeacherEdit(i){
     document.getElementById("addTeacherEdit"+i).style.display = "block";
     document.getElementById("buttonAddTeacher"+i).style.display = "none";
 }
-function cancelAddTeacherEdit(i){
-    document.getElementById("addTeacherEdit"+i).style.display = "none";
-
-    document.getElementById("buttonAddTeacher"+i).style.display = "block";
+function cancelAddTeacherEdit(counter,i){
+    document.getElementById("addTeacherEdit"+counter+i).style.display = "none";
+    document.getElementById("buttonAddTeacher"+counter+i).style.display = "block";
 }
+
 function hideDeleteTeacher(counter,id){
     document.getElementById("teacherEdit"+counter+id).style.display = "none";
 }
 //дороити перевірку на ввід
-function createNewSubject(l){
+function createNewSubject(l) {
     var now = new Date();
-
-    var tchrs=[];
-    for(i=0;i<l;i++){
-        tchrs[i]=document.getElementsByName('chooseTeacher'+i)[0].value;
+    let diff=true;
+    var tchrs = [];
+    for (i = 0; i < l; i++) {
+        tchrs[i] = document.getElementsByName('chooseTeacher' + i)[0].value;
     }
     var createSubject = {
         title: document.getElementsByName('titleCreate')[0].value,
@@ -42,47 +35,57 @@ function createNewSubject(l){
         teachers: tchrs
     };
 
-
-    //console.log(createSubject);
-    if(createSubject.title === "" ||
-    createSubject.year ===""||
-    createSubject.course=== "" ||
-    createSubject.faculty_id === "" ||
-    createSubject.semester === "" ){
-        alert("Заповніть всі місця,позначені *");
-    }else if(createSubject.teachers[0]===""){
-        alert('Введіть хоча б 1 викладача');
-    }else if(createSubject.year>now.getFullYear()-1){
-     alert("Дисципліна ще не відбулася, користувачі не можуть залишати на неї відгук!");
-    }else {
-        $.ajax({
-            url: '/subj/new/subject',
-            type: 'POST',
-            data: createSubject,
-            success: function (data, textStatus, xhr) {
-              //  console.log(data);
-                if (data.message) {
-                    alert(data.message);
-                }
-            },
-            error: function (xhr, textStatus, errorThrown) {
-                console.log('Error in Operation');
+    for (m = 0; m < createSubject.teachers.length - 1; m++) {
+        for (n = m + 1; n < createSubject.teachers.length; n++) {
+            if (createSubject.teachers[m] === createSubject.teachers[n]) {
+               diff=false;
             }
-        });
+        }
     }
+    //console.log(createSubject);
+    if (createSubject.title === "" ||
+        createSubject.year === "" ||
+        createSubject.course === "" ||
+        createSubject.faculty_id === "" ||
+        createSubject.semester === "") {
+        alert("Заповніть всі місця,позначені *");
+    } else if (createSubject.teachers[0] === "") {
+        alert('Введіть хоча б 1 викладача');
+    } else if (createSubject.year > now.getFullYear() - 1) {
+        alert("Дисципліна ще не відбулася, користувачі не можуть залишати на неї відгук!");
+    } else if(!diff){
+        alert("Оберіть різних викладачів");
+    } else{
+            $.ajax({
+                url: '/subj/new/subject',
+                type: 'POST',
+                data: createSubject,
+                success: function (data, textStatus, xhr) {
+                    console.log(data);
+                    if (data.message) {
+                        alert(data.message);
+                    }
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log('Error in Operation');
+                }
+            });
+        }
 }
 
 function editSubject(id,counter, l){
     var now = new Date();
 
     var tchrs=[];
-for(i=0;i<l;i++) {
-   // if (document.getElementById("teacherEdit" + counter + id).style.display !== "none") {
-        tchrs[i] = document.getElementsByName("teacherEdit" + counter + i)[0].value;
-    //}
+    let count=0;
+    for(i=0;i<l;i++) {
+    if (document.getElementById("teacherEdit" + counter + i).style.display !== "none") {
+        tchrs[count] = document.getElementsByName("teacherEdit" + counter + i)[0].value;
+        count++;
+    }
 }
 for(i=0;i<6;i++){
-   if(document.getElementsByName("editTeacher"+counter+i)[0].value !== "") {
+   if(document.getElementById("addTeacherEdit"+id+i).style.display !== "none"){
        tchrs.push(document.getElementsByName("editTeacher" + counter + i)[0].value);
    }
 }
@@ -95,16 +98,40 @@ for(i=0;i<6;i++){
         semester: document.getElementsByName('semesterEdit'+counter)[0].value,
         teachers: tchrs
     }
-    console.log(editS);
+
+for(m=0; m<editS.teachers.length-1;m++){
+    for(n=m+1; n<editS.teachers.length;n++){
+        if(editS.teachers[m]===editS.teachers[n]){
+            return alert("Оберіть різних викладачів");
+        }
+    }
+}
+   // console.log(editS);
     if(editS.title === "" ||
         editS.year ===""||
         editS.course=== "" ||
         editS.faculty_id === "" ||
         editS.semester === "" ) {
         alert("Заповніть всі місця,позначені *");
-
+    }else if(editS.teachers.length===0){
+        alert("Дисципліна повинна мати хоча б 1 викладача.");
     }else if(editS.year> now.getFullYear()-1){
-    alert("Дисципліна ще не відбулася, користувачі не можуть залишати на неї відгук!");
+        alert("Дисципліна ще не відбулася, користувачі не можуть залишати на неї відгук!");
+    }else {
+        $.ajax({
+            url: '/subj/edit/subject',
+            type: 'POST',
+            data: editS,
+            success: function (data, textStatus, xhr) {
+                  console.log(data);
+                if (data.message) {
+                   alert(data.message);
+                }
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                console.log('Error in Operation');
+            }
+        });
     }
 
 }
@@ -213,6 +240,13 @@ $(document).ready(function () {
     let teachers4="";
     let teachers5="";
 
+    let teachersEdit0="";
+    let teachersEdit1="";
+    let teachersEdit2="";
+    let teachersEdit3="";
+    let teachersEdit4="";
+    let teachersEdit5="";
+
     let arrT=[];
     function formatTeachers(data) {
         for(s=0; s<data.length;s++){
@@ -230,14 +264,6 @@ $(document).ready(function () {
         teachers3+="<select name='chooseTeacher"+3+"' class='custom-select mb-2' required>";
         teachers4+="<select name='chooseTeacher"+4+"' class='custom-select mb-2' required>";
         teachers5+="<select name='chooseTeacher"+5+"' class='custom-select mb-2' required>";
-
-        teachersEdit0+=  "<option selected value=''></option>";
-        teachersEdit1+=  "<option selected value=''></option>";
-        teachersEdit2+=  "<option selected value=''></option>";
-        teachersEdit3+=  "<option selected value=''></option>";
-        teachersEdit4+=  "<option selected value=''></option>";
-        teachersEdit5+=  "<option selected value=''></option>";
-
 
         while(dataL<data.length){
 
@@ -263,13 +289,6 @@ $(document).ready(function () {
         teachers3+="</select>";
         teachers4+="</select>";
         teachers5+="</select>";
-
-        teachersEdit0+="</select>";
-        teachersEdit1+="</select>";
-        teachersEdit2+="</select>";
-        teachersEdit3+="</select>";
-        teachersEdit4+="</select>";
-        teachersEdit5+="</select>";
 
         arrT=data;
     }
@@ -683,99 +702,131 @@ $(document).ready(function () {
                 "</div>"+
                 "<div id='addTeacherEdit"+data.subjects[counter].id+0+"' style='display: none'>"+
                 "<div class='row'>"+
-                "<div class='col-sm-10 ml-2 mt-2'>" +
-                "<select id='editTeacher"+counter+0+"' name='editTeacher"+counter+0+"' class='custom-select mb-2' required>"+
+                "<div class='col-sm-8 '>" +
+                "<select id='editTeacher"+counter+0+"' name='editTeacher"+counter+0+"' class='custom-select facultyEdit mt-2' required>"+
                 teachersEdit0+
-                "<div class='text-center'>"+
+                "</select>"+
+                "</div>"+
+                "<div class='col-sm-4'>" +
+                "<a><button  onclick='cancelAddTeacherEdit("+data.subjects[counter].id+","+0+")' class='btn btn-lg rounded-circle  ml-3 deleteTeacher' type='button'><i class='fa fa-times' aria-hidden='true'></i> </button></a>"+
+                "</div>"+
+                "</div>"+
+                "<div class='row'>" +
+                "<div class='col-sm-4'></div>"+
+                "<div class='col-sm-5'>"+
                 "<div id='buttonAddTeacher"+data.subjects[counter].id+1+"'>"+
-                "<button onclick='cancelAddTeacherEdit("+data.subjects[counter].id+0+")' class='btn bg-danger text-white mt-3 mb-2 mr-1'>Скасувати</button>"+
-                "<button onclick='addTeacherEdit("+data.subjects[counter].id+1+")' class='btn makeEpRev text-white mr-1 mt-3 mb-2'>Додати викладача</button>"+
+                "<button onclick='addTeacherEdit("+data.subjects[counter].id+1+")' class='btn  makeEpRev text-white mr-1 mt-3 mb-2'>Додати викладача</button>"+
                 "</div>"+
+                "<div class='col-sm-3'></div>"+
                 "</div>"+
-                "</div>"+
-                "<div class='col-sm-1'></div>"+
-                "</div>"+
+                "</div>" +
                 "<div id='addTeacherEdit"+data.subjects[counter].id+1+"' style='display: none'>"+
                 "<div class='row'>"+
-                "<div class='col-sm-10 ml-2 mt-2'>" +
-                "<select name='editTeacher"+counter+1+"' id='editTeacher"+counter+1+"' class='custom-select mb-2' required>"+
+                "<div class='col-sm-8'>" +
+                "<select name='editTeacher"+counter+1+"' id='editTeacher"+counter+1+"' class='custom-select facultyEdit mt-2' required>"+
                  teachersEdit1+
-                "<div class='text-center'>"+
+
+               "</select>"+
+                "</div>"+
+                "<div class='col-sm-4'>"+
+                "<a><button   onclick='cancelAddTeacherEdit("+data.subjects[counter].id+","+1+")' class='btn btn-lg rounded-circle  ml-3 deleteTeacher' type='button'><i class='fa fa-times' aria-hidden='true'></i> </button></a>"+
+                "</div>"+
+                "</div>"+
+                "<div class='row'>" +
+                "<div class='col-sm-4'></div>"+
+                "<div class='col-sm-5'>"+
                 "<div id='buttonAddTeacher"+data.subjects[counter].id+2+"'>"+
-                "<button onclick='cancelAddTeacherEdit("+data.subjects[counter].id+1+")' class='btn bg-danger text-white mt-3 mb-2 mr-1'>Скасувати</button>"+
-                "<button onclick='addTeacherEdit("+data.subjects[counter].id+2+")' class='btn makeEpRev text-white  mt-3 mr-1 mb-2'>Додати викладача</button>"+
+                "<button onclick='addTeacherEdit("+data.subjects[counter].id+2+")' class='btn  makeEpRev text-white mr-1 mt-3 mb-2'>Додати викладача</button>"+
                 "</div>"+
                 "</div>"+
-                "</div>"+
-                "<div class='col-sm-1'></div>"+
+                "<div class='col-sm-3'></div>"+
                 "</div>"+
                 "<div id='addTeacherEdit"+data.subjects[counter].id+2+"' style='display: none'>"+
                 "<div class='row'>"+
-                "<div class='col-sm-10 ml-2 mt-2'>" +
-                 "<select name='editTeacher"+counter+2+"' id='editTeacher"+counter+2+"' class='custom-select mb-2' required>"+
+                "<div class='col-sm-8'>" +
+                 "<select name='editTeacher"+counter+2+"' id='editTeacher"+counter+2+"' class='custom-select facultyEdit mt-2' required>"+
                 teachersEdit2+
-                "<div class='text-center'>"+
+                "</select>"+
+                "</div>"+
+                "<div class='col-sm-4'>" +
+                "<a><button  onclick='cancelAddTeacherEdit("+data.subjects[counter].id+","+2+")'  class='btn btn-lg rounded-circle  ml-3 deleteTeacher' type='button'><i class='fa fa-times' aria-hidden='true'></i> </button></a>"+
+                "</div>"+
+                "</div>"+
+                "<div class='row'>" +
+                "<div class='col-sm-4'></div>"+
+                "<div class='col-sm-5'>"+
                 "<div id='buttonAddTeacher"+data.subjects[counter].id+3+"'>"+
-                "<button onclick='cancelAddTeacherEdit("+data.subjects[counter].id+2+")' class='btn bg-danger text-white mt-3 mb-2 mr-1'>Скасувати</button>"+
                 "<button onclick='addTeacherEdit("+data.subjects[counter].id+3+")' class='btn makeEpRev text-white  mt-3 mr-1 mb-2'>Додати викладача</button>"+
                 "</div>"+
                 "</div>"+
-                "</div>"+
-                "<div class='col-sm-1'></div>"+
+                "<div class='col-sm-3'></div>"+
                 "</div>"+
                 "<div id='addTeacherEdit"+data.subjects[counter].id+3+"' style='display: none'>"+
                 "<div class='row'>"+
-                "<div class='col-sm-10 ml-2 mt-2'>" +
-                "<select name='editTeacher"+counter+3+"' id='editTeacher"+counter+3+"' class='custom-select mb-2' required>"+
+                "<div class='col-sm-8'>" +
+                "<select name='editTeacher"+counter+3+"' id='editTeacher"+counter+3+"' class='custom-select facultyEdit mt-2' required>"+
                 teachersEdit3+
-                "<div class='text-center'>"+
+                "</select>"+
+                "</div>"+
+                "<div class='col-sm-4'>" +
+                "<a><button  onclick='cancelAddTeacherEdit("+data.subjects[counter].id+","+3+")'  class='btn btn-lg rounded-circle  ml-3 deleteTeacher' type='button'><i class='fa fa-times' aria-hidden='true'></i> </button></a>"+
+                "</div>"+
+                "</div>"+
+                "<div class='row'>"+
+                "<div class='col-sm-4'></div>"+
+                "<div class='col-sm-5'>"+
                 "<div id='buttonAddTeacher"+data.subjects[counter].id+4+"'>"+
-                "<button onclick='cancelAddTeacherEdit("+data.subjects[counter].id+3+")' class='btn bg-danger text-white mt-3 mb-2 mr-1'>Скасувати</button>"+
                 "<button onclick='addTeacherEdit("+data.subjects[counter].id+4+")' class='btn makeEpRev text-white  mt-3 mr-1 mb-2'>Додати викладача</button>"+
                 "</div>"+
                 "</div>"+
-                "</div>"+
-                "<div class='col-sm-1'></div>"+
+                "<div class='col-sm-3'></div>"+
                 "</div>"+
                 "<div id='addTeacherEdit"+data.subjects[counter].id+4+"' style='display: none'>"+
                 "<div class='row'>"+
-                "<div class='col-sm-10 ml-2 mt-2'>" +
-                "<select name='editTeacher"+counter+4+"' id='editTeacher"+counter+4+"' class='custom-select mb-2' required>"+
+                "<div class='col-sm-8'>" +
+                "<select name='editTeacher"+counter+4+"' id='editTeacher"+counter+4+"' class='custom-select facultyEdit mt-2' required>"+
                 teachersEdit4+
-                "<div class='text-center'>"+
+                "</select>"+
+                "</div>"+
+                "<div class='col-sm-4'>" +
+                "<a><button  onclick='cancelAddTeacherEdit("+data.subjects[counter].id+","+4+")'   class='btn btn-lg rounded-circle  ml-3 deleteTeacher' type='button'><i class='fa fa-times' aria-hidden='true'></i> </button></a>"+
+                "</div>"+
+                "</div>"+
+                "<div class='row'>"+
+                "<div class='col-sm-4'></div>"+
+                "<div class='col-sm-5'>"+
                 "<div id='buttonAddTeacher"+data.subjects[counter].id+5+"'>"+
-                "<button onclick='cancelAddTeacherEdit("+data.subjects[counter].id+4+")' class='btn bg-danger text-white mt-3 mb-2 mr-1'>Скасувати</button>"+
                 "<button onclick='addTeacherEdit("+data.subjects[counter].id+5+")' class='btn makeEpRev text-white  mt-3 mr-1 mb-2'>Додати викладача</button>"+
                 "</div>"+
                 "</div>"+
-                "</div>"+
-                "<div class='col-sm-1'></div>"+
+                "<div class='col-sm-3'></div>"+
                 "</div>"+
                 "<div id='addTeacherEdit"+data.subjects[counter].id+5+"' style='display: none'>"+
                 "<div class='row'>"+
-                "<div class='col-sm-10 ml-2 mt-2'>" +
-                "<select name='editTeacher"+counter+5+"' id='editTeacher"+counter+5+"' class='custom-select mb-2' required>"+
+                "<div class='col-sm-8'>" +
+                "<select name='editTeacher"+counter+5+"' id='editTeacher"+counter+5+"' class='custom-select facultyEdit mt-2' required>"+
                 teachersEdit5+
-                "<div class='text-center'>"+
-                "<button onclick='cancelAddTeacherEdit("+data.subjects[counter].id+5+")' class='btn bg-danger text-white mt-3 mb-2 mr-2'>Скасувати</button>"+
+                "</select>"+
                 "</div>"+
-                "</div>"+
-                "<div class='col-sm-1'></div>"+
-                "</div>"+
-                "</div>"+
+                "<div class='col-sm-4'>" +
+                "<a><button  onclick='cancelAddTeacherEdit("+data.subjects[counter].id+","+5+")'   class='btn btn-lg rounded-circle  ml-3 deleteTeacher' type='button'><i class='fa fa-times' aria-hidden='true'></i> </button></a>"+
                 "</div>"+
                 "</div>"+
                 "</div>"+
                 "</div>"+
                 "</div>"+
                 "</div>"+
-                "</div>" +
+                "</div>"+
+                "</div>"+
+                "</div>"+
+                "</div>"+
                 "<div class='row'>" +
                 "<div class='col-sm-4'></div>"+
                 "<div class='col-sm-4'>" +
                 "<button onclick='editSubject("+data.subjects[counter].id+","+counter+","+data.subjects[counter].teachers.length+")' class='btn btn-block bg-dark text-white  mt-3 mb-2'>Оновити</button>"+
                 "</div>"+
                 "<div class='col-sm-4'></div>"+
+                "</div>"+
                 "</div>"+
                 "</div>";
 
@@ -837,6 +888,7 @@ $(document).ready(function () {
                     "</div>" +
                     "</div>" +"<br>";
             }
+            tooltipTeachers="";
                 counter++;
 
         }
