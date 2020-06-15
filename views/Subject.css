@@ -149,6 +149,12 @@ button:hover {
 .nameAdd{
     margin-left: 10.7%;
 }
+.nameNew{
+    margin-left: 15.1%;
+}
+.patronymicNew{
+margin-left: 5.5%;
+}
 .deleteTeacher:active:focus,
 .deleteTeacher:focus{
     outline: 0!important;

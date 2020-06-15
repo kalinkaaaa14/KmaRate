@@ -60,6 +60,26 @@ $(document).ready(function () {
             image_string: document.getElementById('userImage').src
         }
 
+        if (subj.email === "" || subj.nickname === "") {
+            return alert("Поля, позначені *, не можуть бути порожніми.");
+        }
+        if (subj.email.indexOf(".") == -1) {
+
+            return  alert("У пошті повинен бути символ \".\"");
+        }
+
+        let dog = subj.email.indexOf("@");
+        if (dog == -1) {
+            return alert("У пошті повинен бути символ \"@\".");
+        }
+
+        if ((subj.email.charAt(dog - 1) == '.') || (subj.email.charAt(dog + 1) == '.')
+            || (subj.email.indexOf(",")>=0) || (subj.email.indexOf(";")>=0)
+        || (subj.email.indexOf(" ")>=0) || (dog < 1) || (dog > subj.email.length - 5)) {
+            return   alert("Адреса електронної пошти введена невірно.");
+        }
+
+
         $.ajax({
             //url: /settings/data
             url: "/settings/data",
@@ -165,7 +185,7 @@ $(document).ready(function () {
             "<br>" +
             "<div class='container'>" +
             "<div class='form-inline'>" +
-            "<label class='ml-5 mr-5 loginEdit' for='uname2'>Логін</label>" +
+            "<label class='ml-5 mr-5 loginEdit' for='uname2'>Логін *</label>" +
             "<input type='text' name='nick' class='form-control'   id='uname2' value='" + data.nickname + "' placeholder='Твій нікнейм...'>" +
             "</div>" +
             "<br>" +
@@ -198,7 +218,7 @@ $(document).ready(function () {
             "<h5 class='userInfoEdit ml-5 mt-4 mb-3'> Контакти</h5>" +
 
             "<div class='form-inline'>" +
-            "<label class='ml-5 mr-5 loginEdit' for='mailUser'><b>Пошта</b></label>" +
+            "<label class='ml-5 mr-5 loginEdit' for='mailUser'><b>Пошта *</b></label>" +
             "<input name='mailUser' class='form-control' type='email' id='mailUser' required value='" + data.email + "'>" +
 
             "</div>" +

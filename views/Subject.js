@@ -1,3 +1,4 @@
+let arrT=[];
 function addTeacher(i){
     document.getElementById("addTeacher"+i).style.display = "block";
     document.getElementById("buttonAdd"+i).style.display = "none";
@@ -19,6 +20,52 @@ function hideDeleteTeacher(counter,id){
     document.getElementById("teacherEdit"+counter+id).style.display = "none";
 }
 //дороити перевірку на ввід
+function createNewTeacher() {
+    let identical = false;
+    var newTeacher = {
+        first_name: document.getElementsByName('nameNew')[0].value,
+        last_name: document.getElementsByName('surnameNew')[0].value,
+        patronymic: document.getElementsByName('patronNew')[0].value
+    }
+    //console.log(newTeacher);
+    for (m = 0; m < arrT.length; m++) {
+        if (arrT[m].last_name.toString().toLowerCase() === newTeacher.last_name.toString().toLowerCase() &&
+            arrT[m].first_name.toString().toLowerCase() === newTeacher.first_name.toString().toLowerCase() &&
+            arrT[m].patronymic.toString().toLowerCase() === newTeacher.patronymic.toString().toLowerCase()) {
+            identical = true;
+            break;
+        }
+    }
+    let regexp = /[^a-zа-я'"`єїі ]/i;
+
+    if (regexp.test(newTeacher.last_name) ||
+        regexp.test(newTeacher.first_name) ||
+        regexp.test(newTeacher.patronymic)){
+        alert("Некоректний символ при вводі.");
+    } else if (newTeacher.name === "" ||
+        newTeacher.surname === "" ||
+        newTeacher.patronymic === "") {
+        alert("Заповніть всі поля, позначені *");
+    } else if (identical) {
+        alert("Викладач з таким прізвищем, ім'ям та по-батькові вже існує.");
+    } else {
+         $.ajax({
+             url: '/subj/new/teacher',
+             type: 'POST',
+             data: newTeacher,
+             success: function (data, textStatus, xhr) {
+
+                 if (data.message) {
+                     alert(data.message);
+                 }
+                 },
+             error: function (xhr, textStatus, errorThrown) {
+                 console.log('Error in Operation');
+             }
+         });
+    }
+}
+
 function createNewSubject(l) {
     var now = new Date();
     let diff=true;
@@ -247,7 +294,7 @@ $(document).ready(function () {
     let teachersEdit4="";
     let teachersEdit5="";
 
-    let arrT=[];
+
     function formatTeachers(data) {
         for(s=0; s<data.length;s++){
             data[s].first_name= data[s].first_name[0].toUpperCase()+ data[s].first_name.slice(1);
@@ -335,8 +382,10 @@ $(document).ready(function () {
         let reviews="";
         let editSubject="";
         let addSubject="";
+        let addTeacher="";
         let editSubjectDiv="";
         let addSubjectDiv="";
+        let addTeacherDiv="";
         let tooltipTeachers="";
         // let isAdmin=true;
         var i=0;
@@ -345,6 +394,33 @@ $(document).ready(function () {
         if (data.isAdmin === true){
 
             addSubject="<button data-toggle='collapse' data-target='#addSubject' class='btn btn-block text-white makeEpRev mb-3'>Додати дисципліну</button>";
+            addTeacher="<button data-toggle='collapse' data-target='#addNewTeacher' class='btn btn-block text-white makeEpRev mb-3'>Додати викладача</button>";
+
+            addTeacherDiv="<div id='addNewTeacher' class='collapse' style='overflow: hidden'>"+
+                "<div class='row'>" +
+                "<div class='col-sm-3'></div>"+
+                "<div class='col-sm-7'>" +
+                "<div class='form-inline mb-2'>"+
+                "<label class='ml-5 mr-5' for='surnameNew'>Прізвище *</label>"+
+                "<input type='text'  name='surnameNew' class='form-control ml-5' id='surnameNew'>"+
+                "</div>"+
+                "<div class='form-inline mb-2'>"+
+                "<label class='ml-5 mr-5' for='nameNew'>Ім'я *</label>"+
+                "<input type='text' name='nameNew' class='form-control nameNew' id='nameNew' >"+
+                "</div>"+
+                "<div class='form-inline mb-2'>"+
+                "<label class='ml-5 mr-5' for='patronNew'>По-батькові *</label>"+
+                "<input type='text' name='patronNew' class='form-control patronymicNew' id='patronNew'>"+
+                "</div>"+
+                "</div>"+
+                "</div>"+
+                "<div class='row'>" +
+                "<div class='col-sm-4'></div>"+
+                "<div class='col-sm-4'>" +
+                "<button onclick='createNewTeacher()' class='btn btn-block bg-dark text-white  mt-3 mb-4'>Підтвердити</button>"+
+                "</div>"+
+                "</div>"
+            +"</div>";
 
             addSubjectDiv="<div id='addSubject' class='collapse' style='overflow: hidden'>" +
                 "<div class='row'>" +
@@ -500,7 +576,8 @@ $(document).ready(function () {
                 "</div>"+
                 "</div>";
         }
-
+        res+=addTeacher;
+        res+=addTeacherDiv;
         res+=addSubject;
         res+=addSubjectDiv;
 
