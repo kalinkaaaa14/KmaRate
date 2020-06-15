@@ -77,6 +77,12 @@ button:hover {
     left: 16px;
     font-size:18px;
 }
+.epTitle{
+    position: absolute;
+    top: 8px;
+    left: 16px;
+    font-size:22px;
+}
 .epFilters{
     border: 1px solid lightgray;
 
