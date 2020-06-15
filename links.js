@@ -2,13 +2,13 @@
 module.exports = {
     MAIN: '/',
     REGISTRATION: '/reg',
-    EP: '/ep',
+
     SUBJ: '/subj',
     ENTRANCE: '/entr',
     LOGOUT: '/logout',
     SETTINGS: '/settings',
     PROFILE: '/profile',
-    FILTERED_SUBJECTS: '/filter',
+    FILTER: '/filter',
     CREATE_REVIEW: '/createReview',
     DATA: '/data',
     REVIEWS: '/reviews',
@@ -21,6 +21,11 @@ module.exports = {
     SUBJECT: '/subject',
     EDIT: '/edit',
     TEACHER: '/teacher',
+
+
+    EP: '/ep',
+    EXCHANGE_PROGRAM: '/exchange-program',
+
 
     // revSubj: '/revSubj',
 };

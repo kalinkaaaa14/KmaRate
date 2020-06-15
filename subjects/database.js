@@ -351,6 +351,15 @@ async function addTeacher(first_name, last_name, patronymic){
     VALUES ($1, $2, $3)`, [first_name, last_name, patronymic]);
 }
 
+async function updateTeacher(email, first_name, last_name, patronymic){
+    let res = await pool.query(`
+    UPDATE lecturer 
+    SET first_name = $2, last_name = $3, patronymic = $4
+    WHERE email = $1
+    `, [email, first_name, last_name, patronymic]);
+}
+
+
 module.exports = {
     getSubjects,
     getAVGSubjectRate, getSubjectReviews, getSubjectReviewRate,
@@ -367,4 +376,5 @@ module.exports = {
     updateSubject,
     deleteAllSubjectTeachers,
     addTeacher,
+    updateTeacher,
 };

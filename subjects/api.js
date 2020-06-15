@@ -9,7 +9,7 @@ db.getAdmin = require('../access_control/database').getAdmin;
 db.getUser = require('../users/database').getUser;
 
 //get filtered subjects
-router.get(links.FILTERED_SUBJECTS, async function (req, res, next) {
+router.get(links.FILTER, async function (req, res, next) {
     console.log('============================');
     console.log('============================');
     console.log(req.query);
@@ -282,7 +282,7 @@ router.post(links.EDIT + links.SUBJECT, checkAuthenticated, checkAdmin, async fu
             await db.addSubjectLecturer(subject.id, email);
         }
 
-        return res.json({message: 'Дисципліну змінено'});
+        return res.json({message: 'Дисципліну оновлено'});
     }catch (e) {
         next(e);
     }
@@ -293,8 +293,12 @@ router.post(links.NEW + links.TEACHER, checkAuthenticated, checkAdmin, async fun
     try {
         let teacher = req.body;
 
-        if(teacher.first_name.length > 50 || teacher.last_name.length > 50 || teacher.patronymic.length > 50){
-            return res.json({message: 'Кожна частина ПІБ не повинна перевищувати 50 символів'})
+        if(teacher.first_name.length === 0 || teacher.last_name.length === 0 || teacher.patronymic.length === 0){
+            return res.json({message: 'Заповніть всі поля'});
+        }
+
+        if(teacher.first_name.length > 20 || teacher.last_name.length > 20 || teacher.patronymic.length > 20){
+            return res.json({message: 'Кожна частина ПІБ не повинна перевищувати 20 символів'})
         }
 
         await db.addTeacher(teacher.first_name.toLowerCase(), teacher.last_name.toLowerCase(), teacher.patronymic.toLowerCase());
@@ -305,5 +309,23 @@ router.post(links.NEW + links.TEACHER, checkAuthenticated, checkAdmin, async fun
     }
 });
 
+router.post(links.EDIT + links.TEACHER, checkAuthenticated, checkAdmin, async function (req, res, next) {
+        try {
+            let teacher = req.body;
+
+            if(teacher.first_name.length === 0 || teacher.last_name.length === 0 || teacher.patronymic.length === 0){
+                return res.json({message: 'Заповніть всі поля'});
+            }
+
+            if(teacher.first_name.length > 20 || teacher.last_name.length > 20 || teacher.patronymic.length > 20){
+                return res.json({message: 'Кожна частина ПІБ не повинна перевищувати 20 символів'})
+            }
+
+            await db.updateTeacher(teacher.email, teacher.first_name.toLowerCase(), teacher.last_name.toLowerCase(), teacher.patronymic.toLowerCase());
+            return res.json({message: 'Викладача оновлено'});
+        } catch (e) {
+            next(e);
+        }
+});
 
 module.exports = router;

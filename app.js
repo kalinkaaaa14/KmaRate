@@ -14,15 +14,14 @@ const app = express();
 // let f = require('package.json');
 // console.log(f);
 
-//DEV for Alina
-const cors = require('cors');
-app.use(cors());
-app.options('*', cors());
+// const cors = require('cors');
+// app.use(cors());
+// app.options('*', cors());
 //////////////////////////////////////
 
 //app property
 app.set('x-powered-by', false);
-app.set('view engine', 'ejs');//todo
+app.set('view engine', 'ejs');
 app.set('view options',
     {
         delimiter: '?',
@@ -60,7 +59,6 @@ app.engine('html', ejs.renderFile);
 app.use('/', express.static(__dirname + '/views'));
 
 
-//add links obj to every response
 //add users obj if login
 app.use(function (req, res, next) {
     res.locals.user = req.user;
@@ -74,7 +72,9 @@ app.use(function (req, res, next) {
 
 //routes
 app.use(links.SUBJ, require('./subjects/api'));
+app.use(links.EP, require('./exchange_programs/api'));
 app.use(links.MAIN, require('./users/api'));
+
 //attention! order matters (/subj/:id)
 app.use(links.MAIN, require('./web_server/api'));
 
