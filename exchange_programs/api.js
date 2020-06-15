@@ -71,26 +71,36 @@ router.get(links.DATA, async  function (req, res, next) {
 router.get(links.FILTER, async function (req, res, next) {
 
     //title
-    //university
+    //university_title
     //branch_id
     let query = req.query;
 
     query.title = query.title.toLowerCase();
-    query.university = query.university.toLowerCase();
+    query.university_title = query.university_title.toLowerCase();
 
-    let eps = await db.getPrograms(query.title, query.university, query.branch_id);
+    let eps = await db.getPrograms(query.title, query.university_title, query.branch_id);
 
     for(let ep of eps){
         await addAVGRateToEP(ep);
         ep.branches =  await db.getEPBranches(ep.id);
     }
+
+    let isAdmin = false;
+    if (req.user) {
+        let adminId = await db.getAdmin(req.user.id);
+        if (typeof adminId !== 'undefined') {
+            isAdmin = true;
+        }
+    }
+
+    return res.json({exchange_programs: eps, isAdmin});
 });
 
 async function addAVGRateToEP(ep){
-
     let rates = await db.getAVG_EPRate(ep.id);
 
-    // ep.average_grade =
+    ep.average_grade = ((+rates.place_rating + +rates.adaptation)/2).toFixed(1);
+    ep.reviews_amount = (+rates.reviews_amount).toFixed(0);
 }
 
 

@@ -85,7 +85,13 @@ async function getEPBranches(epId){
 }
 
 async function getAVG_EPRate(epId){
+    let res  = await pool.query(`
+    SELECT COALESCE(AVG(place_rating), 0) AS place_rating, COALESCE(AVG(adaptation), 0) AS adaptation, COUNT(id) AS reviews_amount
+    FROM review_ep
+    WHERE ep_id = $1
+    `, epId);
 
+    return res.rows;
 }
 
 
