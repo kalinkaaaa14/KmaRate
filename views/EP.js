@@ -2,6 +2,8 @@
 $(document).ready(function () {
     let allBranches="";
     let allUniversities="";
+    let allPrograms="";
+
     getUniBranches();
   //  getInfo();
 
@@ -24,7 +26,7 @@ $(document).ready(function () {
     function getInfo() {
         console.log("i'm here");
         var ep = {
-            title: document.getElementsByName('nameEp')[0].value,
+            title: document.getElementsByName('chooseProgram')[0].value,
             branch_id: document.getElementsByName("chooseBranch")[0].value,
             university_title: document.getElementsByName("chooseUniversity")[0].value
         };
@@ -54,7 +56,7 @@ $(document).ready(function () {
             data.universities_titles[k].title=  data.universities_titles[k].title[0].toUpperCase()+ data.universities_titles[k].title.slice(1);
         }*/
         let dataL = 0;
-        allBranches+="<select  name='chooseBranch' class='custom-select mb-2' required>";
+        allBranches+="<select  name='chooseBranch' class='custom-select mb-2' required>"+ "<option selected value=''></option>";
         while(dataL<data.branches.length) {
             allBranches += "<option value='" + data.branches[dataL].id + "'>" + data.branches[dataL].id + " " + data.branches[dataL].title + "</option>";
         dataL++;
@@ -62,12 +64,22 @@ $(document).ready(function () {
         allBranches+="</select>";
 
         dataL=0;
-        allUniversities+="<select name='chooseUniversity' class='custom-select mb-2' required>";
+        allUniversities+="<select name='chooseUniversity' class='custom-select mb-2' required>"+
+            "<option selected value=''></option>";
+
         while(dataL<data.universities_titles.length) {
             allUniversities += "<option value='" + data.universities_titles[dataL].title + "'>" + data.universities_titles[dataL].title + "</option>";
             dataL++;
         }
         allUniversities+="</select>";
+
+        dataL=0;
+        allPrograms+="<select name='chooseProgram' class='custom-select mb-2' required>"+ "<option selected value=''></option>";
+        while(dataL<data.programs_titles.length) {
+            allPrograms+= "<option value='" + data.programs_titles[dataL].title + "'>" + data.programs_titles[dataL].title + "</option>";
+            dataL++;
+        }
+        allPrograms+="</select>";
 
             $('#filtersEp').html(showFiltersEp(data));
 
@@ -95,8 +107,8 @@ $(document).ready(function () {
             "<br>"+
             "<h4 class='text-center mt-1'>Фільтр</h4>"+
             "<div class='form-group'>"+
-            "<h5 for='nameEp'>Назва університету</h5>"+
-            "<input name='nameEp' value='' type='text' class='form-control' id='nameEp'>"+
+            "<h5 for='nameEp'>Назва програми обміну</h5>"+
+            allPrograms+
             "</div>"+
 
             "<div class='form-group'>"+
@@ -123,7 +135,7 @@ $(document).ready(function () {
             let quantityTeach="";
             if(data.exchange_programs[counter].branches.length>1){
                 for(q=1;q<data.exchange_programs[counter].branches.length;q++){
-                    tooltipBranches+=data.exchange_programs[counter].branches[q].id+" "+data.exchange_programs[counter].branches[q].title+", ";
+                    tooltipBranches+=data.exchange_programs[counter].branches[q].id+" "+data.exchange_programs[counter].branches[q].title+"; ";
                 }
                 quantityTeach=" +"+(data.exchange_programs[counter].branches.length-1);
                // console.log(quantityTeach);

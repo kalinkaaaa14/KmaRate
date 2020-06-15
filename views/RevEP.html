@@ -28,7 +28,7 @@
             <p class=" mt-2 mb-4 revHeader"> Залишити відгук</p>
             <div class="makeRevDiv">
                 <p class="ml-5 mr-5 mt-4 questionsRev">Оцінка місця проживання *</p>
-                <form class="ml-5 mr-5 rating">
+                <form id='form1EP' class="ml-5 mr-5 rating">
                     <label>
                         <input type="radio" name="ratePlacing" value="1"/>
                         <span title="1" class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
@@ -143,7 +143,7 @@
                 </div>
 
                 <p class="ml-5 mr-5 mt-4 questionsRev">Адаптація пройшла успішно *</p>
-                <form class="ml-5 mr-5 rating">
+                <form id='successAdapt' class="ml-5 mr-5 rating">
                     <label>
                         <input type="radio" name="successAdaptation" value="1"/>
                         <span title="1" class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
@@ -234,7 +234,7 @@
                 </form>
 
                 <p class="ml-5 mr-5 mt-4 questionsRev">Різниця в навчанні*</p>
-                <form class="ml-5 mr-5 rating">
+                <form id='diffEducation' class="ml-5 mr-5 rating">
                     <label>
                         <input type="radio" name="diffStudying" value="1"/>
                         <span title="1" class="iconRate"><i class="fa fa-circle-o mr-2 iconCircle" aria-hidden="true"></i></span>
@@ -323,13 +323,14 @@
                 </form>
 
                 <p class="ml-5 mr-5 mt-4 questionsRev">Розкажіть детальніше про Ваш власний досвід ТУТ</p>
+                <form id="experienceHere">
                 <div class="text-center">
                     <textarea name="difficulties" class="ml-1 mr-1 mt-2 mb-2 difficultiesEP" placeholder="Опишіть складнощі, з якими Ви стикалися"></textarea>
                 </div>
-
+                </form>
                 <div>
 
-                    <button class="btn btn-lg text-white ml-4 mt-5 mb-4 makeRevEp" type="button">Залишити відгук</button>
+                    <button id="makeReviewEP"  class="btn btn-lg text-white ml-4 mt-5 mb-4 makeRevEp" type="button">Залишити відгук</button>
                 </div>
             </div>
 
@@ -357,5 +358,6 @@
         </div>
     </footer>
 </div>
+<script src="/RevEP.js" charset="utf-8"></script>
 </body>
 </html>
