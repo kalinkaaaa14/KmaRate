@@ -297,7 +297,7 @@ router.post(links.NEW + links.TEACHER, checkAuthenticated, checkAdmin, async fun
             return res.json({message: 'Кожна частина ПІБ не повинна перевищувати 50 символів'})
         }
 
-        await db.addTeacher(teacher.first_name, teacher.last_name, teacher.patronymic);
+        await db.addTeacher(teacher.first_name.toLowerCase(), teacher.last_name.toLowerCase(), teacher.patronymic.toLowerCase());
         return res.json({message: 'Додано викладача'});
     }catch (e) {
         res.json({message: 'Невідома помилка'});
