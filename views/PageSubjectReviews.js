@@ -19,7 +19,9 @@ function sendMakeReply(id) {
         time_rev: now.getHours() + ":" + now.getMinutes()
     };
     console.log(sendReply);
-
+if(sendReply.general_impression===""){
+    alert("Залиште коментар, будь ласка.");
+}else {
     $.ajax({
         url: '/subj/reviews/reply',
         type: 'POST',
@@ -41,7 +43,7 @@ function sendMakeReply(id) {
             console.log('Error in Operation');
         }
     });
-
+}
 }
 
 function sendMakeReplyReply(id) {
@@ -52,8 +54,10 @@ function sendMakeReplyReply(id) {
         date_rev: now.getDate() + "." + (now.getMonth() + 1) + "." + now.getFullYear(),
         time_rev: now.getHours() + ":" + now.getMinutes()
     };
-    console.log(sendReply);
-
+//    console.log(sendReply);
+if(sendReply.general_impression.toString()===""){
+    alert("Залиште коментар, будь ласка.");
+}else {
     $.ajax({
         url: '/subj/reviews/reply',
         type: 'POST',
@@ -75,6 +79,7 @@ function sendMakeReplyReply(id) {
             console.log('Error in Operation');
         }
     });
+}
 }
 
 function makeReplyReply(id) {

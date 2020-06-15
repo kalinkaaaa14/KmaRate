@@ -1,3 +1,10 @@
+let teachersEdit0="";
+let teachersEdit1="";
+let teachersEdit2="";
+let teachersEdit3="";
+let teachersEdit4="";
+let teachersEdit5="";
+
 function addTeacher(i){
     document.getElementById("addTeacher"+i).style.display = "block";
     document.getElementById("buttonAdd"+i).style.display = "none";
@@ -12,13 +19,16 @@ function addTeacherEdit(i){
 }
 function cancelAddTeacherEdit(i){
     document.getElementById("addTeacherEdit"+i).style.display = "none";
+
     document.getElementById("buttonAddTeacher"+i).style.display = "block";
 }
-function hideDeleteTeacher(id){
-    document.getElementById("teacherEdit"+id).style.display = "none";
+function hideDeleteTeacher(counter,id){
+    document.getElementById("teacherEdit"+counter+id).style.display = "none";
 }
 //дороити перевірку на ввід
 function createNewSubject(l){
+    var now = new Date();
+
     var tchrs=[];
     for(i=0;i<l;i++){
         tchrs[i]=document.getElementsByName('chooseTeacher'+i)[0].value;
@@ -31,31 +41,48 @@ function createNewSubject(l){
         semester: document.getElementsByName("semesterCreate")[0].value,
         teachers: tchrs
     };
-    //console.log(createSubject);
 
-    $.ajax({
-        url: '/subj/new/subject',
-        type: 'POST',
-        data: createSubject,
-        success: function (data, textStatus, xhr) {
-           console.log(data);
-           if(data.message){
-               alert(data.message);
-           }
-        },
-        error: function (xhr, textStatus, errorThrown) {
-            console.log('Error in Operation');
-        }
-    });
+
+    //console.log(createSubject);
+    if(createSubject.title === "" ||
+    createSubject.year ===""||
+    createSubject.course=== "" ||
+    createSubject.faculty_id === "" ||
+    createSubject.semester === "" ){
+        alert("Заповніть всі місця,позначені *");
+    }else if(createSubject.teachers[0]===""){
+        alert('Введіть хоча б 1 викладача');
+    }else if(createSubject.year>now.getFullYear()-1){
+     alert("Дисципліна ще не відбулася, користувачі не можуть залишати на неї відгук!");
+    }else {
+        $.ajax({
+            url: '/subj/new/subject',
+            type: 'POST',
+            data: createSubject,
+            success: function (data, textStatus, xhr) {
+              //  console.log(data);
+                if (data.message) {
+                    alert(data.message);
+                }
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                console.log('Error in Operation');
+            }
+        });
+    }
 }
 
 function editSubject(id,counter, l){
-var tchrs=[];
-for(i=0;i<l;i++){
-    tchrs[i]=document.getElementsByName("teacherEdit"+counter+i)[0].value;
+    var now = new Date();
+
+    var tchrs=[];
+for(i=0;i<l;i++) {
+   // if (document.getElementById("teacherEdit" + counter + id).style.display !== "none") {
+        tchrs[i] = document.getElementsByName("teacherEdit" + counter + i)[0].value;
+    //}
 }
 for(i=0;i<6;i++){
-   if(document.getElementById("editTeacher"+counter+i).style.display==="block") {
+   if(document.getElementsByName("editTeacher"+counter+i)[0].value !== "") {
        tchrs.push(document.getElementsByName("editTeacher" + counter + i)[0].value);
    }
 }
@@ -69,6 +96,16 @@ for(i=0;i<6;i++){
         teachers: tchrs
     }
     console.log(editS);
+    if(editS.title === "" ||
+        editS.year ===""||
+        editS.course=== "" ||
+        editS.faculty_id === "" ||
+        editS.semester === "" ) {
+        alert("Заповніть всі місця,позначені *");
+
+    }else if(editS.year> now.getFullYear()-1){
+    alert("Дисципліна ще не відбулася, користувачі не можуть залишати на неї відгук!");
+    }
 
 }
 
@@ -87,7 +124,7 @@ $(document).ready(function () {
     $('#searchSButton').click(getInfo);
 
     function getInfo() {
-
+        var now = new Date();
         var subj = {
             title: document.getElementsByName('title')[0].value,
             teacher: document.getElementsByName("teacher")[0].value,
@@ -97,19 +134,29 @@ $(document).ready(function () {
             faculties: Array.from(document.querySelectorAll('input.facultiesSubject:checked')).map(cb => cb.value)
         };
 
-        $.ajax({
-            url: '/subj/filter',
-            type: 'GET',
-            data: subj,
-            success: function (data, textStatus, xhr) {
-                console.log(data);
-                formatData(data);
-            },
+        if(subj.year>now.getFullYear()-1){
+            alert("Рік викладання у пошуку не має перевищувати рік поточного навчального року, а саме його початок.");
+        } else if(subj.year.toString().includes(',') || subj.year.toString().includes('.')){
+            alert("Введіть, будь ласка, рік цілим числом.");
+        }else if(subj.year <2010 && subj.year >= 1615){
+            alert("Рік викладання дисципліни занадто малий. Введіть будь ласка рік, більший за 2010.");
+        }else if(subj.year <1615) {
+            alert("Некоректні дані для вводу");
+        }else{
+            $.ajax({
+                url: '/subj/filter',
+                type: 'GET',
+                data: subj,
+                success: function (data, textStatus, xhr) {
+                 //   console.log(data);
+                    formatData(data);
+                },
 
-            error: function (xhr, textStatus, errorThrown) {
-                console.log('Error in Operation');
-            }
-        });
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log('Error in Operation');
+                }
+            });
+        }
     }
 
     function allTeachers() {
@@ -118,7 +165,7 @@ $(document).ready(function () {
             url: '/subj/teachers',
             type: 'GET',
             success: function (data, textStatus, xhr) {
-               console.log(data);
+              // console.log(data);
                formatTeachers(data);
             },
 
@@ -166,12 +213,6 @@ $(document).ready(function () {
     let teachers4="";
     let teachers5="";
 
-    let teachersEdit0="";
-    let teachersEdit1="";
-    let teachersEdit2="";
-    let teachersEdit3="";
-    let teachersEdit4="";
-    let teachersEdit5="";
     let arrT=[];
     function formatTeachers(data) {
         for(s=0; s<data.length;s++){
@@ -183,11 +224,20 @@ $(document).ready(function () {
         let dataL = 0;
 
         teachers0+="<select name='chooseTeacher"+0+"' class='custom-select mb-2' required>";
+        teachers0+=  "<option selected value=''></option>";
         teachers1+="<select name='chooseTeacher"+1+"' class='custom-select mb-2' required>";
         teachers2+="<select name='chooseTeacher"+2+"' class='custom-select mb-2' required>";
         teachers3+="<select name='chooseTeacher"+3+"' class='custom-select mb-2' required>";
         teachers4+="<select name='chooseTeacher"+4+"' class='custom-select mb-2' required>";
         teachers5+="<select name='chooseTeacher"+5+"' class='custom-select mb-2' required>";
+
+        teachersEdit0+=  "<option selected value=''></option>";
+        teachersEdit1+=  "<option selected value=''></option>";
+        teachersEdit2+=  "<option selected value=''></option>";
+        teachersEdit3+=  "<option selected value=''></option>";
+        teachersEdit4+=  "<option selected value=''></option>";
+        teachersEdit5+=  "<option selected value=''></option>";
+
 
         while(dataL<data.length){
 
@@ -225,7 +275,7 @@ $(document).ready(function () {
     }
 
     function allTeachersBesides(data,i) {
-let allOptions="";
+        let allOptions="";
         for(k=0; k<data.length;k++) {
             if (k === i) {
                 allOptions += "<option selected value='" + data[k].email + "'>" + data[k].last_name + " " + data[k].first_name + " " + data[k].patronymic + "</option>";
@@ -282,11 +332,11 @@ let allOptions="";
                 "<div class='col-sm-3'></div>"+
                 "<div class='col-sm-7'>" +
                 "<div class='form-inline mb-2'>"+
-                "<label class='ml-5 mr-5' for='titleCreate'>Назва</label>"+
-                "<input type='text' name='titleCreate' class='form-control ml-5' id='titleCreate'>"+
+                "<label class='ml-5 mr-5' for='titleCreate'>Назва *</label>"+
+                "<input type='text' name='titleCreate' class='form-control ml-5' id='titleCreate' required>"+
                 "</div>"+
                 "<div class='form-inline mb-2'>"+
-                "<label class='ml-5 mr-5' for='courseCreate'>Курс </label>"+
+                "<label class='ml-5 mr-5' for='courseCreate'>Курс *</label>"+
                 "<select id='courseCreate'  name='courseCreate' class='custom-select courseAdd'>"+
                 "<option value='1'>БП-1</option>"+
                 "<option value='2'>БП-2</option>"+
@@ -298,7 +348,7 @@ let allOptions="";
                // "<input type='number' name='courseCreate' class='form-control courseAdd' id='courseCreate'>"+
                 "</div>"+
                 "<div class='form-inline mb-2'>"+
-                "<label class='ml-5 mr-5' for='facultyCreate'>Факультет</label>"+
+                "<label class='ml-5 mr-5' for='facultyCreate'>Факультет *</label>"+
                 "<select id='facultyCreate' name='facultyCreate' class='custom-select facultyAdd'>"+
                 "<option value='1'>ФІ</option>"+
                 "<option value='2'>ФЕН</option>"+
@@ -310,11 +360,11 @@ let allOptions="";
               //  "<input type='text' name='facultyCreate' class='form-control facultyAdd' id='facultyCreate'>"+
                 "</div>"+
                 "<div class='form-inline mb-2'>"+
-                "<label class='ml-5 mr-4' for='yearCreate'>Рік викладання</label>"+
-                "<input type='number' name='yearCreate' class='form-control ' id='yearCreate'>"+
+                "<label class='ml-5 mr-4' for='yearCreate'>Рік викладання *</label>"+
+                "<input type='number'  name='yearCreate' class='form-control ' id='yearCreate'>"+
                 "</div>"+
                 "<div class='form-inline mb-2'>"+
-                "<label class='ml-5 mr-5' for='semesterCreate'>Семестр</label>"+
+                "<label class='ml-5 mr-5' for='semesterCreate'>Семестр *</label>"+
                 "<select id='semesterCreate'  name='semesterCreate' class='custom-select semesterAdd'>"+
                 "<option value='осінь'>Осінь</option>"+
                 "<option value='весна'>Весна</option>"+
@@ -460,7 +510,7 @@ let allOptions="";
                        "</select>"+
                        "</div>"+
                        "<div class='col-sm-4'>" +
-                       "<a><button  onclick='hideDeleteTeacher("+counter+j+")' class='btn btn-lg rounded-circle mt-3 ml-3 deleteTeacher' type='button'><i class='fa fa-times' aria-hidden='true'></i> </button></a>"+
+                       "<a><button  onclick='hideDeleteTeacher("+counter+","+j+")' class='btn btn-lg rounded-circle mt-3 ml-3 deleteTeacher' type='button'><i class='fa fa-times' aria-hidden='true'></i> </button></a>"+
                        "</div>"+
                        "</div>";
            }
@@ -594,25 +644,25 @@ let allOptions="";
                 "<div class='row'>" +
                 "<div class='col-sm-6'>" +
                 "<div class='form-inline mb-2'>" +
-                "<label class='ml-5 mr-5 mt-4' for='titleEdit"+counter+"'>Назва</label>" +
+                "<label class='ml-5 mr-5 mt-4' for='titleEdit"+counter+"'>Назва *</label>" +
                 "<input type='text' name='titleEdit"+counter+"' class='form-control ml-5 mt-4' id='titleEdit' value='" + data.subjects[counter].title + "'>" +
                 "</div>" +
                 "<div class='form-inline mb-2'>" +
-                "<label class='ml-5 mr-5' for='courseEdit'>Курс </label>" +
+                "<label class='ml-5 mr-5' for='courseEdit'>Курс *</label>" +
              courseOptions+
                 // "<input type='number' name='courseCreate' class='form-control courseAdd' id='courseCreate'>"+
                 "</div>" +
                 "<div class='form-inline mb-2'>" +
-                "<label class='ml-5 mr-5' for='facultyEdit'>Факультет</label>" +
+                "<label class='ml-5 mr-5' for='facultyEdit'>Факультет *</label>" +
                  facultyOptions+
                 //  "<input type='text' name='facultyCreate' class='form-control facultyAdd' id='facultyCreate'>"+
                 "</div>" +
                 "<div class='form-inline mb-2'>" +
-                "<label class='ml-5 mr-4' for='yearEdit'>Рік викладання</label>" +
+                "<label class='ml-5 mr-4' for='yearEdit'>Рік викладання *</label>" +
                 "<input value='" + data.subjects[counter].year + "' type='number' name='yearEdit"+counter+"' class='form-control ' id='yearEdit'>" +
                 "</div>" +
                 "<div class='form-inline mb-2'>" +
-                "<label class='ml-5 mr-5' for='semesterEdit'>Семестр</label>" +
+                "<label class='ml-5 mr-5' for='semesterEdit'>Семестр *</label>" +
                 semesterOptions+
                 //"<input type='text' name='semesterCreate' class='form-control semesterAdd' id='semesterCreate'>"+
                 "</div>" +
