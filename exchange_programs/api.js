@@ -8,6 +8,7 @@ const {checkNotAuthenticated, checkAuthenticated, checkAdmin} = require('../acce
 db.getAdmin = require('../access_control/database').getAdmin;
 db.getUser = require('../users/database').getUser;
 db.getBranches = require('../web_server/database').getBranches;
+db.getEPReviewsUserRate = require('../users/database').getEPReviewsUserRate;
 
 
 router.post(links.NEW + links.EXCHANGE_PROGRAM, checkAuthenticated, checkAdmin, async function (req, res, next) {
@@ -200,28 +201,28 @@ router.get('/:id' + links.DATA + links.EXCHANGE_PROGRAM, async function (req, re
 router.get('/:id' + links.DATA + links.REVIEWS + '/:offset', async function (req, res, next) {
 
     try {
-
         let reviews = await db.getEPReviews(req.params.id, req.params.offset);
+
         if(reviews.length === 0){
             return res.json(null);
         }
 
         for (let rev of reviews) {
-            rev.rate = await db.getSubjectReviewRate(rev.review_id);
-            rev.subject_rate = await db.getSubjectReviewsUserRate(rev.user_id);
+            rev.image_string = null;
+            rev.rate = await db.getEPReviewRate(rev.review_id);
+            rev.ep_rate = await db.getEPReviewsUserRate(rev.user_id);
 
-            rev.average_grade = ((rev.edu_technique
-                + rev.nowadays_knowledge + rev.using_knowledge) / 3).toFixed(1);
+            rev.average_grade = ((+rev.place_rating
+                + +rev.adaptation) / 2).toFixed(1);
 
             rev.replies = await db.getReviewReplies(rev.review_id);
 
             for (let repl of rev.replies) {
-                repl.rate = await db.getSubjectReplyRate(repl.id);
-                repl.subject_rate = await db.getSubjectReviewsUserRate(repl.user_id);
+                repl.rate = await db.getEPReplyRate(repl.id);
+                repl.ep_rate = await db.getEPReviewsUserRate(repl.user_id);
             }
         }
 
-        console.log(Date.now() - start);
         return res.json({ reviews});
     } catch (e) {
         return next(e);

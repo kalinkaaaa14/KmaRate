@@ -127,10 +127,72 @@ async function saveReview({time_rev, date_rev, place_rating, foreign_language, a
 }
 
 
-async function getEPReviews(){
-
+async function getEPReviews(epId, offset){
+    let res = await pool.query(`
+    SELECT review_ep.id AS review_id, review_ep.time_rev, review_ep.date_rev, review_ep.general_impression, 
+    review_ep.place_rating, review_ep.foreign_language, review_ep.adaptation,
+    review_ep.edu_difference, "avarage_bal_KMA",
+    users.id AS user_id, users.nickname, users.image_string
+    
+    FROM review_ep INNER JOIN users ON (review_ep.user_id = users.id)
+    WHERE ep_id = $1
+    ORDER BY review_ep.date_rev DESC, review_ep.time_rev DESC
+    OFFSET $2 LIMIT 1
+    `, [epId, offset]);
+    return res.rows;
 }
 
+async function getEPReviewRate(reviewId){
+    let likes = await pool.query(`
+    SELECT COUNT(user_response_ep.like) AS likes
+    FROM review_ep INNER JOIN user_response_ep ON (review_ep.id = user_response_ep.review_ep_id)
+    WHERE review_ep.id = $1 AND user_response_ep.like = true
+    `, [reviewId]);
+
+    let dislikes = await pool.query(`
+    SELECT COUNT(user_response_ep.like) AS dislikes
+    FROM review_ep INNER JOIN user_response_ep ON (review_ep.id = user_response_ep.review_ep_id)
+    WHERE review_ep.id = $1 AND user_response_ep.like = false
+    `, [reviewId]);
+
+    let rate = likes.rows[0].likes - dislikes.rows[0].dislikes;
+
+    return rate;
+}
+
+
+async function getReviewReplies(reviewId){
+    let res = await pool.query(`
+    SELECT review_reply.id, review_reply.time_rev, review_reply.date_rev, review_reply.general_impression, users.nickname, 
+    users.id AS user_id, users.image_string
+    
+    FROM review_reply INNER JOIN users ON (review_reply.user_id = users.id)
+    WHERE subject_review_id = $1 OR reply_id IN 
+    (SELECT id
+    FROM review_ep
+    WHERE ep_review_id = $1)
+    ORDER BY review_reply.date_rev ASC, review_reply.time_rev ASC 
+    `, [reviewId]);
+    return res.rows;
+}
+
+async function getEPReplyRate(replyId){
+    let likes = await pool.query(`
+    SELECT COUNT(user_response_reply.like) AS likes
+    FROM review_reply INNER JOIN user_response_reply ON (review_reply.id = user_response_reply.review_reply_id)
+    WHERE review_reply.id = $1 AND user_response_reply.like = true
+    `, [replyId]);
+
+    let dislikes = await pool.query(`
+    SELECT COUNT(user_response_reply.like) AS dislikes
+    FROM review_reply INNER JOIN user_response_reply ON (review_reply.id = user_response_reply.review_reply_id)
+    WHERE review_reply.id = $1 AND user_response_reply.like = false
+    `, [replyId]);
+
+    let rate = likes.rows[0].likes - dislikes.rows[0].dislikes;
+
+    return rate;
+}
 
 module.exports = {
     addEP,
@@ -145,5 +207,7 @@ module.exports = {
     getProgramsTitles,
     saveReview,
     getEPReviews,
-
+    getEPReviewRate,
+    getReviewReplies,
+    getEPReplyRate,
 }

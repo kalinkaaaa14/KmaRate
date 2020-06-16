@@ -88,7 +88,7 @@ async function getSubjectReviewsRate(userId){
     return rate;
 }
 
-async function getEPReviewsRate(userId){
+async function getEPReviewsUserRate(userId){
     let likes = await pool.query(`
     SELECT COUNT(*) AS likes
     FROM review_ep INNER JOIN user_response_ep ON (review_ep.id = user_response_ep.review_ep_id)
@@ -152,7 +152,7 @@ module.exports = {
     getBranch,
     getFaculty,
     getSubjectReviewsRate,
-    getEPReviewsRate,
+    getEPReviewsUserRate,
     getUser,
     getSubjectReviews,
     getEPReviews,

@@ -153,7 +153,7 @@ router.get(links.PROFILE + '/:nickname' + links.DATA, function (req, res, next) 
             userData.instagram = user.instagram;
 
             userData.subject_rate = await db.getSubjectReviewsRate(user.id);
-            userData.ep_rate = await db.getEPReviewsRate(user.id);
+            userData.ep_rate = await db.getEPReviewsUserRate(user.id);
 
             userData.image_string = (await db.getUser(userData.nickname)).image_string;
 
