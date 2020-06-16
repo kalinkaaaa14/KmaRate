@@ -211,7 +211,7 @@ $(document).ready(function () {
 
             res +=
             "<div class='container'>"+
-                "<div id='accordion'>"+
+                "<div id='accordion"+counter+"'>"+
                 "<div class='card'>"+
                 "<div class='card-header cardHeaderProfile'>"+
                 "<div class='row rowCard'>"+
@@ -222,13 +222,13 @@ $(document).ready(function () {
                 "<div class='avgGrade text-right text-white nameReviewProfile'>"+data.subject_reviews[counter].average_rate+"</div>"+
                 "<div class='spaceBetwCols'></div>"+
                 "<div class='dropDown text-right'>"+
-                "<a class='card-link text-white nameReviewProfile' data-toggle='collapse' href='#collapseOne'>"+
+                "<a class='card-link text-white nameReviewProfile' data-toggle='collapse' href='#collapse"+counter+"'>"+
                 "<i class='fa fa-chevron-down' aria-hidden='true'></i></a>"+
             "</div>"+
             "<div class='spaceBetwCols'></div>"+
                 "</div>"+
                 "</div>"+
-                "<div id='collapseOne' class='collapse' data-parent='#accordion'>"+
+                "<div id='collapse"+counter+"' class='collapse' data-parent='#accordion"+counter+"'>"+
                 "<div class='card-body'>"+
                 "<div class='row'>"+
                 "<div class='col-md-5'>"+
