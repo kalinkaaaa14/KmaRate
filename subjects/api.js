@@ -12,7 +12,7 @@ db.getUser = require('../users/database').getUser;
 router.get(links.FILTER, async function (req, res, next) {
     console.log('============================');
     console.log('============================');
-    console.log(req.query);
+    // console.log(req.query);
     //todo check data (empty array...)
         try {
             let dataFromClient = req.query;
@@ -117,8 +117,8 @@ router.get('/:id' + links.DATA + links.SUBJECT, async function (req, res, next) 
 router.get('/:id' + links.DATA + links.REVIEWS + '/:offset', async function (req, res, next) {
 
         try {
-            console.log("start");
-            let start = Date.now();
+            // console.log("start");
+            // let start = Date.now();
 
             let reviews = await db.getSubjectReviews(req.params.id, req.params.offset);
             if(reviews.length === 0){
@@ -140,7 +140,7 @@ router.get('/:id' + links.DATA + links.REVIEWS + '/:offset', async function (req
                 }
             }
 
-            console.log(Date.now() - start);
+            // console.log(Date.now() - start);
             return res.json({ reviews});
         } catch (e) {
             return next(e);
@@ -324,21 +324,19 @@ router.post(links.EDIT + links.TEACHER, checkAuthenticated, checkAdmin, async fu
 
 router.get('/most-popular', async function (req, res, next) {
     try {
-        res.json({subject: await db.getSubjectWithLargestQuantityOfReviews()});
+        res.json({subjects: await db.getSubjectWithLargestQuantityOfReviews()});
     }catch (e) {
         next(e);
     }
-
 });
 
 
 router.get('/active-user', async function (req, res, next) {
     try {
-        res.json({subject: await db.getActiveUsers()});
+        res.json({users: await db.getActiveUsers()});
     }catch (e) {
         next(e);
     }
-
 });
 
 

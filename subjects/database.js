@@ -396,7 +396,7 @@ async function getSubjectWithLargestQuantityOfReviews(){
 
 async function getActiveUsers(){
     let res = await pool.query(`
-    SELECT *
+    SELECT id, nickname
     FROM users
     WHERE NOT EXISTS (SELECT *
      FROM subjects
@@ -406,6 +406,7 @@ async function getActiveUsers(){
      WHERE users.id = user_id
      AND subjects.id = subject_id));
     `);
+    return res.rows;
 }
 
 
