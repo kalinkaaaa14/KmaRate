@@ -114,9 +114,9 @@ app.use(function (err, req, res, next) {
 
 const PORT = process.env.PORT || 4321;
 
-// app.listen(PORT, 'localhost');
+app.listen(PORT, 'localhost');
 // app.listen(PORT, '192.168.1.212');
-app.listen(PORT, '92.249.117.82');
+// app.listen(PORT, '92.249.117.82');
 
 
 console.log('Server started on port ' + PORT);
