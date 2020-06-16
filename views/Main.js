@@ -49,12 +49,20 @@ $(document).ready(function () {
            let res = "";
            res += "<h4 class='display-4 text-center mt-5 mb-5'>Найактивніші користувачі!</h4>";
            for(i=0; i<data.users.length;i++) {
+
+               if (data.users[i].faculty_title.length > 2 && data.users[i].faculty_title[1] === 'п') {
+                   data.users[i].faculty_title = data.users[i].faculty_title.slice(0, 2).toUpperCase() +
+                       data.users[i].faculty_title[2] + data.users[i].faculty_title[3].toUpperCase();
+               } else {
+                   data.users[i].faculty_title = data.users[i].faculty_title.toUpperCase();
+               }
+
                res += "<div class='container rounded mb-5 myProfileDiv'>" +
                    "<div class='row'>" +
                    "<div class='col-md-4'>" +
                    "<div class='text-center mainInfoUser'>" +
                    "<br>" +
-                   "<img class='rounded-circle mt-3 avatarInProfile' src=" + data.users[i].image_string + ">" +
+                   "<a href='/profile/" + data.users[i].nickname + "'><img class='rounded-circle mt-3 avatarInProfile' src=" + data.users[i].image_string + "></a>" +
                    "<br>" +
                    "<output class='mt-1 rateProfile' name='facultyUser'>Рейтинг</output>" +
                    "<br>" +
@@ -70,18 +78,18 @@ $(document).ready(function () {
                    "<img class='epPageReviews' src='/images/Vector.png'>" +
                    "</div>" +
                    "<div class='col-sm-3 text-center'>" +
-                   "<span>" + data.ep_rate + "</span>" +
+                   "<span>" + data.users[i].ep_rate + "</span>" +
                    "</div>" +
                    "</div>" +
                    "</div>" +
                    "<div class='infoProfile1'>" +
                    "<p>" +
-                   "<output class='profileUsername' name='profileUsername'>" + data.users[i].nickname + "</output>" +
+                   "<a class='profileUsername text-decoration-none' name='profileUsername'  href='/profile/" + data.users[i].nickname + "'> "+ data.users[i].nickname + "</a>" +
                    "</p>" +
                    "<p class='profileFacultyCourse'>" +
                    "<output class='facultyInProfile' name='profileFaculty'>Факультет </output>" +
                    "<br>" +
-                   "<output class='courseInProfile' name='profileCourse'>" + data.faculty_title + "</output>" +
+                   "<output class='courseInProfile' name='profileCourse'>" + data.users[i].faculty_title + "</output>" +
                    "</p>" +
                    "</div>" +
                    "<div class='spaceBetweenInfo'></div>" +
@@ -89,7 +97,7 @@ $(document).ready(function () {
                    "<p>" +
                    "<span class='emailInProfile'>Спеціальність</span>" +
                    "<br>" +
-                   "<output class='emailInProfile' name='profileEmail'>" + data.users[i].branch_id + data.users[i].branch_title + "</output>" +
+                   "<output class='emailInProfile' name='profileEmail'>" + data.users[i].branch_id +" " +(data.users[i].branch_title[0].toUpperCase()+data.users[i].branch_title.slice(1))+ "</output>" +
                    " </p>" +
                    " </div>" +
 
