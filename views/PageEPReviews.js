@@ -1,7 +1,6 @@
 let getInfoFunction;
 let reply_Nick="";
 function makeReply(id) {
-
     document.getElementById("makeReplyDiv" + id).style.display = "block";
     document.getElementById("buttonReplyHide" + id).style.display = "none";
 }
@@ -219,7 +218,7 @@ $(document).ready(function () {
     }
 
     function showSubjInfo(data) {
-
+console.log(data);
         let res = "";
         let tooltipBranches = "";
         let quantityTeach = "";
@@ -255,6 +254,11 @@ $(document).ready(function () {
             "<span class='fontSub'>Середній рівень англійської</span>"+
         "<br>"+
         "<output class='characteristics' name='technique'>"+data.exchange_program.foreign_language+"</output>"+
+            "</p>"+
+            "<p>"+
+            "<span class='fontSub'>Різниця в навчанні</span>"+
+            "<br>"+
+            "<output class='characteristics' name='technique'>"+data.exchange_program.edu_difference+"</output>"+
             "</p>"+
             "</div>"+
             "<div class='colSecondEp my-auto'>"+
@@ -351,6 +355,11 @@ $(document).ready(function () {
             "<span class='fontSub'>Середній рівень англійської</span>"+
             "<br>"+
             "<output class='characteristics' name='technique'>"+data.reviews[counter].foreign_language+"</output>"+
+            "</p>"+
+            "<p>"+
+            "<span class='fontSub'>Різниця в навчанні</span>"+
+            "<br>"+
+            "<output class='characteristics' name='technique'>"+data.reviews[counter].edu_difference+"</output>"+
             "</p>"+
             "</div>" +
             "<div class='secondCol'>" +

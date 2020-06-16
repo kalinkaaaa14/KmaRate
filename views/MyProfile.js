@@ -49,6 +49,29 @@ $(document).ready(function () {
         for(i=0;i<data.subject_reviews.length;i++){
             data.subject_reviews[i].title = data.subject_reviews[i].title[0].toUpperCase()+ data.subject_reviews[i].title.slice(1);
         }
+        for(i=0;i<data.ep_reviews.length;i++){
+            switch(data.ep_reviews[i].foreign_language) {
+                case 1:
+                    data.ep_reviews[i].foreign_language = "A1";
+                    break;
+                case 2:
+                    data.ep_reviews[i].foreign_language = "A2";
+                    break;
+                case 3:
+                    data.ep_reviews[i].foreign_language = "B1";
+                    break;
+                case 4:
+                    data.ep_reviews[i].foreign_language = "B2";
+                    break;
+                case 5:
+                    data.ep_reviews[i].foreign_language = "C1";
+                    break;
+                case 6:
+                    data.ep_reviews[i].foreign_language = "C2";
+                    break;
+            }
+        }
+
         $('#revInfo').html(showUserRev(data));
     }
     function formatData(data) {
@@ -105,6 +128,14 @@ $(document).ready(function () {
         let notTheoryPractice="";
         let teacherCriricism="";
         let notTeacherCriticism="";
+
+        let goodPlaceRating="";
+        let badPlaceRating="";
+        let goodAdapt="";
+        let badAdapt="";
+        let bigEductDiff="";
+        let smallEducDiff="";
+
         res+= "<h4 class='myReviews mb-3 mt-1 ml-5'> Відгуки ("+(data.subject_reviews.length+data.ep_reviews.length)+")</h4>";
         while (counter < data.subject_reviews.length) {
             let dNK=10-data.subject_reviews[counter].need_basic_knowledge;
@@ -298,6 +329,128 @@ $(document).ready(function () {
             notTheoryPractice="";
             teacherCriricism="";
             notTeacherCriticism="";
+        }
+        counter=0;
+        // let goodPlaceRating="";
+        // let badPlaceRating="";
+        // let goodAdapt="";
+        // let badAdapt="";
+        // let bigEductDiff="";
+        // let smallEducDiff="";
+
+        while(counter<data.ep_reviews.length){
+             let notPR=10-data.ep_reviews[counter].place_rating;
+             let dAdapt=10-data.ep_reviews[counter].adaptation;
+             let nED=10-data.ep_reviews[counter].edu_difference;
+
+
+            while(data.ep_reviews[counter].place_rating>0){
+                goodPlaceRating+= "<span class='iconRate'><i class='fa fa-circle-o mr-1 iconSize' aria-hidden='true'></i></span>";
+                data.ep_reviews[counter].place_rating--;
+            }
+            while(notPR>0){
+                badPlaceRating+= "<span class='iconTransp'><i class='fa fa-circle-o mr-1' aria-hidden='true'></i></span>";
+                notPR--;
+            }
+            while(data.ep_reviews[counter].adaptation>0){
+                goodAdapt+= "<span class='iconRate'><i class='fa fa-circle-o mr-1 iconSize' aria-hidden='true'></i></span>";
+                data.ep_reviews[counter].adaptation--;
+            }
+            while(dAdapt>0){
+                badAdapt+= "<span class='iconTransp'><i class='fa fa-circle-o mr-1' aria-hidden='true'></i></span>";
+                dAdapt--;
+            }
+            while(data.ep_reviews[counter].edu_difference>0){
+                bigEductDiff+= "<span class='iconRate'><i class='fa fa-circle-o mr-1 iconSize' aria-hidden='true'></i></span>";
+                data.ep_reviews[counter].edu_difference--;
+            }
+            while(nED>0){
+                smallEducDiff+= "<span class='iconTransp'><i class='fa fa-circle-o mr-1' aria-hidden='true'></i></span>";
+                nED--;
+            }
+
+            res +=
+                "<div class='container'>"+
+                "<div id='accordion'>"+
+                "<div class='card'>"+
+                "<div class='card-header cardHeaderProfile'>"+
+                "<div class='row rowCard'>"+
+                "<div class='nameRev ml-3 text-white nameReviewProfile'>"+
+                data.ep_reviews[counter].title+ " "+ data.ep_reviews[counter].university+
+                "</div>"+
+                "<div class='spaceBetwCols'></div>"+
+                "<div class='avgGrade text-right text-white nameReviewProfile'>"+data.ep_reviews[counter].average_rate+"</div>"+
+                "<div class='spaceBetwCols'></div>"+
+                "<div class='dropDown text-right'>"+
+                "<a class='card-link text-white nameReviewProfile' data-toggle='collapse' href='#collapseOne'>"+
+                "<i class='fa fa-chevron-down' aria-hidden='true'></i></a>"+
+                "</div>"+
+                "<div class='spaceBetwCols'></div>"+
+                "</div>"+
+                "</div>"+
+                "<div id='collapseOne' class='collapse' data-parent='#accordion'>"+
+                "<div class='card-body'>"+
+                "<div class='row'>"+
+                "<div class='col-md-5'>"+
+                "<p class='ml-3 myRevHeader'>Оцінка місця проживання </p>"+
+                "<form class='ml-4 rateReview'>"+
+                "<label>"+
+                "<input type='radio' name='needBaseKnow' />" +
+                goodPlaceRating+
+                badPlaceRating+
+                "</label>"+
+                "</form>"+
+
+                "<p class='ml-3 myRevHeader'>Адаптація пройшла успішно </p>"+
+                "<form class='ml-4 rateReview'>"+
+                "<label>"+
+                "<input type='radio' name='likeTechnique' />"+
+                goodAdapt+
+                badAdapt+
+                "</label>"+
+                "</form>"+
+
+                "<p class='ml-3 myRevHeader'>Різниця в навчанні </p>"+
+                "<form class='ml-4 rateReview'>"+
+                "<label>"+
+                "<input type='radio' name='complexityOfCourse' value='6' />"+
+                bigEductDiff+
+                smallEducDiff+
+                "</label>"+
+                "</form>"+
+
+                "</div>"+
+                "<div class='col-md-5'>"+
+                "<p class='ml-3 mt-2 myRevHeader'>Мій рівень англійської </p>"+
+                "<p class='ml-3 mb-3 myRevHeader'>"+data.ep_reviews[counter].foreign_language+"</p>"+
+                "<p class='ml-3 mt-4 myRevHeader'>Середній бал в КМА на момент поїздки </p>"+
+                "<p class='ml-3 mt-4 mb-3 myRevHeader'>"+data.ep_reviews[counter].avarage_bal_KMA+"</p>"+
+                "</div>"+
+                "</div>"+
+                "<div class='row mt-3 mr-3 ml-3 mb-4 myRevHeader'>"+
+                data.ep_reviews[counter].general_impression+
+                "</div>"+
+                "<div class='row'>"+
+                "<div class='col-md-4'></div>"+
+                "<div class='col-md-4'></div>"+
+                "<div class='col-md-4'>"+
+                "<a class='btn btn-block detailsReviewProfile' href='/ep/" + data.ep_reviews[counter].ep_id + "'>Інші відгуки</a>"+
+                "</div>"+
+                "</div>"+
+                "</div>"+
+                "</div>"+
+                "</div>"+
+                "</div>"+
+                "</div>"+
+                "<br>";
+
+            counter++;
+             goodPlaceRating="";
+             badPlaceRating="";
+             goodAdapt="";
+             badAdapt="";
+             bigEductDiff="";
+            smallEducDiff="";
         }
 
         return res;
