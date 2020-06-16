@@ -47,26 +47,26 @@ function saveNewEP(){
 
 }
 
-function  addMoreBranch(){
+function  addMoreBranch() {
     ++teacherId;
     let parent = document.getElementById('branchesParent');
-    let s="<select  name='branchAdd"+branchId+"' class='custom-select mb-2' required>";
-    for(i=0;i<array.length;i++){
-        s+="<option value='" + array[i].id + "'>" + array[i].id + " " + array[i].title + "</option>";
-        }
+    let s = "<select  name='branchAdd" + branchId + "' class='custom-select mb-2' required>";
+    for (i = 0; i < array.length; i++) {
+        s += "<option value='" + array[i].id + "'>" + array[i].id + " " + array[i].title + "</option>";
     }
-    s+="</select>";
-let b = "<div class='row'>"+
-    "<div class='col-sm-8'>" +
-    s+
-    "</div>"+
-    "<div class='col-sm-4'>" +
-    "<a><button  onclick='hide("+branchId+")' class='btn btn-lg rounded-circle  ml-3 deleteTeacher' type='button'><i class='fa fa-times' aria-hidden='true'></i> </button></a>"+
-    "</div>"+
-    "</div>";
+
+    s += "</select>";
+    let b = "<div class='row'>" +
+        "<div class='col-sm-8'>" +
+        s +
+        "</div>" +
+        "<div class='col-sm-4'>" +
+        "<a><button  onclick='hide(" + branchId + ")' class='btn btn-lg rounded-circle  ml-3 deleteTeacher' type='button'><i class='fa fa-times' aria-hidden='true'></i> </button></a>" +
+        "</div>" +
+        "</div>";
 
 
-parent.innerHTML+=b;
+    parent.innerHTML += b;
 
 
     //parent.appendChild(b);
@@ -98,6 +98,27 @@ $(document).ready(function () {
             }
         });
     }
+
+
+
+    // let teacherId = 0;
+    //
+    // function addTeacher(){
+    //     ++teacherId;
+    //     let parent = document.getElementById('TeachersParent');
+    //     parent.appendChild(
+    //         <section id='Teacher' + teacherId>  тут место для учителя .  <button onclick= removeTeacher(teacherId)> delete </button></section>);
+    // }
+    //
+    // function removeTeacher(id){
+    //     document.getElementById('Teacher' + id).remove();
+    // }
+    //
+    //
+    // <section id='TeachersParent'>
+    //
+    //     </section>
+
 
 
     function getInfo() {
@@ -317,7 +338,7 @@ $(document).ready(function () {
         "<span class='quantityEPreview'><small>" + data.exchange_programs[counter].reviews_amount + " відгук(-ів)</small></span>" +
         "</div>" + "<div class='col-sm-2 my-auto'>" + "<div>" +
         "<button data-toggle='modal' data-target='#details' type='button' class='btn btn-lg'>" + data.exchange_programs[counter].average_grade +
-        "</button>" + "</div>" + "</div>" +
+        "/10</button>" + "</div>" + "</div>" +
         "<div class='col-sm-3  my-auto'>" +
         "<a href='/ep/" + data.exchange_programs[counter].id + "' class='btn text-white showAllEPReviews'>Усі відгуки</a>" +
         `<button onclick="window.location='/ep/${data.exchange_programs[counter].id}/createReview'" class='btn text-white makeEpRev'>Залишити відгук</button>` +

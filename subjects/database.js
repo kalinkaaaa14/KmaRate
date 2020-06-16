@@ -375,6 +375,40 @@ async function updateTeacher(email, first_name, last_name, patronymic){
 }
 
 
+
+async function getSubjectWithLargestQuantityOfReviews(){
+    let res = await pool.query(`
+    SELECT id, title
+    FROM subjects
+    WHERE NOT EXISTS 
+    
+    (SELECT review_subject.subject_id
+    FROM review_subject
+    WHERE review_subject.subject_id != subjects.id
+    GROUP BY review_subject.subject_id
+    HAVING COUNT(*) >(SELECT COUNT(*)
+                      FROM review_subject
+                      WHERE review_subject.subject_id = subjects.id));
+    `);
+    return res.rows;
+}
+
+
+async function getActiveUsers(){
+    let res = await pool.query(`
+    SELECT *
+    FROM users
+    WHERE NOT EXISTS (SELECT *
+     FROM subjects
+     WHERE NOT EXISTS 
+     (SELECT *
+     FROM review_subject
+     WHERE users.id = user_id
+     AND subjects.id = subject_id));
+    `);
+}
+
+
 module.exports = {
     getSubjects,
     getAVGSubjectRate, getSubjectReviews, getSubjectReviewRate,
@@ -392,4 +426,6 @@ module.exports = {
     deleteAllSubjectTeachers,
     addTeacher,
     updateTeacher,
+    getSubjectWithLargestQuantityOfReviews,
+    getActiveUsers
 };

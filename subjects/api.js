@@ -321,4 +321,25 @@ router.post(links.EDIT + links.TEACHER, checkAuthenticated, checkAdmin, async fu
         }
 });
 
+
+router.get('/most-popular', async function (req, res, next) {
+    try {
+        res.json({subject: await db.getSubjectWithLargestQuantityOfReviews()});
+    }catch (e) {
+        next(e);
+    }
+
+});
+
+
+router.get('/active-user', async function (req, res, next) {
+    try {
+        res.json({subject: await db.getActiveUsers()});
+    }catch (e) {
+        next(e);
+    }
+
+});
+
+
 module.exports = router;
