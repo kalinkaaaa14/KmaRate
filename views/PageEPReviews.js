@@ -1,6 +1,7 @@
 let getInfoFunction;
-
+let reply_Nick="";
 function makeReply(id) {
+
     document.getElementById("makeReplyDiv" + id).style.display = "block";
     document.getElementById("buttonReplyHide" + id).style.display = "none";
 }
@@ -50,7 +51,7 @@ function sendMakeReplyReply(id) {
     var now = new Date();
     var sendReply = {
         reply_id: id,
-        general_impression: document.getElementsByName('replyTextR' + id)[0].value,
+        general_impression: "@"+reply_Nick+", "+document.getElementsByName('replyTextR' + id)[0].value,
         date_rev: now.getDate() + "." + (now.getMonth() + 1) + "." + now.getFullYear(),
         time_rev: now.getHours() + ":" + now.getMinutes()
     };
@@ -82,14 +83,15 @@ function sendMakeReplyReply(id) {
     }
 }
 
-function makeReplyReply(id) {
+function makeReplyReply(id,nick) {
     document.getElementById("makeReplyReplyDiv" + id).style.display = "block";
     document.getElementById("buttonReplyReplyHide" + id).style.display = "none";
-}
-
+    reply_Nick=nick;
+ }
 function cancelMakeReplyReply(id) {
     document.getElementById("makeReplyReplyDiv" + id).style.display = "none";
     document.getElementById("buttonReplyReplyHide" + id).style.display = "block";
+    reply_Nick="";
 }
 
 function likeReview(review_id, reviewerId, isLike) {
@@ -332,7 +334,7 @@ $(document).ready(function () {
             "</div>" +
             "<div class='row userRate text-center'>" +
             "<div class='col-sm-6 text-center subjectRateRevEp'>" +
-            "<img class='subjPageReviews' src='/images/subject.png'>" +
+            "<img class='subjPageReviews' src='/images/Vector.png'>" +
             "</div>" +
             "<div class='col-sm-6 text-center'>" +
             "<span id='UserRate" + data.reviews[counter].review_id + "'>" + data.reviews[counter].ep_rate + "</span>" +
@@ -399,7 +401,7 @@ $(document).ready(function () {
                 "<div class='row'>" +
                 "<div class='ml-auto'>" +
                 "<button onclick='cancelMakeReplyReply(" + data.reviews[counter].replies[counterReply].id + ");' class='btn-lg mr-4 text-white btn-danger mb-2'>Скасувати</button>" +
-                "<button onclick='sendMakeReplyReply(" + data.reviews[counter].replies[counterReply].id + ");' class='btn-lg mr-4 text-white makeEpPageRev mb-2'>Надіслати</button>" +
+                "<button onclick='sendMakeReplyReply(" + data.reviews[counter].replies[counterReply].id + ","+data.reviews[counter].replies[counterReply].nickname+");' class='btn-lg mr-4 text-white makeEpPageRev mb-2'>Надіслати</button>" +
                 "</div>" +
                 "</div>" +
                 "</div>";
@@ -417,7 +419,7 @@ $(document).ready(function () {
                 "</div>" +
                 "<div class='row userRate'>" +
                 "<div class='col-sm-6 text-center subjectRateRevEp'>" +
-                "<img class='replySubjPageReviews' src='/images/subject.png'>" +
+                "<img class='replySubjPageReviews' src='/images/Vector.png'>" +
                 "</div>" +
                 "<div class='col-sm-6 text-center'>" +
                 "<span id='UserReply" + data.reviews[counter].replies[counterReply].id + "'>" + data.reviews[counter].replies[counterReply].ep_rate + "</span>" +
@@ -439,8 +441,8 @@ $(document).ready(function () {
                 "<button class='btn btn-lg text-decoration-none mr-2' onclick='likeReply(" + data.reviews[counter].replies[counterReply].id + "," + data.reviews[counter].replies[counterReply].user_id + ",true)'>Підтримую</button>" +
                 "<button id = 'disagree' onclick='likeReply(" + data.reviews[counter].replies[counterReply].id + "," + data.reviews[counter].replies[counterReply].user_id + ",false)' class='btn btn-lg text-decoration-none mr-2' >Не погоджуюсь</button>" +
                 "<div id='buttonReplyReplyHide" + data.reviews[counter].replies[counterReply].id + "'>" +
-                "<button onclick='makeReplyReply(" + data.reviews[counter].replies[counterReply].id + ");' class='btn btn-lg text-decoration-none mr-2'>Відповісти</button>" +
-                "</div>" +
+                "<button onclick=`makeReplyReply(" + data.reviews[counter].replies[counterReply].id +",'"+data.reviews[counter].replies[counterReply].nickname+"');` class='btn btn-lg text-decoration-none mr-2'>Відповісти</button>" +
+                               "</div>" +
                 "<div class='ml-auto mr-5'>" + dateReply.getDate() + '.' + (dateReply.getMonth() + 1) + '.' + dateReply.getFullYear() + "  " + data.reviews[counter].replies[counterReply].time_rev.substr(0, 5) +
                 "</div>" +
                 "</p>" +
@@ -460,7 +462,7 @@ $(document).ready(function () {
                     "<div class='row'>" +
                     "<div class='ml-auto'>" +
                     "<button onclick='cancelMakeReplyReply(" + data.reviews[counter].replies[counterReply].id + ");' class='btn-lg mr-4 text-white btn-danger mb-2'>Скасувати</button>" +
-                    "<button onclick='sendMakeReplyReply(" + data.reviews[counter].replies[counterReply].id + ");' class='btn-lg mr-4 text-white makeEpPageRev mb-2'>Надіслати</button>" +
+                    "<button onclick='sendMakeReplyReply(" + data.reviews[counter].replies[counterReply].id +","+ data.reviews[counter].replies[counterReply].nickname+ ");' class='btn-lg mr-4 text-white makeEpPageRev mb-2'>Надіслати</button>" +
                     "</div>" +
                     "</div>" +
                     "</div>";
@@ -479,7 +481,7 @@ $(document).ready(function () {
                     "</div>" +
                     "<div class='row userRate'>" +
                     "<div class='col-sm-6 text-center subjectRateRevEp'>" +
-                    "<img class='replySubjPageReviews' src='/images/subject.png'>" +
+                    "<img class='replySubjPageReviews' src='/images/Vector.png'>" +
                     "</div>" +
                     "<div class='col-sm-6 text-center'>" +
                     "<span id='UserReply" + data.reviews[counter].replies[counterReply].id + "'> " + data.reviews[counter].replies[counterReply].ep_rate + "  </span>" +
@@ -501,7 +503,7 @@ $(document).ready(function () {
                     "<button class='btn btn-lg text-decoration-none mr-2' onclick='likeReply(" + data.reviews[counter].replies[counterReply].id + "," + data.reviews[counter].replies[counterReply].user_id + ",true)'>Підтримую</button>" +
                     "<button id = 'disagree' onclick='likeReply(" + data.reviews[counter].replies[counterReply].id + "," + data.reviews[counter].replies[counterReply].user_id + ",false)' class='btn btn-lg text-decoration-none mr-2' >Не погоджуюсь</button>" +
                     "<div id='buttonReplyReplyHide" + data.reviews[counter].replies[counterReply].id + "'>" +
-                    "<button onclick='makeReplyReply(" + data.reviews[counter].replies[counterReply].id + ");' class='btn btn-lg text-decoration-none mr-2'>Відповісти</button>" +
+                    "<button onclick='makeReplyReply(" + data.reviews[counter].replies[counterReply].id +","+'data.reviews[counter].replies[counterReply].nickname'+");' class='btn btn-lg text-decoration-none mr-2'>Відповісти</button>" +
                     "</div>" +
                     "<div class='ml-auto mr-5'>" + dateReply1.getDate() + '.' + (dateReply1.getMonth() + 1) + '.' + dateReply1.getFullYear() + "  " + data.reviews[counter].replies[counterReply].time_rev.substr(0, 5) +
                     "</div>" +
