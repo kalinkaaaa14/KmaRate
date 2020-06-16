@@ -253,6 +253,9 @@ router.post(links.NEW + links.SUBJECT, checkAuthenticated, checkAdmin, async fun
             }
             return res.json({message: 'Дисципліну додано'});
         }catch (e) {
+            if(e.constraint === 'lecturer_subj_pk'){
+                return res.json({message: 'Викладач не може вести дисципліну 2 рази за 1 семестр'});
+            }
             next(e);
         }
 });

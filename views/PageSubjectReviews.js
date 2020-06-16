@@ -503,8 +503,7 @@ $(document).ready(function () {
                 "<button class='btn btn-lg text-decoration-none mr-2' onclick='likeReply(" + data.reviews[counter].replies[counterReply].id + "," + data.reviews[counter].replies[counterReply].user_id + ",true)'>Підтримую</button>" +
                 "<button id = 'disagree' onclick='likeReply(" + data.reviews[counter].replies[counterReply].id + "," + data.reviews[counter].replies[counterReply].user_id + ",false)' class='btn btn-lg text-decoration-none mr-2' >Не погоджуюсь</button>" +
                 "<div id='buttonReplyReplyHide" + data.reviews[counter].replies[counterReply].id + "'>" +
-                "<button onclick=makeReplyReply(" + data.reviews[counter].replies[counterReply].id +",'"+data.reviews[counter].replies[counterReply].nickname+"'); class='btn btn-lg text-decoration-none mr-2'>Відповісти</button>" +
-                "</div>" +
+                "<button onclick=makeReplyReply(" + data.reviews[counter].replies[counterReply].id +",'"+data.reviews[counter].replies[counterReply].nickname+"'); class='btn btn-lg text-decoration-none mr-2'>Відповісти</button>" +                "</div>" +
                 "<div class='ml-auto mr-5'>" + dateReply.getDate() + '.' + (dateReply.getMonth() + 1) + '.' + dateReply.getFullYear() + "  " + data.reviews[counter].replies[counterReply].time_rev.substr(0, 5) +
                 "</div>" +
                 "</p>" +
