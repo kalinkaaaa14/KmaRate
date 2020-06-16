@@ -1039,7 +1039,7 @@ $(document).ready(function () {
                     "<span class='quantityEPreview'><small>" + data.subjects[counter].reviews_amount + " відгук(-ів)</small></span>" +
                     "</div>" + "<div class='col-sm-2 my-auto'>" + "<div>" +
                     "<button data-toggle='modal' data-target='#details' type='button' class='btn btn-lg'>" + data.subjects[counter].average_grade +
-                    "</button>" + "</div>" + "</div>" +
+                    "/10</button>" + "</div>" + "</div>" +
                     "<div class='col-sm-3  my-auto'>" +
                     "<a href='/subj/" + data.subjects[counter].id + "' class='btn text-white showAllEPReviews'>Усі відгуки</a>" +
                     `<button onclick="window.location='/subj/${data.subjects[counter].id}/createReview'" class='btn text-white makeEpRev'>Залишити відгук</button>` +
@@ -1068,7 +1068,7 @@ $(document).ready(function () {
                     "<span class='quantityEPreview'><small>" + data.subjects[counter].reviews_amount + " відгук(-ів)</small></span>" +
                     "</div>" + "<div class='col-sm-2 my-auto'>" + "<div>" +
                     "<button data-toggle='modal' data-target='#details' type='button' class='btn btn-lg'>" + data.subjects[counter].average_grade +
-                    "</button>" + "</div>" + "</div>" +
+                    "/10</button>" + "</div>" + "</div>" +
                     "<div class='col-sm-3  my-auto'>" +
                     "<a href='/subj/" + data.subjects[counter].id + "' class='btn text-white showAllEPReviews'>Усі відгуки</a>" +
                     `<button onclick="window.location='/subj/${data.subjects[counter].id}/createReview'" class='btn text-white makeEpRev'>Залишити відгук</button>` +

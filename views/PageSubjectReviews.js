@@ -287,38 +287,38 @@ $(document).ready(function () {
             "<p class='mt-4'>" +
             "<span>Потрібні початкові знання</span>" +
             "<br>" +
-            "<output class='characteristics' name='basicKnowledgeSub'>" + data.subject.need_basic_knowledge + "</output>" +
+            "<output class='characteristics' name='basicKnowledgeSub'>" + data.subject.need_basic_knowledge + "/10</output>" +
             "</p>" +
             "<p>" +
             "<span >Техніка викладання</span>" +
             "<br>" +
-            "<output class='characteristics' name='technique'>" + data.subject.edu_technique + "</output>" +
+            "<output class='characteristics' name='technique'>" + data.subject.edu_technique + "/10</output>" +
             "</p>" +
             "<p>" +
             "<span>Складність курсу</span>" +
             "<br>" +
-            "<output class='characteristics' name='complexityC'>" + data.subject.course_complexity + "</output>" +
+            "<output class='characteristics' name='complexityC'>" + data.subject.course_complexity + "/10</output>" +
             "</p>" +
             "</div>" +
             "<div class='col-sm-3 my-auto'>" +
             "<p class='mt-4'>" +
             "<span>Актуальність матеріалів курсу</span>" +
             "<br>" +
-            "<output class='characteristics' name='modernMater'>" + data.subject.nowadays_knowledge + "</output>" +
+            "<output class='characteristics' name='modernMater'>" + data.subject.nowadays_knowledge + "/10</output>" +
             "</p>" +
             "<p>" +
             "<span >Відповідність теорії та практики</span>" +
             "<br>" +
-            "<output class='characteristics' name='technique'>" + data.subject.theory_practice + "</output>" +
+            "<output class='characteristics' name='technique'>" + data.subject.theory_practice + "/10</output>" +
             "</p>" +
             "<p>" +
             "<span>Критика зі сторони викладача</span>" +
             "<br>" +
-            "<output class='characteristics' name='criticismTeacher'>" + data.subject.teacher_criticism + "</output>" +
+            "<output class='characteristics' name='criticismTeacher'>" + data.subject.teacher_criticism + "/10</output>" +
             "</p>" +
             "</div>" +
             "<div class='col-sm-2  my-auto text-center'>" +
-            "<h2>" + data.subject.average_grade + "</h2>" +
+            "<h2>" + data.subject.average_grade + "/10</h2>" +
             "<span class='quantityRevEPPage'><small>" + data.subject.reviews_amount + " відгуків</small></span>" +
             "</div>" +
             "</div>" +
@@ -396,39 +396,39 @@ $(document).ready(function () {
             "<p>" +
             "<span>Складність курсу</span>" +
             "<br>" +
-            "<output class='characteristics' name='complexityC'>" + data.reviews[counter].course_complexity + "</output>" +
+            "<output class='characteristics' name='complexityC'>" + data.reviews[counter].course_complexity + "/10</output>" +
             "</p>" +
 
             "<p>" +
             "<span>Потрібні початкові знання</span>" +
             "<br>" +
-            "<output class='characteristics' name='basicKnowledgeSub'>" + data.reviews[counter].need_basic_knowledge + "</output>" +
+            "<output class='characteristics' name='basicKnowledgeSub'>" + data.reviews[counter].need_basic_knowledge + "/10</output>" +
             "</p>" +
             "<p>" +
             "<span>Критика зі сторони викладача</span>" +
             "<br>" +
-            "<output class='characteristics'  name='criticismTeacher'>" + data.reviews[counter].teacher_criticism + "</output>" +
+            "<output class='characteristics'  name='criticismTeacher'>" + data.reviews[counter].teacher_criticism + "/10</output>" +
             "</p>" +
             "</div>" +
             "<div class='secondCol'>" +
             "<p>" +
             "<span>Техніка викладання</span>" +
             "<br>" +
-            "<output class='characteristics' name='technique'>" + data.reviews[counter].edu_technique + "</output>" +
+            "<output class='characteristics' name='technique'>" + data.reviews[counter].edu_technique + "/10</output>" +
             "</p>" +
             "<p>" +
             "<span>Актуальність матеріалів курсу</span>" +
             "<br>" +
-            "<output class='characteristics' name='modernMater' >" + data.reviews[counter].nowadays_knowledge + "</output>" +
+            "<output class='characteristics' name='modernMater' >" + data.reviews[counter].nowadays_knowledge + "/10</output>" +
             "</p>" +
             "<p>" +
             "<span>Відповідність теорії та практики</span>" +
             "<br>" +
-            "<output class='characteristics' name='technique'>" + data.reviews[counter].theory_practice + "</output>" +
+            "<output class='characteristics' name='technique'>" + data.reviews[counter].theory_practice + "/10</output>" +
             "</p>" +
             "</div>" +
             "<div class='thirdCol my-auto text-center'>" +
-            "<h2>" + data.reviews[counter].average_grade + "</h2>" +
+            "<h2>" + data.reviews[counter].average_grade + "/10</h2>" +
             "</div>" +
             "</div>" +
             "<div class='row mt-4 review'>" +

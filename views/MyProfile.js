@@ -297,8 +297,8 @@ $(document).ready(function () {
             "</form>"+
             "</div>"+
             "</div>"+
-            "<div class='row mt-3 mr-3 ml-3 mb-4 myRevHeader'>"+
-                data.subject_reviews[counter].general_impression+
+            "<div class='row mt-3 mr-3 ml-3 mb-4 myRevHeader'>"+ "<pre><code>" +
+                data.subject_reviews[counter].general_impression.replace(/&/g, '&amp;').replace(/</g, '&lt;') + "</code></pre>" +
             "</div>"+
             "<div class='row'>"+
                 "<div class='col-md-4'></div>"+
@@ -427,8 +427,8 @@ $(document).ready(function () {
                 "<p class='ml-3 mt-4 mb-3 myRevHeader'>"+data.ep_reviews[counter].avarage_bal_KMA+"</p>"+
                 "</div>"+
                 "</div>"+
-                "<div class='row mt-3 mr-3 ml-3 mb-4 myRevHeader'>"+
-                data.ep_reviews[counter].general_impression+
+                "<div class='row mt-3 mr-3 ml-3 mb-4 myRevHeader'>"+ "<pre><code>" +
+                data.ep_reviews[counter].general_impression.replace(/&/g, '&amp;').replace(/</g, '&lt;') + "</code></pre>" +
                 "</div>"+
                 "<div class='row'>"+
                 "<div class='col-md-4'></div>"+
