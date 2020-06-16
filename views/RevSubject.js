@@ -2,9 +2,7 @@ $(document).ready(function () {
 
     $('#makeReviewSubject').click(getInfo);
 
-
     function getInfo() {
-
         let urlPartsArr = window.location.href.split('/');
         let subject_id = urlPartsArr[urlPartsArr.length - 2];
 
