@@ -1,5 +1,147 @@
 let getInfoFunction;
 
+function makeReply(id) {
+    document.getElementById("makeReplyDiv" + id).style.display = "block";
+    document.getElementById("buttonReplyHide" + id).style.display = "none";
+}
+
+function cancelMakeReply(id) {
+    document.getElementById("makeReplyDiv" + id).style.display = "none";
+    document.getElementById("buttonReplyHide" + id).style.display = "block";
+}
+
+function sendMakeReply(id) {
+    var now = new Date();
+    var sendReply = {
+        ep_review_id: id,
+        general_impression: document.getElementsByName('replyText' + id)[0].value,
+        date_rev: now.getDate() + "." + (now.getMonth() + 1) + "." + now.getFullYear(),
+        time_rev: now.getHours() + ":" + now.getMinutes()
+    };
+    console.log(sendReply);
+    if(sendReply.general_impression===""){
+        alert("Залиште коментар, будь ласка.");
+    }else {
+        $.ajax({
+            url: '/ep/reviews/reply',
+            type: 'POST',
+            data: sendReply,
+            success: function (data, textStatus, xhr) {
+                if (data.err && data.message) {
+                    alert(data.message);
+
+                } else if (data.message) {
+                    alert(data.message);
+                    // window.location = window.location;
+                    getInfoFunction();
+
+                } else {
+                    window.location = '/entr';
+                }
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                console.log('Error in Operation');
+            }
+        });
+    }
+}
+
+function sendMakeReplyReply(id) {
+    var now = new Date();
+    var sendReply = {
+        reply_id: id,
+        general_impression: document.getElementsByName('replyTextR' + id)[0].value,
+        date_rev: now.getDate() + "." + (now.getMonth() + 1) + "." + now.getFullYear(),
+        time_rev: now.getHours() + ":" + now.getMinutes()
+    };
+//    console.log(sendReply);
+    if(sendReply.general_impression.toString()===""){
+        alert("Залиште коментар, будь ласка.");
+    }else {
+        $.ajax({
+            url: '/ep/reviews/reply',
+            type: 'POST',
+            data: sendReply,
+            success: function (data, textStatus, xhr) {
+                if (data.err && data.message) {
+                    alert(data.message);
+
+                } else if (data.message) {
+                    alert(data.message);
+                    // window.location = window.location;
+                    getInfoFunction();
+
+                } else {
+                    window.location = '/entr';
+                }
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                console.log('Error in Operation');
+            }
+        });
+    }
+}
+
+function makeReplyReply(id) {
+    document.getElementById("makeReplyReplyDiv" + id).style.display = "block";
+    document.getElementById("buttonReplyReplyHide" + id).style.display = "none";
+}
+
+function cancelMakeReplyReply(id) {
+    document.getElementById("makeReplyReplyDiv" + id).style.display = "none";
+    document.getElementById("buttonReplyReplyHide" + id).style.display = "block";
+}
+
+function likeReview(review_id, reviewerId, isLike) {
+    $.ajax({
+        url: "/ep/rate/reviews/" + review_id,
+        type: 'POST',
+        data: {like: isLike, user_id: reviewerId},
+        success: function (data, textStatus, xhr) {
+            if (typeof data.rate !== 'undefined') {
+                console.log(data);
+                document.getElementById('UserRate' + review_id).innerHTML = data.subject_rate;
+                document.getElementById('ReviewRate' + review_id).innerHTML = data.rate;
+
+            } else {
+                // console.log(data);
+                document.write(data);
+            }
+            // console.log(data);
+            //formatData(data);
+        },
+        error: function (xhr, textStatus, errorThrown) {
+
+            console.log('Error in Operation');
+        }
+    });
+}
+
+function likeReply(reply_id, reviewerId, isLike) {
+    $.ajax({
+        url: "/ep/rate/reply/" + reply_id,
+        type: 'POST',
+        data: {like: isLike, user_id: reviewerId},
+        success: function (data, textStatus, xhr) {
+            if (typeof data.rate !== 'undefined') {
+                // console.log(document.getElementById('UserReply' + reply_id));
+                // console.log(document.getElementById('ReplyRate' + reply_id));
+                // document.getElementById('UserReply' + reply_id).innerHTML = data.subject_rate;
+                document.getElementById('ReplyRate' + reply_id).innerHTML = data.rate;
+
+            } else {
+                // console.log(data);
+                document.write(data);
+            }
+            // console.log(data);
+            //formatData(data);
+        },
+        error: function (xhr, textStatus, errorThrown) {
+
+            console.log('Error in Operation');
+        }
+    });
+}
 $(document).ready(function () {
     /*var data={
        {"exchange_program":
@@ -27,7 +169,7 @@ $(document).ready(function () {
     function getInfo() {
         let urlPartsArr = window.location.href.split('/');
         let ep_id = urlPartsArr[urlPartsArr.length - 1];
-        document.getElementById('allEPReviews').innerHTML = '';
+        document.getElementById('allReviews').innerHTML = '';
 
 
         $.ajax({
@@ -75,7 +217,7 @@ $(document).ready(function () {
     }
 
     function showSubjInfo(data) {
-        console.log("in subj info");
+
         let res = "";
         let tooltipBranches = "";
         let quantityTeach = "";
@@ -162,6 +304,7 @@ $(document).ready(function () {
         let makeReplyReply = "";
         let counterReply = 0;
 
+        res+= " <h3 class='mt-5 mb-5 ml-5 allEpRev'>Усі відгуки</h3>";
         let date = new Date(data.reviews[counter].date_rev);
 
         makeReply = "<div class='container-fluid rounded mb-5 borderReview'>" +
@@ -192,45 +335,34 @@ $(document).ready(function () {
             "<img class='subjPageReviews' src='/images/subject.png'>" +
             "</div>" +
             "<div class='col-sm-6 text-center'>" +
-            "<span id='UserRate" + data.reviews[counter].review_id + "'>" + data.reviews[counter].subject_rate + "</span>" +
+            "<span id='UserRate" + data.reviews[counter].review_id + "'>" + data.reviews[counter].ep_rate + "</span>" +
             "</div>" +
             "</div>" +
             "</div>" +
             "<div class='firstCol'>" +
-            "<p>" +
-            "<span>Складність курсу</span>" +
-            "<br>" +
-            "<output class='characteristics' name='complexityC'>" + data.reviews[counter].course_complexity + "</output>" +
-            "</p>" +
-
-            "<p>" +
-            "<span>Потрібні початкові знання</span>" +
-            "<br>" +
-            "<output class='characteristics' name='basicKnowledgeSub'>" + data.reviews[counter].need_basic_knowledge + "</output>" +
-            "</p>" +
-            "<p>" +
-            "<span>Критика зі сторони викладача</span>" +
-            "<br>" +
-            "<output class='characteristics'  name='criticismTeacher'>" + data.reviews[counter].teacher_criticism + "</output>" +
-            "</p>" +
+            "<p class='mt-4'>"+
+            "<span class='fontSub'>Оцінка місця проживання</span>"+
+            "<br>"+
+            "<output class='characteristics' name='basicKnowledgeSub'>"+data.reviews[counter].place_rating+"</output>"+
+            "</p>"+
+            "<p>"+
+            "<span class='fontSub'>Середній рівень англійської</span>"+
+            "<br>"+
+            "<output class='characteristics' name='technique'>"+data.reviews[counter].foreign_language+"</output>"+
+            "</p>"+
             "</div>" +
             "<div class='secondCol'>" +
-            "<p>" +
-            "<span>Техніка викладання</span>" +
-            "<br>" +
-            "<output class='characteristics' name='technique'>" + data.reviews[counter].edu_technique + "</output>" +
-            "</p>" +
-            "<p>" +
-            "<span>Актуальність матеріалів курсу</span>" +
-            "<br>" +
-            "<output class='characteristics' name='modernMater' >" + data.reviews[counter].nowadays_knowledge + "</output>" +
-            "</p>" +
-            "<p>" +
-            "<span>Відповідність теорії та практики</span>" +
-            "<br>" +
-            "<output class='characteristics' name='technique'>" + data.reviews[counter].theory_practice + "</output>" +
-            "</p>" +
-            "</div>" +
+            "<p class='mt-4'>"+
+            "<span class='fontSub'>Успішність адаптації</span>"+
+            "<br>"+
+            "<output class='characteristics' name='modernMater'>"+data.reviews[counter].adaptation+"</output>"+
+            "</p>"+
+            "<p>"+
+            "<span class='fontSub'>Середній бал в КМА на момент поїздки</span>"+
+            "<br>"+
+            "<output class='characteristics' name='technique'>"+data.reviews[counter].avarage_bal_KMA+"</output>"+
+            "</p>"+
+            "</div>"+
             "<div class='thirdCol my-auto text-center'>" +
             "<h2>" + data.reviews[counter].average_grade + "</h2>" +
             "</div>" +
@@ -288,7 +420,7 @@ $(document).ready(function () {
                 "<img class='replySubjPageReviews' src='/images/subject.png'>" +
                 "</div>" +
                 "<div class='col-sm-6 text-center'>" +
-                "<span id='UserReply" + data.reviews[counter].replies[counterReply].id + "'>" + data.reviews[counter].replies[counterReply].subject_rate + "</span>" +
+                "<span id='UserReply" + data.reviews[counter].replies[counterReply].id + "'>" + data.reviews[counter].replies[counterReply].ep_rate + "</span>" +
                 "</div>" +
                 "</div>" +
                 "</div>" +
@@ -350,7 +482,7 @@ $(document).ready(function () {
                     "<img class='replySubjPageReviews' src='/images/subject.png'>" +
                     "</div>" +
                     "<div class='col-sm-6 text-center'>" +
-                    "<span id='UserReply" + data.reviews[counter].replies[counterReply].id + "'> " + data.reviews[counter].replies[counterReply].subject_rate + "  </span>" +
+                    "<span id='UserReply" + data.reviews[counter].replies[counterReply].id + "'> " + data.reviews[counter].replies[counterReply].ep_rate + "  </span>" +
                     "</div>" +
                     "</div>" +
                     "</div>" +
