@@ -248,7 +248,7 @@ console.log(data);
             "<p class='mt-4'>"+
             "<span class='fontSub'>Оцінка місця проживання</span>"+
         "<br>"+
-        "<output class='characteristics' name='basicKnowledgeSub'>"+data.exchange_program.place_rating+"</output>"+
+        "<output class='characteristics' name='basicKnowledgeSub'>"+data.exchange_program.place_rating+"/10</output>"+
             "</p>"+
             "<p>"+
             "<span class='fontSub'>Середній рівень англійської</span>"+
@@ -258,23 +258,23 @@ console.log(data);
             "<p>"+
             "<span class='fontSub'>Різниця в навчанні</span>"+
             "<br>"+
-            "<output class='characteristics' name='technique'>"+data.exchange_program.edu_difference+"</output>"+
+            "<output class='characteristics' name='technique'>"+data.exchange_program.edu_difference+"/10</output>"+
             "</p>"+
             "</div>"+
             "<div class='colSecondEp my-auto'>"+
             "<p class='mt-4'>"+
             "<span class='fontSub'>Успішність адаптації</span>"+
         "<br>"+
-        "<output class='characteristics' name='modernMater'>"+data.exchange_program.adaptation+"</output>"+
+        "<output class='characteristics' name='modernMater'>"+data.exchange_program.adaptation+"/10</output>"+
             "</p>"+
             "<p>"+
             "<span class='fontSub'>Середній бал в КМА на момент поїздки</span>"+
         "<br>"+
-        "<output class='characteristics' name='technique'>"+data.exchange_program.avarage_bal_KMA+"</output>"+
+        "<output class='characteristics' name='technique'>"+data.exchange_program.avarage_bal_KMA+"/100</output>"+
            "</p>"+
             "</div>"+
             "<div class='colThird my-auto text-center'>"+
-            "<h2 >"+data.exchange_program.average_grade+"</h2>"+
+            "<h2 >"+data.exchange_program.average_grade+"/10</h2>"+
             "<span class='quantityRevEPPage'><small>"+data.exchange_program.reviews_amount+" відгуків</small></span>"+
        " </div>"+
         "</div>"+
@@ -349,7 +349,7 @@ console.log(data);
             "<p class='mt-4'>"+
             "<span class='fontSub'>Оцінка місця проживання</span>"+
             "<br>"+
-            "<output class='characteristics' name='basicKnowledgeSub'>"+data.reviews[counter].place_rating+"</output>"+
+            "<output class='characteristics' name='basicKnowledgeSub'>"+data.reviews[counter].place_rating+"/10</output>"+
             "</p>"+
             "<p>"+
             "<span class='fontSub'>Середній рівень англійської</span>"+
@@ -359,23 +359,23 @@ console.log(data);
             "<p>"+
             "<span class='fontSub'>Різниця в навчанні</span>"+
             "<br>"+
-            "<output class='characteristics' name='technique'>"+data.reviews[counter].edu_difference+"</output>"+
+            "<output class='characteristics' name='technique'>"+data.reviews[counter].edu_difference+"/10</output>"+
             "</p>"+
             "</div>" +
             "<div class='secondCol'>" +
             "<p class='mt-4'>"+
             "<span class='fontSub'>Успішність адаптації</span>"+
             "<br>"+
-            "<output class='characteristics' name='modernMater'>"+data.reviews[counter].adaptation+"</output>"+
+            "<output class='characteristics' name='modernMater'>"+data.reviews[counter].adaptation+"/10</output>"+
             "</p>"+
             "<p>"+
             "<span class='fontSub'>Середній бал в КМА на момент поїздки</span>"+
             "<br>"+
-            "<output class='characteristics' name='technique'>"+data.reviews[counter].avarage_bal_KMA+"</output>"+
+            "<output class='characteristics' name='technique'>"+data.reviews[counter].avarage_bal_KMA+"/100</output>"+
             "</p>"+
             "</div>"+
             "<div class='thirdCol my-auto text-center'>" +
-            "<h2>" + data.reviews[counter].average_grade + "</h2>" +
+            "<h2>" + data.reviews[counter].average_grade + "/10</h2>" +
             "</div>" +
             "</div>" +
             "<div class='row mt-4 review'>" +
