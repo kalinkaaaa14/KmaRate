@@ -24,6 +24,7 @@ function saveNewEP(){
         t=document.getElementsByName("chooseProgramAddProgram")[0].value;
     }
 
+
     var res={
         title:t,
         university:u
@@ -32,37 +33,42 @@ function saveNewEP(){
     if(res.title==="" || res.university ===""){
         return alert('Поля, позначені *, повинні бути заповнені.');
     }
-    // $.ajax({
-    //     url: 'ep/new/exchange-program',
-    //     type: 'POST',
-    //     success: function (data, textStatus, xhr) {
-    //         console.log(data);
-    //
-    //     },
-    //
-    //     error: function (xhr, textStatus, errorThrown) {
-    //         console.log('Error in Operation');
-    //     }
-    // });
+    $.ajax({
+        url: 'ep/new/exchange-program',
+        type: 'POST',
+        data: res,
+        success: function (data, textStatus, xhr) {
+            console.log(data);
+
+        },
+
+        error: function (xhr, textStatus, errorThrown) {
+            console.log('Error in Operation');
+        }
+    });
 
 }
 let teacherId = 0;
 
+function removeBranch(id) {
+    document.getElementById('Teachers' + id).remove();
+}
+
 function  addMoreBranch() {
     ++teacherId;
     let parent = document.getElementById('branchesParent');
-    let s = "<select  name='branchAdd" + branchId + "' class='custom-select mb-2' required>";
+    let s = "<select name='branchAdd" + branchId + "' class='custom-select mb-2' required>";
     for (i = 0; i < array.length; i++) {
         s += "<option value='" + array[i].id + "'>" + array[i].id + " " + array[i].title + "</option>";
     }
 
     s += "</select>";
-    let b = "<div class='row'>" +
+    let b = "<div class='row' id='Teachers"+teacherId+ "'>" +
         "<div class='col-sm-8'>" +
         s +
         "</div>" +
         "<div class='col-sm-4'>" +
-        "<a><button  onclick='hide(" + branchId + ")' class='btn btn-lg rounded-circle  ml-3 deleteTeacher' type='button'><i class='fa fa-times' aria-hidden='true'></i> </button></a>" +
+        "<a><button  onclick='removeBranch(" + teacherId + ")' class='btn btn-lg rounded-circle  ml-3 deleteTeacher' type='button'><i class='fa fa-times' aria-hidden='true'></i> </button></a>" +
         "</div>" +
         "</div>";
 
@@ -294,8 +300,9 @@ $(document).ready(function () {
                 "<div class='row'>" +
                 "<div class='col-sm-3'></div>"+
                 "<div class='col-sm-7'>" +
-                "<select id = 'branchesParent'></select>"
-                +
+                "<section id = 'branchesParent'>" +
+
+               "</section>" +
                 "<button onclick='addMoreBranch()' class='btn btn-block makeEpRev text-white'>Додати спеціальність</button>"+
                 "</div>"+
                 "</div>"+

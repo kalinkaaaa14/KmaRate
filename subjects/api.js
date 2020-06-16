@@ -349,7 +349,13 @@ router.get('/most-popular', async function (req, res, next) {
 
 router.get('/active-user', async function (req, res, next) {
     try {
-        res.json({users: await db.getActiveUsers()});
+
+        let users =await db.getActiveUsers();
+        for(let user of users) {
+            user.subject_rate = await require('../users/database').getSubjectReviewsRate(user.user_id);
+            user.ep_rate = await require('../users/database').getEPReviewsUserRate(user.user_id);
+        }
+        res.json({users});
     }catch (e) {
         next(e);
     }

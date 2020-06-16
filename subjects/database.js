@@ -396,7 +396,7 @@ async function getSubjectWithLargestQuantityOfReviews(){
 
 async function getActiveUsers(){
     let res = await pool.query(`
-    SELECT users.id AS user_id, nickname, image_string, branch.id AS branch_id, branch.title AS branch_title
+    SELECT users.id AS user_id, nickname, image_string, branch.id AS branch_id, branch.title AS branch_title, faculty.title AS faculty_title
     FROM users INNER JOIN branch ON (users.branch_id = branch.id) INNER JOIN faculty ON (branch.faculty_id = faculty.id)
     WHERE NOT EXISTS (SELECT *
      FROM subjects
