@@ -68,6 +68,7 @@ function createNewTeacher() {
 
                  if (data.message) {
                      alert(data.message);
+                     window.location = window.location;
                  }
                  },
              error: function (xhr, textStatus, errorThrown) {
@@ -127,6 +128,7 @@ function createNewSubject(l) {
                     console.log(data);
                     if (data.message) {
                         alert(data.message);
+                        window.location = window.location;
                     }
                 },
                 error: function (xhr, textStatus, errorThrown) {
@@ -1083,75 +1085,8 @@ $(document).ready(function () {
         return res;
     }
 
-    /*
-    function detalization(data){
-       // alert(22222);
-              let c = 0;
-            let details = "";
-            while (c < data.subjects.length) {
-            details +=
-                "<div class='modal-content'>" + "<div class='modal-header'>" +
-                "<h4 class='modal-title'>Детальніше...</h4>" +
-                "<button type='button' class='close' data-dismiss='modal'>&times;</button>"
-                + " </div>" +
-                "<div class='modal-body'>"
-                + "<div class='row'>"
-                + "<div class='col-sm-11'>"
-                + "<p>Для розуміння курсу не потрібні початкові знання </p>"
-                + "</div>" +
-                "<div class='col-sm-1'>"
-                + "<output name='basicKnowledge' style='font-weight: bold;'>" + data.subjects[c].need_basic_knowledge + "</output>"
-                + "</div>"
-                + "</div>"
-                + "<div class='row'>"
-                + "<div class='col-sm-11'>"
-                + "<p>Критика зі сторони викладача була зрозумілою та обгрунтованою </p>"
-                + "</div>"
-                + "<div class='col-sm-1'>"
-                + "<output name='criticism' style='font-weight: bold;'>" + data.subjects[c].teacher_criticism + "</output>"
-                + "</div>"
-                + "</div>"
-                + "<div class='row'>"
-                + "<div class='col-sm-11'>"
-                + "<p>Матеріали курсу були актуальними </p>"
-                + "</div>"
-                + "<div class='col-sm-1'>"
-                + " <output name='modernMaterials' style='font-weight: bold;'>" + data.subjects[c].nowadays_knowledge + "</output>"
-                + "</div>"
-                + " </div>"
-                + "<div class='row'>"
-                + "<div class='col-sm-11'>"
-                + "<p>Практичні заняття відповідали теоретичним </p>"
-                + "</div>"
-                + "<div class='col-sm-1'>"
-                + "<output name='practiceToTheory' style='font-weight: bold;'>" + data.subjects[c].theory_practice + "</output>"
-                + "</div>"
-                + "</div>"
-                + "<div class='row'>"
-                + "<div class='col-sm-11'>"
-                + "<p>Курс був нескладним </p>"
-                + "</div>"
-                + "<div class='col-sm-1'>"
-                + "<output name='complexityCourse' style='font-weight: bold;'>" + data.subjects[c].course_complexity + "</output>"
-                + "</div>"
-                + "</div>"
-                + "<div class='row'>"
-                + "<div class='col-sm-11'>"
-                + "<p>Знання були корисні для реального життя </p>"
-                + "</div>"
-                + "<div class='col-sm-1'>"
-                + "<output name='valuableKnowl' style='font-weight: bold;'>" + data.subjects[c].using_knowledge + "</output>"
-                + "</div>"
-                + "</div>"
-                + "</div>"
-                + "<div class='modal-footer'>"
-                + "<button type='button' class='btn btn-danger' data-dismiss='modal'>Закрити</button>"
-                + "</div>"
-                + "</div>"
-            +"</div>";
-            c++;
-              }
-            return details;
-        }*/
+    function print() {
+
+    }
 
 });

@@ -72,6 +72,8 @@ async function getPrograms(title, university, branch_id){
         branchPart = 'branch_regarding_ep.branch_id = $' + paramArray.length;
     }
 
+    console.log(paramArray);
+
     let res = await pool.query(`
     SELECT DISTINCT exchange_program.id, exchange_program.title, exchange_program.university
     

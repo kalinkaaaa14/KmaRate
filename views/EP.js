@@ -46,6 +46,7 @@ function saveNewEP(){
     // });
 
 }
+let teacherId = 0;
 
 function  addMoreBranch() {
     ++teacherId;
@@ -256,7 +257,7 @@ $(document).ready(function () {
         let tooltipBranches="";
 
         if(data.isAdmin){
-            addEP="<button data-toggle='collapse' data-target='#addEP' class='btn btn-block text-white makeEpRev mb-3'>Додати програму обміну</button>";
+            addEP=  "<button data-toggle='collapse' onclick='addMoreBranch()' data-target='#addEP' class='btn btn-block text-white makeEpRev mb-3'>Додати програму обміну</button>";
             addEPDiv="<div id='addEP' class='collapse' style='overflow: hidden'>" +
                 "<div class='row'>" +
                 "<div class='col-sm-3'></div>"+
@@ -293,6 +294,8 @@ $(document).ready(function () {
                 "<div class='row'>" +
                 "<div class='col-sm-3'></div>"+
                 "<div class='col-sm-7'>" +
+                "<select id = 'branchesParent'></select>"
+                +
                 "<button onclick='addMoreBranch()' class='btn btn-block makeEpRev text-white'>Додати спеціальність</button>"+
                 "</div>"+
                 "</div>"+

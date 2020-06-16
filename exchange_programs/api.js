@@ -14,6 +14,7 @@ db.getEPReviewsUserRate = require('../users/database').getEPReviewsUserRate;
 router.post(links.NEW + links.EXCHANGE_PROGRAM, checkAuthenticated, checkAdmin, async function (req, res, next) {
     try {
         let ep = req.body;
+        console.log(ep);
 
         if (ep.title.length > 50) {
             return res.json({message: 'Назва програми перевищує 50 символів'});
@@ -76,9 +77,9 @@ router.get(links.FILTER, async function (req, res, next) {
         //university_title
         //branch_id
         let query = req.query;
-        // console.log(query);
+        console.log(query);
 
-        query.title = query.title.toLowerCase();
+        query.title;
 
         let eps = await db.getPrograms(query.title, query.university_title, query.branch_id);
 
