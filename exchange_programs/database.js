@@ -163,15 +163,29 @@ async function getEPReviewRate(reviewId){
 
 async function getReviewReplies(reviewId){
     let res = await pool.query(`
+    
+    WITH RECURSIVE sub_replies AS (
+    
     SELECT review_reply.id, review_reply.time_rev, review_reply.date_rev, review_reply.general_impression, users.nickname, 
     users.id AS user_id, users.image_string
     
     FROM review_reply INNER JOIN users ON (review_reply.user_id = users.id)
-    WHERE ep_review_id = $1 OR reply_id IN 
-    (SELECT id
-    FROM review_reply
-    WHERE ep_review_id = $1)
-    ORDER BY review_reply.date_rev ASC, review_reply.time_rev ASC 
+    
+    WHERE ep_review_id = $1
+    
+    UNION 
+    
+    SELECT review_reply.id, review_reply.time_rev, review_reply.date_rev, review_reply.general_impression, users.nickname, 
+    users.id AS user_id, users.image_string 
+     
+    FROM review_reply INNER JOIN users ON (review_reply.user_id = users.id) 
+    INNER JOIN sub_replies ON (review_reply.reply_id = sub_replies.id)
+    
+    ) 
+    SELECT * 
+    FROM sub_replies
+    
+    ORDER BY sub_replies.date_rev ASC, sub_replies.time_rev ASC 
     `, [reviewId]);
     return res.rows;
 }
