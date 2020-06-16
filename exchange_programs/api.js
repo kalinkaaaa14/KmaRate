@@ -208,6 +208,32 @@ router.get('/:id' + links.DATA + links.REVIEWS + '/:offset', async function (req
         }
 
         for (let rev of reviews) {
+
+            switch (rev.foreign_language) {
+                case 0:
+                    rev.foreign_language = '-';
+                    break;
+                case 1:
+                    rev.foreign_language = 'A1';
+                    break;
+                case 2:
+                    rev.foreign_language = 'A2';
+                    break;
+                case 3:
+                    rev.foreign_language = 'B1';
+                    break;
+                case 4:
+                    rev.foreign_language = 'B2';
+                    break;
+                case 5:
+                    rev.foreign_language = 'C1';
+                    break;
+                case 6:
+                    rev.foreign_language = 'C2';
+                    break;
+            }
+
+
             rev.rate = await db.getEPReviewRate(rev.review_id);
             rev.ep_rate = await db.getEPReviewsUserRate(rev.user_id);
 
