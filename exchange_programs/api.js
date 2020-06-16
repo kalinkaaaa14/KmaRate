@@ -256,4 +256,66 @@ router.get('/:id' + links.DATA + links.REVIEWS + '/:offset', async function (req
 });
 
 
+router.post(links.RATE + links.REVIEWS + '/:reviewId', checkAuthenticated, async function (req, res, next) {
+    try {
+
+        let isLikeObj = await db.getUserLikeEPReview(req.user.id, req.params.reviewId);
+        if (isLikeObj) {
+            if (isLikeObj.like + '' === req.body.like) {
+                await db.deleteUserLikeEPReview(req.user.id, req.params.reviewId);
+            } else {
+                await db.updateUserLikeEPReview(req.user.id, req.params.reviewId, req.body.like);
+            }
+        } else {
+            await db.addUserLikeEPReview(req.user.id, req.params.reviewId, req.body.like)
+        }
+
+        return res.json({
+            rate: await db.getEPReviewRate(req.params.reviewId),
+            subject_rate: await db.getEPReviewsUserRate(req.body.user_id)
+        });
+    } catch (e) {
+        return next(e);
+    }
+});
+
+
+router.post(links.RATE + links.REPLY + '/:replyId', checkAuthenticated, async function (req, res, next) {
+    try {
+
+        let isLikeObj = await db.getUserLikeEPReply(req.user.id, req.params.replyId);
+        if (isLikeObj) {
+            if (isLikeObj.like + '' === req.body.like) {
+                await db.deleteUserLikeEPReply(req.user.id, req.params.replyId);
+            } else {
+                await db.updateUserLikeEPReply(req.user.id, req.params.replyId, req.body.like);
+            }
+        } else {
+            await db.addUserLikeEPReply(req.user.id, req.params.replyId, req.body.like)
+        }
+
+        return res.json({
+            rate: await db.getEPReplyRate(req.params.replyId),
+            subject_rate: await db.getEPReviewsUserRate(req.body.user_id)
+        });
+    } catch (e) {
+        return next(e);
+    }
+});
+
+
+router.post(links.REVIEWS + links.REPLY, checkAuthenticated, async function (req, res, next) {
+    try {
+        if (req.body.general_impression.length > 1000) {
+            return res.json({message: "Занадто велика відповідь", err: "err"});
+        }
+        req.body.user_id = req.user.id;
+        await db.addReply(req.body);
+        return res.json({message: "Вашу відповідь опубліковано"});
+    } catch (e) {
+        return next(e);
+    }
+});
+
+
 module.exports = router;

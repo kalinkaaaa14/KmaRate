@@ -194,6 +194,83 @@ async function getEPReplyRate(replyId){
     return rate;
 }
 
+
+
+
+async function addUserLikeEPReview(userId, reviewId, isLike) {
+    let res = await pool.query(`
+    INSERT INTO user_response_ep (user_id, review_ep_id, "like") VALUES ($1, $2, $3)
+    `, [userId, reviewId, isLike]);
+}
+
+async function getUserLikeEPReview(userId, reviewId) {
+    let res = await pool.query(`
+    SELECT "like" 
+    FROM user_response_ep
+    WHERE user_id = $1 AND review_ep_id = $2
+    `, [userId, reviewId]);
+    return res.rows[0];
+}
+
+
+async function updateUserLikeEPReview(userId, reviewId, isLike) {
+    let res = await pool.query(`
+    UPDATE user_response_ep 
+    SET "like" = $3
+    WHERE user_id = $1 AND review_ep_id = $2
+    `, [userId, reviewId, isLike]);
+}
+
+
+async function deleteUserLikeEPReview(userId, reviewId) {
+    let res = await pool.query(`
+    DELETE FROM user_response_ep
+    WHERE user_id = $1 AND review_ep_id = $2
+    `, [userId, reviewId]);
+}
+
+
+
+
+async function addUserLikeEPReply(userId, replyId, isLike) {
+    let res = await pool.query(`
+    INSERT INTO user_response_reply (user_id, review_reply_id, "like") VALUES ($1, $2, $3)
+    `, [userId, replyId, isLike]);
+}
+
+async function getUserLikeEPReply(userId, replyId) {
+    let res = await pool.query(`
+    SELECT "like" 
+    FROM user_response_reply 
+    WHERE user_id = $1 AND review_reply_id = $2
+    `, [userId, replyId]);
+    return res.rows[0];
+}
+
+async function updateUserLikeEPReply(userId, replyId, isLike) {
+    let res = await pool.query(`
+    UPDATE user_response_reply 
+    SET "like" = $3
+    WHERE user_id = $1 AND review_reply_id = $2
+    `, [userId, replyId, isLike]);
+}
+
+async function deleteUserLikeEPReply(userId, replyId) {
+    let res = await pool.query(`
+    DELETE FROM user_response_reply
+    WHERE user_id = $1 AND review_reply_id = $2
+    `, [userId, replyId]);
+}
+
+
+async function addReply({time_rev, date_rev, general_impression, subject_review_id, reply_id, ep_review_id, user_id}) {
+    let res = await pool.query(`
+    INSERT INTO review_reply (time_rev, date_rev,general_impression, subject_review_id, reply_id, ep_review_id, user_id) 
+    VALUES ($1, $2, $3, $4, $5, $6, $7)
+    `, [time_rev, date_rev, general_impression, subject_review_id, reply_id, ep_review_id, user_id]);
+}
+
+
 module.exports = {
     addEP,
     addEPBranch,
@@ -210,4 +287,14 @@ module.exports = {
     getEPReviewRate,
     getReviewReplies,
     getEPReplyRate,
+    getUserLikeEPReview,
+    deleteUserLikeEPReview,
+    updateUserLikeEPReview,
+    addUserLikeEPReview,
+    addUserLikeEPReply,
+    getUserLikeEPReply,
+    updateUserLikeEPReply,
+    deleteUserLikeEPReply,
+    addReply,
+
 }

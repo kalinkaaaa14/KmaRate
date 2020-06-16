@@ -172,9 +172,7 @@ router.post('/:id' + links.CREATE_REVIEW, checkAuthenticated, function (req, res
 
 router.post(links.RATE + links.REVIEWS + '/:reviewId', checkAuthenticated, async function (req, res, next) {
         try {
-            console.log('review');
 
-            console.log(req.body);
             let isLikeObj = await db.getUserLikeSubjectReview(req.user.id, req.params.reviewId);
             if (isLikeObj) {
                 if (isLikeObj.like + '' === req.body.like) {
@@ -202,10 +200,6 @@ router.post(links.RATE + links.REVIEWS + '/:reviewId', checkAuthenticated, async
 router.post(links.RATE + links.REPLY + '/:replyId', checkAuthenticated, async function (req, res, next) {
         try {
 
-            console.log('reply');
-            console.log(req.params.replyId);
-            console.log(req.user.id);
-            console.log(req.body);
             let isLikeObj = await db.getUserLikeSubjectReply(req.user.id, req.params.replyId);
             if (isLikeObj) {
                 if (isLikeObj.like + '' === req.body.like) {

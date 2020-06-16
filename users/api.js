@@ -19,7 +19,7 @@ router.post(links.REGISTRATION, checkNotAuthenticated, function (req, res, next)
             //todo check email(send email and wait for confirm)
             //todo check password length <= 30;
 
-            let regexp = /[^a-zа-я0-9_#@!+\-'"`єїі]/i;
+            let regexp = /[^a-zа-я0-9_#!+\-'"`єїі]/i;
 
             if (regexp.test(req.body.nickname)) {
                 return res.json({message: 'Недопустимий символ в логіні'});
@@ -262,7 +262,7 @@ router.post(links.SETTINGS + links.DATA /*+ '/:nickname'*/, checkAuthenticated, 
         profileUpdates.facebook = 'https://www.facebook.com/' + profileUpdates.facebook;
     }
 
-    let regexp = /[^a-zа-я0-9_#@!+\-'"`єїі]/i;
+    let regexp = /[^a-zа-я0-9_#!+\-'"`єїі]/i;
 
     if (regexp.test(profileUpdates.nickname)) {
         return res.json({message: 'Недопустимий символ в логіні'});
@@ -320,7 +320,7 @@ router.post(links.SETTINGS + links.PASSWORD /*+ '/:nickname'*/, checkAuthenticat
         try {
             let passwords = req.body;
 
-            let regexp = /[^a-zа-я0-9_#@!+\-'"`єїі]/i;
+            let regexp = /[^a-zа-я0-9_#!+\-'"`єїі]/i;
             if (passwords.newPassword.length > 30) {
                 return res.json({message: 'Пароль не повинен первищувати 30 символів'});
             }
