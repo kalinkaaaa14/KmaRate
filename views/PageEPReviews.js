@@ -43,27 +43,27 @@ $(document).ready(function () {
             }
         });
 
-       // setTimeout(getReviews, 0, 0);
+       setTimeout(getReviews, 0, 0);
 
-        // function getReviews(offset) {
-        //
-        //     $.ajax({
-        //         url: "/ep/" + ep_id + "/data/reviews/" + offset,
-        //         type: 'GET',
-        //         success: function (data, textStatus, xhr) {
-        //             console.log(data);
-        //             if (data !== null) {
-        //                 let revLength = data.reviews.length;
-        //                 showReviews(data);
-        //                 setTimeout(getReviews, 0, offset + revLength);
-        //                 // getReviews();
-        //             }
-        //         },
-        //         error: function (xhr, textStatus, errorThrown) {
-        //             console.log('Error in Operation');
-        //         }
-        //     });
-        // }
+       function getReviews(offset) {
+
+             $.ajax({
+                 url: "/ep/" + ep_id + "/data/reviews/" + offset,
+                 type: 'GET',
+                 success: function (data, textStatus, xhr) {
+                     console.log(data);
+                     if (data !== null) {
+                         let revLength = data.reviews.length;
+                         showReviews(data);
+                         setTimeout(getReviews, 0, offset + revLength);
+                         // getReviews();
+                     }
+                 },
+                 error: function (xhr, textStatus, errorThrown) {
+                     console.log('Error in Operation');
+                 }
+             });
+         }
     }
 
     function formatData(data){
@@ -132,9 +132,256 @@ $(document).ready(function () {
         "</div>"+
         "</div>"+
         "<div >"+
-        `<button onclick='window.location='/ep/${data.exchange_program.id}/createReview'"  class='btn btn-block text-white text-center makeEpPageRev'><i class='fa fa-pencil-square-o' aria-hidden='true'></i> Залишити відгук</button>`+
-        "</div>";
+            `<button onclick="window.location='/ep/${data.exchange_program.id}/createReview'" class='btn btn-block text-white text-center makeEpPageRev'><i class='fa fa-pencil-square-o' aria-hidden='true'></i> Залишити відгук</button>` + "</div>";
 
+        return res;
+    }
+
+    function showReviews(data) {
+        let allReviewsElement = document.getElementById('allReviews') /*$('#allReviews')*/;
+
+        let counter = 0;
+
+        while(counter < data.reviews.length){
+            allReviewsElement.innerHTML += buildReviewWithReplies(data, counter);
+            ++counter;
+        }
+
+        // let showPart = () => {
+        //
+        //     if (counter < data.reviews.length) {
+        //         setTimeout(showPart);
+        //     }
+        // }
+        // showPart();
+    }
+
+    function buildReviewWithReplies(data, counter) {
+        let res = '';
+        let makeReply = "";
+        let makeReplyReply = "";
+        let counterReply = 0;
+
+        let date = new Date(data.reviews[counter].date_rev);
+
+        makeReply = "<div class='container-fluid rounded mb-5 borderReview'>" +
+            "<div class='row'>" +
+            "<textarea name='replyText" + data.reviews[counter].review_id + "' class='ml-1 mr-1 mt-2 mb-2 makeReplyText'></textarea>" +
+            "</div>" +
+            "<div class='row'>" +
+            "<div class='ml-auto'>" +
+            "<button onclick='cancelMakeReply(" + data.reviews[counter].review_id + ");' class='btn-lg mr-4 text-white btn-danger mb-2'>Скасувати</button>" +
+            "<button onclick='sendMakeReply(" + data.reviews[counter].review_id + ");' class='btn-lg mr-4 text-white makeEpPageRev mb-2'>Надіслати</button>" +
+            "</div>" +
+            "</div>" +
+            "</div>";
+
+        res +=
+            "<div class='container-fluid rounded mb-5 borderReview'>" +
+            "<div class='row'>" +
+            "<div class='col-md-4'>" +
+            "<div class='text-center mainInfoUser'>" +
+            "<br>" +
+            "<a href='/profile/" + data.reviews[counter].nickname + "'><img  class='rounded-circle mt-3 avatarRevEP' src=" + data.reviews[counter].image_string + "></a>" +
+            "<br>" +
+            "<a href='/profile/" + data.reviews[counter].nickname + "' class='characteristics text-decoration-none genImpr' name='userName'>" + data.reviews[counter].nickname + "</a>" +
+            "<br>" +
+            "</div>" +
+            "<div class='row userRate text-center'>" +
+            "<div class='col-sm-6 text-center subjectRateRevEp'>" +
+            "<img class='subjPageReviews' src='/images/subject.png'>" +
+            "</div>" +
+            "<div class='col-sm-6 text-center'>" +
+            "<span id='UserRate" + data.reviews[counter].review_id + "'>" + data.reviews[counter].subject_rate + "</span>" +
+            "</div>" +
+            "</div>" +
+            "</div>" +
+            "<div class='firstCol'>" +
+            "<p>" +
+            "<span>Складність курсу</span>" +
+            "<br>" +
+            "<output class='characteristics' name='complexityC'>" + data.reviews[counter].course_complexity + "</output>" +
+            "</p>" +
+
+            "<p>" +
+            "<span>Потрібні початкові знання</span>" +
+            "<br>" +
+            "<output class='characteristics' name='basicKnowledgeSub'>" + data.reviews[counter].need_basic_knowledge + "</output>" +
+            "</p>" +
+            "<p>" +
+            "<span>Критика зі сторони викладача</span>" +
+            "<br>" +
+            "<output class='characteristics'  name='criticismTeacher'>" + data.reviews[counter].teacher_criticism + "</output>" +
+            "</p>" +
+            "</div>" +
+            "<div class='secondCol'>" +
+            "<p>" +
+            "<span>Техніка викладання</span>" +
+            "<br>" +
+            "<output class='characteristics' name='technique'>" + data.reviews[counter].edu_technique + "</output>" +
+            "</p>" +
+            "<p>" +
+            "<span>Актуальність матеріалів курсу</span>" +
+            "<br>" +
+            "<output class='characteristics' name='modernMater' >" + data.reviews[counter].nowadays_knowledge + "</output>" +
+            "</p>" +
+            "<p>" +
+            "<span>Відповідність теорії та практики</span>" +
+            "<br>" +
+            "<output class='characteristics' name='technique'>" + data.reviews[counter].theory_practice + "</output>" +
+            "</p>" +
+            "</div>" +
+            "<div class='thirdCol my-auto text-center'>" +
+            "<h2>" + data.reviews[counter].average_grade + "</h2>" +
+            "</div>" +
+            "</div>" +
+            "<div class='row mt-4 review'>" +
+            "<pre><code class='genImpr'>" + data.reviews[counter].general_impression.replace(/&/g, '&amp;').replace(/</g, '&lt;') + "</code></pre>" +
+            "</div>" +
+            "<div class='row ml-5 mr-5'>" +
+            "<p>" +
+            "<div class='mr-3'>" +
+            "<i class='fa fa-thumbs-o-up likesRevEp' aria-hidden='true'></i>" +
+            "<span id='ReviewRate" + data.reviews[counter].review_id + "' class='quantityLikesEp' name='likesReview'>" + data.reviews[counter].rate + "</span>" +
+            "</div>" +
+            // <button  class='btn btn-lg rounded-circle socialBut' type='button'><i class='fa fa-instagram' aria-hidden='true'></i> </button>
+            "<button class='btn btn-lg text-decoration-none mr-2' onclick='likeReview(" + data.reviews[counter].review_id + "," + data.reviews[counter].user_id + ",true)'>Підтримую</button>" +
+            "<button class='btn btn-lg text-decoration-none mr-2' onclick='likeReview(" + data.reviews[counter].review_id + "," + data.reviews[counter].user_id + ",false)' >Не погоджуюсь</button>" +
+            "<div id='buttonReplyHide" + data.reviews[counter].review_id + "'>" +
+            "<button onclick='makeReply(" + data.reviews[counter].review_id + ");' class='btn btn-lg text-decoration-none mr-2'>Відповісти</button>" +
+            "</div>" +
+            "<div class='ml-auto'> " +
+            date.getDate() + '.' + (date.getMonth() + 1) + '.' + date.getFullYear() + "  " + data.reviews[counter].time_rev.substr(0, 5) +
+            "</div>" +
+
+            "</p>" +
+            "</div>" +
+            "<div id='makeReplyDiv" + data.reviews[counter].review_id + "' style='display: none'>" + makeReply + "</div>" +
+            "</div>";
+
+        if (counterReply < data.reviews[counter].replies.length) {
+            makeReplyReply = "<div class='container-fluid rounded mb-5 borderReview'>" +
+                "<div class='row'>" +
+                "<textarea name='replyTextR" + data.reviews[counter].replies[counterReply].id + "' class='ml-1 mr-1 mt-2 mb-2 makeReplyText'></textarea>" +
+                "</div>" +
+                "<div class='row'>" +
+                "<div class='ml-auto'>" +
+                "<button onclick='cancelMakeReplyReply(" + data.reviews[counter].replies[counterReply].id + ");' class='btn-lg mr-4 text-white btn-danger mb-2'>Скасувати</button>" +
+                "<button onclick='sendMakeReplyReply(" + data.reviews[counter].replies[counterReply].id + ");' class='btn-lg mr-4 text-white makeEpPageRev mb-2'>Надіслати</button>" +
+                "</div>" +
+                "</div>" +
+                "</div>";
+            let dateReply = new Date(data.reviews[counter].replies[counterReply].date_rev);
+            res += "<div class='reply'>" +
+                "<div class='container-fluid rounded mb-5 borderReview'>" +
+                "<div class='row'>" +
+                "<div class='col-md-4'>" +
+                "<div class='text-center mainInfoUser'>" +
+                "<br>" +
+                "<a href='/profile/" + data.reviews[counter].replies[counterReply].nickname + "'><img   class='rounded-circle mt-3 replyEpAvatar' src=" + data.reviews[counter].replies[counterReply].image_string + "></a>" +
+                "<br>" +
+                "<a href='/profile/" + data.reviews[counter].replies[counterReply].nickname + "' class='genImpr characteristics text-decoration-none' name='replyUserName'>" + data.reviews[counter].replies[counterReply].nickname + "</a>" +
+                "<br>" +
+                "</div>" +
+                "<div class='row userRate'>" +
+                "<div class='col-sm-6 text-center subjectRateRevEp'>" +
+                "<img class='replySubjPageReviews' src='/images/subject.png'>" +
+                "</div>" +
+                "<div class='col-sm-6 text-center'>" +
+                "<span id='UserReply" + data.reviews[counter].replies[counterReply].id + "'>" + data.reviews[counter].replies[counterReply].subject_rate + "</span>" +
+                "</div>" +
+                "</div>" +
+                "</div>" +
+                "<div class='col-md-8 my-auto'>" +
+                "<div class='replyText my-auto review'>" +
+                "<pre><code class='genImpr'>" + data.reviews[counter].replies[counterReply].general_impression.replace(/&/g, '&amp;').replace(/</g, '&lt;') + "</code></pre>" +
+                "</div>" +
+                "</div>" +
+                "</div>" +
+                "<div class='row mt-3 ml-5'>" +
+                "<p>" +
+                "<div class='mr-3'>" +
+                "<i class='fa fa-thumbs-o-up likesRevEp' aria-hidden='true'></i>" +
+                "<span id='ReplyRate" + data.reviews[counter].replies[counterReply].id + "' class='quantityLikesEp' name='likesReview'> " + data.reviews[counter].replies[counterReply].rate + "</span>" +
+                "</div>" +
+                "<button class='btn btn-lg text-decoration-none mr-2' onclick='likeReply(" + data.reviews[counter].replies[counterReply].id + "," + data.reviews[counter].replies[counterReply].user_id + ",true)'>Підтримую</button>" +
+                "<button id = 'disagree' onclick='likeReply(" + data.reviews[counter].replies[counterReply].id + "," + data.reviews[counter].replies[counterReply].user_id + ",false)' class='btn btn-lg text-decoration-none mr-2' >Не погоджуюсь</button>" +
+                "<div id='buttonReplyReplyHide" + data.reviews[counter].replies[counterReply].id + "'>" +
+                "<button onclick='makeReplyReply(" + data.reviews[counter].replies[counterReply].id + ");' class='btn btn-lg text-decoration-none mr-2'>Відповісти</button>" +
+                "</div>" +
+                "<div class='ml-auto mr-5'>" + dateReply.getDate() + '.' + (dateReply.getMonth() + 1) + '.' + dateReply.getFullYear() + "  " + data.reviews[counter].replies[counterReply].time_rev.substr(0, 5) +
+                "</div>" +
+                "</p>" +
+                "</div>" +
+                "<div id='makeReplyReplyDiv" + data.reviews[counter].replies[counterReply].id + "' style='display: none'>" + makeReplyReply + "</div>" +
+                "</div>";
+
+            counterReply++;
+            if ((data.reviews[counter].replies.length - 1) != 0) {
+                res += "<a href='#' data-toggle='collapse' data-target='#otherSComments'>Ще " + (data.reviews[counter].replies.length - 1) + " коментар(-iв)</a>";
+            }
+            while (counterReply < data.reviews[counter].replies.length) {
+                makeReplyReply = "<div class='container-fluid rounded mb-5 borderReview'>" +
+                    "<div class='row'>" +
+                    "<textarea name='replyTextR" + data.reviews[counter].replies[counterReply].id + "' class='ml-1 mr-1 mt-2 mb-2 makeReplyText'></textarea>" +
+                    "</div>" +
+                    "<div class='row'>" +
+                    "<div class='ml-auto'>" +
+                    "<button onclick='cancelMakeReplyReply(" + data.reviews[counter].replies[counterReply].id + ");' class='btn-lg mr-4 text-white btn-danger mb-2'>Скасувати</button>" +
+                    "<button onclick='sendMakeReplyReply(" + data.reviews[counter].replies[counterReply].id + ");' class='btn-lg mr-4 text-white makeEpPageRev mb-2'>Надіслати</button>" +
+                    "</div>" +
+                    "</div>" +
+                    "</div>";
+
+                let dateReply1 = new Date(data.reviews[counter].replies[counterReply].date_rev);
+                res += "<div id='otherSComments' class='mt-3 collapse'>" +
+                    "<div class='container-fluid rounded mb-5 borderReview'>" +
+                    "<div class='row'>" +
+                    "<div class='col-md-4'>" +
+                    "<div class='text-center mainInfoUser'>" +
+                    "<br>" +
+                    "<a href='/profile/" + data.reviews[counter].replies[counterReply].nickname + "'><img   class='rounded-circle mt-3 replyEpAvatar' src=" + data.reviews[counter].replies[counterReply].image_string + "></a>" +
+                    "<br>" +
+                    "<a href='/profile/" + data.reviews[counter].replies[counterReply].nickname + "' class='genImpr characteristics text-decoration-none' name='replyUserName'>" + data.reviews[counter].replies[counterReply].nickname + "</a>" +
+                    "<br>" +
+                    "</div>" +
+                    "<div class='row userRate'>" +
+                    "<div class='col-sm-6 text-center subjectRateRevEp'>" +
+                    "<img class='replySubjPageReviews' src='/images/subject.png'>" +
+                    "</div>" +
+                    "<div class='col-sm-6 text-center'>" +
+                    "<span id='UserReply" + data.reviews[counter].replies[counterReply].id + "'> " + data.reviews[counter].replies[counterReply].subject_rate + "  </span>" +
+                    "</div>" +
+                    "</div>" +
+                    "</div>" +
+                    "<div class='col-md-8 my-auto'>" +
+                    "<div class='replyText my-auto review'>" +
+                    "<pre><code class='genImpr'>" + data.reviews[counter].replies[counterReply].general_impression.replace(/&/g, '&amp;').replace(/</g, '&lt;') + "</code></pre>" +
+                    "</div>" +
+                    "</div>" +
+                    "</div>" +
+                    "<div class='row mt-3 ml-5'>" +
+                    "<p>" +
+                    "<div class='mr-3'>" +
+                    "<i class='fa fa-thumbs-o-up likesRevEp' aria-hidden='true' ></i>" +
+                    "<span id='ReplyRate" + data.reviews[counter].replies[counterReply].id + "' class='quantityLikesEp' name='likesReview'> " + data.reviews[counter].replies[counterReply].rate + "</span>" +
+                    "</div>" +
+                    "<button class='btn btn-lg text-decoration-none mr-2' onclick='likeReply(" + data.reviews[counter].replies[counterReply].id + "," + data.reviews[counter].replies[counterReply].user_id + ",true)'>Підтримую</button>" +
+                    "<button id = 'disagree' onclick='likeReply(" + data.reviews[counter].replies[counterReply].id + "," + data.reviews[counter].replies[counterReply].user_id + ",false)' class='btn btn-lg text-decoration-none mr-2' >Не погоджуюсь</button>" +
+                    "<div id='buttonReplyReplyHide" + data.reviews[counter].replies[counterReply].id + "'>" +
+                    "<button onclick='makeReplyReply(" + data.reviews[counter].replies[counterReply].id + ");' class='btn btn-lg text-decoration-none mr-2'>Відповісти</button>" +
+                    "</div>" +
+                    "<div class='ml-auto mr-5'>" + dateReply1.getDate() + '.' + (dateReply1.getMonth() + 1) + '.' + dateReply1.getFullYear() + "  " + data.reviews[counter].replies[counterReply].time_rev.substr(0, 5) +
+                    "</div>" +
+                    "</p>" +
+                    "</div>" +
+                    "<div id='makeReplyReplyDiv" + data.reviews[counter].replies[counterReply].id + "' style='display: none'>" + makeReplyReply + "</div>" +
+                    "</div>" +
+                    "</div>";
+                counterReply++;
+            }
+            res += "</div>";
+        }
         return res;
     }
 
