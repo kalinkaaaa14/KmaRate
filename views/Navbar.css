@@ -30,6 +30,9 @@ body{
     outline-style: none!important;
     box-shadow: 0 0 0 0 rgba(0,123,255,0)!important;
 }
+.marg{
+    margin-bottom: 150px;
+}
 @media screen and (max-width: 1201px) {
     .ulRight{
         margin-top: 0px;

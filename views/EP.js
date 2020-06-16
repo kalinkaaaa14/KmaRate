@@ -158,7 +158,7 @@ $(document).ready(function () {
         allBranches+="<select  name='chooseBranch' class='custom-select mb-2' required>"+ "<option selected value=''></option>";
 
         while(dataL<data.branches.length) {
-            allProgramsAddB+="<option value='" + data.branches[dataL].id + "'>" + data.branches[dataL].id + " " + data.branches[dataL].title + "</option>";
+            //allProgramsAddB+="<option value='" + data.branches[dataL].id + "'>" + data.branches[dataL].id + " " + data.branches[dataL].title + "</option>";
             allBranches += "<option value='" + data.branches[dataL].id + "'>" + data.branches[dataL].id + " " + data.branches[dataL].title + "</option>";
         dataL++;
         }
@@ -236,7 +236,7 @@ $(document).ready(function () {
             "<h5>Університет</h5>"+
             allUniversities+
             "</div>"+
-            "<button id='searchEPButton' type='button' class='btn searchBS text-white btn-block ml-4 mt-4'>Пошук</button>"+
+            "<button id='searchEPButton' type='button' class='btn searchBS text-white btn-block ml-1 mt-4'>Пошук</button>"+
             "</form>";
 
     return res;
@@ -251,7 +251,7 @@ $(document).ready(function () {
         let allProgramsAddInput="<div id='makeOwnProgram' style='display: none'>" + "<input type='text'  name='programCreate' class='form-control ' id='programCreate'>"+"</div>";
         let allProgramsAddInputUni="<div id='makeOwnUni' style='display: none'>" + "<input type='text'  name='uniCreate' class='form-control ' id='uniCreate'>"+"</div>";
 
-        res+=  "<h5 class='mb-1 allSubjPage'>Всі програми обміну</h5>";
+        res+=  "<h5 class='mb-3 allSubjPage'>Всі програми обміну</h5>";
         let counter = 0;
         let tooltipBranches="";
 
