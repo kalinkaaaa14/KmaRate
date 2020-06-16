@@ -167,7 +167,7 @@ async function getReviewReplies(reviewId){
     users.id AS user_id, users.image_string
     
     FROM review_reply INNER JOIN users ON (review_reply.user_id = users.id)
-    WHERE subject_review_id = $1 OR reply_id IN 
+    WHERE ep_review_id = $1 OR reply_id IN 
     (SELECT id
     FROM review_ep
     WHERE ep_review_id = $1)

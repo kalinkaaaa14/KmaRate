@@ -208,12 +208,12 @@ router.get('/:id' + links.DATA + links.REVIEWS + '/:offset', async function (req
         }
 
         for (let rev of reviews) {
-            rev.image_string = null;
             rev.rate = await db.getEPReviewRate(rev.review_id);
             rev.ep_rate = await db.getEPReviewsUserRate(rev.user_id);
 
             rev.average_grade = ((+rev.place_rating
                 + +rev.adaptation) / 2).toFixed(1);
+            console.log(rev.review_id)
 
             rev.replies = await db.getReviewReplies(rev.review_id);
 
@@ -223,7 +223,7 @@ router.get('/:id' + links.DATA + links.REVIEWS + '/:offset', async function (req
             }
         }
 
-        return res.json({ reviews});
+        return res.json({reviews});
     } catch (e) {
         return next(e);
     }
