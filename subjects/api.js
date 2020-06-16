@@ -340,7 +340,7 @@ router.get('/most-popular', async function (req, res, next) {
             }
         }
 
-        return res.json({subjects: filteredSubjects, isAdmin});
+        return res.json({subjects: subjects, isAdmin});
     } catch (e) {
         return next(e);
     }
