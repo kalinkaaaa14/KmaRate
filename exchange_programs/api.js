@@ -239,7 +239,6 @@ router.get('/:id' + links.DATA + links.REVIEWS + '/:offset', async function (req
 
             rev.average_grade = ((+rev.place_rating
                 + +rev.adaptation) / 2).toFixed(1);
-            console.log(rev.review_id)
 
             rev.replies = await db.getReviewReplies(rev.review_id);
 
@@ -248,6 +247,7 @@ router.get('/:id' + links.DATA + links.REVIEWS + '/:offset', async function (req
                 repl.ep_rate = await db.getEPReviewsUserRate(repl.user_id);
             }
         }
+        console.log(reviews[0].replies);
 
         return res.json({reviews});
     } catch (e) {

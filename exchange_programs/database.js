@@ -169,7 +169,7 @@ async function getReviewReplies(reviewId){
     FROM review_reply INNER JOIN users ON (review_reply.user_id = users.id)
     WHERE ep_review_id = $1 OR reply_id IN 
     (SELECT id
-    FROM review_ep
+    FROM review_reply
     WHERE ep_review_id = $1)
     ORDER BY review_reply.date_rev ASC, review_reply.time_rev ASC 
     `, [reviewId]);
