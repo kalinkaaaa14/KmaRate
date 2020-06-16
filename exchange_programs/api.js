@@ -317,5 +317,13 @@ router.post(links.REVIEWS + links.REPLY, checkAuthenticated, async function (req
     }
 });
 
+router.get('/2more', async function (req, res, next) {
+    try {
+        res.json({ep: await db.getEP2MoreBranches()});
+    }catch (e) {
+        next(e);
+    }
+});
+
 
 module.exports = router;

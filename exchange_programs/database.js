@@ -285,6 +285,17 @@ async function addReply({time_rev, date_rev, general_impression, subject_review_
 }
 
 
+async function getEP2MoreBranches(){
+    let res = await pool.query(`
+    SELECT exchange_program.id, exchange_program.title, exchange_program.university
+    FROM exchange_program INNER JOIN branch_regarding_ep ON (exchange_program.id = branch_regarding_ep.ep_id)
+    GROUP BY exchange_program.id, exchange_program.title, exchange_program.university
+    HAVING COUNT (*) > 1;
+    `);
+    return res.rows;
+}
+
+
 module.exports = {
     addEP,
     addEPBranch,
@@ -310,5 +321,6 @@ module.exports = {
     updateUserLikeEPReply,
     deleteUserLikeEPReply,
     addReply,
+    getEP2MoreBranches,
 
 }
