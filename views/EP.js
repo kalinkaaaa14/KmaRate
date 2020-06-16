@@ -24,6 +24,7 @@ function saveNewEP(){
         t=document.getElementsByName("chooseProgramAddProgram")[0].value;
     }
 
+
     var res={
         title:t,
         university:u
@@ -32,18 +33,19 @@ function saveNewEP(){
     if(res.title==="" || res.university ===""){
         return alert('Поля, позначені *, повинні бути заповнені.');
     }
-    // $.ajax({
-    //     url: 'ep/new/exchange-program',
-    //     type: 'POST',
-    //     success: function (data, textStatus, xhr) {
-    //         console.log(data);
-    //
-    //     },
-    //
-    //     error: function (xhr, textStatus, errorThrown) {
-    //         console.log('Error in Operation');
-    //     }
-    // });
+    $.ajax({
+        url: 'ep/new/exchange-program',
+        type: 'POST',
+        data: res,
+        success: function (data, textStatus, xhr) {
+            console.log(data);
+
+        },
+
+        error: function (xhr, textStatus, errorThrown) {
+            console.log('Error in Operation');
+        }
+    });
 
 }
 let teacherId = 0;
