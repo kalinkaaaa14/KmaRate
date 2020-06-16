@@ -1,4 +1,5 @@
 let getInfoFunction;
+let reply_Nick="";
 
 function makeReply(id) {
     document.getElementById("makeReplyDiv" + id).style.display = "block";
@@ -50,7 +51,7 @@ function sendMakeReplyReply(id) {
     var now = new Date();
     var sendReply = {
         reply_id: id,
-        general_impression: document.getElementsByName('replyTextR' + id)[0].value,
+        general_impression: "@"+reply_Nick+", "+document.getElementsByName('replyTextR' + id)[0].value,
         date_rev: now.getDate() + "." + (now.getMonth() + 1) + "." + now.getFullYear(),
         time_rev: now.getHours() + ":" + now.getMinutes()
     };
@@ -82,14 +83,16 @@ if(sendReply.general_impression.toString()===""){
 }
 }
 
-function makeReplyReply(id) {
+function makeReplyReply(id,nick) {
     document.getElementById("makeReplyReplyDiv" + id).style.display = "block";
     document.getElementById("buttonReplyReplyHide" + id).style.display = "none";
+    reply_Nick=nick;
 }
 
 function cancelMakeReplyReply(id) {
     document.getElementById("makeReplyReplyDiv" + id).style.display = "none";
     document.getElementById("buttonReplyReplyHide" + id).style.display = "block";
+    reply_Nick="";
 }
 
 function likeReview(review_id, reviewerId, isLike) {
@@ -500,7 +503,7 @@ $(document).ready(function () {
                 "<button class='btn btn-lg text-decoration-none mr-2' onclick='likeReply(" + data.reviews[counter].replies[counterReply].id + "," + data.reviews[counter].replies[counterReply].user_id + ",true)'>Підтримую</button>" +
                 "<button id = 'disagree' onclick='likeReply(" + data.reviews[counter].replies[counterReply].id + "," + data.reviews[counter].replies[counterReply].user_id + ",false)' class='btn btn-lg text-decoration-none mr-2' >Не погоджуюсь</button>" +
                 "<div id='buttonReplyReplyHide" + data.reviews[counter].replies[counterReply].id + "'>" +
-                "<button onclick='makeReplyReply(" + data.reviews[counter].replies[counterReply].id + ");' class='btn btn-lg text-decoration-none mr-2'>Відповісти</button>" +
+                "<button onclick=makeReplyReply(" + data.reviews[counter].replies[counterReply].id +",'"+data.reviews[counter].replies[counterReply].nickname+"'); class='btn btn-lg text-decoration-none mr-2'>Відповісти</button>" +
                 "</div>" +
                 "<div class='ml-auto mr-5'>" + dateReply.getDate() + '.' + (dateReply.getMonth() + 1) + '.' + dateReply.getFullYear() + "  " + data.reviews[counter].replies[counterReply].time_rev.substr(0, 5) +
                 "</div>" +
@@ -562,7 +565,7 @@ $(document).ready(function () {
                     "<button class='btn btn-lg text-decoration-none mr-2' onclick='likeReply(" + data.reviews[counter].replies[counterReply].id + "," + data.reviews[counter].replies[counterReply].user_id + ",true)'>Підтримую</button>" +
                     "<button id = 'disagree' onclick='likeReply(" + data.reviews[counter].replies[counterReply].id + "," + data.reviews[counter].replies[counterReply].user_id + ",false)' class='btn btn-lg text-decoration-none mr-2' >Не погоджуюсь</button>" +
                     "<div id='buttonReplyReplyHide" + data.reviews[counter].replies[counterReply].id + "'>" +
-                    "<button onclick='makeReplyReply(" + data.reviews[counter].replies[counterReply].id + ");' class='btn btn-lg text-decoration-none mr-2'>Відповісти</button>" +
+                    "<button onclick=makeReplyReply(" + data.reviews[counter].replies[counterReply].id +",'"+data.reviews[counter].replies[counterReply].nickname+"'); class='btn btn-lg text-decoration-none mr-2'>Відповісти</button>" +
                     "</div>" +
                     "<div class='ml-auto mr-5'>" + dateReply1.getDate() + '.' + (dateReply1.getMonth() + 1) + '.' + dateReply1.getFullYear() + "  " + data.reviews[counter].replies[counterReply].time_rev.substr(0, 5) +
                     "</div>" +
