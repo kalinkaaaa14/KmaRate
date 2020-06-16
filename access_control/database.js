@@ -17,14 +17,13 @@ async function getUserByNickname(nickname) {
 
 async function getUserById(id) {
     try {
-        let {rows} = await pool.query(`SELECT nickname, email, telegram, instagram, facebook, branch_id, id
+        let {rows} = await pool.query(`SELECT nickname, password, email, telegram, instagram, facebook, branch_id, id
                                      FROM users
                                      WHERE id = $1`, [id]);
-        // console.log('deserializeUser');
-        // console.log(rows);
+
         return rows[0];
     } catch (e) {
-        return null;//todo badcode
+        return null;
     }
 }
 

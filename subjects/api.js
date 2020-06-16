@@ -324,9 +324,25 @@ router.post(links.EDIT + links.TEACHER, checkAuthenticated, checkAdmin, async fu
 
 router.get('/most-popular', async function (req, res, next) {
     try {
-        res.json({subjects: await db.getSubjectWithLargestQuantityOfReviews()});
-    }catch (e) {
-        next(e);
+        let subjects = await db.getSubjectWithLargestQuantityOfReviews();
+
+        //add teachers
+        for (let subj of subjects) {
+            subj.teachers = await db.getSubjectTeachers(subj.id);
+            await addAVGRateToSubject(subj);
+        }
+
+        let isAdmin = false;
+        if (req.user) {
+            let adminId = await db.getAdmin(req.user.id);
+            if (typeof adminId !== 'undefined') {
+                isAdmin = true;
+            }
+        }
+
+        return res.json({subjects: filteredSubjects, isAdmin});
+    } catch (e) {
+        return next(e);
     }
 });
 

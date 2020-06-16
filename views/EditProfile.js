@@ -63,21 +63,21 @@ $(document).ready(function () {
         if (subj.email === "" || subj.nickname === "") {
             return alert("Поля, позначені *, не можуть бути порожніми.");
         }
-        if (subj.email.indexOf(".") == -1) {
-
-            return  alert("У пошті повинен бути символ \".\"");
-        }
+        // if (subj.email.indexOf(".") == -1) {
+        //
+        //     return  alert("У пошті повинен бути символ \".\"");
+        // }
 
         let dog = subj.email.indexOf("@");
         if (dog == -1) {
             return alert("У пошті повинен бути символ \"@\".");
         }
 
-        if ((subj.email.charAt(dog - 1) == '.') || (subj.email.charAt(dog + 1) == '.')
-            || (subj.email.indexOf(",")>=0) || (subj.email.indexOf(";")>=0)
-        || (subj.email.indexOf(" ")>=0) || (dog < 1) || (dog > subj.email.length - 5)) {
-            return   alert("Адреса електронної пошти введена невірно.");
-        }
+        // if ((subj.email.charAt(dog - 1) == '.') || (subj.email.charAt(dog + 1) == '.')
+        //     || (subj.email.indexOf(",")>=0) || (subj.email.indexOf(";")>=0)
+        // || (subj.email.indexOf(" ")>=0) || (dog < 1) || (dog > subj.email.length - 5)) {
+        //     return   alert("Адреса електронної пошти введена невірно.");
+        // }
 
 
         $.ajax({
